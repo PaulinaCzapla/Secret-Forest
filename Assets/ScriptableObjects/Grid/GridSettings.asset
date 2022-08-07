@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f788e6451b64868b936fe026c576ae5, type: 3}
   m_Name: GridSettings
   m_EditorClassIdentifier: 
-  roomHeight: 10
-  roomWidth: 20
+  roomHeight: 20
+  roomWidth: 30
   spaceBetween: 5
+  rows: 5
+  columns: 5
