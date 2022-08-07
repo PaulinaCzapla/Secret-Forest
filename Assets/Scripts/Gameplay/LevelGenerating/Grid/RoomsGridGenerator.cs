@@ -47,9 +47,7 @@ namespace Gameplay.LevelGenerating.Grid
                         gridSettings.roomWidth / 2;
                 }
                 else
-                {
                     isColumnCell = false;
-                }
 
                 heightMultiplier = 0;
                 spaceRowsMultiplier = 0;
@@ -72,15 +70,10 @@ namespace Gameplay.LevelGenerating.Grid
                             gridSettings.spaceBetween * spaceRowsMultiplier + gridSettings.roomHeight / 2;
                     }
                     else
-                    {
                         isCell = false;
-                    }
 
                     if (isCell)
-                    {
-                        Debug.Log(indexColumns + " " + indexRows);
                         grid[indexColumns, indexRows] = new GridCell(new Vector2(x, y));
-                    }
                 }
             }
 
