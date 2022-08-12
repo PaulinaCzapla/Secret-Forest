@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.LevelGenerating.Grid
+namespace LevelGenerating.Grid
 {
-    public class GridDrawer
+    public class GridGizmoDrawer
     {
         private GridSettings _gridSettings;
         
-        public GridDrawer(GridSettings settings)
+        public GridGizmoDrawer(GridSettings settings)
         {
             _gridSettings = settings;
         }

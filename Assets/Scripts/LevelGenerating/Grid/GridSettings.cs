@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.LevelGenerating.Grid
+namespace LevelGenerating.Grid
 {
     [CreateAssetMenu(fileName = "GridSettings", menuName = "ScriptableObjects/GridSettings", order = 0)]
     public class GridSettings : ScriptableObject
