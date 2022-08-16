@@ -11,8 +11,8 @@ namespace LevelGenerating.LevelGrid
 
         [Header("Grid size")]
         [Tooltip("Rows and columns can be set in GridBaker tool.")]
-        [ReadOnlyAttribute] public int rows = 15;
-        [ReadOnlyAttribute] public int columns = 15;
+        [Attributes.ReadOnly] public int rows = 15;
+        [Attributes.ReadOnly] public int columns = 15;
         
         [Header("Grid attributes")]
         public float cellHeight = 3;

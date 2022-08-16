@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 
-namespace LevelGenerating.LevelGrid
+namespace Gizmos
 {
-    public class GridGizmoDrawer
+    public class GridGizmoDrawer : IGizmoDrawer
     {
-        private LevelGrid.Grid _grid;
+        private LevelGenerating.LevelGrid.Grid _grid;
         
-        public GridGizmoDrawer(LevelGrid.Grid settings)
+        public GridGizmoDrawer(LevelGenerating.LevelGrid.Grid settings)
         {
             _grid = settings;
         }
 
         public void DrawGizmos()
         {
-           // Debug.Log(_grid.LevelsGrid.Length);
-            DrawColumns();
-            DrawRows();
+            if (_grid.drawGridGizmo)
+            {
+                DrawColumns();
+                DrawRows();
+            }
         }
 
         private void DrawRows()
@@ -32,7 +34,7 @@ namespace LevelGenerating.LevelGrid
                         heightMultiplier++;
                 }
 
-                Gizmos.DrawLine(
+                UnityEngine.Gizmos.DrawLine(
                     new Vector3(0,
                         _grid.cellHeight * heightMultiplier + _grid.spaceBetween * spaceMultiplier, 0),
                     new Vector3(_grid.columns * _grid.cellWidth + (_grid.columns - 1) * _grid.spaceBetween,
@@ -54,7 +56,7 @@ namespace LevelGenerating.LevelGrid
                         widthMultiplier++;
                 }
                 
-                Gizmos.DrawLine(
+                UnityEngine.Gizmos.DrawLine(
                     new Vector3(
                         _grid.cellWidth * widthMultiplier + _grid.spaceBetween * spaceMultiplier,
                         0, 0),

@@ -19,10 +19,8 @@ namespace LevelGenerating.LevelGrid
         {
             if (_isInitialized)
             {
-                Debug.Log("baking");
                 _grid.LevelsGrid = null;
                 _grid.LevelsGrid = new Matrix(_grid.columns, _grid.rows);
-               // _grid.LevelsGrid = new GridCell[_grid.columns, _grid.rows];
                 int spaceRowsMultiplier = 0;
                 int heightMultiplier = 0;
                 int spaceMultiplier = 0;
@@ -78,22 +76,14 @@ namespace LevelGenerating.LevelGrid
                             isCell = false;
 
                         if (isCell)
-                        {
-                            Debug.Log("cell");
                             _grid.LevelsGrid[indexColumns, indexRows] =
                                 new GridCell(new GridPosition(indexColumns, indexRows), new Vector2(x, y));
-                        }
                     }
                 }
 
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
-
-      
     }
 }
