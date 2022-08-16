@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 
-namespace LevelGenerating.Grid
+namespace LevelGenerating.LevelGrid
 {
     public class GridGizmoDrawer
     {
-        private GridSettings _gridSettings;
+        private LevelGrid.Grid _grid;
         
-        public GridGizmoDrawer(GridSettings settings)
+        public GridGizmoDrawer(LevelGrid.Grid settings)
         {
-            _gridSettings = settings;
+            _grid = settings;
         }
 
         public void DrawGizmos()
         {
+           // Debug.Log(_grid.LevelsGrid.Length);
             DrawColumns();
             DrawRows();
         }
@@ -21,7 +22,7 @@ namespace LevelGenerating.Grid
         {
             int spaceMultiplier = 0;
             int heightMultiplier = 0;
-            for (int i = 0; i < 2 * _gridSettings.rows; i++)
+            for (int i = 0; i < 2 * _grid.rows; i++)
             {
                 if (i > 0)
                 {
@@ -33,9 +34,9 @@ namespace LevelGenerating.Grid
 
                 Gizmos.DrawLine(
                     new Vector3(0,
-                        _gridSettings.roomHeight * heightMultiplier + _gridSettings.spaceBetween * spaceMultiplier, 0),
-                    new Vector3(_gridSettings.columns * _gridSettings.roomWidth + (_gridSettings.columns - 1) * _gridSettings.spaceBetween,
-                        _gridSettings.roomHeight * heightMultiplier + _gridSettings.spaceBetween * spaceMultiplier));
+                        _grid.cellHeight * heightMultiplier + _grid.spaceBetween * spaceMultiplier, 0),
+                    new Vector3(_grid.columns * _grid.cellWidth + (_grid.columns - 1) * _grid.spaceBetween,
+                        _grid.cellHeight * heightMultiplier + _grid.spaceBetween * spaceMultiplier));
             }
         }
 
@@ -43,7 +44,7 @@ namespace LevelGenerating.Grid
         {
             int spaceMultiplier = 0;
             int widthMultiplier = 0;
-            for (int i = 0; i < 2 * _gridSettings.columns; i++)
+            for (int i = 0; i < 2 * _grid.columns; i++)
             {
                 if (i > 0)
                 {
@@ -52,14 +53,14 @@ namespace LevelGenerating.Grid
                     else
                         widthMultiplier++;
                 }
-
+                
                 Gizmos.DrawLine(
                     new Vector3(
-                        _gridSettings.roomWidth * widthMultiplier + _gridSettings.spaceBetween * spaceMultiplier,
+                        _grid.cellWidth * widthMultiplier + _grid.spaceBetween * spaceMultiplier,
                         0, 0),
                     new Vector3(
-                        _gridSettings.roomWidth * widthMultiplier + _gridSettings.spaceBetween * spaceMultiplier,
-                        _gridSettings.rows * _gridSettings.roomHeight + (_gridSettings.rows - 1) * _gridSettings.spaceBetween));
+                        _grid.cellWidth * widthMultiplier + _grid.spaceBetween * spaceMultiplier,
+                        _grid.rows * _grid.cellHeight + (_grid.rows - 1) * _grid.spaceBetween));
             }
         }
     }

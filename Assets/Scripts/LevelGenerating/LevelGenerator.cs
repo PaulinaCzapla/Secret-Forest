@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Glades;
-using LevelGenerating.Grid;
+using LevelGenerating.LevelGrid;
 using UnityEngine;
+using Grid = LevelGenerating.LevelGrid.Grid;
 using Random = UnityEngine.Random;
 
 namespace LevelGenerating
@@ -15,22 +16,24 @@ namespace LevelGenerating
 
         [SerializeField] private List<GameObject> spawnedRooms;
 
-        [Header("Grid generator")] [SerializeField]
-        private LevelsGridGenerator gridGenerator = new LevelsGridGenerator();
+        [SerializeField] private Grid grid;
+       // [Header("Grid generator")] [SerializeField]
+        //private GridGenerator gridGenerator = new GridGenerator();
+        private static GridGizmoDrawer _gridGizmoDrawer;
 
         private void Start()
         {
             DontDestroyOnLoad(this);
-            gridGenerator.GenerateGrid();
+           // gridGenerator.GenerateGrid();
             GenerateLevel();
         }
 
         private void GenerateLevel()
         {
-            var obj = Instantiate(glade.gameObject, gridGenerator.Grid[(int) firstRoom.x, (int) firstRoom.y].Position,
+            var obj = Instantiate(glade.gameObject, grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position,
                 Quaternion.Euler(Vector3.zero));
 
-            obj.AddComponent<SpawnedGlade>().GridCell = gridGenerator.Grid[(int) firstRoom.x, (int) firstRoom.y];
+            obj.AddComponent<SpawnedGlade>().GridCell = grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y];
             var attributes = levelsConfig.GetLevelAttributes(1);
 
             SpawnedGlade firstSpawned = obj.GetComponent<SpawnedGlade>();
@@ -72,10 +75,17 @@ namespace LevelGenerating
             //         }
             //     }
         }
-
-        private void OnDrawGizmos()
+        public void OnDrawGizmos()
         {
-            gridGenerator.DrawGizmos();
+            if (grid == null)
+                return;
+            
+            if (_gridGizmoDrawer != null)
+                _gridGizmoDrawer.DrawGizmos();
+            else
+            {
+                _gridGizmoDrawer = new GridGizmoDrawer(grid);
+            }
         }
     }
 }

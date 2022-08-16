@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Glades;
-using LevelGenerating.Grid;
+using LevelGenerating.LevelGrid;
 using UnityEditor;
 using UnityEngine;
 
