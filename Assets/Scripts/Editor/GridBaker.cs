@@ -31,7 +31,7 @@ namespace Editor
                 EditorGUILayout.HelpBox("Grid Settings asset is missing!", MessageType.Warning);
                 return;
             }
-            else if (!_wasSizeSet)
+            if (!_wasSizeSet)
             {
                 _columns = _grid.columns;
                 _rows = _grid.rows;
@@ -40,8 +40,6 @@ namespace Editor
 
             EditorGUILayout.Separator();
             EditorGUILayout.LabelField("Columns");
-
-
             _columns = EditorGUILayout.IntSlider(_columns, 2, 30);
             EditorGUILayout.Separator();
             EditorGUILayout.LabelField("Rows");

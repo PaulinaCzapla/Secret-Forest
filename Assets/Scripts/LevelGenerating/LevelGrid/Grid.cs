@@ -7,11 +7,12 @@ namespace LevelGenerating.LevelGrid
     [CreateAssetMenu(fileName = "Grid", menuName = "ScriptableObjects/Grid", order = 0)]
     public class Grid : ScriptableObject
     {
-        [HideInInspector] public Matrix LevelsGrid;
+        public Matrix LevelsGrid { get; set; }
 
         [Header("Grid size")]
-        [Tooltip("Rows and columns can be set in GridBaker tool.")]
+        [Tooltip("Rows and columns can be set in GridBaker.")]
         [Attributes.ReadOnly] public int rows = 15;
+        [Tooltip("Rows and columns can be set in GridBaker.")]
         [Attributes.ReadOnly] public int columns = 15;
         
         [Header("Grid attributes")]
