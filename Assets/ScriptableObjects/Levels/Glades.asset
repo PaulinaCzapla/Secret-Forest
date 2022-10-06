@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8eb039446343afa401ef6da4d0f679, type: 3}
+  m_Name: Glades
+  m_EditorClassIdentifier: 
+  glades:
+  - type: 0
+    gameObject: {fileID: 7602280245869365318, guid: ab693562765fad047a63a4db7275f3d3, type: 3}
+  - type: 1
+    gameObject: {fileID: 7602280245869365318, guid: 878008da2a142c14d96b2e31e0d4fa3d, type: 3}
+  - type: 6
+    gameObject: {fileID: 7602280245869365318, guid: d94ff27efc3d31342acdc7140fcce636, type: 3}

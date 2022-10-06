@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelInfo:
   - maxLevelNum: 10
-    levelInfo:
-      availableRoomTypes: 
-      minRoomsNum: 5
-      maxRoomsNum: 8
+    levelAttributes:
+      availableRoomTypes: 01000000
+      minRoomsNum: 4
+      maxRoomsNum: 6
       roomsDifficultyLevel: 0

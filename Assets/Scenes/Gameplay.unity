@@ -268,8 +268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstRoom: {x: 0, y: 6}
-  levelsConfig: {fileID: 11400000, guid: b44b8967e57714a45b9c5978bba482ad, type: 2}
-  glade: {fileID: 8167589928692973405, guid: ab693562765fad047a63a4db7275f3d3, type: 3}
+  levelsConfigSo: {fileID: 11400000, guid: b44b8967e57714a45b9c5978bba482ad, type: 2}
+  gladesSo: {fileID: 11400000, guid: 771f4319bd2596846ba943176706fdb0, type: 2}
   spawnedRooms: []
   grid: {fileID: 11400000, guid: 6880e5090dc31f54ebed9c0377b03cf3, type: 2}
 --- !u!4 &1857526362

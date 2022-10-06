@@ -23,6 +23,7 @@ namespace LevelGenerating.LevelGrid
     {
         public int X { get; private set; }
         public int Y { get; private set; }
+        public Vector2 Position => new Vector2(X, Y);
 
         public GridPosition(int x, int y)
         {

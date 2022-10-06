@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace LevelGenerating
 {
+    [CreateAssetMenu(fileName = "Glades", menuName = "ScriptableObjects/Glades")]
     public class GladesSO : ScriptableObject
     {
         public Dictionary<GladeType, GameObject> Glades
@@ -31,6 +32,7 @@ namespace LevelGenerating
         private Dictionary<GladeType, GameObject> _glades = null;
     }
 
+    [Serializable]
     public struct GladeObject
     {
         public GladeType type;
