@@ -6,7 +6,7 @@ using UnityEngine;
 namespace LevelGenerating
 {
     [CreateAssetMenu(fileName = "LevelsConfig", menuName = "ScriptableObjects/LevelsConfig")]
-    public class LevelsConfig : ScriptableObject
+    public class LevelsConfigSO : ScriptableObject
     {
         [SerializeField] private List<LevelInfo> levelInfo;
 

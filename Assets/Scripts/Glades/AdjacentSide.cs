@@ -2,7 +2,6 @@
 {
     public enum AdjacentSide
     {
-        None,
         Right,
         Left,
         Up,

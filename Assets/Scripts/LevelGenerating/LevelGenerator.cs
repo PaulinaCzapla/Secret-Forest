@@ -11,33 +11,43 @@ namespace LevelGenerating
 {
     public class LevelGenerator : MonoBehaviour
     {
-        [SerializeField] private Vector2 firstRoom;
-        [SerializeField] private LevelsConfig levelsConfig;
-        [SerializeField] private Glade glade;
+        [Header("First room position in grid")] [SerializeField]
+        private Vector2 firstRoom;
+
+        [Header("Scriptable objects")] [SerializeField]
+        private LevelsConfigSO levelsConfigSo;
+
+        [SerializeField] private GladesSO gladesSo;
+
+        //[SerializeField] private Glade glade;
 
         [SerializeField] private List<GameObject> spawnedRooms;
 
+        [Header("Game grid")] 
         [SerializeField] private Grid grid;
-       // [Header("Grid generator")] [SerializeField]
+
+        // [Header("Grid generator")] [SerializeField]
         //private GridGenerator gridGenerator = new GridGenerator();
         private static GridGizmoDrawer _gridGizmoDrawer;
 
         private void Start()
         {
             DontDestroyOnLoad(this);
-           // gridGenerator.GenerateGrid();
+            // gridGenerator.GenerateGrid();
             GenerateLevel();
         }
 
         private void GenerateLevel()
         {
-            var obj = Instantiate(glade.gameObject, grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position,
+            //Generate first glade
+            var firstGlade = Instantiate(glade.gameObject,
+                grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position,
                 Quaternion.Euler(Vector3.zero));
 
-            obj.AddComponent<SpawnedGlade>().GridCell = grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y];
-            var attributes = levelsConfig.GetLevelAttributes(1);
+            firstGlade.AddComponent<SpawnedGlade>().GridCell = grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y];
+            var attributes = levelsConfigSo.GetLevelAttributes(1);
 
-            SpawnedGlade firstSpawned = obj.GetComponent<SpawnedGlade>();
+            SpawnedGlade firstSpawned = firstGlade.GetComponent<SpawnedGlade>();
 
             int roomsNum = Random.Range(attributes.minRoomsNum, attributes.maxRoomsNum);
 
@@ -64,8 +74,6 @@ namespace LevelGenerating
                 {
                     rooms = 1;
                 }
-                
-                
             }
 
             // for (int j = 0; j < gridSettings.columns; j++)
@@ -76,11 +84,12 @@ namespace LevelGenerating
             //         }
             //     }
         }
+
         public void OnDrawGizmos()
         {
             if (grid == null)
                 return;
-            
+
             if (_gridGizmoDrawer != null)
                 _gridGizmoDrawer.DrawGizmos();
             else

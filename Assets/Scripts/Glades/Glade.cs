@@ -7,5 +7,6 @@ namespace Glades
     {
         [SerializeField] private GladeType type;
         
+        
     }
 }
