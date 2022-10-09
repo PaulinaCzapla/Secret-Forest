@@ -16,6 +16,6 @@ MonoBehaviour:
   - maxLevelNum: 10
     levelAttributes:
       availableRoomTypes: 01000000
-      minRoomsNum: 4
-      maxRoomsNum: 6
+      minRoomsNum: 19
+      maxRoomsNum: 38
       roomsDifficultyLevel: 0

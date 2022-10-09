@@ -9,5 +9,10 @@ namespace Glades
         
         //public AdjacentGlade(SpawnedGladeGlade glade)
         //  public AdjacentSide side;
+
+        public AdjacentGlade(AdjacentType type)
+        {
+            this.type = type;
+        }
     }
 }
