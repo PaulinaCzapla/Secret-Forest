@@ -4,6 +4,7 @@
     {
         Start,
         Rest,
+        Food,
         Empty,
         FightEasy,
         FightHard,

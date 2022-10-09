@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b779b40269804c008239a0f418c2ab59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstRoom: {x: 5, y: 15}
+  firstRoom: {x: 15, y: 15}
   levelsConfigSo: {fileID: 11400000, guid: b44b8967e57714a45b9c5978bba482ad, type: 2}
   gladesSo: {fileID: 11400000, guid: 771f4319bd2596846ba943176706fdb0, type: 2}
   grid: {fileID: 11400000, guid: 6880e5090dc31f54ebed9c0377b03cf3, type: 2}

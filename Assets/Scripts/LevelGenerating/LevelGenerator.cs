@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Gizmos;
 using Glades;
 using LevelGenerating.LevelGrid;
+using RandomGenerators;
 using Unity.VisualScripting;
 using UnityEngine;
 using Grid = LevelGenerating.LevelGrid.Grid;
@@ -35,7 +36,7 @@ namespace LevelGenerating
 
         private void Start()
         {
-            DontDestroyOnLoad(this);
+            //   DontDestroyOnLoad(this);
             spawnedGlades = new List<SpawnedGlade>();
             gladesPools = new Dictionary<GladeType, List<SpawnedGlade>>();
 
@@ -57,7 +58,7 @@ namespace LevelGenerating
                 {
                     glade.gameObject.SetActive(false);
                     glade.Reset();
-                    
+
                     var type = glade.Glade.Type;
 
                     if (type == GladeType.Start)
@@ -72,11 +73,13 @@ namespace LevelGenerating
             }
         }
 
+        private LevelAttributes _levelAttributes;
+
         public void GenerateLevel(int levelNum = 1)
         {
             UnloadLevel();
 
-            var levelAttributes = levelsConfigSo.GetLevelAttributes(levelNum);
+            _levelAttributes = levelsConfigSo.GetLevelAttributes(levelNum);
 
             //Generate first glade
             SpawnedGlade spawnedGlade;
@@ -99,7 +102,7 @@ namespace LevelGenerating
             spawnedGlade.GridCell = grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y];
             spawnedGlades.Add(spawnedGlade);
 
-            int roomsToSpawn = Random.Range(levelAttributes.minRoomsNum, levelAttributes.maxRoomsNum);
+            int roomsToSpawn = Random.Range(_levelAttributes.minRoomsNum, _levelAttributes.maxRoomsNum);
             int currentGladeIndex = spawnedGlades.Count - 1;
 
             do
@@ -115,66 +118,7 @@ namespace LevelGenerating
                     roomsToSpawn -= newRoomsNum;
 
                     //spawn rooms
-                    for (int i = 0; i < newRoomsNum; i++)
-                    {
-                        Vector2 newPosition = spawned.GridCell.PositionInGrid.Position;
-                        AdjacentSide side = positions[Random.Range(0, positions.Count)];
-                        positions.Remove(side);
-
-                        if (side == AdjacentSide.Up)
-                            newPosition += new Vector2(0, 1);
-                        else if (side == AdjacentSide.Down)
-                            newPosition += new Vector2(0, -1);
-                        else if (side == AdjacentSide.Left)
-                            newPosition += new Vector2(-1, 0);
-                        else if (side == AdjacentSide.Right)
-                            newPosition += new Vector2(1, 0);
-
-                        //get new room type
-                        var type = levelAttributes.availableRoomTypes[
-                            Random.Range(0, levelAttributes.availableRoomTypes.Count)];
-
-                        if (roomsToSpawn == 0 && i == newRoomsNum - 1)
-                            type = GladeType.End;
-
-                        SpawnedGlade newGlade;
-
-                        if ((endGlade != null && type == GladeType.End) ||
-                            (gladesPools.ContainsKey(type) && gladesPools[type].Count > 0))
-                        {
-                            if (type == GladeType.End)
-                            {
-                                newGlade = endGlade;
-                            }
-                            else
-                            {
-                                newGlade = gladesPools[type][0];
-                                gladesPools[type].RemoveAt(0);
-                            }
-
-                            newGlade.gameObject.SetActive(true);
-                            newGlade.gameObject.transform.position =
-                                grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y].Position;
-                        }
-                        else
-                        {
-                            var glade = Instantiate(gladesSo.Glades[type],
-                                grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y].Position,
-                                Quaternion.Euler(Vector3.zero));
-                            newGlade = glade.GetComponent<SpawnedGlade>();
-                        }
-
-                        newGlade.GridCell = grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y];
-
-                        var adjacent = new AdjacentGlade(AdjacentType.Basic);
-                        spawned.AdjacentGlades.Add(side, adjacent);
-                        newGlade.AdjacentGlades.Add(GetOppositeSide(side), adjacent);
-
-                        CheckOtherAdjacent(newGlade);
-                        spawned.Initialize();
-                        newGlade.Initialize();
-                        spawnedGlades.Add(newGlade);
-                    }
+                   SpawnNewRooms(newRoomsNum,roomsToSpawn,positions,spawned);
 
                     currentGladeIndex = spawnedGlades.Count - 1;
                 }
@@ -185,6 +129,69 @@ namespace LevelGenerating
                         return;
                 }
             } while (roomsToSpawn > 0);
+        }
+
+        private void SpawnNewRooms(int newRoomsNum, int roomsToSpawn, List<AdjacentSide> positions, SpawnedGlade spawned)
+        {
+            for (int i = 0; i < newRoomsNum; i++)
+            {
+                Vector2 newPosition = spawned.GridCell.PositionInGrid.Position;
+                AdjacentSide side = positions[Random.Range(0, positions.Count)];
+                positions.Remove(side);
+
+                if (side == AdjacentSide.Up)
+                    newPosition += new Vector2(0, 1);
+                else if (side == AdjacentSide.Down)
+                    newPosition += new Vector2(0, -1);
+                else if (side == AdjacentSide.Left)
+                    newPosition += new Vector2(-1, 0);
+                else if (side == AdjacentSide.Right)
+                    newPosition += new Vector2(1, 0);
+
+                //get new room type
+                var type = _levelAttributes.GetRandomGladeType();
+
+                if (roomsToSpawn == 0 && i == newRoomsNum - 1)
+                    type = GladeType.End;
+
+                SpawnedGlade newGlade;
+
+                if ((endGlade != null && type == GladeType.End) ||
+                    (gladesPools.ContainsKey(type) && gladesPools[type].Count > 0))
+                {
+                    if (type == GladeType.End)
+                    {
+                        newGlade = endGlade;
+                    }
+                    else
+                    {
+                        newGlade = gladesPools[type][0];
+                        gladesPools[type].RemoveAt(0);
+                    }
+
+                    newGlade.gameObject.SetActive(true);
+                    newGlade.gameObject.transform.position =
+                        grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y].Position;
+                }
+                else
+                {
+                    var glade = Instantiate(gladesSo.Glades[type],
+                        grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y].Position,
+                        Quaternion.Euler(Vector3.zero));
+                    newGlade = glade.GetComponent<SpawnedGlade>();
+                }
+
+                newGlade.GridCell = grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y];
+
+                var adjacent = new AdjacentGlade(AdjacentType.Basic);
+                spawned.AdjacentGlades.Add(side, adjacent);
+                newGlade.AdjacentGlades.Add(GetOppositeSide(side), adjacent);
+
+                CheckOtherAdjacent(newGlade);
+                spawned.Initialize();
+                newGlade.Initialize();
+                spawnedGlades.Add(newGlade);
+            }
         }
 
         private void CheckOtherAdjacent(SpawnedGlade newGlade)
@@ -206,7 +213,13 @@ namespace LevelGenerating
 
                 if (adjacentGlade != null)
                 {
-                    var adjacent = new AdjacentGlade(AdjacentType.Blocked);
+                    Tuple<AdjacentType, float>[] adjacentTypes = new[]
+                    {
+                        new Tuple<AdjacentType, float>(AdjacentType.Basic, 1f),
+                        new Tuple<AdjacentType, float>(AdjacentType.Blocked, 0f)
+                    };
+
+                    var adjacent = new AdjacentGlade(RandomWithProbabilityGenerator.GetRandom(adjacentTypes));
                     newGlade.AdjacentGlades.Add(adjacentSide, adjacent);
                     adjacentGlade.AdjacentGlades.Add(GetOppositeSide(adjacentSide), adjacent);
                     adjacentGlade.Initialize();
@@ -273,7 +286,6 @@ namespace LevelGenerating
                     positions.Remove(side);
             }
 
-            Debug.Log(positions.Count);
             return positions;
         }
 

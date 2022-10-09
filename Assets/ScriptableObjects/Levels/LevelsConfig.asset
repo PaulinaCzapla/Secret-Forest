@@ -15,7 +15,15 @@ MonoBehaviour:
   levelInfo:
   - maxLevelNum: 10
     levelAttributes:
-      availableRoomTypes: 01000000
+      availableGladeTypes:
+      - type: 1
+        probability: 0.3
+      - type: 3
+        probability: 0.4
+      - type: 4
+        probability: 0.1
+      - type: 2
+        probability: 0.2
       minRoomsNum: 19
       maxRoomsNum: 38
       roomsDifficultyLevel: 0
