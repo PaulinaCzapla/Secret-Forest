@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using LevelGenerating.LevelGrid;
+using PlayerInteractions.Interfaces;
+using PlayerInteractions.StaticEvents;
 using UnityEditor;
 using UnityEngine;
 
 namespace Glades
 {
-    public class SpawnedGlade : MonoBehaviour
+    public class SpawnedGlade : MonoBehaviour, IInteractable
     {
         [SerializeField] private GameObject upGate;
         [SerializeField] private GameObject downGate;
@@ -51,6 +53,12 @@ namespace Glades
             if (AdjacentGlades.ContainsKey(AdjacentSide.Right) &&
                 AdjacentGlades[AdjacentSide.Right].type != AdjacentType.Blocked)
                 rightGate.SetActive(true);
+        }
+        
+        public void Interact()
+        {
+            Debug.Log("Clicked!");
+            PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(this);
         }
 
         public void Reset()

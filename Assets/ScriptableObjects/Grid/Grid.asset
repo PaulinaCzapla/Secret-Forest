@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f788e6451b64868b936fe026c576ae5, type: 3}
   m_Name: Grid
   m_EditorClassIdentifier: 
-  roomHeight: 3
-  roomWidth: 5
-  spaceBetween: 1.5
-  rows: 15
-  columns: 15
+  rows: 30
+  columns: 30
+  cellHeight: 3.4
+  cellWidth: 3.8
+  spaceBetween: 0.3
+  drawGridGizmo: 1

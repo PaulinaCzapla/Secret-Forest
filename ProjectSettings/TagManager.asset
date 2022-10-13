@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Glade
+  - InteractableObject
   - 
   - 
   - 
@@ -40,4 +40,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Grass
+    uniqueID: 2334146743
+    locked: 0
+  - name: Decorations
+    uniqueID: 1252856641
+    locked: 0
+  - name: Paths
+    uniqueID: 722960279
+    locked: 0
+  - name: TreesBehind
+    uniqueID: 3744655571
+    locked: 0
+  - name: Items
+    uniqueID: 2189823543
+    locked: 0
+  - name: Player
+    uniqueID: 120162863
+    locked: 0
+  - name: Trees
+    uniqueID: 1685395767
     locked: 0

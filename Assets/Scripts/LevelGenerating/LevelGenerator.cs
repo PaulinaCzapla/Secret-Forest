@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using CameraManagement;
 using Gizmos;
 using Glades;
 using LevelGenerating.LevelGrid;
+using PlayerInteractions.StaticEvents;
 using RandomGenerators;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -26,7 +28,7 @@ namespace LevelGenerating
         
         private List<SpawnedGlade> _spawnedGlades;
         private Dictionary<GladeType, List<SpawnedGlade>> _gladesPools;
-        private SpawnedGlade _startGlade;
+        [SerializeField] private SpawnedGlade startGlade;
         private SpawnedGlade _endGlade;
         private LevelAttributes _levelAttributes;
 
@@ -60,7 +62,7 @@ namespace LevelGenerating
                     var type = glade.Glade.Type;
 
                     if (type == GladeType.Start)
-                        _startGlade = glade;
+                        startGlade = glade;
                     else if (type == GladeType.End)
                         _endGlade = glade;
                     else
@@ -83,7 +85,7 @@ namespace LevelGenerating
 
             //Generate first glade
             SpawnedGlade spawnedGlade;
-            if (_startGlade == null)
+            if (startGlade == null)
             {
                 var firstGlade = Instantiate(gladesSo.Glades[GladeType.Start],
                     grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position,
@@ -93,7 +95,7 @@ namespace LevelGenerating
             }
             else
             {
-                spawnedGlade = _startGlade;
+                spawnedGlade = startGlade;
                 spawnedGlade.gameObject.transform.position =
                     grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position;
                 spawnedGlade.gameObject.SetActive(true);
@@ -101,6 +103,11 @@ namespace LevelGenerating
 
             spawnedGlade.GridCell = grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y];
             _spawnedGlades.Add(spawnedGlade);
+
+            CameraLimits.MaxX = spawnedGlade.GridCell.Position.x;
+            CameraLimits.MinX = spawnedGlade.GridCell.Position.x;
+            CameraLimits.MaxY = spawnedGlade.GridCell.Position.y;
+            CameraLimits.MinY = spawnedGlade.GridCell.Position.y;
 
             int roomsToSpawn = Random.Range(_levelAttributes.minRoomsNum, _levelAttributes.maxRoomsNum);
             int currentGladeIndex = _spawnedGlades.Count - 1;
@@ -129,6 +136,8 @@ namespace LevelGenerating
                         return;
                 }
             } while (roomsToSpawn > 0);
+            
+            PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(startGlade);
         }
 
         /// <summary>
@@ -194,8 +203,22 @@ namespace LevelGenerating
                 CheckOtherAdjacent(newGlade);
                 spawned.Initialize();
                 newGlade.Initialize();
+                
                 _spawnedGlades.Add(newGlade);
+                SetCameraLimits(newGlade.GridCell.Position);
             }
+        }
+
+        private void SetCameraLimits(Vector2 position)
+        {
+            if (CameraLimits.MaxX < position.x)
+                CameraLimits.MaxX = position.x;
+            if (CameraLimits.MinX > position.x)
+                CameraLimits.MinX= position.x;
+            if (CameraLimits.MaxY < position.y)
+                CameraLimits.MaxY = position.y;
+            if (CameraLimits.MinY > position.y)
+                CameraLimits.MaxY = position.y;
         }
 
         /// <summary>
@@ -222,8 +245,8 @@ namespace LevelGenerating
                 {
                     Tuple<AdjacentType, float>[] adjacentTypes = new[]
                     {
-                        new Tuple<AdjacentType, float>(AdjacentType.Basic, 1f),
-                        new Tuple<AdjacentType, float>(AdjacentType.Blocked, 0f)
+                        new Tuple<AdjacentType, float>(AdjacentType.Basic, 0.5f),
+                        new Tuple<AdjacentType, float>(AdjacentType.Blocked, 0.5f)
                     };
 
                     var adjacent = new AdjacentGlade(RandomWithProbabilityGenerator.GetRandom(adjacentTypes));
