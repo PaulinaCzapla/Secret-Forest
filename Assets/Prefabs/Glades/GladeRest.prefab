@@ -1662,6 +1662,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GladeRest
       objectReference: {fileID: 0}
+    - target: {fileID: 4110032084744797815, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110032084744797815, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5444536
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110032084744797815, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+      propertyPath: m_Color.r
+      value: 0.3647059
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
 --- !u!4 &1435788695382578575 stripped

@@ -67,6 +67,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4110032084744797815, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+      propertyPath: m_Color.b
+      value: 0.44935918
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110032084744797815, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110032084744797815, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+      propertyPath: m_Color.r
+      value: 0.59038806
+      objectReference: {fileID: 0}
     - target: {fileID: 4751484321385413010, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
       propertyPath: m_Name
       value: Glade

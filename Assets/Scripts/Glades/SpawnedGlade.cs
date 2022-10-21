@@ -63,7 +63,10 @@ namespace Glades
 
         public void Reset()
         {
+            Debug.Log("cleared");
             AdjacentGlades.Clear();
+            AdjacentGlades = new Dictionary<AdjacentSide, AdjacentGlade>();
+            
             GridCell = null;
             upGate.SetActive(false);
             downGate.SetActive(false);

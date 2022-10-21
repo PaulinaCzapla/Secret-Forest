@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1949159553900978332
+--- !u!1001 &8986548838041176366
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 303738297929402352, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
       propertyPath: type
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 303738297929402355, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
       propertyPath: m_RootOrder
@@ -57,7 +57,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 303738297929402358, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
       propertyPath: m_Name
-      value: GladeEnd
+      value: GladeFightEasy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110032084744797815, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+      propertyPath: m_Color.b
+      value: 0.15977214
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110032084744797815, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+      propertyPath: m_Color.g
+      value: 0.15977214
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110032084744797815, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6415094
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}

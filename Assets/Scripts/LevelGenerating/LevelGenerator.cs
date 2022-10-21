@@ -52,12 +52,17 @@ namespace LevelGenerating
 
         private void UnloadLevel()
         {
+            if(startGlade)
+            startGlade.Reset();
+            if(_endGlade)
+            _endGlade.Reset();
+            
             if (_spawnedGlades != null && _spawnedGlades.Count > 0)
             {
                 foreach (var glade in _spawnedGlades)
                 {
-                    glade.gameObject.SetActive(false);
                     glade.Reset();
+                    glade.gameObject.SetActive(false);
 
                     var type = glade.Glade.Type;
 
@@ -70,6 +75,7 @@ namespace LevelGenerating
                 }
 
                 _spawnedGlades.Clear();
+                _spawnedGlades = new List<SpawnedGlade>();
             }
         }
 
@@ -99,6 +105,7 @@ namespace LevelGenerating
                 spawnedGlade.gameObject.transform.position =
                     grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position;
                 spawnedGlade.gameObject.SetActive(true);
+                spawnedGlade.Reset();
             }
 
             spawnedGlade.GridCell = grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y];
@@ -185,6 +192,7 @@ namespace LevelGenerating
                     newGlade.gameObject.SetActive(true);
                     newGlade.gameObject.transform.position =
                         grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y].Position;
+                    newGlade.Reset();
                 }
                 else
                 {
@@ -197,7 +205,17 @@ namespace LevelGenerating
                 newGlade.GridCell = grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y];
 
                 var adjacent = new AdjacentGlade(AdjacentType.Basic);
+                if (spawned.AdjacentGlades.ContainsKey(side))
+                {
+                    Debug.Log("CHECK");
+                }
+                
                 spawned.AdjacentGlades.Add(side, adjacent);
+
+                if (newGlade.AdjacentGlades.ContainsKey(GetOppositeSide(side)))
+                {
+                    Debug.Log("CHECK");
+                }
                 newGlade.AdjacentGlades.Add(GetOppositeSide(side), adjacent);
 
                 CheckOtherAdjacent(newGlade);
@@ -245,8 +263,8 @@ namespace LevelGenerating
                 {
                     Tuple<AdjacentType, float>[] adjacentTypes = new[]
                     {
-                        new Tuple<AdjacentType, float>(AdjacentType.Basic, 0.5f),
-                        new Tuple<AdjacentType, float>(AdjacentType.Blocked, 0.5f)
+                        new Tuple<AdjacentType, float>(AdjacentType.Basic, 0.2f),
+                        new Tuple<AdjacentType, float>(AdjacentType.Blocked, 0.8f)
                     };
 
                     var adjacent = new AdjacentGlade(RandomWithProbabilityGenerator.GetRandom(adjacentTypes));
