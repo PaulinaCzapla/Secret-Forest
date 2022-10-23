@@ -12,22 +12,28 @@ namespace PlayerInteractions.Input
         private bool _tapPositionHasUI;
         private Vector2 _beginTapPosition;
         private Vector2 _prevTapPosition;
+
         private float _timer = 0f;
+
         // State machine
-        private  delegate void StateDelegate();
+        private delegate void StateDelegate();
+
         private delegate void StateOnEnterDelegate(Touch touch);
 
         private StateDelegate _currentState;
+
         public MouseInputController(IInputManager inputManager, InputSettings settings)
         {
             _settings = settings;
             _inputManager = inputManager;
             _currentState = IdleState;
         }
-        
+
         public void Update()
         {
+            _timer += Time.deltaTime;
             _currentState();
+            _inputManager.MouseWheel(UnityEngine.Input.mouseScrollDelta.y);
         }
 
         void IdleState()
@@ -51,6 +57,12 @@ namespace PlayerInteractions.Input
             {
                 _inputManager.Tap(UnityEngine.Input.mousePosition, -1, _tapPositionHasUI);
                 _currentState = IdleState;
+            }
+            else if (_timer >= _settings.dragDurationThreshold &&
+                     (Mathf.Abs(Vector2.Distance(_beginTapPosition, UnityEngine.Input.mousePosition)) >=
+                      _settings.dragDistanceThreashold))
+            {
+                DraggingStateOnEnter();
             }
         }
 

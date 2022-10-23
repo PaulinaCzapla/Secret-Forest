@@ -12,8 +12,8 @@ namespace Settings
         [SerializeField] public float swipeMaxDuration = 0.3f;
         [SerializeField] public float swipeDistanseThreshold = 0.15f;
         
-        [SerializeField] public float dragDurationThreshold = 0.2f;
-        [SerializeField] public float dragDistanceThreashold = 0.4f;
+        [SerializeField] public float dragDurationThreshold = 0.002f;
+        [SerializeField] public float dragDistanceThreashold = 0.04f;
         
        // [SerializeField] public LayerMask gladeLayerMask;
         public float DragDurationThreshold { get { return dragDurationThreshold; } }

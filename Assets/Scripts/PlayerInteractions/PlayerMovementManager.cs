@@ -19,14 +19,17 @@ namespace PlayerInteractions
             PlayerMovementStaticEvents.UnsubscribeFromTryMovePlayerToGlade(TryMovePlayer);
         }
 
-        private void TryMovePlayer(SpawnedGlade destination)
+        private void MovePlayer(Vector2 destination)
         {
-            Debug.Log("try move");
-            if (currentOccupiedGlade == null)
+            this.gameObject.transform.position = destination;
+        }
+
+        private void TryMovePlayer(SpawnedGlade destination, bool forced)
+        {
+            if (currentOccupiedGlade == null || forced)
             {
-                Debug.Log("null");
                 currentOccupiedGlade = destination;
-                PlayerMovementStaticEvents.InvokeMovePlayerToPosition(destination.GridCell.Position);
+                MovePlayer(destination.GridCell.Position);
             }
             else
             {
@@ -34,7 +37,7 @@ namespace PlayerInteractions
                                       destination.GridCell.PositionInGrid.X);
                 var yDiff = Mathf.Abs(currentOccupiedGlade.GridCell.PositionInGrid.Y -
                                       destination.GridCell.PositionInGrid.Y);
-                
+
                 if ((xDiff == 1 && yDiff == 0)
                     || (yDiff == 1 && xDiff == 0))
                 {
@@ -47,7 +50,7 @@ namespace PlayerInteractions
                                 destination.GridCell.PositionInGrid.Position)].type != AdjacentType.Blocked)
                     {
                         currentOccupiedGlade = destination;
-                        PlayerMovementStaticEvents.InvokeMovePlayerToPosition(destination.GridCell.Position);
+                        MovePlayer(destination.GridCell.Position);
                     }
                 }
             }

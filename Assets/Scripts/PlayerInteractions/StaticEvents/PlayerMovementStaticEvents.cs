@@ -7,23 +7,15 @@ namespace PlayerInteractions.StaticEvents
 {
     public static class PlayerMovementStaticEvents
     {
-        private static UnityEvent<SpawnedGlade> onTryMovePlayerToGlade = new UnityEvent<SpawnedGlade>();
-        private static UnityEvent<Vector2> onMovePlayerToPosition = new UnityEvent<Vector2>();
-        
-        public static void SubscribeToTryMovePlayerToGlade (UnityAction<SpawnedGlade> subscriber) =>
+        private static UnityEvent<SpawnedGlade, bool> onTryMovePlayerToGlade = new UnityEvent<SpawnedGlade, bool>();
+
+        public static void SubscribeToTryMovePlayerToGlade (UnityAction<SpawnedGlade, bool> subscriber) =>
             onTryMovePlayerToGlade.AddListener(subscriber);
 
-        public static void UnsubscribeFromTryMovePlayerToGlade  (UnityAction<SpawnedGlade> subscriber) =>
+        public static void UnsubscribeFromTryMovePlayerToGlade  (UnityAction<SpawnedGlade, bool> subscriber) =>
             onTryMovePlayerToGlade.RemoveListener(subscriber);
 
-        public static void InvokeTryMovePlayerToPosition (SpawnedGlade glade) => onTryMovePlayerToGlade.Invoke(glade);
+        public static void InvokeTryMovePlayerToPosition (SpawnedGlade glade, bool forced = false) => onTryMovePlayerToGlade.Invoke(glade, forced);
         
-        public static void SubscribeToMovePlayerToPosition (UnityAction<Vector2> subscriber) =>
-            onMovePlayerToPosition.AddListener(subscriber);
-
-        public static void UnsubscribeFromMovePlayerToPosition (UnityAction<Vector2> subscriber) =>
-            onMovePlayerToPosition.RemoveListener(subscriber);
-
-        public static void InvokeMovePlayerToPosition (Vector2 position) => onMovePlayerToPosition.Invoke(position);
     }
 }

@@ -9,10 +9,10 @@ namespace PlayerInteractions
     {
        //public GridCell 
 
-       private void OnEnable()
-       {
-           PlayerMovementStaticEvents.SubscribeToMovePlayerToPosition(MovePlayer);
-       }
+       // private void OnEnable()
+       // {
+       //     PlayerMovementStaticEvents.SubscribeToMovePlayerToPosition(MovePlayer);
+       // }
 
        private void MovePlayer(Vector2 arg0)
        {

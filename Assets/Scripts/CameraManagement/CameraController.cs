@@ -1,4 +1,6 @@
 ﻿using Cinemachine;
+using DG.Tweening;
+using LevelGenerating;
 using PlayerInteractions.Input;
 using UnityEngine;
 
@@ -6,19 +8,25 @@ namespace CameraManagement
 {
     public static class CameraLimits
     {
+        public static float MinZoom { get; } = 1;
+        public static float MaxZoom { get; } = 18;
         public static float MinX { get; set; }
         public static float MaxX { get; set; }
         public static float MinY { get; set; }
-        public static float MaxY { get;  set; }
+        public static float MaxY { get; set; }
 
-        private static float offset = 5;
+        private static float offset = 3;
 
-        public static void CalculateLimits()
+        public static void CalculateLimits(float offsetMultiplier = 1)
         {
-            MinX -= offset;
-            MinY -= offset;
-            MaxX += offset;
-            MaxY += offset;
+            MinX -= offset * offsetMultiplier;
+            MinY -= offset * offsetMultiplier;
+            MaxX += offset * offsetMultiplier;
+            MaxY += offset * offsetMultiplier;
+            
+            Debug.Log("camera limits");
+            Debug.Log(MinX+ "     " + MaxX);
+            Debug.Log(MinY+ "     " + MaxY);
         }
     }
 
@@ -30,10 +38,12 @@ namespace CameraManagement
         [Header("Camera movement settings")] [SerializeField]
         private float zoomSpeed = 1;
 
-        [SerializeField] private float pinchFactor = 1;
+        [SerializeField] private float initialCameraZoom;
+        private readonly float pinchFactor = 0.7f;
 
         private bool _isDragging;
         private bool _isPinching;
+
         private void OnEnable()
         {
             InputManager.onDragAction += OnDragAction;
@@ -44,9 +54,10 @@ namespace CameraManagement
 
             InputManager.onPinchBegin += OnPinchBegin;
             InputManager.onPinchEnd += OnPinchEnd;
+            LevelGenerator.OnLevelGenerated += OnLevelLoaded;
         }
 
-        void OnPinch (Vector2 position, Vector2 delta, float magnitude)
+        void OnPinch(Vector2 position, Vector2 delta, float magnitude)
         {
             // if (m_StateUpdate != PanningZoomingUpdte)
             //     return;
@@ -61,9 +72,10 @@ namespace CameraManagement
             InputManager.onDragEnd -= OnDragEnd;
             InputManager.onMouseWheelAction -= OnMouseWheel;
             InputManager.onPinchAction -= OnPinch;
-            
+
             InputManager.onPinchBegin -= OnPinchBegin;
             InputManager.onPinchEnd -= OnPinchEnd;
+            LevelGenerator.OnLevelGenerated -= OnLevelLoaded;
         }
 
         private void OnPinchBegin()
@@ -76,14 +88,27 @@ namespace CameraManagement
             _isPinching = false;
         }
 
+        private Vector2 prevPos;
+
         private void OnDragAction(Vector2 currentPosition, Vector2 deltaPosition, bool isUI)
         {
-            throw new System.NotImplementedException();
+            var prevPosition = currentPosition - deltaPosition;
+            var prev = Camera.main.ScreenToWorldPoint(prevPosition);
+            currentPosition = Camera.main.ScreenToWorldPoint(currentPosition);
+            var dir = currentPosition - (Vector2) prev;
+            
+            
+            var newPosition = cam.transform.position + new Vector3(-dir.x, -dir.y, 0);
+            newPosition = new Vector3(Mathf.Clamp(newPosition.x, CameraLimits.MinX, CameraLimits.MaxX),
+                Mathf.Clamp(newPosition.y, CameraLimits.MinY, CameraLimits.MaxY), newPosition.z);
+                
+            cam.transform.position = newPosition;
         }
 
         private void OnDragBegin(Vector2 position)
         {
             _isDragging = true;
+            cam.Follow = null;
         }
 
         private void OnDragEnd(Vector2 position)
@@ -93,41 +118,24 @@ namespace CameraManagement
 
         private void OnMouseWheel(float magnitude)
         {
-            throw new System.NotImplementedException();
+            Zoom(magnitude * pinchFactor);
         }
 
         void Zoom(float magnitude)
         {
-            // float potentialOrthoSize = m_OrthoSize + magnitude * m_ZoomSpeed;
-            // CalculateLimits(m_Position, potentialOrthoSize);
-            //
-            // if (m_StateUpdate == LockUpdate)
-            //     return;
-            //
-            // m_OrthoSize = potentialOrthoSize;
-            // //Rebound();
+            float potentialOrthoSize = Mathf.Clamp(cam.m_Lens.OrthographicSize + magnitude * 2, CameraLimits.MinZoom, CameraLimits.MaxZoom);
+            if (cam.m_Lens.OrthographicSize != potentialOrthoSize)
+            {
+                cam.m_Lens.OrthographicSize = potentialOrthoSize;
+            }
         }
-        private void LateUpdate()
-        {
-            // if (!m_HasInitialized)
-            //     return;
-            //
-            // // apply hard limits
-            // if (m_ApplyHardLimits)
-            // {
-            //     ApplyHardLimit();
-            // }
-            //
-            // // apply zoom
-            // m_PlayerCamera.orthographicSize = m_OrthoSize;
-            //
-            // // apply movement
-            // m_PlayerCamera.transform.localPosition = m_Position;
-        }
+        
         
         private void OnLevelLoaded()
         {
             CameraLimits.CalculateLimits();
+            cam.m_Lens.OrthographicSize = initialCameraZoom;
+            cam.Follow = player.transform;
         }
     }
 }

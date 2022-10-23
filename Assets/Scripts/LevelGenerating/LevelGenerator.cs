@@ -8,6 +8,7 @@ using PlayerInteractions.StaticEvents;
 using RandomGenerators;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using Grid = LevelGenerating.LevelGrid.Grid;
 using Random = UnityEngine.Random;
 
@@ -15,6 +16,8 @@ namespace LevelGenerating
 {
     public class LevelGenerator : MonoBehaviour
     {
+        public static UnityAction OnLevelGenerated { get; set; }
+        
         [Header("First room position in grid")] [SerializeField]
         private Vector2 firstRoom;
 
@@ -144,7 +147,8 @@ namespace LevelGenerating
                 }
             } while (roomsToSpawn > 0);
             
-            PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(startGlade);
+            PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(startGlade, true);
+            OnLevelGenerated?.Invoke();
         }
 
         /// <summary>
@@ -203,19 +207,9 @@ namespace LevelGenerating
                 }
 
                 newGlade.GridCell = grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y];
-
                 var adjacent = new AdjacentGlade(AdjacentType.Basic);
-                if (spawned.AdjacentGlades.ContainsKey(side))
-                {
-                    Debug.Log("CHECK");
-                }
-                
                 spawned.AdjacentGlades.Add(side, adjacent);
-
-                if (newGlade.AdjacentGlades.ContainsKey(GetOppositeSide(side)))
-                {
-                    Debug.Log("CHECK");
-                }
+                
                 newGlade.AdjacentGlades.Add(GetOppositeSide(side), adjacent);
 
                 CheckOtherAdjacent(newGlade);
@@ -231,12 +225,15 @@ namespace LevelGenerating
         {
             if (CameraLimits.MaxX < position.x)
                 CameraLimits.MaxX = position.x;
+            
             if (CameraLimits.MinX > position.x)
                 CameraLimits.MinX= position.x;
+            
             if (CameraLimits.MaxY < position.y)
                 CameraLimits.MaxY = position.y;
+            
             if (CameraLimits.MinY > position.y)
-                CameraLimits.MaxY = position.y;
+                CameraLimits.MinY = position.y;
         }
 
         /// <summary>

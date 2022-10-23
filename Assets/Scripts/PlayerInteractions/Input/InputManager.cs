@@ -13,8 +13,6 @@ namespace PlayerInteractions.Input
 
     public class InputManager : MonoBehaviour, IInputManager
     {
-        const float DragDistanceThreashold = 0.05f;
-
         public static Action<Vector2, bool> onTouchBegin; //<position, isUI>
         public static Action<Vector2, bool> onTapAction; //<position, isUI>
         public static Action<Vector2, bool> onPressBegin; //<position, isUI>
@@ -45,11 +43,11 @@ namespace PlayerInteractions.Input
             tapEnable = true;
 
 
-#if MOBILE_VER && !UNITY_EDITOR
-            m_InputTouch = InputType.Touch;
-#elif MOUSE_VER && !UNITY_EDITOR
-            m_InputTouch = InputType.Mouse;
-#endif
+// #if MOBILE_VER && !UNITY_EDITOR
+//             m_InputTouch = InputType.Touch;
+// #elif MOUSE_VER && !UNITY_EDITOR
+    //        m_InputTouch = InputType.Mouse;
+//#endif
 
             switch (inputTouch)
             {
