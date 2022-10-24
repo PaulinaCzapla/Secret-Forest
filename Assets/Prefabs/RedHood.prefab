@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166509000167545692}
   - component: {fileID: 4166509000167545693}
+  - component: {fileID: 8561274024808354924}
   m_Layer: 0
   m_Name: RedHood
   m_TagString: Untagged
@@ -43,6 +44,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97be88f7f10d47df84d5eefe42c07d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8561274024808354924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166509000167545683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a951681ad3d475ba3ce9dc64a03a96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4166509000988754432
