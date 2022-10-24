@@ -8,7 +8,8 @@
         Empty,
         FightEasy,
         FightHard,
-        Cave,
+        FruitField,
+        Storage,
         End
     }
 }

@@ -26,10 +26,11 @@ namespace PlayerInteractions
 
         private void TryMovePlayer(SpawnedGlade destination, bool forced)
         {
+            Debug.Log("move playre");
             if (currentOccupiedGlade == null || forced)
             {
                 currentOccupiedGlade = destination;
-                MovePlayer(destination.GridCell.Position);
+                MovePlayer(destination.SpawnPosition);
             }
             else
             {
@@ -50,7 +51,7 @@ namespace PlayerInteractions
                                 destination.GridCell.PositionInGrid.Position)].type != AdjacentType.Blocked)
                     {
                         currentOccupiedGlade = destination;
-                        MovePlayer(destination.GridCell.Position);
+                        MovePlayer(destination.SpawnPosition);
                     }
                 }
             }

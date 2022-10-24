@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InteractableItems.CollectableItems
 {
-    public class Food : Item
+    public class Food : Item, IUsable
     {
         [SerializeField] private float value = 5;
         
@@ -12,6 +12,11 @@ namespace InteractableItems.CollectableItems
             //add to inventory
             // if collected
             StorageUI.Instance.ItemCollected(this);
+        }
+
+        public void Use()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

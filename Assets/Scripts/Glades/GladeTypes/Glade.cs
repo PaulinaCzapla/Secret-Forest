@@ -1,16 +1,11 @@
-﻿using LevelGenerating;
-using PlayerInteractions.Interfaces;
-using PlayerInteractions.StaticEvents;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Glades
+namespace Glades.GladeTypes
 {
-    public class Glade : MonoBehaviour
+    public class Glade : MonoBehaviour, IInitializable
     {
         public GladeType Type => type;
         [SerializeField] private GladeType type;
-
-
-        
+        public virtual void Initialize(){}
     }
 }

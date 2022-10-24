@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Glades.GladeTypes;
 using LevelGenerating.LevelGrid;
 using PlayerInteractions.Interfaces;
 using PlayerInteractions.StaticEvents;
@@ -9,6 +10,10 @@ namespace Glades
 {
     public class SpawnedGlade : MonoBehaviour, IInteractable
     {
+        public Vector2 SpawnPosition => spawnPosition.position;
+        
+        [SerializeField] private Transform spawnPosition;
+        [Header("Gates")]
         [SerializeField] private GameObject upGate;
         [SerializeField] private GameObject downGate;
         [SerializeField] private GameObject leftGate;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Glades;
+using InteractableItems.CollectableItems;
 using RandomGenerators;
 using UnityEngine;
 
@@ -9,8 +10,20 @@ namespace LevelGenerating
     [CreateAssetMenu(fileName = "LevelsConfig", menuName = "ScriptableObjects/LevelsConfig")]
     public class LevelsConfigSO : ScriptableObject
     {
+        public int CurrentLevelNum { get; set; } = 0;
+        
+        [Header("Level generator settings")]
         [SerializeField] private List<LevelInfo> levelInfo;
 
+        [Header("Chest items spawn probabilities")] 
+        [SerializeField] private List<ItemsForLevel> itemsInfo;
+        
+        [Header("Food items spawn probabilities")] 
+        [SerializeField] private List<ItemsForLevel> foodItemsInfo;
+        
+        [Header("Chest items spawn probabilities")] 
+        [SerializeField] private List<ItemsForLevel> weaponItemsInfo;
+        
         public LevelAttributes GetLevelAttributes(int currentLevel)
         {
             foreach (var info in levelInfo)
@@ -21,47 +34,55 @@ namespace LevelGenerating
 
             return levelInfo[levelInfo.Count - 1].levelAttributes;
         }
-    }
-
-    [Serializable]
-    public class LevelAttributes
-    {
-        public List<GladeTypeWithProbability> availableGladeTypes;
-        [Range(2, 100)] public int minRoomsNum ;
-        [Range(2, 100)] public int maxRoomsNum;
-        [Range(0, 10)] public int roomsDifficultyLevel;
-
-        private Tuple<GladeType, float>[] _types ;
-        public GladeType GetRandomGladeType()
+        
+        public List<ItemsForLevel.ItemProbability> GetChestItemsProbabilities(int currentLevel)
         {
-            if (_types == null || _types.Length == 0)
+            foreach (var info in itemsInfo)
             {
-                _types = new Tuple<GladeType, float>[availableGladeTypes.Count];
-
-                int i = 0;
-                foreach (var type in availableGladeTypes)
-                {
-                    _types[i] = new Tuple<GladeType, float>(type.type, type.probability);
-                    i++;
-                }
+                if (info.maxLevelNum > currentLevel)
+                    return info.items;
             }
 
-            return RandomWithProbabilityGenerator.GetRandom(_types);
+            return itemsInfo[levelInfo.Count - 1].items;
+        }
+        
+        public List<ItemsForLevel.ItemProbability> GetFoodItemsProbabilities(int currentLevel)
+        {
+            foreach (var info in foodItemsInfo)
+            {
+                if (info.maxLevelNum > currentLevel)
+                    return info.items;
+            }
+
+            return foodItemsInfo[levelInfo.Count - 1].items;
+        }
+        
+        public List<ItemsForLevel.ItemProbability> GetWeaponItemsProbabilities(int currentLevel)
+        {
+            foreach (var info in  weaponItemsInfo)
+            {
+                if (info.maxLevelNum > currentLevel)
+                    return info.items;
+            }
+
+            return  weaponItemsInfo[levelInfo.Count - 1].items;
         }
     }
 
     [Serializable]
-    public struct GladeTypeWithProbability
-    {
-        public GladeType type;
-        [Range(0,1)]
-        public float probability;
-    }
-    [Serializable] 
-    public struct LevelInfo
-    {
-        [Tooltip("The maximum level for which these rules will be applied. ")]
+    public class ItemsForLevel
+    { 
+        [Serializable]
+        public struct ItemProbability
+        {
+            [Range(0,1)]
+            public float probability;
+            public Item item;
+        }
+        
         public int maxLevelNum;
-        public LevelAttributes levelAttributes;
+        public List<ItemProbability> items;
     }
+    
+
 }
