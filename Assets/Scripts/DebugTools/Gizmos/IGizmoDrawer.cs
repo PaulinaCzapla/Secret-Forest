@@ -1,4 +1,4 @@
-﻿namespace Gizmos
+﻿namespace DebugTools.Gizmos
 {
     public interface IGizmoDrawer
     {

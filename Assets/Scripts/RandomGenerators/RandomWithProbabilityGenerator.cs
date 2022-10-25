@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
 namespace RandomGenerators
@@ -9,21 +10,89 @@ namespace RandomGenerators
         {
             float total = 0;
 
-            foreach (var elem in values) {
+            foreach (var elem in values)
+            {
                 total += elem.Item2;
             }
 
             float randomPoint = Random.value * total;
 
-            for (int i= 0; i < values.Length; i++) {
-                if (randomPoint < values[i].Item2) {
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (randomPoint < values[i].Item2)
+                {
                     return values[i].Item1;
                 }
-                else {
+                else
+                {
                     randomPoint -= values[i].Item2;
                 }
             }
+
             return values[values.Length - 1].Item1;
+        }
+
+        public static T GetRandom<T>(List<Tuple<T, float>> values)
+        {
+            float total = 0;
+
+            foreach (var elem in values)
+            {
+                total += elem.Item2;
+            }
+
+            float randomPoint = Random.value * total;
+
+            for (int i = 0; i < values.Count; i++)
+            {
+                if (randomPoint < values[i].Item2)
+                {
+                    return values[i].Item1;
+                }
+                else
+                {
+                    randomPoint -= values[i].Item2;
+                }
+            }
+
+            return values[values.Count - 1].Item1;
+        }
+
+        public static List<T> GetRandom<T>(List<Tuple<T, float>> values, int amount)
+        {
+            float total = 0;
+            List<T> result = new List<T>(amount);
+
+            foreach (var elem in values)
+            {
+                total += elem.Item2;
+            }
+
+            float randomPoint = Random.value * total;
+
+            do
+            {
+                for (int i = 0; i < values.Count; i++)
+                {
+                    if (randomPoint < values[i].Item2)
+                    {
+                        result.Add(values[i].Item1);
+                        amount--;
+                        if (amount == 0)
+                            return result;
+                    }
+                    else
+                    {
+                        randomPoint -= values[i].Item2;
+                    }
+                }
+
+                result.Add(values[values.Count - 1].Item1);
+                amount--;
+                
+            } while (amount > 0);
+
+            return result;
         }
     }
 }

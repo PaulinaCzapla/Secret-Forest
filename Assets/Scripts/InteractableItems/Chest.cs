@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DebugTools;
 using InteractableItems.CollectableItems;
 using PlayerInteractions.Interfaces;
 using UnityEngine;
@@ -19,12 +20,15 @@ namespace InteractableItems
         public void Init(List<Item> items)
         {
             this._items = items;
+            DebugMassageSender.SendDebugMessage("Initialized chest "+ this.gameObject.name +" with " + items.Count
+            + " \n Items: " + String.Join(",\n", _items));
         }
         
         public void Interact()
         {
             _animator.SetTrigger("open");
          //   Invoke();
+         
         }
 
         public void Close()

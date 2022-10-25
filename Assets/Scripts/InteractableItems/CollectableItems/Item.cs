@@ -8,5 +8,10 @@ namespace InteractableItems.CollectableItems
         public UnityEvent onCollected = new UnityEvent();
 
         public abstract void Collect();
+
+        public override string ToString()
+        {
+            return this.gameObject.name;
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CameraManagement;
-using Gizmos;
+using DebugTools.Gizmos;
 using Glades;
 using LevelGenerating.LevelGrid;
 using PlayerInteractions.StaticEvents;
@@ -90,7 +90,7 @@ namespace LevelGenerating
         {
             UnloadLevel();
 
-            _levelAttributes = levelsConfigSo.GetLevelAttributes(levelNum);
+            _levelAttributes = levelsConfigSo.GetLevelAttributes();
 
             //Generate first glade
             SpawnedGlade spawnedGlade;

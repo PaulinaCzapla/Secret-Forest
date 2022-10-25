@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameManager;
 using Glades;
 using InteractableItems.CollectableItems;
 using RandomGenerators;
@@ -10,8 +11,6 @@ namespace LevelGenerating
     [CreateAssetMenu(fileName = "LevelsConfig", menuName = "ScriptableObjects/LevelsConfig")]
     public class LevelsConfigSO : ScriptableObject
     {
-        public int CurrentLevelNum { get; set; } = 0;
-        
         [Header("Level generator settings")]
         [SerializeField] private List<LevelInfo> levelInfo;
 
@@ -24,44 +23,44 @@ namespace LevelGenerating
         [Header("Chest items spawn probabilities")] 
         [SerializeField] private List<ItemsForLevel> weaponItemsInfo;
         
-        public LevelAttributes GetLevelAttributes(int currentLevel)
+        public LevelAttributes GetLevelAttributes()
         {
             foreach (var info in levelInfo)
             {
-                if (info.maxLevelNum > currentLevel)
+                if (info.maxLevelNum > GameStats.GetInstance().CurrentLevelNum)
                     return info.levelAttributes;
             }
 
             return levelInfo[levelInfo.Count - 1].levelAttributes;
         }
         
-        public List<ItemsForLevel.ItemProbability> GetChestItemsProbabilities(int currentLevel)
+        public List<ItemsForLevel.ItemProbability> GetChestItemsProbabilities()
         {
             foreach (var info in itemsInfo)
             {
-                if (info.maxLevelNum > currentLevel)
+                if (info.maxLevelNum > GameStats.GetInstance().CurrentLevelNum)
                     return info.items;
             }
 
             return itemsInfo[levelInfo.Count - 1].items;
         }
         
-        public List<ItemsForLevel.ItemProbability> GetFoodItemsProbabilities(int currentLevel)
+        public List<ItemsForLevel.ItemProbability> GetFoodItemsProbabilities()
         {
             foreach (var info in foodItemsInfo)
             {
-                if (info.maxLevelNum > currentLevel)
+                if (info.maxLevelNum > GameStats.GetInstance().CurrentLevelNum)
                     return info.items;
             }
 
             return foodItemsInfo[levelInfo.Count - 1].items;
         }
         
-        public List<ItemsForLevel.ItemProbability> GetWeaponItemsProbabilities(int currentLevel)
+        public List<ItemsForLevel.ItemProbability> GetWeaponItemsProbabilities()
         {
             foreach (var info in  weaponItemsInfo)
             {
-                if (info.maxLevelNum > currentLevel)
+                if (info.maxLevelNum > GameStats.GetInstance().CurrentLevelNum)
                     return info.items;
             }
 

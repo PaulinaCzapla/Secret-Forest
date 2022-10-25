@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gizmos
+namespace DebugTools.Gizmos
 {
     public class GridGizmoDrawer : IGizmoDrawer
     {
