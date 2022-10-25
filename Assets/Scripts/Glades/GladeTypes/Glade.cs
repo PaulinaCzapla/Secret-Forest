@@ -1,11 +1,10 @@
-﻿using UnityEngine;
-
-namespace Glades.GladeTypes
+﻿namespace Glades.GladeTypes
 {
-    public class Glade : MonoBehaviour, IInitializable
+    public class Glade : BaseGlade
     {
-        public GladeType Type => type;
-        [SerializeField] private GladeType type;
-        public virtual void Initialize(){}
+        public override void Initialize()
+        {
+            
+        }
     }
 }

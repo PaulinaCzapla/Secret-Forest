@@ -21,17 +21,17 @@ namespace Glades
         public string Id { get; private set; }
         public GridCell GridCell { get; set; }
 
-        public Glade Glade
+        public BaseGlade Glade
         {
             get
             {
                 if (_glade == null)
-                    _glade = GetComponent<Glade>();
+                    _glade = GetComponent<BaseGlade>();
                 return _glade;
             }
         }
 
-        private Glade _glade;
+        private BaseGlade _glade;
 
         public Dictionary<AdjacentSide, AdjacentGlade> AdjacentGlades { get; set; } =
             new Dictionary<AdjacentSide, AdjacentGlade>();
@@ -43,6 +43,8 @@ namespace Glades
 
         public void Initialize()
         {
+            Glade.Initialize();
+            
             if (AdjacentGlades.ContainsKey(AdjacentSide.Up) &&
                 AdjacentGlades[AdjacentSide.Up].type != AdjacentType.Blocked)
                 upGate.SetActive(true);

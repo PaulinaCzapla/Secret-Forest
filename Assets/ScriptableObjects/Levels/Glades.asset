@@ -18,10 +18,12 @@ MonoBehaviour:
   - type: 1
     gameObject: {fileID: 1435788696658972704, guid: 1ec58946640f9284ca176b2932981da2, type: 3}
   - type: 7
-    gameObject: {fileID: 2250627832739800938, guid: 250588ccd93ec044cbf48682856b2227, type: 3}
+    gameObject: {fileID: 1175076984576762019, guid: c05a2659a730cc04f9fc6bf00826f6a3, type: 3}
   - type: 2
     gameObject: {fileID: 1175076984576762019, guid: 8f230d1d8e5b88c429e28a3be1f6a3dd, type: 3}
   - type: 3
-    gameObject: {fileID: 303738297929402358, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+    gameObject: {fileID: 2250627832739800938, guid: 127b81aaf12f2a64c91390c643324021, type: 3}
   - type: 4
     gameObject: {fileID: 8683426964849512152, guid: 86b8ee64104c1684abbf90dfed0e06e7, type: 3}
+  - type: 8
+    gameObject: {fileID: 2250627832739800938, guid: 250588ccd93ec044cbf48682856b2227, type: 3}

@@ -9,14 +9,13 @@ using Random = UnityEngine.Random;
 
 namespace Glades.GladeTypes
 {
-    public class GladeStorage : Glade
+    public class GladeStorage : BaseGlade
     {
         [SerializeField] private LevelsConfigSO config;
         [SerializeField] private List<Chest> chests;
 
         public override void Initialize()
         {
-            base.Initialize();
             var itemsProbs = config.GetChestItemsProbabilities();
             List<Tuple<Item, float>> itemsWithProbabilities = new List<Tuple<Item, float>>(itemsProbs.Count);
 

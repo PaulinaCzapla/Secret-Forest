@@ -21,7 +21,7 @@ namespace InteractableItems
         {
             this._items = items;
             DebugMassageSender.SendDebugMessage("Initialized chest "+ this.gameObject.name +" with " + items.Count
-            + " \n Items: " + String.Join(",\n", _items));
+            + " items: " + string.Join(",\n", _items));
         }
         
         public void Interact()

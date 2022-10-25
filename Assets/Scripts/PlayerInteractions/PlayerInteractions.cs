@@ -1,4 +1,7 @@
 ﻿using System;
+using GameManager;
+using Glades;
+using Glades.GladeTypes;
 using PlayerInteractions.Input;
 using PlayerInteractions.Interfaces;
 using Unity.VisualScripting;
@@ -11,7 +14,7 @@ namespace PlayerInteractions
         [SerializeField] LayerMask layerMask;
 
         // private variables
-        private RaycastHit2D _hit;
+        private RaycastHit2D[] _hits;
 
         private Camera MainCamera
         {
@@ -49,14 +52,22 @@ namespace PlayerInteractions
 
         void CheckRaycastedObject(Vector2 screenPoint, Camera raycastCamera)
         {
-            // Debug.DrawLine();
-            _hit = Physics2D.Raycast(raycastCamera.ScreenToWorldPoint(screenPoint), Vector2.up, 1000f, layerMask);
-            if (_hit)
+            _hits = Physics2D.RaycastAll(raycastCamera.ScreenToWorldPoint(screenPoint), Vector3.forward, 1000f, layerMask);
+            foreach (var hit in _hits)
             {
-                IInteractable interactable = _hit.transform.GetComponent<IInteractable>();
+                IInteractable interactable = hit.transform.GetComponent<IInteractable>();
+
                 if (interactable != null)
                 {
+                    if (!hit.transform.GetComponent<SpawnedGlade>())
+                    {
+                        if (hit.transform.root.TryGetComponent(out SpawnedGlade hitOnGlade))
+                            if (!hitOnGlade.Id.Equals(GameStats.GetInstance().CurrentGladeID))
+                                continue;
+                    }
+
                     interactable.Interact();
+                    return;
                 }
             }
         }

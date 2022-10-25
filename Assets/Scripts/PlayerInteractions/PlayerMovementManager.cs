@@ -1,4 +1,5 @@
 ﻿using System;
+using GameManager;
 using Glades;
 using PlayerInteractions.StaticEvents;
 using UnityEngine;
@@ -31,6 +32,7 @@ namespace PlayerInteractions
             {
                 currentOccupiedGlade = destination;
                 MovePlayer(destination.SpawnPosition);
+                GameStats.GetInstance().CurrentGladeID = destination.Id;
             }
             else
             {
@@ -52,6 +54,7 @@ namespace PlayerInteractions
                     {
                         currentOccupiedGlade = destination;
                         MovePlayer(destination.SpawnPosition);
+                        GameStats.GetInstance().CurrentGladeID = destination.Id;
                     }
                 }
             }

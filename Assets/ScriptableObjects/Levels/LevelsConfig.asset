@@ -17,13 +17,26 @@ MonoBehaviour:
     levelAttributes:
       availableGladeTypes:
       - type: 1
-        probability: 0.3
+        probability: 0.2
       - type: 3
-        probability: 0.4
+        probability: 0.3
       - type: 4
         probability: 0.1
       - type: 2
         probability: 0.2
+      - type: 7
+        probability: 0.2
       minRoomsNum: 19
       maxRoomsNum: 38
       roomsDifficultyLevel: 0
+  itemsInfo:
+  - maxLevelNum: 10
+    items:
+    - probability: 0.5
+      item: {fileID: 5156584536555466960, guid: 56fed949fefd38142a96326ca159a704, type: 3}
+    - probability: 0.4
+      item: {fileID: 1339594572896703800, guid: 5b172fb47f945c543b63dc3f968ad15e, type: 3}
+    - probability: 0.1
+      item: {fileID: 1169131077188599868, guid: 30ba11e04f32be94b86bd4fd68609db8, type: 3}
+  foodItemsInfo: []
+  weaponItemsInfo: []
