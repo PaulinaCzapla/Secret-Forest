@@ -44,14 +44,17 @@ TagManager:
   - name: Grass
     uniqueID: 2334146743
     locked: 0
-  - name: Decorations
-    uniqueID: 1252856641
-    locked: 0
   - name: Paths
     uniqueID: 722960279
     locked: 0
+  - name: Terrain
+    uniqueID: 1555894787
+    locked: 0
   - name: TreesBehind
     uniqueID: 3744655571
+    locked: 0
+  - name: Decorations
+    uniqueID: 1252856641
     locked: 0
   - name: Items
     uniqueID: 2189823543
