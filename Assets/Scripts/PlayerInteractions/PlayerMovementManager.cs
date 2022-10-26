@@ -27,12 +27,9 @@ namespace PlayerInteractions
 
         private void TryMovePlayer(SpawnedGlade destination, bool forced)
         {
-            Debug.Log("move playre");
             if (currentOccupiedGlade == null || forced)
             {
-                currentOccupiedGlade = destination;
-                MovePlayer(destination.SpawnPosition);
-                GameStats.GetInstance().CurrentGladeID = destination.Id;
+                MoveToGlade(destination);
             }
             else
             {
@@ -52,15 +49,20 @@ namespace PlayerInteractions
                             GetAdjacentSide(currentOccupiedGlade.GridCell.PositionInGrid.Position,
                                 destination.GridCell.PositionInGrid.Position)].type != AdjacentType.Blocked)
                     {
-                        currentOccupiedGlade = destination;
-                        MovePlayer(destination.SpawnPosition);
-                        GameStats.GetInstance().CurrentGladeID = destination.Id;
+                        MoveToGlade(destination);
                     }
                 }
             }
         }
-
-
+        
+        private void MoveToGlade(SpawnedGlade destination)
+        {
+            currentOccupiedGlade = destination;
+            MovePlayer(destination.SpawnPosition);
+            PlayerMovementStaticEvents.InvokePlayerMovedToGlade(destination);
+            GameStats.GetInstance().CurrentGladeID = destination.Id;
+        }
+        
         private AdjacentSide GetAdjacentSide(Vector2 gladePos, Vector2 adjacentGladePos)
         {
             if (adjacentGladePos.x - gladePos.x < 0)

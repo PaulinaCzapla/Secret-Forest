@@ -1,4 +1,5 @@
 ﻿using PlayerInteractions.Interfaces;
+using PlayerInteractions.StaticEvents;
 using UnityEngine;
 
 namespace InteractableItems
@@ -15,6 +16,7 @@ namespace InteractableItems
             if(_isEaten)
                 return; 
             
+            PlayerStatsStaticEvents.InvokeTryHungerValueChanged(value);
             foodObject.SetActive(false);
         }
     }

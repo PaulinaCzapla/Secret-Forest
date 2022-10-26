@@ -2,7 +2,7 @@
 
 namespace DebugTools
 {
-    public static class DebugMassageSender
+    public static class DebugMessageSender
     {
         public static bool IsActive = true;
         

@@ -39,6 +39,7 @@ namespace Glades
         private void Awake()
         {
             Id = GUID.Generate().ToString();
+            DisableGates();
         }
 
         public void Initialize()
@@ -75,10 +76,15 @@ namespace Glades
             AdjacentGlades = new Dictionary<AdjacentSide, AdjacentGlade>();
             
             GridCell = null;
+            DisableGates();
+        }
+
+        private void DisableGates()
+        {
             upGate.SetActive(false);
             downGate.SetActive(false);
             leftGate.SetActive(false);
-            rightGate.SetActive(false);
+            rightGate.SetActive(false); 
         }
     }
 }

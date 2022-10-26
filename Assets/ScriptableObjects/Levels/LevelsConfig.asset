@@ -13,24 +13,114 @@ MonoBehaviour:
   m_Name: LevelsConfig
   m_EditorClassIdentifier: 
   levelInfo:
+  - maxLevelNum: 2
+    levelAttributes:
+      availableGladeTypes:
+      - type: 1
+        probability: 0.1
+      - type: 3
+        probability: 0.3
+      - type: 2
+        probability: 0.2
+      - type: 7
+        probability: 0.1
+      - type: 6
+        probability: 0.2
+      minRoomsNum: 6
+      maxRoomsNum: 8
+      roomsDifficultyLevel: 0
+  - maxLevelNum: 6
+    levelAttributes:
+      availableGladeTypes:
+      - type: 1
+        probability: 0.1
+      - type: 3
+        probability: 0.2
+      - type: 2
+        probability: 0.1
+      - type: 7
+        probability: 0.2
+      - type: 6
+        probability: 0.1
+      - type: 4
+        probability: 0.1
+      minRoomsNum: 7
+      maxRoomsNum: 9
+      roomsDifficultyLevel: 0
   - maxLevelNum: 10
     levelAttributes:
       availableGladeTypes:
       - type: 1
-        probability: 0.2
-      - type: 3
-        probability: 0.3
-      - type: 4
         probability: 0.1
+      - type: 3
+        probability: 0.2
       - type: 2
         probability: 0.2
       - type: 7
         probability: 0.2
-      minRoomsNum: 19
-      maxRoomsNum: 38
+      - type: 6
+        probability: 0.1
+      - type: 4
+        probability: 0.2
+      minRoomsNum: 8
+      maxRoomsNum: 10
+      roomsDifficultyLevel: 0
+  - maxLevelNum: 12
+    levelAttributes:
+      availableGladeTypes:
+      - type: 1
+        probability: 0.1
+      - type: 3
+        probability: 0.2
+      - type: 2
+        probability: 0.1
+      - type: 7
+        probability: 0.1
+      - type: 4
+        probability: 0.45
+      - type: 5
+        probability: 0.05
+      minRoomsNum: 5
+      maxRoomsNum: 7
+      roomsDifficultyLevel: 0
+  - maxLevelNum: 15
+    levelAttributes:
+      availableGladeTypes:
+      - type: 1
+        probability: 0.2
+      - type: 2
+        probability: 0.2
+      - type: 7
+        probability: 0.2
+      - type: 4
+        probability: 0.3
+      - type: 5
+        probability: 0.1
+      minRoomsNum: 10
+      maxRoomsNum: 13
+      roomsDifficultyLevel: 0
+  - maxLevelNum: 18
+    levelAttributes:
+      availableGladeTypes:
+      - type: 1
+        probability: 0.1
+      - type: 2
+        probability: 0.1
+      - type: 7
+        probability: 0.2
+      - type: 4
+        probability: 0.2
+      - type: 5
+        probability: 0.1
+      - type: 6
+        probability: 0.1
+      - type: 3
+        probability: 0.2
+      minRoomsNum: 10
+      maxRoomsNum: 13
       roomsDifficultyLevel: 0
   itemsInfo:
-  - maxLevelNum: 10
+  - maxLevelNum: 6
     items:
     - probability: 0.5
       item: {fileID: 5156584536555466960, guid: 56fed949fefd38142a96326ca159a704, type: 3}

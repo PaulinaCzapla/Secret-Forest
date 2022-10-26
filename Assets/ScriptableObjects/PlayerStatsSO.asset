@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cdc4e93ede24cb78a058553026d69cd, type: 3}
+  m_Name: PlayerStatsSO
+  m_EditorClassIdentifier: 
+  initialMaxHunger: 10
+  hungerLostPerMinute: 0.1
+  hungerLostPerGlade: 0.1
+  currentMaxHungerValue: 10
+  currentHungerValue: 10
+  initialMaxHealth: 10
+  currentMaxHealthValue: 10
+  currentHealthValue: 10
+  initialBowDamage: 1
+  initialKnifeDamage: 1
+  initialCriticalBowChance: 0.1
+  initialCriticalKnifeChance: 0.1
+  initialDodgeChance: 0.1
+  currentBowDamage: 1
+  currentKnifeDamage: 1
+  currentCriticalBowChance: 0.1
+  currentCriticalKnifeChance: 0.1
+  currentDodgeChance: 0.1
