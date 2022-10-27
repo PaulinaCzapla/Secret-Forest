@@ -8,14 +8,13 @@ using UnityEngine.UI;
 
 namespace UI.HUD
 {
-    public class UIHungerBar : MonoBehaviour
+    public class UIHungerBar : UIBar
     {
-        [SerializeField] private Slider slider;
-        [SerializeField] private TextMeshProUGUI valueText;
         [SerializeField] private PlayerStatsSO stats;
-
+        private float _textInitialFontSize;
         private void OnEnable()
         {
+            _textInitialFontSize = valueText.fontSize;
             UIStaticEvents.SubscribeToUpdateHungerUI(Refresh);
         }
 
@@ -24,12 +23,14 @@ namespace UI.HUD
             UIStaticEvents.UnsubscribeFromUpdateHungerUI(Refresh);
         }
 
-        private void Refresh()
+        protected override void Refresh()
         {
             slider.value = stats.currentHungerValue / stats.currentMaxHungerValue;
             valueText.text = stats.currentHungerValue.ToString();
-
-          //  slider.DOValue(newvalue, 0.12f).SetEase(Ease.InQuint);
+            // valueText.DO
+            // var s = DOTween.Sequence();
+            // s.Append(valueText)
+            //  slider.DOValue(newvalue, 0.12f).SetEase(Ease.InQuint);
         }
     }
 }
