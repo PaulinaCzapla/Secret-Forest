@@ -1,17 +1,20 @@
-﻿using PlayerInteractions;
+﻿using DG.Tweening;
+using PlayerInteractions;
 using UI.Events;
 using UnityEngine;
+using ValueRepresentation;
 
 namespace UI.HUD
 {
     public class UIHealthBar : UIBar
     {
         [SerializeField] private PlayerStatsSO stats;
-
-        private float _textInitialFontSize;
+        private float _prevValue;
+        private bool _fistInit = true;
+        
         private void OnEnable()
         {
-            _textInitialFontSize = valueText.fontSize;
+           
             UIStaticEvents.SubscribeToUpdateHealthUI(Refresh);
         }
 
@@ -22,9 +25,14 @@ namespace UI.HUD
 
         protected override void Refresh()
         {
-            slider.value = stats.currentHealthValue / stats.currentMaxHealthValue;
-            valueText.text = stats.currentHealthValue.ToString();
-           // valueText.DO
+            if (Mathf.Abs(_prevValue - stats.currentHealthValue) >= 1 || _fistInit)
+            {
+                slider.value = stats.currentHealthValue / stats.currentMaxHealthValue;
+                valueText.text = ValueRounder.RoundUp(stats.currentHealthValue).ToString("F0");
+                _prevValue = stats.currentHealthValue;
+                _fistInit = false;
+                AnimateText();
+            }
         }
     }
 }

@@ -5,16 +5,20 @@ using TMPro;
 using UI.Events;
 using UnityEngine;
 using UnityEngine.UI;
+using ValueRepresentation;
 
 namespace UI.HUD
 {
     public class UIHungerBar : UIBar
     {
         [SerializeField] private PlayerStatsSO stats;
-        private float _textInitialFontSize;
+
+        private float _prevValue;
+        private bool _fistInit = true;
+        
         private void OnEnable()
         {
-            _textInitialFontSize = valueText.fontSize;
+            _prevValue = stats.currentHungerValue;
             UIStaticEvents.SubscribeToUpdateHungerUI(Refresh);
         }
 
@@ -25,12 +29,14 @@ namespace UI.HUD
 
         protected override void Refresh()
         {
-            slider.value = stats.currentHungerValue / stats.currentMaxHungerValue;
-            valueText.text = stats.currentHungerValue.ToString();
-            // valueText.DO
-            // var s = DOTween.Sequence();
-            // s.Append(valueText)
-            //  slider.DOValue(newvalue, 0.12f).SetEase(Ease.InQuint);
+            if (Mathf.Abs(_prevValue - stats.currentHungerValue) >= 1 || _fistInit)
+            {
+                slider.value = stats.currentHungerValue / stats.currentMaxHungerValue;
+                valueText.text = ValueRounder.RoundUp(stats.currentHungerValue).ToString("F0");
+                _prevValue = stats.currentHungerValue;
+                _fistInit = false;
+                AnimateText();
+            }
         }
     }
 }

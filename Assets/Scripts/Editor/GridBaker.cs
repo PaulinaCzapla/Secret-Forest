@@ -62,6 +62,8 @@ namespace Editor
                     return;
                 }
 
+                EditorUtility.SetDirty(_grid);
+                AssetDatabase.Refresh();
                 EditorGUILayout.HelpBox("Grid generated. Save project in order to save generated grid.",
                     MessageType.Info);
             }
