@@ -11,11 +11,23 @@ namespace Glades.GladeTypes
 {
     public class GladeStorage : BaseGlade
     {
+        [Serializable]
+        internal struct StorageConfiguration
+        {
+            public List<Chest> chests;
+            public GameObject parentGameObject;
+        }
+        
         [SerializeField] private LevelsConfigSO config;
-        [SerializeField] private List<Chest> chests;
+        [SerializeField] private List<StorageConfiguration> configurations;
 
+        private int _currentConfiguration;
         public override void Initialize()
         {
+            ResetGlade();
+            _currentConfiguration = Random.Range(0, configurations.Count);
+            configurations[_currentConfiguration].parentGameObject.SetActive(true);
+            
             var itemsProbs = config.GetChestItemsProbabilities();
             List<Tuple<Item, float>> itemsWithProbabilities = new List<Tuple<Item, float>>(itemsProbs.Count);
 
@@ -30,11 +42,19 @@ namespace Glades.GladeTypes
                 new Tuple<int, float>(4, 0.05f)
             };
 
-            foreach (var chest in chests)
+            foreach (var chest in configurations[_currentConfiguration].chests)
             {
                 chest.Init(RandomWithProbabilityGenerator.
                     GetRandom(itemsWithProbabilities, 
                         RandomWithProbabilityGenerator.GetRandom(itemsCount)));
+            }
+        }
+
+        private void ResetGlade()
+        {
+            foreach (var conf in configurations)
+            {
+                conf.parentGameObject.SetActive(false);
             }
         }
     }

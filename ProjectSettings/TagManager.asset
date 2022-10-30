@@ -59,6 +59,9 @@ TagManager:
   - name: Items
     uniqueID: 2189823543
     locked: 0
+  - name: LightSources
+    uniqueID: 3837772377
+    locked: 0
   - name: Player
     uniqueID: 120162863
     locked: 0
