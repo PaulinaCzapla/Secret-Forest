@@ -9,7 +9,7 @@ namespace UI.Eq
 {
     public class InventoryUI : MonoBehaviour
     {
-        public UnityEvent<bool> OnTriedAddItem { get; set; }
+        public UnityEvent<bool> OnTriedAddItem { get; set; } = new UnityEvent<bool>();
         public static InventoryUI Instance { get; private set; }
 
         [SerializeField] private GameObject storageObject;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 30
   columns: 30
-  cellHeight: 3.4
+  cellHeight: 2.88
   cellWidth: 3.8
-  spaceBetween: 0.3
+  spaceBetween: 0.6
   drawGridGizmo: 1

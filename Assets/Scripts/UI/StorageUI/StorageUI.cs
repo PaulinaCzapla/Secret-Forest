@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using InteractableItems;
 using InteractableItems.CollectableItems.Items;
 using TMPro;
 using UI.Eq;
@@ -16,6 +17,7 @@ namespace UI.StorageUI
         [SerializeField] private Button closeButton;
 
         private Color _infoTextInitialColor;
+        private Chest _currentChest;
         private void Awake()
         {
             _infoTextInitialColor = infoText.color;
@@ -48,7 +50,7 @@ namespace UI.StorageUI
             ChestUIStaticEvents.UnsubscribeFromOpenChest(Open);
         }
 
-        public void Open(List<Item> items)
+        public void Open(List<Item> items, Chest chest)
         {
             ResetUI();
             int i = 0;
@@ -62,14 +64,17 @@ namespace UI.StorageUI
                     break;
             }
 
+            _currentChest = chest;
+            _currentChest.OnChestEmptied += Close;
             chestUIObject.SetActive(true);
         }
 
         private void Close()
         {
+            _currentChest.OnChestEmptied -= Close;
             chestUIObject.SetActive(false);
             ResetUI();
-            
+            _currentChest.Close();
         }
 
         private void ResetUI()

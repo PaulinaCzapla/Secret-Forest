@@ -12,6 +12,7 @@ namespace InteractableItems
 {
     public class Chest : MonoBehaviour, IInteractable
     {
+        public UnityAction OnChestEmptied { get; set; }
         private List<Item> _items;
         private Animator _animator;
 
@@ -43,12 +44,15 @@ namespace InteractableItems
         private void CollectedItem(int index)
         {
             _items.RemoveAt(index);
+            
+            if(_items.Count == 0)
+                OnChestEmptied?.Invoke();
         }
 
         public void Interact()
         {
             _animator.SetTrigger("open");
-            ChestUIStaticEvents.InvokeOpenChest(_items);
+            ChestUIStaticEvents.InvokeOpenChest(_items, this);
          //   Invoke();
          
         }

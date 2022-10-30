@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialMaxHunger: 25
   hungerLostPerMinute: 1
-  hungerLostPerGlade: 0.3
-  currentMaxHungerValue: 20
-  currentHungerValue: 5.4000044
+  hungerLostPerGlade: 0.5
+  currentMaxHungerValue: 25
+  currentHungerValue: 19.900013
   initialMaxHealth: 25
-  currentMaxHealthValue: 20
-  currentHealthValue: 20
+  currentMaxHealthValue: 25
+  currentHealthValue: 25
   initialBowDamage: 1
   initialKnifeDamage: 1
   initialCriticalBowChance: 0.1

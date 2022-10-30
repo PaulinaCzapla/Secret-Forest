@@ -37,7 +37,7 @@ namespace LevelGenerating
 
         private static GridGizmoDrawer _gridGizmoDrawer;
 
-        private void Start()
+        private void Awake()
         {
             //   DontDestroyOnLoad(this);
             _spawnedGlades = new List<SpawnedGlade>();
@@ -50,7 +50,7 @@ namespace LevelGenerating
             }
 
             // gridGenerator.GenerateGrid();
-            GenerateLevel();
+            //GenerateLevel();
         }
 
         private void UnloadLevel()

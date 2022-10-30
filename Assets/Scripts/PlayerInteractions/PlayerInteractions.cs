@@ -52,7 +52,8 @@ namespace PlayerInteractions
 
         void CheckRaycastedObject(Vector2 screenPoint, Camera raycastCamera)
         {
-            _hits = Physics2D.RaycastAll(raycastCamera.ScreenToWorldPoint(screenPoint), Vector3.forward, 1000f, layerMask);
+            _hits = Physics2D.RaycastAll(raycastCamera.ScreenToWorldPoint(screenPoint), Vector3.forward, 1000f,
+                layerMask);
             foreach (var hit in _hits)
             {
                 IInteractable interactable = hit.transform.GetComponent<IInteractable>();
@@ -64,10 +65,19 @@ namespace PlayerInteractions
                         if (hit.transform.root.TryGetComponent(out SpawnedGlade hitOnGlade))
                             if (!hitOnGlade.Id.Equals(GameStats.GetInstance().CurrentGladeID))
                                 continue;
+                            else
+                            {
+                                interactable.Interact();
+                                return;
+                            }
                     }
 
-                    interactable.Interact();
-                    return;
+                    if (hit.transform.root.TryGetComponent(out SpawnedGlade glade))
+                        if (!glade.Id.Equals(GameStats.GetInstance().CurrentGladeID))
+                        {
+                            interactable.Interact();
+                            return;
+                        }
                 }
             }
         }
