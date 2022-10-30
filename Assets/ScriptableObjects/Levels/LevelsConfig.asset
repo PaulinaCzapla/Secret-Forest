@@ -122,11 +122,25 @@ MonoBehaviour:
   itemsInfo:
   - maxLevelNum: 6
     items:
-    - probability: 0.5
-      item: {fileID: 5156584536555466960, guid: 56fed949fefd38142a96326ca159a704, type: 3}
-    - probability: 0.4
-      item: {fileID: 1339594572896703800, guid: 5b172fb47f945c543b63dc3f968ad15e, type: 3}
+    - probability: 0.12
+      item: {fileID: 11400000, guid: c89028e8af217864c8cbcc81561f0c93, type: 2}
+    - probability: 0.12
+      item: {fileID: 11400000, guid: 1d827b6fe18c70845bdf15d06fe9b601, type: 2}
+    - probability: 0.12
+      item: {fileID: 11400000, guid: 8174f64e2bf6f0348a16902c7ad62862, type: 2}
+    - probability: 0.12
+      item: {fileID: 11400000, guid: bfd673db392a33443b7d5464147e925b, type: 2}
     - probability: 0.1
-      item: {fileID: 1169131077188599868, guid: 30ba11e04f32be94b86bd4fd68609db8, type: 3}
+      item: {fileID: 11400000, guid: 208ad2f7c369aeb4aabdebdc504d5874, type: 2}
+    - probability: 0.05
+      item: {fileID: 11400000, guid: 21fd26b3a9bde704281f396f17902d6a, type: 2}
+    - probability: 0.1
+      item: {fileID: 11400000, guid: 822afa0750e6ffd4a9ee4053c352a2ae, type: 2}
+    - probability: 0.12
+      item: {fileID: 11400000, guid: 8dc8fdc3346059249840876ed445da48, type: 2}
+    - probability: 0.1
+      item: {fileID: 11400000, guid: bb6d2022354daec46876b3c040201b41, type: 2}
+    - probability: 0.05
+      item: {fileID: 11400000, guid: 98116a52648bcc648ad29dbb2a7e21db, type: 2}
   foodItemsInfo: []
   weaponItemsInfo: []

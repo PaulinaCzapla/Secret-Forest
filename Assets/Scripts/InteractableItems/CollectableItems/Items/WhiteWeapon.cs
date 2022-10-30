@@ -1,7 +1,6 @@
-﻿using InteractableItems.CollectableItems.Items;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace InteractableItems.CollectableItems
+namespace InteractableItems.CollectableItems.Items
 {
     public class WhiteWeapon : Item, IEquipable
     {
@@ -11,6 +10,11 @@ namespace InteractableItems.CollectableItems
 
         public override void Collect()
         {
+        }
+
+        public override string GetString()
+        {
+            throw new System.NotImplementedException();
         }
 
         public void Equip()

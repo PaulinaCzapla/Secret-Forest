@@ -11,6 +11,11 @@ namespace InteractableItems.CollectableItems.Items
             throw new System.NotImplementedException();
         }
 
+        public override string GetString()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Equip()
         {
             throw new System.NotImplementedException();

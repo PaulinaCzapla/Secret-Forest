@@ -20,7 +20,7 @@ namespace InteractableItems.CollectableItems.Items
         {
             //add to inventory
             // if collected
-            StorageUI.Instance.ItemCollected(this);
+            InventoryUI.Instance.ItemCollected(this);
         }
 
         public void Use()
@@ -29,7 +29,7 @@ namespace InteractableItems.CollectableItems.Items
             PlayerStatsStaticEvents.InvokeHealthValueChanged(GetTypeValue(ItemValueType.Health));
         }
 
-        public string GetString()
+        public override string GetString()
         {
             string text = "";
             float value = GetTypeValue(ItemValueType.Food);

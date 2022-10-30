@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88ba6985a0934ed9b31396284e62db60, type: 3}
-  m_Name: RawMeat 1
+  m_Name: RawMeat
   m_EditorClassIdentifier: 
   type: 0
   name: Raw meat

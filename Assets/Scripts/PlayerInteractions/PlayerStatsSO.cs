@@ -37,6 +37,7 @@ namespace PlayerInteractions
         [Range(0, 1)] public float currentCriticalKnifeChance = 0.1f;
         [Range(0, 1)] public float currentDodgeChance = 0.1f;
 
+        
         public void InitWithDefaults()
         {
             currentHealthValue = initialMaxHealth;

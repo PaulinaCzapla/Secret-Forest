@@ -16,6 +16,11 @@ namespace InteractableItems.CollectableItems.Items
         {
         }
 
+        public override string GetString()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Use()
         {
         }

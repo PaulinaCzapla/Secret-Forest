@@ -26,5 +26,7 @@ namespace InteractableItems.CollectableItems.Items
         {
             return _name;
         }
+
+        public abstract string GetString();
     }
 }

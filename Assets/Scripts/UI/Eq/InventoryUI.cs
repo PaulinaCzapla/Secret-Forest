@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using InteractableItems.CollectableItems;
 using InteractableItems.CollectableItems.Items;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI.Eq
 {
-    public class StorageUI : MonoBehaviour
+    public class InventoryUI : MonoBehaviour
     {
-        public static StorageUI Instance { get; private set; }
+        public UnityEvent<bool> OnTriedAddItem { get; set; }
+        public static InventoryUI Instance { get; private set; }
 
         [SerializeField] private GameObject storageObject;
         [SerializeField] private List<Transform> storageSlots;
