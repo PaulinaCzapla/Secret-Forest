@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using InteractableItems;
 using InteractableItems.CollectableItems;
+using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.ScriptableObjects;
 using LevelGenerating;
 using RandomGenerators;
 using UnityEngine;
@@ -32,7 +34,7 @@ namespace Glades.GladeTypes
             List<Tuple<Item, float>> itemsWithProbabilities = new List<Tuple<Item, float>>(itemsProbs.Count);
 
             foreach (var item in itemsProbs)
-                itemsWithProbabilities.Add(new Tuple<Item, float>(item.item, item.probability));
+                itemsWithProbabilities.Add(new Tuple<Item, float>(item.item.GetItem(), item.probability));
 
             Tuple<int, float>[] itemsCount = new[]
             {
@@ -42,6 +44,7 @@ namespace Glades.GladeTypes
                 new Tuple<int, float>(4, 0.05f)
             };
 
+            
             foreach (var chest in configurations[_currentConfiguration].chests)
             {
                 chest.Init(RandomWithProbabilityGenerator.

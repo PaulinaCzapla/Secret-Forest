@@ -16,7 +16,7 @@ namespace InteractableItems
             if(_isEaten)
                 return; 
             
-            PlayerStatsStaticEvents.InvokeTryHungerValueChanged(value);
+            PlayerStatsStaticEvents.InvokeHungerValueChanged(value);
             foodObject.SetActive(false);
         }
     }

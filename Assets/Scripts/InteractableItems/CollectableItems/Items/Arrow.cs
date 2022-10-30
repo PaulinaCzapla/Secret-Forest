@@ -1,7 +1,11 @@
-﻿namespace InteractableItems.CollectableItems
+﻿using UnityEngine;
+
+namespace InteractableItems.CollectableItems.Items
 {
     public class Arrow : Item, IEquipable
-    {
+    {      public Arrow(Sprite sprite, string name) : base(sprite, name)
+             {
+             }
         public override void Collect()
         {
             throw new System.NotImplementedException();
@@ -11,5 +15,7 @@
         {
             throw new System.NotImplementedException();
         }
+
+  
     }
 }

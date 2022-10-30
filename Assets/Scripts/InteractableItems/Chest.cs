@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DebugTools;
 using InteractableItems.CollectableItems;
+using InteractableItems.CollectableItems.Items;
 using PlayerInteractions.Interfaces;
 using UnityEngine;
 

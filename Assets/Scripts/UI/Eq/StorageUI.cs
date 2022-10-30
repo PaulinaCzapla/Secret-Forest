@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using InteractableItems.CollectableItems;
+using InteractableItems.CollectableItems.Items;
 using UnityEngine;
 
 namespace UI.Eq
@@ -31,10 +32,10 @@ namespace UI.Eq
 
             foreach (var item in items)
             {
-                item.gameObject.transform.SetParent(storageSlots[i]);
-                storageSlots[i].gameObject.SetActive(true);
-                item.gameObject.SetActive(true);
-                i++;
+                // item.gameObject.transform.SetParent(storageSlots[i]);
+                // storageSlots[i].gameObject.SetActive(true);
+                // item.gameObject.SetActive(true);
+                // i++;
             }
 
             _storedItems = items;
@@ -47,10 +48,10 @@ namespace UI.Eq
             
             foreach (var item in _storedItems)
             {
-                item.gameObject.transform.SetParent(null);
-                storageSlots[i].gameObject.SetActive(false);
-                item.gameObject.SetActive(false);
-                i++;
+                // item.gameObject.transform.SetParent(null);
+                // storageSlots[i].gameObject.SetActive(false);
+                // item.gameObject.SetActive(false);
+                // i++;
             }
 
             _storedItems = null;
@@ -58,11 +59,11 @@ namespace UI.Eq
 
         public void ItemCollected(Item item)
         {
-            int i = _storedItems.IndexOf(item);
-            item.gameObject.transform.SetParent(null);
-            storageSlots[i].gameObject.SetActive(false);
-            item.gameObject.SetActive(false);
-            _storedItems.Remove(item);
+            // int i = _storedItems.IndexOf(item);
+            // item.gameObject.transform.SetParent(null);
+            // storageSlots[i].gameObject.SetActive(false);
+            // item.gameObject.SetActive(false);
+            // _storedItems.Remove(item);
         }
     }
 }

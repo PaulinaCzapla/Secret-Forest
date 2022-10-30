@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f727f6b399af47745b7c1c64df2da7c3
+guid: 1f333a2853779a340a35935c2876112e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,175 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FruitsAndPotions_0
+      name: sprites_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 810e72b794112084786fdd339bc90a2c
+      internalID: -1122157109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprites_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36d22e7f797ff1042bde92d53edef257
+      internalID: -1710725607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprites_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7733ca33ad01a8047b05fa57160736c6
+      internalID: 407580995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprites_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6255eccc1be338d4f98d4260c00f3d9b
+      internalID: 1672501328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprites_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b846abfc825c5b498bdc9b4bd791dff
+      internalID: 1134929797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprites_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e8edd770fb57c49aee49a4773c0042
+      internalID: -2055999751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprites_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abe755a2c33595c48a179eb7badf1a7a
+      internalID: 671159405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprites_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1c401f74d035834b9e430b87012812e
+      internalID: -163168810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprites_8
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +298,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8e11f90b20f7dd4683c1391e6503a8d
-      internalID: 708284573
+      spriteID: 7cf79c849c2359d4ab8c962bfd65c03f
+      internalID: 135889295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_1
+      name: sprites_9
       rect:
         serializedVersion: 2
         x: 16
@@ -151,14 +319,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53daebae4d948fd47bfd40f8a51adbd9
-      internalID: 1305621444
+      spriteID: 0e8030e4291f82f469965da96c7cc56f
+      internalID: 551836394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_2
+      name: sprites_10
       rect:
         serializedVersion: 2
         x: 32
@@ -172,14 +340,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad4428c6da76d9142afc215cdbd33967
-      internalID: -1755246752
+      spriteID: 592a15ac59867254abae8e5c35ab7c89
+      internalID: 643514085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_3
+      name: sprites_11
       rect:
         serializedVersion: 2
         x: 48
@@ -193,14 +361,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 187500c6f12c8b34aa9c2c30f975ae7c
-      internalID: -789899297
+      spriteID: 0efd082b3fdb2a54188644cd36254f64
+      internalID: 1812566685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_4
+      name: sprites_12
       rect:
         serializedVersion: 2
         x: 64
@@ -214,14 +382,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96616b6bae85c3744904606c0e11a4ff
-      internalID: -153464677
+      spriteID: 36a51c7d0ec7abc46a0a65769b65c926
+      internalID: 891623488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_5
+      name: sprites_13
       rect:
         serializedVersion: 2
         x: 80
@@ -235,14 +403,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99bdcf77f5bad4a47ab98f15292e3970
-      internalID: -1612533405
+      spriteID: 81d268f363e789f479c7b69170d077f3
+      internalID: -275712726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_6
+      name: sprites_14
       rect:
         serializedVersion: 2
         x: 96
@@ -256,14 +424,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83b9e35ecffc3b6468f7a707e2ef72af
-      internalID: -275684604
+      spriteID: d5a0bb46de00ad64b97f1841bf9fc09a
+      internalID: 551153064
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_7
+      name: sprites_15
       rect:
         serializedVersion: 2
         x: 112
@@ -277,56 +445,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6bff274c11288b4294155b0e14c3c65
-      internalID: 1645095802
+      spriteID: a3c21c1d94bc6a94ea09a5166014c453
+      internalID: -866629221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_8
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c73b2d47afa3ed34994f557fe7ba592f
-      internalID: -2038774139
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FruitsAndPotions_9
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3971567b470f1440accc06a175fe6cc
-      internalID: -1503797874
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FruitsAndPotions_10
+      name: sprites_16
       rect:
         serializedVersion: 2
         x: 0
@@ -340,14 +466,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a41938e1f89704f498eda929ce6fd8cb
-      internalID: -317309812
+      spriteID: a4173771dc127394ca537d5d3aac44ee
+      internalID: 1043677184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_11
+      name: sprites_17
       rect:
         serializedVersion: 2
         x: 16
@@ -361,14 +487,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b43970ae4d32fd34ea9718e5b5b15725
-      internalID: 604928486
+      spriteID: 82952b0ca85865b458989399ab83ce61
+      internalID: -539373911
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_12
+      name: sprites_18
       rect:
         serializedVersion: 2
         x: 32
@@ -382,14 +508,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1534480f43a3ef40aa769a22e3f1466
-      internalID: 1178300121
+      spriteID: b6db1c6ccdbff6440a3d0b9d1087d00e
+      internalID: -342017334
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_13
+      name: sprites_19
       rect:
         serializedVersion: 2
         x: 48
@@ -403,14 +529,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9a548414cf30704a80627550777d3bd
-      internalID: -1206918115
+      spriteID: 6835be8a8a9ee7f40813188ad0d777cd
+      internalID: 764100827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_14
+      name: sprites_20
       rect:
         serializedVersion: 2
         x: 64
@@ -424,14 +550,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57764152e974f0947b3b5cdae6030dc9
-      internalID: 1183180138
+      spriteID: d4f7c1474c0bc5f4c9c5e6b8e317f27c
+      internalID: -1931553425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_15
+      name: sprites_21
       rect:
         serializedVersion: 2
         x: 80
@@ -445,14 +571,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd18f6e8f886ee141b088d5466504096
-      internalID: 1123820959
+      spriteID: 025d0a287a3144540a125de79d600480
+      internalID: -780481946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_16
+      name: sprites_22
       rect:
         serializedVersion: 2
         x: 96
@@ -466,14 +592,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d4c705c9c7add54598539b676b6a7e8
-      internalID: -1320096703
+      spriteID: ddf23bfff93f64440a4550cd49a5c35f
+      internalID: 755489378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_17
+      name: sprites_23
       rect:
         serializedVersion: 2
         x: 112
@@ -487,56 +613,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6a96600809e1284e9ccb47a8acd7c2a
-      internalID: -2047140710
+      spriteID: 69bd51cfcbead0549a08f460cb53ecce
+      internalID: 47671243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_18
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8b30c8d37f8d34148a66ca7cc0f985e8
-      internalID: -1872188221
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FruitsAndPotions_19
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 56a05dafb78879344b379d273757d50f
-      internalID: 2117033245
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FruitsAndPotions_20
+      name: sprites_24
       rect:
         serializedVersion: 2
         x: 0
@@ -550,14 +634,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec675ccb6ea76ec41ae836bce46f50fb
-      internalID: -412438541
+      spriteID: 099456a222e2f6c4ba3c5c4b4577d5a3
+      internalID: -616336327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_21
+      name: sprites_25
       rect:
         serializedVersion: 2
         x: 16
@@ -571,14 +655,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b56bd091e1ee7374781d994c6e1b6ce1
-      internalID: 1007621988
+      spriteID: 44844bac978cdb34aa94b949d64bedbb
+      internalID: -1451757750
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_22
+      name: sprites_26
       rect:
         serializedVersion: 2
         x: 32
@@ -592,14 +676,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3b859b8752a58e42a2356dc7388a946
-      internalID: 1859666837
+      spriteID: e6b214a53c672b64e8ceb8bf56741eb2
+      internalID: 534762038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_23
+      name: sprites_27
       rect:
         serializedVersion: 2
         x: 48
@@ -613,14 +697,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb0df2a3ea593df459c2ac0f51a8f713
-      internalID: -1766363267
+      spriteID: 9232a01c7d82e834f8d61d9b094614bf
+      internalID: -2009693247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_24
+      name: sprites_28
       rect:
         serializedVersion: 2
         x: 64
@@ -634,14 +718,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44e9d42ba3919a14fb76ab2292dbce39
-      internalID: 1037988636
+      spriteID: ae2cbd96c97f18046a900529bdcd3ce4
+      internalID: -830981093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_25
+      name: sprites_29
       rect:
         serializedVersion: 2
         x: 80
@@ -655,14 +739,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e71d9f33155922c48b3e0233eb4664ff
-      internalID: -414663319
+      spriteID: ff2ce81ca3752504499ef0397b9d922e
+      internalID: -2055652838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_26
+      name: sprites_30
       rect:
         serializedVersion: 2
         x: 96
@@ -676,14 +760,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ba904af8817b46479598ceff5277dac
-      internalID: -1434951696
+      spriteID: bfbcae9494e11b64882f402344b3fd85
+      internalID: 106922938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_27
+      name: sprites_31
       rect:
         serializedVersion: 2
         x: 112
@@ -697,35 +781,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8f531c64efe90d4a98eaa1c0b561784
-      internalID: 1939820225
+      spriteID: db168b419d0f12a418d30c17169a1d46
+      internalID: 1675641772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_28
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e3dfc6f01d83b4b42bfca380c663d4d9
-      internalID: -2144717943
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FruitsAndPotions_29
+      name: sprites_32
       rect:
         serializedVersion: 2
         x: 0
@@ -739,14 +802,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fea57a1fc7ff7b94496326a1c31463f0
-      internalID: 1729824039
+      spriteID: 3a052dc23543b2b48b1fadeb481452a2
+      internalID: -819038072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_30
+      name: sprites_33
       rect:
         serializedVersion: 2
         x: 16
@@ -760,14 +823,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4892e19d7ff6554db290d0d00d7e6a2
-      internalID: 1832007222
+      spriteID: 37e10ab0b056721488b00fb057862dc1
+      internalID: 261553057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_31
+      name: sprites_34
       rect:
         serializedVersion: 2
         x: 32
@@ -781,14 +844,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b7b13219d82b0f468fd8560e171398c
-      internalID: 260989447
+      spriteID: de8a6a9bd7ff3844d9db348bda2ade4c
+      internalID: 773289864
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FruitsAndPotions_32
+      name: sprites_35
       rect:
         serializedVersion: 2
         x: 48
@@ -802,113 +865,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5c94d08b2c0b8b46a94b226f4e19486
-      internalID: -1877706836
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FruitsAndPotions_33
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 347150bf288765b4a936da1602b19b47
-      internalID: -618082465
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FruitsAndPotions_34
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 838486bc33f11d9418ff756cbf0f5a6c
-      internalID: -402378771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FruitsAndPotions_35
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bbb059b2632c59949b28da8c92124411
-      internalID: 111646901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FruitsAndPotions_36
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 263e1f3da05e10f4f93de05c97d0702c
-      internalID: -1609473510
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FruitsAndPotions_37
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c5918f5f6bb86849aa2dd2b3ee0596b
-      internalID: 1673164823
+      spriteID: caa68d1e5ca11144386664e0b6d845e6
+      internalID: 893354117
       vertices: []
       indices: 
       edges: []
@@ -924,44 +882,42 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FruitsAndPotions_18: -1872188221
-      FruitsAndPotions_36: -1609473510
-      FruitsAndPotions_12: 1178300121
-      FruitsAndPotions_8: -2038774139
-      FruitsAndPotions_27: 1939820225
-      FruitsAndPotions_19: 2117033245
-      FruitsAndPotions_29: 1729824039
-      FruitsAndPotions_30: 1832007222
-      FruitsAndPotions_15: 1123820959
-      FruitsAndPotions_33: -618082465
-      FruitsAndPotions_2: -1755246752
-      FruitsAndPotions_35: 111646901
-      FruitsAndPotions_1: 1305621444
-      FruitsAndPotions_13: -1206918115
-      FruitsAndPotions_23: -1766363267
-      FruitsAndPotions_20: -412438541
-      FruitsAndPotions_7: 1645095802
-      FruitsAndPotions_17: -2047140710
-      FruitsAndPotions_26: -1434951696
-      FruitsAndPotions_22: 1859666837
-      FruitsAndPotions_10: -317309812
-      FruitsAndPotions_5: -1612533405
-      FruitsAndPotions_3: -789899297
-      FruitsAndPotions_21: 1007621988
-      FruitsAndPotions_11: 604928486
-      FruitsAndPotions_9: -1503797874
-      FruitsAndPotions_16: -1320096703
-      FruitsAndPotions_24: 1037988636
-      FruitsAndPotions_14: 1183180138
-      FruitsAndPotions_31: 260989447
-      FruitsAndPotions_28: -2144717943
-      FruitsAndPotions_6: -275684604
-      FruitsAndPotions_4: -153464677
-      FruitsAndPotions_37: 1673164823
-      FruitsAndPotions_25: -414663319
-      FruitsAndPotions_0: 708284573
-      FruitsAndPotions_32: -1877706836
-      FruitsAndPotions_34: -402378771
+      sprites_17: -539373911
+      sprites_12: 891623488
+      sprites_25: -1451757750
+      sprites_1: -1710725607
+      sprites_27: -2009693247
+      sprites_29: -2055652838
+      sprites_18: -342017334
+      sprites_26: 534762038
+      sprites_19: 764100827
+      sprites_28: -830981093
+      sprites_10: 643514085
+      sprites_15: -866629221
+      sprites_33: 261553057
+      sprites_11: 1812566685
+      sprites_0: -1122157109
+      sprites_13: -275712726
+      sprites_16: 1043677184
+      sprites_34: 773289864
+      sprites_9: 551836394
+      sprites_24: -616336327
+      sprites_32: -819038072
+      sprites_2: 407580995
+      sprites_30: 106922938
+      sprites_5: -2055999751
+      sprites_3: 1672501328
+      sprites_4: 1134929797
+      sprites_7: -163168810
+      sprites_8: 135889295
+      sprites_6: 671159405
+      sprites_35: 893354117
+      sprites_14: 551153064
+      sprites_31: 1675641772
+      sprites_20: -1931553425
+      sprites_21: -780481946
+      sprites_22: 755489378
+      sprites_23: 47671243
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -6,14 +6,19 @@ namespace PlayerInteractions.StaticEvents
     public class PlayerStatsStaticEvents
     {
         private static UnityEvent<float> onHungerValueChanged = new UnityEvent<float>();
-
+        private static UnityEvent<float> onHealthValueChanged = new UnityEvent<float>();
+        
         public static void SubscribeToHungerValueChanged (UnityAction<float> subscriber) =>
             onHungerValueChanged.AddListener(subscriber);
-
         public static void UnsubscribeFromHungerValueChanged (UnityAction<float> subscriber) =>
             onHungerValueChanged.RemoveListener(subscriber);
-
-        public static void InvokeTryHungerValueChanged (float value) => onHungerValueChanged.Invoke(value);
+        public static void InvokeHungerValueChanged (float value) => onHungerValueChanged.Invoke(value);
+        
+        public static void SubscribeToHealthValueChanged (UnityAction<float> subscriber) =>
+            onHealthValueChanged .AddListener(subscriber);
+        public static void UnsubscribeFromHealthValueChanged(UnityAction<float> subscriber) =>
+            onHealthValueChanged .RemoveListener(subscriber);
+        public static void InvokeHealthValueChanged (float value) =>onHealthValueChanged .Invoke(value);
 
     }
 }

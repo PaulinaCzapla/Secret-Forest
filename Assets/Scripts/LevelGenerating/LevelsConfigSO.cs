@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using GameManager;
 using Glades;
 using InteractableItems.CollectableItems;
+using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.ScriptableObjects;
 using RandomGenerators;
 using UnityEngine;
 
@@ -76,7 +78,7 @@ namespace LevelGenerating
         {
             [Range(0,1)]
             public float probability;
-            public Item item;
+            public ItemSO item;
         }
         
         public int maxLevelNum;
