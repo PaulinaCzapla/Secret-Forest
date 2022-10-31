@@ -14,6 +14,7 @@ namespace GameManager
             playerStats.InitWithDefaults();
             UIStaticEvents.InvokeUpdateHungerUI();
             UIStaticEvents.InvokeUpdateHealthUI();
+            GameStats.GetInstance().Init(playerStats);
         }
     }
 }

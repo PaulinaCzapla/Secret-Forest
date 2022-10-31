@@ -17,20 +17,11 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                 case ItemType.Food:
                 {
                     return new Food(values,sprite, name );
-
                     break;
                 }
                 case ItemType.Potion:
                 {
-                    float value = 0;
-
-                    foreach (var v in values)
-                    {
-                        if (v.Type == ItemValueType.Health)
-                            value = v.Value;
-                    }
-                    return new HealthPotion(value,sprite, name );
-
+                    return new Potion(values,sprite, name );
                     break;
                 }
                 default:

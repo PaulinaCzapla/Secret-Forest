@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Attributes
 {
+#if UNITY_EDITOR
     public class ReadOnlyAttribute : PropertyAttribute
     {
- 
     }
- 
+
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
     {
@@ -16,7 +16,7 @@ namespace Attributes
         {
             return EditorGUI.GetPropertyHeight(property, label, true);
         }
- 
+
         public override void OnGUI(Rect position,
             SerializedProperty property,
             GUIContent label)
@@ -26,4 +26,5 @@ namespace Attributes
             GUI.enabled = true;
         }
     }
+#endif
 }

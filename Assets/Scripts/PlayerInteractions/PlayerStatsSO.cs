@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using InteractableItems.CollectableItems.Items;
+using UnityEngine;
 
 namespace PlayerInteractions
 {
@@ -47,6 +48,24 @@ namespace PlayerInteractions
             currentHungerValue = initialMaxHunger;
             currentMaxHungerValue = initialMaxHunger;
             currentEqSlotsCount = initialEqSlotsCount;
+        }
+
+        public float GetWeaponCurrentDamage(ItemType type)
+        {
+            if (type == ItemType.Bow)
+                return currentBowDamage;
+            if (type == ItemType.WhiteWeapon)
+                return currentKnifeDamage;
+            return 0;
+        }
+        
+        public float GetWeaponCurrentCriticalChance(ItemType type)
+        {
+            if (type == ItemType.Bow)
+                return currentCriticalBowChance;
+            if (type == ItemType.WhiteWeapon)
+                return currentCriticalKnifeChance;
+            return 0;
         }
     }
 }
