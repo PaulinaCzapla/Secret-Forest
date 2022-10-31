@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c1961e040d49b99331bf208df4140d, type: 3}
+  m_Name: Hood4
+  m_EditorClassIdentifier: 
+  type: 4
+  name: Hood
+  sprite: {fileID: -1853822474, guid: 387bbe420c77a9647a5caa08876e287f, type: 3}
+  values:
+  - type: 5
+    values:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.7
+        inSlope: 0.4149058
+        outSlope: 0.4149058
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.13525796
+      - serializedVersion: 3
+        time: 0.12068793
+        value: 0.981586
+        inSlope: 0.08190719
+        outSlope: 0.08190719
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.11237907
+        outWeight: 0.09276627
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0.00000046667913
+        outSlope: 0.00000046667913
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.1545335
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0

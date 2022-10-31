@@ -8,13 +8,13 @@ namespace UI.StorageUI
 {
     public class StorageSlot : MonoBehaviour
     {
-       
         [SerializeField] private TextMeshProUGUI itemName;
         [SerializeField] private TextMeshProUGUI itemInfo;
         [SerializeField] private Image image;
         [SerializeField] private Button button;
 
         private Item _item;
+
         public void InitSlot(Item item)
         {
             _item = item;
@@ -27,8 +27,8 @@ namespace UI.StorageUI
 
         private void OnItemCollected()
         {
-            _item.Collect();
-            this.gameObject.SetActive(false);
+            if (_item.Collect())
+                this.gameObject.SetActive(false);
         }
 
         private void OnDisable()

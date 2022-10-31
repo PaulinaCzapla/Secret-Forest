@@ -1,4 +1,5 @@
 ﻿using InteractableItems.CollectableItems.Interfaces;
+using UI.Eq;
 using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
@@ -9,8 +10,15 @@ namespace InteractableItems.CollectableItems.Items
         {
         }
 
-        public override void Collect()
+        public override bool Collect()
         {
+            if (InventoryUI.Instance.ItemCollected(this))
+            {
+                onCollected?.Invoke();
+                return true;
+            }
+
+            return false;
         }
 
         public override string GetString()

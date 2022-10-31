@@ -67,6 +67,12 @@ namespace UI.StorageUI
             _currentChest = chest;
             _currentChest.OnChestEmptied += Close;
             chestUIObject.SetActive(true);
+            
+            if (_currentChest.IsEmpty)
+            {
+                infoText.color = _infoTextInitialColor;
+                infoText.text = "Empty";
+            }
         }
 
         private void Close()

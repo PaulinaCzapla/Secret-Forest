@@ -6,6 +6,7 @@
         Food,
         Defence,
         Health,
-        CriticalDamageChance
+        CriticalDamageChance,
+        DodgeChance
     }
 }

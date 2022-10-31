@@ -4,6 +4,6 @@ namespace InteractableItems.CollectableItems
 {
     public interface ICollectable
     {
-        public void Collect();
+        public bool Collect();
     }
 }

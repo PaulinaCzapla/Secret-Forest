@@ -20,7 +20,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
 
                     break;
                 }
-                case ItemType.HealthPotion:
+                case ItemType.Potion:
                 {
                     float value = 0;
 

@@ -5,6 +5,11 @@
         Food,
         WhiteWeapon,
         ActionItem,
-        HealthPotion
+        Potion,
+        Helmet,
+        Boots,
+        Breastplate,
+        ShinGuards,
+        Bow
     }
 }

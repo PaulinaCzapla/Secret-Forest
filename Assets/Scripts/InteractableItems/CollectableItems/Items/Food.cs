@@ -16,11 +16,15 @@ namespace InteractableItems.CollectableItems.Items
             _values = values;
         }
 
-        public override void Collect()
+        public override bool Collect()
         {
-            //add to inventory
-            // if collected
-            InventoryUI.Instance.ItemCollected(this);
+            if (InventoryUI.Instance.ItemCollected(this))
+            {
+                onCollected?.Invoke();
+                return true;
+            }
+
+            return false;
         }
 
         public void Use()

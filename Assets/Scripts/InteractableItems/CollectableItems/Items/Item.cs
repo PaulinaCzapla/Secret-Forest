@@ -20,7 +20,7 @@ namespace InteractableItems.CollectableItems.Items
             _sprite = sprite;
         }
 
-        public abstract void Collect();
+        public abstract bool Collect();
 
         public override string ToString()
         {

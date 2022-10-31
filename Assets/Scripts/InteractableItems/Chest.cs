@@ -12,6 +12,7 @@ namespace InteractableItems
 {
     public class Chest : MonoBehaviour, IInteractable
     {
+        public bool IsEmpty => _items.Count == 0;
         public UnityAction OnChestEmptied { get; set; }
         private List<Item> _items;
         private Animator _animator;
@@ -33,17 +34,17 @@ namespace InteractableItems
         {
             this._items = items;
 
-            for (int i =0; i<_items.Count; i++)
+            foreach (var item in _items)
             {
-                _items[i].onCollected.AddListener(() => CollectedItem(i));
+                item.onCollected.AddListener(() => CollectedItem(item));
             }
             DebugMessageSender.SendDebugMessage("Initialized chest "+ this.gameObject.name +" with " + items.Count
             + " items: " + string.Join(",\n", _items));
         }
 
-        private void CollectedItem(int index)
+        private void CollectedItem(Item index)
         {
-            _items.RemoveAt(index);
+            _items.Remove(index);
             
             if(_items.Count == 0)
                 OnChestEmptied?.Invoke();

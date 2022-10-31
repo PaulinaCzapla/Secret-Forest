@@ -59,9 +59,5 @@ namespace UI.Eq
             OnEmptySlot();
         }
         
-        private void OnDisable()
-        {
-            //button.onClick.RemoveAllListeners();
-        }
     }
 }

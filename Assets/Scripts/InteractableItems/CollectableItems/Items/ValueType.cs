@@ -13,4 +13,14 @@ namespace InteractableItems.CollectableItems.Items
         [SerializeField] private ItemValueType type;
         [SerializeField] private float value;
     }
+    
+    [Serializable]
+    public struct ValuesPossibilitiesType
+    {
+        public ItemValueType Type => type;
+        public AnimationCurve Values => values;
+            
+        [SerializeField] private ItemValueType type;
+        [SerializeField] private AnimationCurve values;
+    }
 }

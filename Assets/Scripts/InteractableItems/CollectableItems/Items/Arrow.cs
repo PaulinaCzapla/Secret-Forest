@@ -1,4 +1,5 @@
 ﻿using InteractableItems.CollectableItems.Interfaces;
+using UI.Eq;
 using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
@@ -7,9 +8,15 @@ namespace InteractableItems.CollectableItems.Items
     {      public Arrow(Sprite sprite, string name) : base(sprite, name)
              {
              }
-        public override void Collect()
+        public override bool Collect()
         {
-            throw new System.NotImplementedException();
+            if (InventoryUI.Instance.ItemCollected(this))
+            {
+                onCollected?.Invoke();
+                return true;
+            }
+
+            return false;
         }
 
         public override string GetString()

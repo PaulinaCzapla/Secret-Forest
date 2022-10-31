@@ -38,6 +38,8 @@ namespace UI.Eq
             {
                 Instance = this;
             }
+            
+            InitializeStorage(4);
         }
 
         private void OnEnable()
@@ -110,7 +112,7 @@ namespace UI.Eq
             ResetItemUI();
         }
 
-        public void ItemCollected(Item item)
+        public bool ItemCollected(Item item)
         {
             var freeSlot = GetFreeSlot();
             OnTriedAddItem?.Invoke(freeSlot);
@@ -121,6 +123,8 @@ namespace UI.Eq
                 freeSlot.OnSlotClicked.AddListener(OnItemClicked);
                 _storedItems.Add(item);
             }
+
+            return freeSlot;
         }
 
 
@@ -135,10 +139,11 @@ namespace UI.Eq
 
             actionButton.gameObject.SetActive(true);
             actionButton.onClick.AddListener(slot.OnUseItem);
+            actionButton.onClick.AddListener(() => OnResetSelectedItem(slot));
 
             throwItemButton.gameObject.SetActive(true);
             throwItemButton.onClick.AddListener(slot.OnEmptySlot);
-            throwItemButton.onClick.AddListener(() => _storedItems.Remove(slot.CurrentItem));
+            throwItemButton.onClick.AddListener(() => OnResetSelectedItem(slot));
 
             itemStats.text = slot.ItemInfo;
             itemName.text = slot.CurrentItem.Name;
@@ -147,17 +152,23 @@ namespace UI.Eq
             slot.Select();
         }
 
+        private void OnResetSelectedItem(InventorySlot slot)
+        {
+            ResetItemUI();
+            _storedItems.Remove(slot.CurrentItem);
+        }
         private void ResetItemUI()
         {
             if (_currentSelected)
                 _currentSelected.Unselect();
+            _currentSelected = null;
             actionButton.gameObject.SetActive(false);
             actionButton.onClick.RemoveAllListeners();
 
             throwItemButton.gameObject.SetActive(false);
             throwItemButton.onClick.RemoveAllListeners();
 
-            itemStats.text = "";
+            itemStats.text = "Select an item";
             itemName.text = "";
         }
 

@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c1961e040d49b99331bf208df4140d, type: 3}
+  m_Name: Boots5
+  m_EditorClassIdentifier: 
+  type: 5
+  name: Boots
+  sprite: {fileID: -505442146, guid: c8a6c5f944c15844c949845c549082fd, type: 3}
+  values:
+  - type: 5
+    values:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.5
+        inSlope: 10.179184
+        outSlope: 10.179184
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.12667225
+      - serializedVersion: 3
+        time: 0.088445455
+        value: 0.8926941
+        inSlope: 0.3994976
+        outSlope: 0.3994976
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.1480252
+        outWeight: 0.17828034
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0.05001139
+        outSlope: 0.05001139
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.10850874
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
