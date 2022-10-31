@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using InteractableItems.CollectableItems.Interfaces;
+using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
 {
-    public class WhiteWeapon : Item, IEquipable
+    public class WhiteWeapon : Item, IEquippable
     {
         public WhiteWeapon(Sprite sprite, string name) : base(sprite, name)
         {

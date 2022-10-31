@@ -8,6 +8,7 @@ namespace UI.StorageUI
 {
     public class StorageSlot : MonoBehaviour
     {
+       
         [SerializeField] private TextMeshProUGUI itemName;
         [SerializeField] private TextMeshProUGUI itemInfo;
         [SerializeField] private Image image;
