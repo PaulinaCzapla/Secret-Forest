@@ -17,6 +17,7 @@ namespace UI.Eq
         
         [SerializeField] private Button button;
         [SerializeField] private Image image;
+        [SerializeField] private GameObject selected;
         
         private Item _currentItem;
 
@@ -36,6 +37,15 @@ namespace UI.Eq
             OnSlotClicked.RemoveAllListeners();
         }
 
+        public void Select()
+        {
+            selected.SetActive(true);
+        }
+
+        public void Unselect()
+        {
+            selected.SetActive(false);
+        }
         public void OnUseItem()
         {
             if (_currentItem is IUsable usable)

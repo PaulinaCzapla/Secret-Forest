@@ -18,25 +18,25 @@ namespace UI.Eq
         [SerializeField] private GameObject storageObject;
         [SerializeField] private List<InventorySlot> slots;
         [SerializeField] private Toggle toggleEq;
-      
-        [Header("Item menu")] 
-        [SerializeField] private Button actionButton;
+
+        [Header("Item menu")] [SerializeField] private Button actionButton;
         [SerializeField] private TextMeshProUGUI actionButtonText;
         [SerializeField] private TextMeshProUGUI itemStats;
         [SerializeField] private TextMeshProUGUI itemName;
         [SerializeField] private Button throwItemButton;
-        
+
         private List<Item> _storedItems = new List<Item>();
-        
+        private InventorySlot _currentSelected;
+
         private void Awake()
         {
-            if (Instance != null && Instance != this) 
-            { 
-                Destroy(this); 
-            } 
-            else 
-            { 
-                Instance = this; 
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
             }
         }
 
@@ -52,7 +52,7 @@ namespace UI.Eq
 
         private void ToggleEq(bool toggle)
         {
-            if(toggle)
+            if (toggle)
                 OpenStorage();
             else
             {
@@ -65,7 +65,7 @@ namespace UI.Eq
             int i = 0;
             foreach (var slot in slots)
             {
-                if(i<slotsCount)
+                if (i < slotsCount)
                     slot.gameObject.SetActive(true);
                 else
                 {
@@ -87,22 +87,21 @@ namespace UI.Eq
             if (_storedItems == null)
                 return;
             int i = 0;
-                foreach (var slot in slots)
+            foreach (var slot in slots)
+            {
+                if (i >= _storedItems.Count)
+                    return;
+                if (slot.IsActiveAndFree)
                 {
-                    if (i >= _storedItems.Count)
-                        return;
-                    if (slot.IsActiveAndFree)
-                    {
-                        slot.Init(_storedItems[i]);
-                        i++;
-                    }
+                    slot.Init(_storedItems[i]);
+                    i++;
                 }
+            }
         }
-        
+
         public void OpenStorage()
         {
             storageObject.SetActive(true);
-            
         }
 
         private void CloseStorage()
@@ -120,42 +119,48 @@ namespace UI.Eq
             {
                 freeSlot.Init(item);
                 freeSlot.OnSlotClicked.AddListener(OnItemClicked);
-                 _storedItems.Add(item);
+                _storedItems.Add(item);
             }
         }
 
-        private void OnItemClicked(InventorySlot  slot)
+
+        private void OnItemClicked(InventorySlot slot)
         {
             ResetItemUI();
-            
+
             if (slot.CurrentItem is IEquippable)
                 actionButtonText.text = "Equip";
-            else if(slot.CurrentItem is IUsable)
+            else if (slot.CurrentItem is IUsable)
                 actionButtonText.text = "Use";
-            
+
             actionButton.gameObject.SetActive(true);
             actionButton.onClick.AddListener(slot.OnUseItem);
-            
+
             throwItemButton.gameObject.SetActive(true);
             throwItemButton.onClick.AddListener(slot.OnEmptySlot);
             throwItemButton.onClick.AddListener(() => _storedItems.Remove(slot.CurrentItem));
-            
+
             itemStats.text = slot.ItemInfo;
             itemName.text = slot.CurrentItem.Name;
+            _currentSelected = slot;
+
+            slot.Select();
         }
 
         private void ResetItemUI()
         {
+            if (_currentSelected)
+                _currentSelected.Unselect();
             actionButton.gameObject.SetActive(false);
             actionButton.onClick.RemoveAllListeners();
-            
+
             throwItemButton.gameObject.SetActive(false);
             throwItemButton.onClick.RemoveAllListeners();
 
             itemStats.text = "";
             itemName.text = "";
         }
-        
+
         private InventorySlot GetFreeSlot()
         {
             foreach (var slot in slots)
