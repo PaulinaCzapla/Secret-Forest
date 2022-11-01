@@ -148,3 +148,29 @@ MonoBehaviour:
       item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
   foodItemsInfo: []
   weaponItemsInfo: []
+  valueMultipliers:
+  - maxLevelNum: 5
+    armorDefenseMultiplier: 1
+    armorDodgeMultiplier: 1
+    weaponDamageMultiplier: 1
+    weaponCriticalMultiplier: 1
+  - maxLevelNum: 10
+    armorDefenseMultiplier: 2
+    armorDodgeMultiplier: 2
+    weaponDamageMultiplier: 2
+    weaponCriticalMultiplier: 2
+  - maxLevelNum: 15
+    armorDefenseMultiplier: 3
+    armorDodgeMultiplier: 2
+    weaponDamageMultiplier: 3
+    weaponCriticalMultiplier: 3
+  - maxLevelNum: 25
+    armorDefenseMultiplier: 5
+    armorDodgeMultiplier: 3
+    weaponDamageMultiplier: 5
+    weaponCriticalMultiplier: 5
+  - maxLevelNum: 35
+    armorDefenseMultiplier: 10
+    armorDodgeMultiplier: 8
+    weaponDamageMultiplier: 10
+    weaponCriticalMultiplier: 15

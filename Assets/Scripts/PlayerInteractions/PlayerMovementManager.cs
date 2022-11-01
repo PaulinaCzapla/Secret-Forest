@@ -60,7 +60,7 @@ namespace PlayerInteractions
             currentOccupiedGlade = destination;
             MovePlayer(destination.SpawnPosition);
             PlayerMovementStaticEvents.InvokePlayerMovedToGlade(destination);
-            GameStats.GetInstance().CurrentGladeID = destination.Id;
+            GameManager.GameManager.GetInstance().CurrentGladeID = destination.Id;
         }
         
         private AdjacentSide GetAdjacentSide(Vector2 gladePos, Vector2 adjacentGladePos)

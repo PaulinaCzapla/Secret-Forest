@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using InteractableItems.CollectableItems.Items;
 using UnityEngine;
+using ValueRepresentation;
 
 namespace InteractableItems.CollectableItems.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "EquippableItem", menuName = "ScriptableObjects/EquippableItem", order = 0)]
-
     public class EquippableItemSO : ItemSO
     {
         [Header("Values")] [SerializeField] private List<ValuesPossibilitiesType> values;
@@ -20,16 +20,20 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                 case ItemType.ShinGuards:
                 {
                     float defenceValue = 0;
-                    float dodgeValue = 0; 
-                    
+                    float dodgeValue = 0;
+
                     foreach (var value in values)
                     {
                         if (value.Type == ItemValueType.Defence)
-                            defenceValue = value.Values.Evaluate(Random.value);
+                            defenceValue = ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
+                                .GameManager.GetInstance().LevelsConfig
+                                .GetValueMultiplier(value.Type), 0.5f);
                         if (value.Type == ItemValueType.DodgeChance)
-                            dodgeValue = value.Values.Evaluate(Random.value);
+                            dodgeValue = ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
+                                .GameManager.GetInstance().LevelsConfig
+                                .GetValueMultiplier(value.Type), 0.5f);
                     }
-                    
+
                     return new Armor(defenceValue, dodgeValue, sprite, name, type);
                     break;
                 }
@@ -38,16 +42,31 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                 {
                     float damageValue = 0;
                     float criticalValue = 0;
-                    
+
                     foreach (var value in values)
                     {
                         if (value.Type == ItemValueType.CriticalDamageChance)
-                            damageValue = value.Values.Evaluate(Random.value);
+                        {
+                            Debug.Log(" VALUE " + value.Values.Evaluate(Random.value) + "    " +
+                                      "multiplier = " + GameManager
+                                          .GameManager.GetInstance().LevelsConfig
+                                          .GetValueMultiplier(value.Type)
+                                          + "result = " + ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
+                                          .GameManager.GetInstance().LevelsConfig
+                                          .GetValueMultiplier(value.Type), 0.5f));
+                            
+                            criticalValue = ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
+                                .GameManager.GetInstance().LevelsConfig
+                                .GetValueMultiplier(value.Type), 0.5f);
+                        }
+
                         if (value.Type == ItemValueType.Damage)
-                            criticalValue = value.Values.Evaluate(Random.value);
+                            damageValue = ValueRounder.RoundUp(
+                                value.Values.Evaluate(Random.value) * GameManager.GameManager.GetInstance()
+                                    .LevelsConfig.GetValueMultiplier(value.Type), 0.5f);
                     }
-                    
-                    return new Weapon(damageValue,criticalValue , sprite, name,
+
+                    return new Weapon(damageValue, criticalValue, sprite, name,
                         type);
 
                     break;

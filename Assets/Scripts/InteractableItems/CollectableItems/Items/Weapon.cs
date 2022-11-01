@@ -41,7 +41,7 @@ namespace InteractableItems.CollectableItems.Items
 
             if (damageValue != 0)
             {
-                float value = damageValue - GameStats.GetInstance().Equipment.GetWeaponCurrentDamage(_type);
+                float value = damageValue - GameManager.GameManager.GetInstance().Equipment.GetWeaponCurrentDamage(_type);
                 text += (value > 0 ? "<color=green>+" + value + " damage</color>\n" : "<color=red>" + value + " damage</color>\n");
             }
 
@@ -49,7 +49,7 @@ namespace InteractableItems.CollectableItems.Items
 
             if (critialValue != 0)
             {
-                float value = critialValue - GameStats.GetInstance().Equipment.GetWeaponCurrentCriticalChance(_type);
+                float value = critialValue - GameManager.GameManager.GetInstance().Equipment.GetWeaponCurrentCriticalChance(_type);
                 text += (value > 0 ? "<color=green>+" + value + "% critical damage chance</color>\n" : "<color=red>" +value + "% critical damage chance</color>\n");
             }
 

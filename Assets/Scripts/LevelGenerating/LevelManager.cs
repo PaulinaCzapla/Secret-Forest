@@ -10,13 +10,18 @@ namespace LevelGenerating
 
         private void Start()
         {
-            levelGenerator.GenerateLevel(GameStats.GetInstance().CurrentLevelNum);
+            levelGenerator.GenerateLevel(GameManager.GameManager.GetInstance().CurrentLevelNum);
+        }
+
+        private void Update()
+        {
+            Debug.Log(GameManager.GameManager.GetInstance().CurrentLevelNum);
         }
 
         public void LevelFinished()
         {
-            GameStats.GetInstance().CurrentLevelNum++;
-            levelGenerator.GenerateLevel(GameStats.GetInstance().CurrentLevelNum);
+            GameManager.GameManager.GetInstance().CurrentLevelNum++;
+            levelGenerator.GenerateLevel(GameManager.GameManager.GetInstance().CurrentLevelNum);
         }
     }
 }

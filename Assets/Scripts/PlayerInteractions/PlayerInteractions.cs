@@ -63,7 +63,7 @@ namespace PlayerInteractions
                     if (!hit.transform.GetComponent<SpawnedGlade>())
                     {
                         if (hit.transform.root.TryGetComponent(out SpawnedGlade hitOnGlade))
-                            if (!hitOnGlade.Id.Equals(GameStats.GetInstance().CurrentGladeID))
+                            if (!hitOnGlade.Id.Equals(GameManager.GameManager.GetInstance().CurrentGladeID))
                                 continue;
                             else
                             {
@@ -73,7 +73,7 @@ namespace PlayerInteractions
                     }
 
                     if (hit.transform.root.TryGetComponent(out SpawnedGlade glade))
-                        if (!glade.Id.Equals(GameStats.GetInstance().CurrentGladeID))
+                        if (!glade.Id.Equals(GameManager.GameManager.GetInstance().CurrentGladeID))
                         {
                             interactable.Interact();
                             return;

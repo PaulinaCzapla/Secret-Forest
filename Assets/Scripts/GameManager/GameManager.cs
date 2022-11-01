@@ -1,15 +1,15 @@
-﻿using PlayerInteractions;
+﻿using LevelGenerating;
+using PlayerInteractions;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 namespace GameManager
 {
-    public class GameStats
+    public class GameManager
     {
-        private static GameStats _instance;
+        private static GameManager _instance;
         public int CurrentLevelNum { get; set; } = 0;
         public string CurrentGladeID { get; set; }
-
         public PlayerEquipment Equipment { get; private set; }
         public PlayerStatsSO PlayerStats
         {
@@ -26,19 +26,23 @@ namespace GameManager
             }
         }
 
+        public LevelsConfigSO LevelsConfig => _levelConfig;
         private PlayerStatsSO _playerStats;
-        public static GameStats GetInstance()
+
+        private LevelsConfigSO _levelConfig;
+        public static GameManager GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new GameStats();
+                _instance = new GameManager();
             }
             return _instance;
         }
 
-        public void Init(PlayerStatsSO playerStats)
+        public void Init(PlayerStatsSO playerStats, LevelsConfigSO levelsConfigSo)
         {
             _playerStats = playerStats;
+            _levelConfig = levelsConfigSo;
             Equipment = new PlayerEquipment();
         }
     }

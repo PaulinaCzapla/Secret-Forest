@@ -17,7 +17,7 @@ namespace LevelGenerating
     public class LevelGenerator : MonoBehaviour
     {
         public static UnityAction OnLevelGenerated { get; set; }
-        
+
         [Header("First room position in grid")] [SerializeField]
         private Vector2 firstRoom;
 
@@ -28,7 +28,7 @@ namespace LevelGenerating
 
 
         [Header("Game grid")] [SerializeField] private Grid grid;
-        
+
         private List<SpawnedGlade> _spawnedGlades;
         private Dictionary<GladeType, List<SpawnedGlade>> _gladesPools;
         [SerializeField] private SpawnedGlade startGlade;
@@ -55,11 +55,11 @@ namespace LevelGenerating
 
         private void UnloadLevel()
         {
-            if(startGlade)
-            startGlade.Reset();
-            if(_endGlade)
-            _endGlade.Reset();
-            
+            if (startGlade)
+                startGlade.Reset();
+            if (_endGlade)
+                _endGlade.Reset();
+
             if (_spawnedGlades != null && _spawnedGlades.Count > 0)
             {
                 foreach (var glade in _spawnedGlades)
@@ -146,7 +146,7 @@ namespace LevelGenerating
                         return;
                 }
             } while (roomsToSpawn > 0);
-            
+
             PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(startGlade, true);
             OnLevelGenerated?.Invoke();
         }
@@ -209,13 +209,13 @@ namespace LevelGenerating
                 newGlade.GridCell = grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y];
                 var adjacent = new AdjacentGlade(AdjacentType.Basic);
                 spawned.AdjacentGlades.Add(side, adjacent);
-                
+
                 newGlade.AdjacentGlades.Add(GetOppositeSide(side), adjacent);
 
                 CheckOtherAdjacent(newGlade);
                 spawned.Initialize();
                 newGlade.Initialize();
-                
+
                 _spawnedGlades.Add(newGlade);
                 SetCameraLimits(newGlade.GridCell.Position);
             }
@@ -225,13 +225,13 @@ namespace LevelGenerating
         {
             if (CameraLimits.MaxX < position.x)
                 CameraLimits.MaxX = position.x;
-            
+
             if (CameraLimits.MinX > position.x)
-                CameraLimits.MinX= position.x;
-            
+                CameraLimits.MinX = position.x;
+
             if (CameraLimits.MaxY < position.y)
                 CameraLimits.MaxY = position.y;
-            
+
             if (CameraLimits.MinY > position.y)
                 CameraLimits.MinY = position.y;
         }

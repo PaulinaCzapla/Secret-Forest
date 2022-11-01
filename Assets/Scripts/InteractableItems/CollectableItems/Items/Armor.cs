@@ -39,7 +39,7 @@ namespace InteractableItems.CollectableItems.Items
 
             if (defenceValue != 0)
             {
-                float value = defenceValue - GameStats.GetInstance().Equipment.GetArmorCurrentDefense(_type);
+                float value = defenceValue - GameManager.GameManager.GetInstance().Equipment.GetArmorCurrentDefense(_type);
                 text += (value > 0 ? "<color=green>+" + value + " defense</color>\n" : "<color=red>" + value + " defense</color>\n");
             }
 
@@ -47,7 +47,7 @@ namespace InteractableItems.CollectableItems.Items
 
             if (dodgeValue  != 0)
             {
-                float value = dodgeValue - GameStats.GetInstance().Equipment.GetArmorDodgeChance(_type);
+                float value = dodgeValue - GameManager.GameManager.GetInstance().Equipment.GetArmorDodgeChance(_type);
                 text += (value > 0 ? "<color=green>+" + value + "% dodge chance</color>\n" : "<color=red>" +value + "% dodge chance</color>\n");
             }
 
