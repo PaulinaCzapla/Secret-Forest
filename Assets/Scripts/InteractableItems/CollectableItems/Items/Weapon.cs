@@ -7,57 +7,72 @@ using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
 {
-    public class Weapon : Item, IEquippable
+    public class Weapon : WearableItem
     {
-        public ItemType Type => _type;
-        
-        private ItemType _type;
-        
         private float _criticalHitChance;
         private float _damage;
-        public Weapon (float damage, float criticalHitChance, Sprite sprite, string name, ItemType type) : base(sprite, name)
+
+        public Weapon(float damage, float criticalHitChance, Sprite sprite, string name, ItemType type) : base(type,
+            sprite, name)
         {
-            _type = type;
             _damage = damage;
             _criticalHitChance = criticalHitChance;
         }
 
-        public override bool Collect()
-        {
-            if (InventoryUI.Instance.ItemCollected(this))
-            {
-                onCollected?.Invoke();
-                return true;
-            }
-            return false;
-        }
 
         public override string GetString()
         {
             string text = "";
-           // float value = GameStats.GetInstance().PlayerStats.GetWeaponCurrentDamage(_type);
-            
             float damageValue = GetTypeValue(ItemValueType.Damage);
 
-            if (damageValue != 0)
+            if (!(damageValue == 0 && GameManager.GameManager.GetInstance().Equipment.GetWeaponCurrentDamage(Type) == 0))
             {
-                float value = damageValue - GameManager.GameManager.GetInstance().Equipment.GetWeaponCurrentDamage(_type);
-                text += (value > 0 ? "<color=green>+" + value + " damage</color>\n" : "<color=red>" + value + " damage</color>\n");
+                float value = damageValue -
+                              GameManager.GameManager.GetInstance().Equipment.GetWeaponCurrentDamage(Type);
+                text += (value >= 0
+                    ? "<color=#62F167>+" + value + " damage</color>\n"
+                    : "<color=#FF3A38>" + value + " damage</color>\n");
             }
 
             float critialValue = GetTypeValue(ItemValueType.CriticalDamageChance);
 
-            if (critialValue != 0)
+            if (!(critialValue == 0 && GameManager.GameManager.GetInstance().Equipment
+                .GetWeaponCurrentCriticalChance(Type) ==0))
             {
-                float value = critialValue - GameManager.GameManager.GetInstance().Equipment.GetWeaponCurrentCriticalChance(_type);
-                text += (value > 0 ? "<color=green>+" + value + "% critical damage chance</color>\n" : "<color=red>" +value + "% critical damage chance</color>\n");
+                float value = critialValue - GameManager.GameManager.GetInstance().Equipment
+                    .GetWeaponCurrentCriticalChance(Type);
+                text += (value >= 0
+                    ? "<color=#62F167>+" + value + "% critical damage chance</color>\n"
+                    : "<color=#FF3A38>" + value + "% critical damage chance</color>\n");
             }
 
             text.Trim('\n');
             return text;
         }
 
-        public float GetTypeValue(ItemValueType type)
+        public override string GetUninfluencedString()
+        {
+            string text = "";
+            float damageValue = GetTypeValue(ItemValueType.Damage);
+
+            if (damageValue != 0)
+                text += (damageValue >= 0
+                    ? "+" + damageValue + " damage\n"
+                    : damageValue + " damage\n");
+
+
+            float critialValue = GetTypeValue(ItemValueType.CriticalDamageChance);
+
+            if (critialValue != 0)
+                text += (critialValue >= 0
+                    ? "+" + critialValue + "% critical damage chance\n"
+                    : critialValue + "% critical damage chance\n");
+            
+            text.Trim('\n');
+            return text;
+        }
+
+        public override float GetTypeValue(ItemValueType type)
         {
             if (type == ItemValueType.Damage)
                 return _damage;
@@ -65,11 +80,6 @@ namespace InteractableItems.CollectableItems.Items
                 return _criticalHitChance;
 
             return 0;
-        }
-
-        public void Equip()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

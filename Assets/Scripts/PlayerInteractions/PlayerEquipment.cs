@@ -1,33 +1,146 @@
-﻿using InteractableItems.CollectableItems.Items;
+﻿using System.Collections.Generic;
+using InteractableItems.CollectableItems.Items;
+using UI.Eq;
 
 namespace PlayerInteractions
 {
     public class PlayerEquipment
     {
-        public Armor Helmet { private get; set; }
-        public Armor BreastPlate {private  get; set; }
-        public Armor ShinGuards {private  get; set; }
-        public Armor Boots {private  get; set; }
-        
-        public Weapon Bow {private  get; set; }
-        public Weapon Sword {private  get; set; }
-        
-        
+        // private Armor _helmet;
+        // private Armor _breastPlate;
+        // private Armor _shinGuards;
+        // private Armor _boots;
+        //
+        // private Weapon _bow;
+        // private Weapon _sword;
+
+        private Dictionary<ItemType, WearableItem> _equipment;
+
+        public PlayerEquipment()
+        {
+            _equipment = new Dictionary<ItemType, WearableItem>();
+            _equipment.Add(ItemType.Boots, null);
+            _equipment.Add(ItemType.Breastplate, null);
+            _equipment.Add(ItemType.Helmet, null);
+            _equipment.Add(ItemType.ShinGuards, null);
+            _equipment.Add(ItemType.Bow, null);
+            _equipment.Add(ItemType.WhiteWeapon, null);
+        }
+
+        public Item GetCurrentEquippedItem(ItemType type)
+        {
+            return _equipment[type];
+        }
+
+        public Item Equip(Item item)
+        {
+            Item prevItem = null;
+
+            if (item is WearableItem wearable)
+            {
+                if (wearable.Type == ItemType.Bow)
+                {
+                    prevItem = _equipment[ItemType.Bow];
+                    _equipment[ItemType.Bow] = wearable;
+                }
+
+                if (wearable.Type == ItemType.WhiteWeapon)
+                {
+                    prevItem = _equipment[ItemType.WhiteWeapon];
+                    _equipment[ItemType.WhiteWeapon] = wearable;
+                }
+
+                if (wearable.Type == ItemType.Boots)
+                {
+                    prevItem = _equipment[ItemType.Boots];
+                    _equipment[ItemType.Boots] = wearable;
+                }
+
+                if (wearable.Type == ItemType.Helmet)
+                {
+                    prevItem = _equipment[ItemType.Helmet];
+                    _equipment[ItemType.Helmet] = wearable;
+                }
+
+                if (wearable.Type == ItemType.Breastplate)
+                {
+                    prevItem = _equipment[ItemType.Breastplate];
+                    _equipment[ItemType.Breastplate] = wearable;
+                }
+
+                if (wearable.Type == ItemType.ShinGuards)
+                {
+                    prevItem = _equipment[ItemType.ShinGuards];
+                    _equipment[ItemType.ShinGuards] = wearable;
+                }
+            }
+
+            return prevItem;
+        }
+
+        public Item Unequip(Item item)
+        {
+            Item prevItem = null;
+
+            if (item is WearableItem wearable)
+            {
+                if (wearable.Type == ItemType.Bow)
+                {
+                    prevItem = _equipment[ItemType.Bow];
+                    _equipment[ItemType.Bow] = null;
+                }
+
+                if (wearable.Type == ItemType.WhiteWeapon)
+                {
+                    prevItem = _equipment[ItemType.WhiteWeapon];
+                    _equipment[ItemType.WhiteWeapon] = null;
+                }
+
+                if (wearable.Type == ItemType.Boots)
+                {
+                    prevItem = _equipment[ItemType.Boots];
+                    _equipment[ItemType.Boots] = null;
+                }
+
+                if (wearable.Type == ItemType.Helmet)
+                {
+                    prevItem = _equipment[ItemType.Helmet];
+                    _equipment[ItemType.Helmet] = null;
+                }
+
+                if (wearable.Type == ItemType.Breastplate)
+                {
+                    prevItem = _equipment[ItemType.Breastplate];
+                    _equipment[ItemType.Breastplate] = null;
+                }
+
+                if (wearable.Type == ItemType.ShinGuards)
+                {
+                    prevItem = _equipment[ItemType.ShinGuards];
+                    _equipment[ItemType.ShinGuards] = null;
+                }
+            }
+
+            //StorageUIStaticEvents.InvokeRefreshUI();
+            return prevItem;
+        }
+
         public float GetWeaponCurrentDamage(ItemType type)
         {
             if (type == ItemType.Bow)
-                return  Bow?.GetTypeValue(ItemValueType.Damage) ?? 0;
+                return  _equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.Damage) ?? 0;
             if (type == ItemType.WhiteWeapon)
-                return  Sword?.GetTypeValue(ItemValueType.Damage) ?? 0;
+                return _equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.Damage) ?? 0;
             return 0;
         }
-        
+
         public float GetWeaponCurrentCriticalChance(ItemType type)
         {
             if (type == ItemType.Bow)
-                return Bow?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0;
+                return  _equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0;
             if (type == ItemType.WhiteWeapon)
-                return Sword?.GetTypeValue(ItemValueType.CriticalDamageChance)?? 0;
+                return _equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.CriticalDamageChance) ??
+                       0;
             return 0;
         }
 
@@ -36,37 +149,37 @@ namespace PlayerInteractions
             switch (type)
             {
                 case ItemType.Boots:
-                    return Boots?.GetTypeValue(ItemValueType.Defence) ?? 0;
+                    return  _equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.Defence) ?? 0;
                     break;
                 case ItemType.Breastplate:
-                    return BreastPlate?.GetTypeValue(ItemValueType.Defence) ?? 0;
+                    return _equipment[ItemType.Breastplate]?.GetTypeValue(ItemValueType.Defence) ?? 0;
                     break;
                 case ItemType.Helmet:
-                    return Helmet?.GetTypeValue(ItemValueType.Defence) ?? 0;
+                    return  _equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.Defence) ?? 0;
                     break;
                 case ItemType.ShinGuards:
-                    return ShinGuards?.GetTypeValue(ItemValueType.Defence) ?? 0;
+                    return _equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.Defence) ?? 0;
                     break;
                 default:
                     return 0;
             }
         }
-        
+
         public float GetArmorDodgeChance(ItemType type)
         {
             switch (type)
             {
                 case ItemType.Boots:
-                    return Boots?.GetTypeValue(ItemValueType.DodgeChance) ?? 0;
+                    return ((Armor) _equipment[ItemType.Boots])?.GetTypeValue(ItemValueType.DodgeChance) ?? 0;
                     break;
                 case ItemType.Breastplate:
-                    return BreastPlate?.GetTypeValue(ItemValueType.DodgeChance) ?? 0;
+                    return ((Armor) _equipment[ItemType.Breastplate])?.GetTypeValue(ItemValueType.DodgeChance) ?? 0;
                     break;
                 case ItemType.Helmet:
-                    return Helmet?.GetTypeValue(ItemValueType.DodgeChance) ?? 0;
+                    return ((Armor) _equipment[ItemType.Helmet])?.GetTypeValue(ItemValueType.DodgeChance) ?? 0;
                     break;
                 case ItemType.ShinGuards:
-                    return ShinGuards?.GetTypeValue(ItemValueType.DodgeChance) ?? 0;
+                    return ((Armor) _equipment[ItemType.ShinGuards])?.GetTypeValue(ItemValueType.DodgeChance) ?? 0;
                     break;
                 default:
                     return 0;

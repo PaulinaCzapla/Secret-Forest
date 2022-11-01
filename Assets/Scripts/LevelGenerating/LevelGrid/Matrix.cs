@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace LevelGenerating.LevelGrid
 {
-    [System.Serializable]
+    [Serializable]
     public class Matrix
     {
         public List<Array> arrays;
@@ -16,7 +17,7 @@ namespace LevelGenerating.LevelGrid
                 arrays[i] = new Array(y);
             }
         }
-
+        
         public GridCell this[int x, int y]
         {
             get { return arrays[x][y]; }
@@ -24,7 +25,7 @@ namespace LevelGenerating.LevelGrid
         }
     }
     
-    [System.Serializable]
+    [Serializable]
     public class Array
     {
         public List<GridCell> cells;

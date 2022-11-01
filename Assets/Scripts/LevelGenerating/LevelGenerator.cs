@@ -35,7 +35,10 @@ namespace LevelGenerating
         private SpawnedGlade _endGlade;
         private LevelAttributes _levelAttributes;
 
+#if UNITY_EDITOR
         private static GridGizmoDrawer _gridGizmoDrawer;
+#endif
+
 
         private void Awake()
         {
@@ -97,7 +100,7 @@ namespace LevelGenerating
             if (startGlade == null)
             {
                 var firstGlade = Instantiate(gladesSo.Glades[GladeType.Start],
-                    grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position,
+                    grid.levelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position,
                     Quaternion.Euler(Vector3.zero));
 
                 spawnedGlade = firstGlade.GetComponent<SpawnedGlade>();
@@ -106,12 +109,12 @@ namespace LevelGenerating
             {
                 spawnedGlade = startGlade;
                 spawnedGlade.gameObject.transform.position =
-                    grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position;
+                    grid.levelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position;
                 spawnedGlade.gameObject.SetActive(true);
                 spawnedGlade.Reset();
             }
 
-            spawnedGlade.GridCell = grid.LevelsGrid[(int) firstRoom.x, (int) firstRoom.y];
+            spawnedGlade.GridCell = grid.levelsGrid[(int) firstRoom.x, (int) firstRoom.y];
             _spawnedGlades.Add(spawnedGlade);
 
             CameraLimits.MaxX = spawnedGlade.GridCell.Position.x;
@@ -195,18 +198,18 @@ namespace LevelGenerating
 
                     newGlade.gameObject.SetActive(true);
                     newGlade.gameObject.transform.position =
-                        grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y].Position;
+                        grid.levelsGrid[(int) newPosition.x, (int) newPosition.y].Position;
                     newGlade.Reset();
                 }
                 else
                 {
                     var glade = Instantiate(gladesSo.Glades[type],
-                        grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y].Position,
+                        grid.levelsGrid[(int) newPosition.x, (int) newPosition.y].Position,
                         Quaternion.Euler(Vector3.zero));
                     newGlade = glade.GetComponent<SpawnedGlade>();
                 }
 
-                newGlade.GridCell = grid.LevelsGrid[(int) newPosition.x, (int) newPosition.y];
+                newGlade.GridCell = grid.levelsGrid[(int) newPosition.x, (int) newPosition.y];
                 var adjacent = new AdjacentGlade(AdjacentType.Basic);
                 spawned.AdjacentGlades.Add(side, adjacent);
 
@@ -340,6 +343,7 @@ namespace LevelGenerating
             return positions;
         }
 
+#if UNITY_EDITOR
         public void OnDrawGizmos()
         {
             if (grid == null)
@@ -352,5 +356,6 @@ namespace LevelGenerating
                 _gridGizmoDrawer = new GridGizmoDrawer(grid);
             }
         }
+#endif
     }
 }

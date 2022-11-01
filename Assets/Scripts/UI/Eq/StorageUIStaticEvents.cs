@@ -7,23 +7,12 @@ namespace UI.Eq
 {
     public static class StorageUIStaticEvents
     {
-        // private static UnityEvent<List<Item>> onOpenStorage = new UnityEvent<List<Item>>();
-        // private static UnityEvent onCloseStorage = new UnityEvent();
-        //
-        // public static void SubscribeToOpenStorage(UnityAction<List<Item>> subscriber) =>
-        //     onOpenStorage.AddListener(subscriber);
-        //
-        // public static void UnsubscribeFromOpenStorage(UnityAction<List<Item>> subscriber) =>
-        //     onOpenStorage.RemoveListener(subscriber);
-        //
-        // public static void InvokeOpenStorage(List<Item> items) => onOpenStorage.Invoke(items);
-        //
-        // public static void SubscribeToMovePlayerToPosition(UnityAction subscriber) =>
-        //     onMovePlayerToPosition.AddListener(subscriber);
-        //
-        // public static void UnsubscribeFromMovePlayerToPosition(UnityAction subscriber) =>
-        //     onMovePlayerToPosition.RemoveListener(subscriber);
-        //
-        // public static void InvokeMovePlayerToPosition() => onMovePlayerToPosition.Invoke();
+        private static UnityEvent onRefreshUI = new UnityEvent();
+
+        public static void SubscribeToRefreshUI(UnityAction subscriber) =>
+            onRefreshUI.AddListener(subscriber);
+        public static void UnsubscribeFromRefreshUI(UnityAction subscriber) =>
+            onRefreshUI.RemoveListener(subscriber);
+        public static void InvokeRefreshUI() => onRefreshUI?.Invoke();
     }
 }

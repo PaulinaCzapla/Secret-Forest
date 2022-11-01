@@ -2,10 +2,12 @@
 
 namespace DebugTools.Gizmos
 {
+#if UNITY_EDITOR
+
     public class GridGizmoDrawer : IGizmoDrawer
     {
         private LevelGenerating.LevelGrid.Grid _grid;
-        
+
         public GridGizmoDrawer(LevelGenerating.LevelGrid.Grid settings)
         {
             _grid = settings;
@@ -55,7 +57,7 @@ namespace DebugTools.Gizmos
                     else
                         widthMultiplier++;
                 }
-                
+
                 UnityEngine.Gizmos.DrawLine(
                     new Vector3(
                         _grid.cellWidth * widthMultiplier + _grid.spaceBetween * spaceMultiplier,
@@ -66,4 +68,5 @@ namespace DebugTools.Gizmos
             }
         }
     }
+#endif
 }

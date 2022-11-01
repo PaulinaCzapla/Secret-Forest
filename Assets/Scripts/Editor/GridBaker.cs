@@ -25,7 +25,7 @@ namespace Editor
         void OnGUI()
         {
             _grid = (Grid) EditorGUILayout.ObjectField(_grid, typeof(Grid), false);
-
+            Undo.RecordObject(_grid, "Setting Value");
             if (_grid == null)
             {
                 EditorGUILayout.HelpBox("Grid Settings asset is missing!", MessageType.Warning);
@@ -49,7 +49,7 @@ namespace Editor
             {
                 _grid.columns = _columns;
                 _grid.rows = _rows;
-                GridGenerator.Initialize(ref _grid);
+                GridGenerator.Initialize(_grid);
                 _bakedSuccessfully = Bake();
                 _baked = true;
             }
@@ -63,7 +63,9 @@ namespace Editor
                 }
 
                 EditorUtility.SetDirty(_grid);
+                AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
+                
                 EditorGUILayout.HelpBox("Grid generated. Save project in order to save generated grid.",
                     MessageType.Info);
             }

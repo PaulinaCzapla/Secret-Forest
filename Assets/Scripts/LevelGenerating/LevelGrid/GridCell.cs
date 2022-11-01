@@ -21,8 +21,8 @@ namespace LevelGenerating.LevelGrid
     [Serializable]
     public struct GridPosition
     {
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        [field: SerializeField] public int X { get; private set; }
+        [field: SerializeField] public int Y { get; private set; }
         public Vector2 Position => new Vector2(X, Y);
 
         public GridPosition(int x, int y)

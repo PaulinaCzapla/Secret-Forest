@@ -10,13 +10,18 @@ namespace UI.Eq
 {
     public class InventorySlot : MonoBehaviour
     {
-        public UnityEvent<InventorySlot > OnSlotClicked { get; set; } = new UnityEvent<InventorySlot >();
+        public UnityEvent<InventorySlot> OnSlotClicked { get; set; } = new UnityEvent<InventorySlot>();
         public bool IsActiveAndFree => gameObject.activeSelf && _currentItem == null;
         public string ItemInfo => (_currentItem != null ? _currentItem.GetString() : "");
-        public Item CurrentItem => _currentItem;
+
+        public string ItemInfoUninfluenced => (_currentItem != null
+            ? (_currentItem is WearableItem item ? item.GetUninfluencedString() : _currentItem.GetString()) : "");
         
+        public Item CurrentItem => _currentItem;
+
         [SerializeField] private Button button;
         [SerializeField] private Image image;
+        [SerializeField] private Image defaultImage;
         [SerializeField] private GameObject selected;
         
         private Item _currentItem;
@@ -27,6 +32,9 @@ namespace UI.Eq
             button.onClick.AddListener(() => OnSlotClicked.Invoke(this));
             image.sprite = _currentItem.Sprite;
             image.gameObject.SetActive(true);
+
+            if (defaultImage)
+                defaultImage.gameObject.SetActive(false);
         }
 
         public void OnEmptySlot()
@@ -35,6 +43,9 @@ namespace UI.Eq
             image.gameObject.SetActive(false);
             button.onClick.RemoveAllListeners();
             OnSlotClicked.RemoveAllListeners();
+
+            if (defaultImage)
+                defaultImage.gameObject.SetActive(true);
         }
 
         public void Select()
@@ -46,18 +57,19 @@ namespace UI.Eq
         {
             selected.SetActive(false);
         }
+
         public void OnUseItem()
         {
             if (_currentItem is IUsable usable)
             {
+                OnEmptySlot();
                 usable.Use();
-            }else if (_currentItem is IEquippable equippable)
+            }
+            else if (_currentItem is IEquippable equippable)
             {
+                OnEmptySlot();
                 equippable.Equip();
             }
-            
-            OnEmptySlot();
         }
-        
     }
 }

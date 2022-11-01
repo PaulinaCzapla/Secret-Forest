@@ -16,8 +16,15 @@ namespace UI.Eq
         public static InventoryUI Instance { get; private set; }
 
         [SerializeField] private GameObject storageObject;
-        [SerializeField] private List<InventorySlot> slots;
         [SerializeField] private Toggle toggleEq;
+        [Header("Slots")] [SerializeField] private List<InventorySlot> slots;
+        [SerializeField] private InventorySlot swordSlot;
+        [SerializeField] private InventorySlot bowSlot;
+        [SerializeField] private InventorySlot helmetSlot;
+        [SerializeField] private InventorySlot breastplateSlot;
+        [SerializeField] private InventorySlot bootsSlot;
+        [SerializeField] private InventorySlot shinGuardsSlot;
+
 
         [Header("Item menu")] [SerializeField] private Button actionButton;
         [SerializeField] private TextMeshProUGUI actionButtonText;
@@ -27,6 +34,8 @@ namespace UI.Eq
 
         private List<Item> _storedItems = new List<Item>();
         private InventorySlot _currentSelected;
+
+        private Dictionary<ItemType, InventorySlot> _equipmentElements;
 
         private void Awake()
         {
@@ -38,18 +47,28 @@ namespace UI.Eq
             {
                 Instance = this;
             }
-            
+
             InitializeStorage(4);
+
+            _equipmentElements = new Dictionary<ItemType, InventorySlot>();
+            _equipmentElements.Add(ItemType.Boots, bootsSlot);
+            _equipmentElements.Add(ItemType.Breastplate, breastplateSlot);
+            _equipmentElements.Add(ItemType.Helmet, helmetSlot);
+            _equipmentElements.Add(ItemType.ShinGuards, shinGuardsSlot);
+            _equipmentElements.Add(ItemType.Bow, bowSlot);
+            _equipmentElements.Add(ItemType.WhiteWeapon, swordSlot);
         }
 
         private void OnEnable()
         {
             toggleEq.onValueChanged.AddListener(ToggleEq);
+            StorageUIStaticEvents.SubscribeToRefreshUI(RefreshInventory);
         }
 
         private void OnDisable()
         {
             toggleEq.onValueChanged.RemoveListener(ToggleEq);
+            StorageUIStaticEvents.UnsubscribeFromRefreshUI(RefreshInventory);
         }
 
         private void ToggleEq(bool toggle)
@@ -84,8 +103,31 @@ namespace UI.Eq
             }
         }
 
+        private void RefreshEquipment()
+        {
+            ItemType[] types =
+            {
+                ItemType.Boots, ItemType.Breastplate, ItemType.Helmet, ItemType.ShinGuards, ItemType.Bow,
+                ItemType.WhiteWeapon
+            };
+
+            foreach (var type in types)
+            {
+                var currentEquipped = GameManager.GameManager.GetInstance().Equipment.GetCurrentEquippedItem(type);
+
+                if (currentEquipped != null)
+                {
+                    _equipmentElements[type].Init(currentEquipped);
+                    _equipmentElements[type].OnSlotClicked.RemoveAllListeners();
+                    _equipmentElements[type].OnSlotClicked.AddListener(OnEquipmentSlotClicked);
+                }
+            }
+        }
+
         private void RefreshInventory()
         {
+            RefreshEquipment();
+
             if (_storedItems == null)
                 return;
             int i = 0;
@@ -127,6 +169,43 @@ namespace UI.Eq
             return freeSlot;
         }
 
+        public void ItemEquipped(Item itemToBeEquip)
+        {
+            var oldItem = GameManager.GameManager.GetInstance().Equipment.Equip(itemToBeEquip);
+
+            OnResetSelectedItem(_currentSelected);
+            if (oldItem != null)
+                ItemCollected(oldItem);
+
+            RefreshEquipment();
+        }
+
+        private void OnEquipmentSlotClicked(InventorySlot slot)
+        {
+            ResetItemUI();
+
+            if (GetFreeSlot())
+            {
+                actionButtonText.text = "Take off";
+                actionButton.gameObject.SetActive(true);
+                actionButton.onClick.AddListener(() => OnTakeOffItem(slot.CurrentItem));
+                actionButton.onClick.AddListener(slot.OnEmptySlot);
+            }
+
+            itemStats.text = slot.ItemInfoUninfluenced;
+            itemName.text = slot.CurrentItem.Name;
+            _currentSelected = slot;
+
+            slot.Select();
+        }
+
+        private void OnTakeOffItem(Item item)
+        {
+            Item currentItem = GameManager.GameManager.GetInstance().Equipment.Unequip(item);
+            OnResetSelectedItem(_currentSelected);
+            if (currentItem != null)
+                ItemCollected(currentItem);
+        }
 
         private void OnItemClicked(InventorySlot slot)
         {
@@ -139,7 +218,9 @@ namespace UI.Eq
 
             actionButton.gameObject.SetActive(true);
             actionButton.onClick.AddListener(slot.OnUseItem);
-            actionButton.onClick.AddListener(() => OnResetSelectedItem(slot));
+
+            if (slot.CurrentItem is IUsable)
+                actionButton.onClick.AddListener(() => OnResetSelectedItem(slot));
 
             throwItemButton.gameObject.SetActive(true);
             throwItemButton.onClick.AddListener(slot.OnEmptySlot);
@@ -157,6 +238,7 @@ namespace UI.Eq
             ResetItemUI();
             _storedItems.Remove(slot.CurrentItem);
         }
+
         private void ResetItemUI()
         {
             if (_currentSelected)

@@ -2,12 +2,14 @@ using UnityEngine;
 
 namespace LevelGenerating.LevelGrid
 {
+#if UNITY_EDITOR
+
     public static class GridGenerator
     {
         private static LevelGrid.Grid _grid;
         private static bool _isInitialized;
 
-        public static void Initialize(ref LevelGrid.Grid grid)
+        public static void Initialize(Grid grid)
         {
             if (!_isInitialized)
             {
@@ -15,12 +17,13 @@ namespace LevelGenerating.LevelGrid
                 _isInitialized = true;
             }
         }
+
         public static bool GenerateGrid()
         {
             if (_isInitialized)
             {
-                _grid.LevelsGrid = null;
-                _grid.LevelsGrid = new Matrix(_grid.columns, _grid.rows);
+                _grid.levelsGrid = null;
+                _grid.levelsGrid = new Matrix(_grid.columns, _grid.rows);
                 int spaceRowsMultiplier = 0;
                 int heightMultiplier = 0;
                 int spaceMultiplier = 0;
@@ -76,14 +79,16 @@ namespace LevelGenerating.LevelGrid
                             isCell = false;
 
                         if (isCell)
-                            _grid.LevelsGrid[indexColumns, indexRows] =
+                            _grid.levelsGrid[indexColumns, indexRows] =
                                 new GridCell(new GridPosition(indexColumns, indexRows), new Vector2(x, y));
                     }
                 }
 
                 return true;
             }
+
             return false;
         }
     }
+#endif
 }

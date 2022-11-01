@@ -12,6 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f788e6451b64868b936fe026c576ae5, type: 3}
   m_Name: Grid
   m_EditorClassIdentifier: 
+  levelsGrid:
+    arrays:
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
+    - cells: []
   rows: 30
   columns: 30
   cellHeight: 2.88

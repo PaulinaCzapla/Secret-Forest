@@ -47,23 +47,22 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                     {
                         if (value.Type == ItemValueType.CriticalDamageChance)
                         {
-                            Debug.Log(" VALUE " + value.Values.Evaluate(Random.value) + "    " +
-                                      "multiplier = " + GameManager
-                                          .GameManager.GetInstance().LevelsConfig
-                                          .GetValueMultiplier(value.Type)
-                                          + "result = " + ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
-                                          .GameManager.GetInstance().LevelsConfig
-                                          .GetValueMultiplier(value.Type), 0.5f));
-                            
                             criticalValue = ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
                                 .GameManager.GetInstance().LevelsConfig
                                 .GetValueMultiplier(value.Type), 0.5f);
                         }
 
                         if (value.Type == ItemValueType.Damage)
+                        {
+                            var dmg = value.Values.Evaluate(Random.value);
+                            Debug.Log("damage rand = " + dmg + "round " + ValueRounder.RoundUp(
+                                dmg * GameManager.GameManager.GetInstance()
+                                    .LevelsConfig.GetValueMultiplier(value.Type), 0.5f));
+                            
                             damageValue = ValueRounder.RoundUp(
-                                value.Values.Evaluate(Random.value) * GameManager.GameManager.GetInstance()
+                                 dmg * GameManager.GameManager.GetInstance()
                                     .LevelsConfig.GetValueMultiplier(value.Type), 0.5f);
+                        }
                     }
 
                     return new Weapon(damageValue, criticalValue, sprite, name,

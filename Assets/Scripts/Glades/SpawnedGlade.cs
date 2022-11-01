@@ -38,7 +38,7 @@ namespace Glades
 
         private void Awake()
         {
-            Id = GUID.Generate().ToString();
+            Id = System.Guid.NewGuid().ToString();
             DisableGates();
         }
 

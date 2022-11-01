@@ -43,11 +43,11 @@ namespace PlayerInteractions.Input
             tapEnable = true;
 
 
-// #if MOBILE_VER && !UNITY_EDITOR
-//             m_InputTouch = InputType.Touch;
-// #elif MOUSE_VER && !UNITY_EDITOR
-    //        m_InputTouch = InputType.Mouse;
-//#endif
+ #if UNITY_ANDROID && !UNITY_EDITOR
+             inputTouch = InputType.Touch;
+ #else
+            inputTouch = InputType.Mouse;
+#endif
 
             switch (inputTouch)
             {

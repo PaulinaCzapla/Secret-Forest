@@ -1612,7 +1612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e459a75b6f4f6887c0f7725e992ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputTouch: 1
+  inputTouch: 0
   settings:
     maxTapDuration: 0.125
     tapDistanceThreshold: 0.1
