@@ -23,7 +23,7 @@ namespace UI.StorageUI
             _infoTextInitialColor = infoText.color;
         }
 
-        private void OnEnable()
+        private void Start()
         {
             closeButton.onClick.AddListener(Close);
             ChestUIStaticEvents.SubscribeToOpenChest(Open);

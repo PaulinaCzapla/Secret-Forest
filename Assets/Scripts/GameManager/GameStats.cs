@@ -10,6 +10,7 @@ namespace GameManager
         public int CurrentLevelNum { get; set; } = 0;
         public string CurrentGladeID { get; set; }
 
+        public PlayerEquipment Equipment { get; private set; }
         public PlayerStatsSO PlayerStats
         {
             get
@@ -38,6 +39,7 @@ namespace GameManager
         public void Init(PlayerStatsSO playerStats)
         {
             _playerStats = playerStats;
+            Equipment = new PlayerEquipment();
         }
     }
 }

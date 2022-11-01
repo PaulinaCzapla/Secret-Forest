@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c1961e040d49b99331bf208df4140d, type: 3}
+  m_Name: ShinGuards8
+  m_EditorClassIdentifier: 
+  type: 7
+  name: Shin guards
+  sprite: {fileID: 1800716868, guid: c8a6c5f944c15844c949845c549082fd, type: 3}
+  values:
+  - type: 2
+    values:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.5
+        inSlope: 0.0041846414
+        outSlope: 0.0041846414
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.28460476
+      - serializedVersion: 3
+        time: 0.38943875
+        value: 0.8435897
+        inSlope: 0.8655064
+        outSlope: 0.8655064
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.16765167
+        outWeight: 0.11618686
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0.0038299188
+        outSlope: 0.0038299188
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.47412106
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+  - type: 5
+    values:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.40081385
+        value: 0
+        inSlope: 0.04537318
+        outSlope: 0.04537318
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.23719427
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.5
+        inSlope: 0.83446515
+        outSlope: 0.83446515
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0

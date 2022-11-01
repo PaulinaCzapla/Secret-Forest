@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09c1961e040d49b99331bf208df4140d, type: 3}
-  m_Name: Helmet3
+  m_Name: BreastPlate7
   m_EditorClassIdentifier: 
-  type: 4
-  name: Helmet
-  sprite: {fileID: 338378067, guid: c8a6c5f944c15844c949845c549082fd, type: 3}
+  type: 6
+  name: Breastplate
+  sprite: {fileID: 1011762816, guid: c8a6c5f944c15844c949845c549082fd, type: 3}
   values:
   - type: 2
     values:
@@ -22,30 +22,30 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.4
-        inSlope: 0
-        outSlope: 0
+        value: 0.2
+        inSlope: 0.0054381774
+        outSlope: 0.0054381774
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.25327757
       - serializedVersion: 3
-        time: 0.21283245
-        value: 0.47001866
-        inSlope: 0.15740615
-        outSlope: 0.15740615
+        time: 0.4378479
+        value: 0.7959259
+        inSlope: 0.0005540967
+        outSlope: 0.0005540967
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.11237907
-        outWeight: 0.19640271
+        inWeight: 0.33333334
+        outWeight: 0.2268776
       - serializedVersion: 3
         time: 1
-        value: 0.5
-        inSlope: 0.0045656427
-        outSlope: 0.0045656427
+        value: 1
+        inSlope: 0.016729522
+        outSlope: 0.016729522
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.36140305
+        inWeight: 0.08450705
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2

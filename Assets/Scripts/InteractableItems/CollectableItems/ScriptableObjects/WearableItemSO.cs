@@ -1,7 +1,16 @@
-﻿namespace InteractableItems.CollectableItems.ScriptableObjects
+﻿using System.Collections.Generic;
+using InteractableItems.CollectableItems.Items;
+using UnityEngine;
+
+namespace InteractableItems.CollectableItems.ScriptableObjects
 {
-    public class WearableItemSO
+    [CreateAssetMenu(fileName = "WearableItem", menuName = "ScriptableObjects/WearableItem", order = 0)]
+    public class WearableItemSO : ItemSO
     {
-        
+        [SerializeField] private List<EquippableItemSO> items;
+        public override Item GetItem()
+        {
+            return items[Random.Range(0, items.Count)].GetItem();
+        }
     }
 }

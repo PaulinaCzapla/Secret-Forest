@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9960f3ed87094252a4e2e84c8a32b25b, type: 3}
+  m_Name: Weapons
+  m_EditorClassIdentifier: 
+  type: 1
+  name: Weapons
+  sprite: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: 78dd428d3e9346341b88e8c0c3dac054, type: 2}
+  - {fileID: 11400000, guid: 0100344c945e79e42831c19920492d39, type: 2}
+  - {fileID: 11400000, guid: 94cf849e149b5534481c59ef52553f31, type: 2}
+  - {fileID: 11400000, guid: eb2c04562470b35449a1220c8bd456fa, type: 2}
+  - {fileID: 11400000, guid: 6083b06584e9bc84187b5fd5242213bb, type: 2}
+  - {fileID: 11400000, guid: 86568827481e0c94fb865c7decca889a, type: 2}
+  - {fileID: 11400000, guid: 741efc8513657aa458859d2b61320fae, type: 2}
+  - {fileID: 11400000, guid: 871a12f5a70331a469700e4e26d9a0b9, type: 2}
+  - {fileID: 11400000, guid: e10baeb4887f85a4cae968db5e3ff28a, type: 2}
+  - {fileID: 11400000, guid: f86f1db1174f6e848b946c74c324aed4, type: 2}
+  - {fileID: 11400000, guid: 3ccc8461c718ca740b29c90c506c3cb4, type: 2}
+  - {fileID: 11400000, guid: 19625cc70ec4d23419a0a3002f8529ff, type: 2}

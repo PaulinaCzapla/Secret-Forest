@@ -142,5 +142,9 @@ MonoBehaviour:
       item: {fileID: 11400000, guid: bb6d2022354daec46876b3c040201b41, type: 2}
     - probability: 0.05
       item: {fileID: 11400000, guid: 98116a52648bcc648ad29dbb2a7e21db, type: 2}
+    - probability: 0.1
+      item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
+    - probability: 0.1
+      item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
   foodItemsInfo: []
   weaponItemsInfo: []
