@@ -68,15 +68,25 @@ namespace RandomGenerators
                 total += elem.Item2;
             }
 
-            float randomPoint = Random.value * total;
-
+            bool wasAdded = false;
+            
             do
             {
+                float randomPoint = Random.value * total;
+                
                 for (int i = 0; i < values.Count; i++)
                 {
                     if (randomPoint < values[i].Item2)
                     {
-                        result.Add(values[i].Item1);
+                        if (result.Contains(values[i].Item1))
+                            amount++;
+                        else
+                        {
+                            result.Add(values[i].Item1);
+                            wasAdded = true;
+                            break;
+                        }
+
                         amount--;
                         if (amount == 0)
                             return result;
@@ -87,9 +97,13 @@ namespace RandomGenerators
                     }
                 }
 
-                result.Add(values[values.Count - 1].Item1);
+                if (!wasAdded)
+                {
+                    result.Add(values[values.Count - 1].Item1);
+                    wasAdded = false;
+                }
+
                 amount--;
-                
             } while (amount > 0);
 
             return result;

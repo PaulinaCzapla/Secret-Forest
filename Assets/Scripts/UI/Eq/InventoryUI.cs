@@ -62,13 +62,11 @@ namespace UI.Eq
         private void OnEnable()
         {
             toggleEq.onValueChanged.AddListener(ToggleEq);
-            StorageUIStaticEvents.SubscribeToRefreshUI(RefreshInventory);
         }
 
         private void OnDisable()
         {
             toggleEq.onValueChanged.RemoveListener(ToggleEq);
-            StorageUIStaticEvents.UnsubscribeFromRefreshUI(RefreshInventory);
         }
 
         private void ToggleEq(bool toggle)

@@ -25,38 +25,32 @@ namespace PlayerInteractions
         public float currentHealthValue;
 
         [Header("Combat stats")]
-        [Header("Init values")]
-        [SerializeField] private float initialBaseDamage = 1;
-        [SerializeField] private float initialBowDamage = 1;
-        [Range(0, 1)] [SerializeField] private float initialCriticalBowChance = 0.1f;
-        [SerializeField] private float initialKnifeDamage = 1;
-        [Range(0, 1)] [SerializeField] private float initialCriticalKnifeChance = 0.1f;
-        [Range(0, 1)] [SerializeField] private float initialDodgeChance = 0.1f;
-        [Header("Current game values")]
-        public float currentBaseDamage = 1;
-        public float currentBowDamage = 1;
-        [Range(0, 1)] public float currentCriticalBowChance = 0.1f;
-        public float currentKnifeDamage = 1;
-        [Range(0, 1)] public float currentCriticalKnifeChance = 0.1f;
-        [Range(0, 1)] public float currentDodgeChance = 0.1f;
+        // [Header("Init values")]
+        // [SerializeField] private float initialBaseDamage = 1;
+        // [SerializeField] private float initialBowDamage = 1;
+        // [Range(0, 1)] [SerializeField] private float initialCriticalBowChance = 0.1f;
+        // [SerializeField] private float initialKnifeDamage = 1;
+        // [Range(0, 1)] [SerializeField] private float initialCriticalKnifeChance = 0.1f;
+        // [Range(0, 1)] [SerializeField] private float initialDodgeChance = 0.1f;
+        //
+        [Header("Initial combat values")]
+        [SerializeField] private float initialDamage = 0;
+        [Range(0, 1)] [SerializeField] private float initialCritical = 0f;
+        [SerializeField] private float initialDefense = 0;
+        [Range(0, 1)] [SerializeField] private float initialDodgeChance =0f;
         
-        [Header("Armor")]
-        [Header("Init values")]
-        [SerializeField] private float helmetBaseValue = 0;
-        [SerializeField] private float bootsBaseValue = 0;
-        [SerializeField] private float breastplateBaseValue = 0;
-        [SerializeField] private float shimGuardsBaseValue = 0;
-        [SerializeField] private float dodgeChanceBaseValue = 0;
-        [Header("Current game values")]
-        public float helmetCurrentValue = 0;
-        public float bootsCurrentValue = 0;
-        public float breastplateCurrentValue = 0;
-        public float shimGuardsCurrentValue = 0;
-        public float dodgeChanceCurrentValue = 0;
+        [Header("Current combat values")]
+        public float currentBaseDamage = 1;
+        public float currentDamage = 0;
+        [Range(0, 1)] public float currentCritical = 0f;
+        public float currentDefense = 0;
+        [Range(0, 1)] public float currentDodgeChance = 0f;
+        
+        
         
         [Header("Inventory")]
-        [Range(0, 25)] [SerializeField] private int initialEqSlotsCount=  5;
-        [Range(0, 25)] public int currentEqSlotsCount=  5;
+        [Range(0, 16)] [SerializeField] private int initialEqSlotsCount=  4;
+        [Range(0, 16)] public int currentEqSlotsCount=  4;
         public void InitWithDefaults()
         {
             currentHealthValue = initialMaxHealth;
@@ -64,51 +58,11 @@ namespace PlayerInteractions
             currentHungerValue = initialMaxHunger;
             currentMaxHungerValue = initialMaxHunger;
             currentEqSlotsCount = initialEqSlotsCount;
-            currentBaseDamage = initialBaseDamage;
-            helmetCurrentValue = helmetBaseValue;
-            bootsCurrentValue = bootsBaseValue;
-            breastplateCurrentValue = breastplateBaseValue;
-            shimGuardsCurrentValue = shimGuardsBaseValue;
-            dodgeChanceCurrentValue = dodgeChanceBaseValue;
-        }
-
-        public float GetWeaponCurrentDamage(ItemType type)
-        {
-            if (type == ItemType.Bow)
-                return currentBowDamage;
-            if (type == ItemType.WhiteWeapon)
-                return currentKnifeDamage;
-            return 0;
+            currentDamage = initialDamage;
+            currentCritical = initialCritical;
+            currentDefense = initialDefense;
+            currentDodgeChance = initialDodgeChance;
         }
         
-        public float GetWeaponCurrentCriticalChance(ItemType type)
-        {
-            if (type == ItemType.Bow)
-                return currentCriticalBowChance;
-            if (type == ItemType.WhiteWeapon)
-                return currentCriticalKnifeChance;
-            return 0;
-        }
-
-        // public float GetArmorCurrentDefense(ItemType type)
-        // {
-        //     switch (type)
-        //     {
-        //         case ItemType.Boots:
-        //             return bootsCurrentValue;
-        //             break;
-        //         case ItemType.Breastplate:
-        //             return breastplateCurrentValue;
-        //             break;
-        //         case ItemType.Helmet:
-        //             return helmetCurrentValue;
-        //             break;
-        //         case ItemType.ShinGuards:
-        //             return shimGuardsCurrentValue;
-        //             break;
-        //         default:
-        //             return 0;
-        //     }
-        // }
     }
 }

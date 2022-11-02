@@ -28,6 +28,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                             defenceValue = ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
                                 .GameManager.GetInstance().LevelsConfig
                                 .GetValueMultiplier(value.Type), 0.5f);
+                        
                         if (value.Type == ItemValueType.DodgeChance)
                             dodgeValue = ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
                                 .GameManager.GetInstance().LevelsConfig

@@ -31,19 +31,20 @@ namespace Glades.GladeTypes
             configurations[_currentConfiguration].parentGameObject.SetActive(true);
             
             var itemsProbs = config.GetChestItemsProbabilities();
-            
+            List<Tuple<Item, float>> itemsWithProbabilities = new List<Tuple<Item, float>>(itemsProbs.Count);
 
             Tuple<int, float>[] itemsCount = new[]
             {
-                new Tuple<int, float>(1, 0.4f),
-                new Tuple<int, float>(2, 0.4f),
-                new Tuple<int, float>(3, 0.15f),
-                new Tuple<int, float>(4, 0.05f)
+                new Tuple<int, float>(0, 0.2f),
+                new Tuple<int, float>(1, 0.37f),
+                new Tuple<int, float>(2, 0.3f),
+                new Tuple<int, float>(3, 0.1f),
+                new Tuple<int, float>(4, 0.03f)
             };
             
             foreach (var chest in configurations[_currentConfiguration].chests)
             {
-                List<Tuple<Item, float>> itemsWithProbabilities = new List<Tuple<Item, float>>(itemsProbs.Count);
+                itemsWithProbabilities.Clear();
 
                 foreach (var item in itemsProbs)
                     itemsWithProbabilities.Add(new Tuple<Item, float>(item.item.GetItem(), item.probability));

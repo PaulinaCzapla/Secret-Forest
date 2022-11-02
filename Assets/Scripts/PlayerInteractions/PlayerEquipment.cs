@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using InteractableItems.CollectableItems.Items;
 using UI.Eq;
+using UnityEngine;
 
 namespace PlayerInteractions
 {
@@ -15,6 +16,7 @@ namespace PlayerInteractions
         // private Weapon _sword;
 
         private Dictionary<ItemType, WearableItem> _equipment;
+        private PlayerStatsSO _playerStats;
 
         public PlayerEquipment()
         {
@@ -25,11 +27,35 @@ namespace PlayerInteractions
             _equipment.Add(ItemType.ShinGuards, null);
             _equipment.Add(ItemType.Bow, null);
             _equipment.Add(ItemType.WhiteWeapon, null);
+
+            _playerStats = Resources.Load<PlayerStatsSO>("PlayerStatsSO");
+            RecalculateValues();
         }
 
         public Item GetCurrentEquippedItem(ItemType type)
         {
             return _equipment[type];
+        }
+
+        private void RecalculateValues()
+        {
+            _playerStats.currentDamage = (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.Damage) ??
+                           0) + (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.Damage) ?? 0) + _playerStats.currentBaseDamage;
+
+            _playerStats.currentCritical = (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0) +
+                (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0);
+
+            _playerStats.currentDefense = (_equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.Defence) ??
+                                          0) + (_equipment[ItemType.Breastplate]?.GetTypeValue(ItemValueType.Defence) ??
+                                          0) + (_equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.Defence) ??
+                                          0) + (_equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.Defence) ?? 0);
+            
+            _playerStats.currentDodgeChance = (_equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.DodgeChance) ??
+                                          0) + (_equipment[ItemType.Breastplate]?.GetTypeValue(ItemValueType.DodgeChance) ??
+                                          0) + (_equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.DodgeChance) ??
+                                          0) + (_equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.DodgeChance) ?? 0);
+            
+            InventoryUIStaticEvents.InvokeRefreshInventoryStatsUI();
         }
 
         public Item Equip(Item item)
@@ -75,6 +101,7 @@ namespace PlayerInteractions
                 }
             }
 
+            RecalculateValues();
             return prevItem;
         }
 
@@ -121,7 +148,7 @@ namespace PlayerInteractions
                 }
             }
 
-            //StorageUIStaticEvents.InvokeRefreshUI();
+            RecalculateValues();
             return prevItem;
         }
 
