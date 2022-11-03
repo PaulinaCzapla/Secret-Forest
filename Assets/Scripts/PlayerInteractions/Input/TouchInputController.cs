@@ -221,7 +221,7 @@ namespace PlayerInteractions.Input
 
         bool CheckForDragDuration(float timer, Touch touch, float durationThreshold)
         {
-            if (timer > durationThreshold)
+            //if (timer > durationThreshold)s
             {
                 ChangeState(DraggingState, touch, DraggingStateOnEnter);
                 return true;

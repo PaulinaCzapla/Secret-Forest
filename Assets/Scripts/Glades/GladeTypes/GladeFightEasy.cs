@@ -1,10 +1,10 @@
 ﻿namespace Glades.GladeTypes
 {
-    public class GladeFightEasy :BaseGlade
+    public sealed class GladeFightEasy :BaseGlade
     {
         public override void Initialize()
         {
-           
+            base.Initialize();
         }
     }
 }

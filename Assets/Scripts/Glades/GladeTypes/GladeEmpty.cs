@@ -1,10 +1,10 @@
 ﻿namespace Glades.GladeTypes
 {
-    public class Glade : BaseGlade
+    public class GladeEmpty : BaseGlade
     {
         public override void Initialize()
         {
-            
+            base.Initialize();
         }
     }
 }

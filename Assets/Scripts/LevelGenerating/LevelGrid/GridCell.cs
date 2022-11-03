@@ -8,8 +8,8 @@ namespace LevelGenerating.LevelGrid
     [Serializable]
     public class GridCell
     {
-        public Vector2 Position { get; private set; }
-        public GridPosition PositionInGrid { get; private set; }
+        [field: SerializeField] public Vector2 Position { get; private set; }
+        [field: SerializeField] public GridPosition PositionInGrid { get; private set; }
 
         public GridCell(GridPosition positionInGrid, Vector2 position)
         {

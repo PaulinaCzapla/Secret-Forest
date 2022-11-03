@@ -39,7 +39,7 @@ namespace CameraManagement
         private float zoomSpeed = 1;
 
         [SerializeField] private float initialCameraZoom;
-        private readonly float pinchFactor = 0.1f;
+        private readonly float pinchFactor = 0.01f;
 
         private bool _isDragging;
         private bool _isPinching;

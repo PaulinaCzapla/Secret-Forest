@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace Glades.GladeTypes
 {
-    public class GladeStorage : BaseGlade
+    public sealed class GladeStorage : BaseGlade
     {
         [Serializable]
         internal struct StorageConfiguration
@@ -21,7 +21,7 @@ namespace Glades.GladeTypes
         }
         
         [SerializeField] private LevelsConfigSO config;
-        [SerializeField] private List<StorageConfiguration> configurations;
+        [SerializeField] private new List<StorageConfiguration> configurations;
 
         private int _currentConfiguration;
         public override void Initialize()
@@ -55,7 +55,7 @@ namespace Glades.GladeTypes
             }
         }
 
-        private void ResetGlade()
+        protected override void ResetGlade()
         {
             foreach (var conf in configurations)
             {

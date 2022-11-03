@@ -65,7 +65,10 @@ TagManager:
   - name: Player
     uniqueID: 120162863
     locked: 0
-  - name: Trees
+  - name: ItemsFront
+    uniqueID: 196718847
+    locked: 0
+  - name: TreesFront
     uniqueID: 1685395767
     locked: 0
   - name: Frames

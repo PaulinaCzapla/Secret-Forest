@@ -10820,11 +10820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7018601510489153743, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07
+      value: -0.063
       objectReference: {fileID: 0}
     - target: {fileID: 7018601510489153743, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: 0.032
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 303738297929402352, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
@@ -10847,6 +10847,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 7
+  configurations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   config: {fileID: 11400000, guid: b44b8967e57714a45b9c5978bba482ad, type: 2}
   configurations:
   - chests:

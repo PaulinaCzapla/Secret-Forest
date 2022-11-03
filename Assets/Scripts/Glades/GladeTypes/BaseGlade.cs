@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Glades.GladeTypes
 {
@@ -7,6 +8,30 @@ namespace Glades.GladeTypes
         public GladeType Type => type;
         [SerializeField] private GladeType type;
 
-        public abstract void Initialize();
+        [SerializeField] protected List<GameObject> configurations;
+
+        private int _currentConfiguration;
+
+        public virtual void Initialize()
+        {
+            ResetGlade();
+            if (configurations == null || configurations.Count == 0)
+            {
+                _currentConfiguration = 0;
+            }
+            else
+            {
+                _currentConfiguration = Random.Range(0, configurations.Count);
+                configurations[_currentConfiguration].SetActive(true);
+            }
+        }
+
+        protected virtual void ResetGlade()
+        {
+            foreach (var conf in configurations)
+            {
+                conf.SetActive(false);
+            }
+        }
     }
 }

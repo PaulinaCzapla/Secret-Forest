@@ -4,7 +4,7 @@
     {
         public override void Initialize()
         {
-          
+          base.Initialize();
         }
     }
 }
