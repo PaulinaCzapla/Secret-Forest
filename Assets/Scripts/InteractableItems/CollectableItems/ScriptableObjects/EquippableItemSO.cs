@@ -28,8 +28,9 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                         (float multiplier, float min) = GameManager.GameManager.GetInstance()
                             .GetValueMultiplierAndMin(type, value.Type);
 
+                        float randomValue = value.Values.Evaluate(Random.value) * multiplier;
                         float newValue = ValueRounder.RoundUp(
-                            Mathf.Clamp(value.Values.Evaluate(Random.value) * multiplier, min, multiplier), 0.5f);
+                            Mathf.Clamp(randomValue, (randomValue == 0 ? 0 : min), multiplier), 0.5f);
 
                         if (value.Type == ItemValueType.Defence)
                             defenceValue = newValue;
@@ -51,9 +52,9 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                     {
                         (float multiplier, float min) = GameManager.GameManager.GetInstance()
                             .GetValueMultiplierAndMin(type, value.Type);
-
+                        float randomValue = value.Values.Evaluate(Random.value) * multiplier;
                         float newValue = ValueRounder.RoundUp(
-                            Mathf.Clamp(value.Values.Evaluate(Random.value) * multiplier, min, multiplier), 0.5f);
+                            Mathf.Clamp(randomValue, (randomValue == 0 ? 0 : min), multiplier), 0.5f);
                         
                         if (value.Type == ItemValueType.CriticalDamageChance)
                  

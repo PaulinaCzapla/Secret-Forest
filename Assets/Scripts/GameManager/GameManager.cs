@@ -46,23 +46,26 @@ namespace GameManager
 
 
             var item = Equipment.GetCurrentEquippedItem(itemType);
+            if (item!= null)
+            {
                 switch (type)
                 {
                     case ItemValueType.Damage:
-                    case ItemValueType.Defence:  
-                        multiplier = item.GetTypeValue(type )+1.5f;
-                        minValue = (item.GetTypeValue(type)- 10) < 0 ? 0 : item.GetTypeValue(type) - 10;
+                    case ItemValueType.Defence:
+                        multiplier = item.GetTypeValue(type) + 1.5f;
+                        minValue = (item.GetTypeValue(type) - 10) < 0 ? 0 : item.GetTypeValue(type) - 10;
                         break;
 
                     case ItemValueType.DodgeChance:
-                        multiplier = Mathf.Clamp(item.GetTypeValue(type )+0.5f, 0, 22.5f);
-                        minValue = (item.GetTypeValue(type)- 10) < 0 ? 0 : item.GetTypeValue(type) - 10;
+                        multiplier = Mathf.Clamp(item.GetTypeValue(type) + 0.5f, 0, 22.5f);
+                        minValue = (item.GetTypeValue(type) - 10) < 0 ? 0 : item.GetTypeValue(type) - 10;
                         break;
                     case ItemValueType.CriticalDamageChance:
-                        multiplier = Mathf.Clamp(item.GetTypeValue(type )+0.5f, 0, 50f);
-                        minValue = (item.GetTypeValue(type)- 10) < 0 ? 0 : item.GetTypeValue(type) - 10;
+                        multiplier = Mathf.Clamp(item.GetTypeValue(type) + 0.5f, 0, 50f);
+                        minValue = (item.GetTypeValue(type) - 10) < 0 ? 0 : item.GetTypeValue(type) - 10;
                         break;
                 }
+            }
 
             return (multiplier,minValue);
         }

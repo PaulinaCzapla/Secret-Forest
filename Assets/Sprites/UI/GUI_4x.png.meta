@@ -796,7 +796,7 @@ TextureImporter:
         width: 96
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -817,7 +817,7 @@ TextureImporter:
         width: 4
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -838,7 +838,7 @@ TextureImporter:
         width: 96
         height: 4
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -846,6 +846,48 @@ TextureImporter:
       bones: []
       spriteID: de67449fb70389542bba477ab1539ce7
       internalID: 1873898115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_4x_35
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 71
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8755bb48d0714a43b7c855414679ed3
+      internalID: 984696992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_4x_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0630b60673957cf44889ec7be23950b8
+      internalID: 969201293
       vertices: []
       indices: 
       edges: []
@@ -867,6 +909,7 @@ TextureImporter:
       GUI_4x_27: -103498517
       GUI_4x_4: 411911301
       GUI_4x_34: 1873898115
+      GUI_4x_36: 969201293
       GUI_4x_23: 721386048
       GUI_4x_13: -1142870241
       GUI_4x_20: -1625144522
@@ -887,6 +930,7 @@ TextureImporter:
       GUI_4x_24: -1976041194
       GUI_4x_1: 1991256626
       GUI_4x_10: 996518190
+      GUI_4x_35: 984696992
       GUI_4x_3: -1109165580
       GUI_4x_14: -475655474
       GUI_4x_8: 1851040187
