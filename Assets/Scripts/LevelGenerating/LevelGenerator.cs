@@ -263,8 +263,8 @@ namespace LevelGenerating
                 {
                     Tuple<AdjacentType, float>[] adjacentTypes = new[]
                     {
-                        new Tuple<AdjacentType, float>(AdjacentType.Basic, 0.2f),
-                        new Tuple<AdjacentType, float>(AdjacentType.Blocked, 0.8f)
+                        new Tuple<AdjacentType, float>(AdjacentType.Basic, _levelAttributes.roomsConnectionChance/100f),
+                        new Tuple<AdjacentType, float>(AdjacentType.Blocked, 1- _levelAttributes.roomsConnectionChance/100f)
                     };
 
                     var adjacent = new AdjacentGlade(RandomWithProbabilityGenerator.GetRandom(adjacentTypes));

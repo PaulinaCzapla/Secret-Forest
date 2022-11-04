@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9960f3ed87094252a4e2e84c8a32b25b, type: 3}
+  m_Name: Food
+  m_EditorClassIdentifier: 
+  type: 0
+  name: 
+  sprite: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: c89028e8af217864c8cbcc81561f0c93, type: 2}
+  - {fileID: 11400000, guid: 1d827b6fe18c70845bdf15d06fe9b601, type: 2}
+  - {fileID: 11400000, guid: 8174f64e2bf6f0348a16902c7ad62862, type: 2}
+  - {fileID: 11400000, guid: bfd673db392a33443b7d5464147e925b, type: 2}
+  - {fileID: 11400000, guid: 208ad2f7c369aeb4aabdebdc504d5874, type: 2}
+  - {fileID: 11400000, guid: dea9467611b62f14ba59fe85f94341ad, type: 2}
+  - {fileID: 11400000, guid: 1d0966ae1173b2440bdd6091b67dab56, type: 2}
+  - {fileID: 11400000, guid: 21fd26b3a9bde704281f396f17902d6a, type: 2}
+  - {fileID: 11400000, guid: 17ecee186563b904b96f74b06c26a706, type: 2}
+  - {fileID: 11400000, guid: 822afa0750e6ffd4a9ee4053c352a2ae, type: 2}
+  - {fileID: 11400000, guid: 8dc8fdc3346059249840876ed445da48, type: 2}
+  - {fileID: 11400000, guid: bb6d2022354daec46876b3c040201b41, type: 2}
+  - {fileID: 11400000, guid: 98116a52648bcc648ad29dbb2a7e21db, type: 2}
+  - {fileID: 11400000, guid: 0b0e4edd01ec1d3439cf8c3a9f5b5f12, type: 2}
+  - {fileID: 11400000, guid: bfe86109f5523594ebb64d71fd8fce2d, type: 2}
+  - {fileID: 11400000, guid: 05ab76ae68218cd45b786abb662ee128, type: 2}
+  - {fileID: 11400000, guid: 64192a91f34fc3a48b09468dbb574657, type: 2}
+  - {fileID: 11400000, guid: 08d6de07e0a0dd74fab40c0463d62c4d, type: 2}
+  - {fileID: 11400000, guid: 8058cfd8b7d543b48a16d2233179d5d4, type: 2}
+  - {fileID: 11400000, guid: 7363ef8fdce693a488c58323b872501a, type: 2}
+  - {fileID: 11400000, guid: 752631f63e388f440941941a1c0b2c30, type: 2}
+  - {fileID: 11400000, guid: 5e99808cf6fa1904ab6da9ddfb5763ba, type: 2}

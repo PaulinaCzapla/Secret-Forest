@@ -32,7 +32,7 @@ namespace PlayerInteractions
             RecalculateValues();
         }
 
-        public Item GetCurrentEquippedItem(ItemType type)
+        public WearableItem GetCurrentEquippedItem(ItemType type)
         {
             return _equipment[type];
         }

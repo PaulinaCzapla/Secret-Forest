@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using InteractableItems.CollectableItems.Items;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using ValueRepresentation;
 
@@ -24,15 +25,17 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
 
                     foreach (var value in values)
                     {
+                        (float multiplier, float min) = GameManager.GameManager.GetInstance()
+                            .GetValueMultiplierAndMin(type, value.Type);
+
+                        float newValue = ValueRounder.RoundUp(
+                            Mathf.Clamp(value.Values.Evaluate(Random.value) * multiplier, min, multiplier), 0.5f);
+
                         if (value.Type == ItemValueType.Defence)
-                            defenceValue = ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
-                                .GameManager.GetInstance().LevelsConfig
-                                .GetValueMultiplier(value.Type), 0.5f);
+                            defenceValue = newValue;
                         
                         if (value.Type == ItemValueType.DodgeChance)
-                            dodgeValue = ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
-                                .GameManager.GetInstance().LevelsConfig
-                                .GetValueMultiplier(value.Type), 0.5f);
+                            dodgeValue = newValue;
                     }
 
                     return new Armor(defenceValue, dodgeValue, sprite, name, type);
@@ -46,24 +49,18 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
 
                     foreach (var value in values)
                     {
+                        (float multiplier, float min) = GameManager.GameManager.GetInstance()
+                            .GetValueMultiplierAndMin(type, value.Type);
+
+                        float newValue = ValueRounder.RoundUp(
+                            Mathf.Clamp(value.Values.Evaluate(Random.value) * multiplier, min, multiplier), 0.5f);
+                        
                         if (value.Type == ItemValueType.CriticalDamageChance)
-                        {
-                            criticalValue = ValueRounder.RoundUp(value.Values.Evaluate(Random.value) * GameManager
-                                .GameManager.GetInstance().LevelsConfig
-                                .GetValueMultiplier(value.Type), 0.5f);
-                        }
+                 
+                            criticalValue = newValue;
 
                         if (value.Type == ItemValueType.Damage)
-                        {
-                            var dmg = value.Values.Evaluate(Random.value);
-                            Debug.Log("damage rand = " + dmg + "round " + ValueRounder.RoundUp(
-                                dmg * GameManager.GameManager.GetInstance()
-                                    .LevelsConfig.GetValueMultiplier(value.Type), 0.5f));
-                            
-                            damageValue = ValueRounder.RoundUp(
-                                 dmg * GameManager.GameManager.GetInstance()
-                                    .LevelsConfig.GetValueMultiplier(value.Type), 0.5f);
-                        }
+                            damageValue = newValue;
                     }
 
                     return new Weapon(damageValue, criticalValue, sprite, name,

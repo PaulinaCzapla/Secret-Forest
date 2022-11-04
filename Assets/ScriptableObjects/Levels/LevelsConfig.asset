@@ -19,16 +19,14 @@ MonoBehaviour:
       - type: 1
         probability: 0.1
       - type: 3
-        probability: 0.3
-      - type: 2
-        probability: 0.2
+        probability: 0.4
       - type: 7
         probability: 0.1
       - type: 6
         probability: 0.2
-      minRoomsNum: 6
-      maxRoomsNum: 8
-      roomsDifficultyLevel: 0
+      minRoomsNum: 7
+      maxRoomsNum: 9
+      roomsConnectionChance: 80
   - maxLevelNum: 6
     levelAttributes:
       availableGladeTypes:
@@ -36,17 +34,15 @@ MonoBehaviour:
         probability: 0.1
       - type: 3
         probability: 0.2
-      - type: 2
-        probability: 0.1
       - type: 7
         probability: 0.2
       - type: 6
-        probability: 0.1
+        probability: 0.2
       - type: 4
         probability: 0.1
-      minRoomsNum: 7
-      maxRoomsNum: 9
-      roomsDifficultyLevel: 0
+      minRoomsNum: 9
+      maxRoomsNum: 12
+      roomsConnectionChance: 50
   - maxLevelNum: 10
     levelAttributes:
       availableGladeTypes:
@@ -62,9 +58,9 @@ MonoBehaviour:
         probability: 0.1
       - type: 4
         probability: 0.2
-      minRoomsNum: 8
-      maxRoomsNum: 10
-      roomsDifficultyLevel: 0
+      minRoomsNum: 12
+      maxRoomsNum: 17
+      roomsConnectionChance: 40
   - maxLevelNum: 12
     levelAttributes:
       availableGladeTypes:
@@ -80,9 +76,9 @@ MonoBehaviour:
         probability: 0.45
       - type: 5
         probability: 0.05
-      minRoomsNum: 5
-      maxRoomsNum: 7
-      roomsDifficultyLevel: 0
+      minRoomsNum: 15
+      maxRoomsNum: 22
+      roomsConnectionChance: 30
   - maxLevelNum: 15
     levelAttributes:
       availableGladeTypes:
@@ -96,9 +92,9 @@ MonoBehaviour:
         probability: 0.3
       - type: 5
         probability: 0.1
-      minRoomsNum: 10
-      maxRoomsNum: 13
-      roomsDifficultyLevel: 0
+      minRoomsNum: 20
+      maxRoomsNum: 25
+      roomsConnectionChance: 0
   - maxLevelNum: 18
     levelAttributes:
       availableGladeTypes:
@@ -116,37 +112,39 @@ MonoBehaviour:
         probability: 0.1
       - type: 3
         probability: 0.2
-      minRoomsNum: 10
-      maxRoomsNum: 13
-      roomsDifficultyLevel: 0
+      minRoomsNum: 20
+      maxRoomsNum: 30
+      roomsConnectionChance: 25
   itemsInfo:
+  - maxLevelNum: 3
+    items:
+    - probability: 0.8
+      item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
+    - probability: 0.2
+      item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
   - maxLevelNum: 6
     items:
-    - probability: 0.12
-      item: {fileID: 11400000, guid: c89028e8af217864c8cbcc81561f0c93, type: 2}
-    - probability: 0.12
-      item: {fileID: 11400000, guid: 1d827b6fe18c70845bdf15d06fe9b601, type: 2}
-    - probability: 0.12
-      item: {fileID: 11400000, guid: 8174f64e2bf6f0348a16902c7ad62862, type: 2}
-    - probability: 0.12
-      item: {fileID: 11400000, guid: bfd673db392a33443b7d5464147e925b, type: 2}
-    - probability: 0.1
-      item: {fileID: 11400000, guid: 208ad2f7c369aeb4aabdebdc504d5874, type: 2}
-    - probability: 0.05
-      item: {fileID: 11400000, guid: 21fd26b3a9bde704281f396f17902d6a, type: 2}
-    - probability: 0.1
-      item: {fileID: 11400000, guid: 822afa0750e6ffd4a9ee4053c352a2ae, type: 2}
-    - probability: 0.12
-      item: {fileID: 11400000, guid: 8dc8fdc3346059249840876ed445da48, type: 2}
-    - probability: 0.1
-      item: {fileID: 11400000, guid: bb6d2022354daec46876b3c040201b41, type: 2}
-    - probability: 0.05
-      item: {fileID: 11400000, guid: 98116a52648bcc648ad29dbb2a7e21db, type: 2}
-    - probability: 0.1
-      item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
+    - probability: 0.4
+      item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
+    - probability: 0.3
+      item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
     - probability: 0.1
       item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
-  foodItemsInfo: []
+    - probability: 0.2
+      item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
+  - maxLevelNum: 10
+    items:
+    - probability: 0.35
+      item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
+    - probability: 0.35
+      item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
+    - probability: 0.15
+      item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
+    - probability: 0.15
+      item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
+  foodItemsInfo:
+  - maxLevelNum: 0
+    items: []
   weaponItemsInfo: []
   valueMultipliers:
   - maxLevelNum: 5

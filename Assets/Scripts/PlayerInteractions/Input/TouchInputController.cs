@@ -119,31 +119,31 @@ namespace PlayerInteractions.Input
             _beginTouchPosition = touch.position;
         }
 
-        void TapDragRecognitionState(int touchCount)
-        {
-            Touch touch = UnityEngine.Input.GetTouch(0);
-
-            _touchOneTimer += Time.unscaledDeltaTime;
-
-            if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
-            {
-                // Check if timer is greater than drag duration
-                if (CheckForDragDuration(_touchOneTimer, touch, _settings.DragDurationThreshold))
-                    return;
-            }
-            else if (touch.phase == TouchPhase.Ended)
-            {
-                float physicalDistance = PhysicalDistance(_beginTouchPosition, touch.position);
-                // Tap Recognition
-                if (!CheckForTap(_touchOneTimer, physicalDistance, touch.fingerId))
-                {
-                    // Swipe Recognition if Tap recognision failed
-                    CheckForSwipe(_touchOneTimer, physicalDistance);
-                }
-
-                ChangeState(IdleState);
-            }
-        }
+        // void TapDragRecognitionState(int touchCount)
+        // {
+        //     Touch touch = UnityEngine.Input.GetTouch(0);
+        //
+        //     _touchOneTimer += Time.unscaledDeltaTime;
+        //
+        //     if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+        //     {
+        //         // Check if timer is greater than drag duration
+        //         if (CheckForDragDuration(_touchOneTimer, touch, _settings.DragDurationThreshold))
+        //             return;
+        //     }
+        //     else if (touch.phase == TouchPhase.Ended)
+        //     {
+        //         float physicalDistance = PhysicalDistance(_beginTouchPosition, touch.position);
+        //         // Tap Recognition
+        //         if (!CheckForTap(_touchOneTimer, physicalDistance, touch.fingerId))
+        //         {
+        //             // Swipe Recognition if Tap recognision failed
+        //             CheckForSwipe(_touchOneTimer, physicalDistance);
+        //         }
+        //
+        //         ChangeState(IdleState);
+        //     }
+        // }
 
         void TapSwipeDragRecognitionState(int touchCount)
         {
@@ -154,7 +154,7 @@ namespace PlayerInteractions.Input
             if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
             {
                 // If timer is greater that swipe max duration
-                if (_touchOneTimer > _settings.SwipeMaxDuration)
+              //  if (_touchOneTimer > _settings.SwipeMaxDuration)
                 {
                     // Check if timer is greater than drag duration
                     if (CheckForDragDuration(_touchOneTimer, touch, _settings.DragDurationThreshold))

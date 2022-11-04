@@ -28,13 +28,7 @@ namespace LevelGenerating
 
         [Header("Chest items spawn probabilities")] [SerializeField]
         private List<ItemsForLevel> itemsInfo;
-
-        [Header("Food items spawn probabilities")] [SerializeField]
-        private List<ItemsForLevel> foodItemsInfo;
-
-        [Header("Chest items spawn probabilities")] [SerializeField]
-        private List<ItemsForLevel> weaponItemsInfo;
-
+        
         [Header("Weapons and armor multipliers")] [SerializeField]
         private List<ValueMultipliersForLevel> valueMultipliers;
 
@@ -83,51 +77,7 @@ namespace LevelGenerating
 
             return items;
         }
-
-        public List<ItemsForLevel.ItemProbability> GetFoodItemsProbabilities()
-        {
-            List<ItemsForLevel.ItemProbability> items = null;
-            float prevMaxLevelNum = -1;
-            foreach (var info in foodItemsInfo)
-            {
-                if (GameManager.GameManager.GetInstance().CurrentLevelNum > prevMaxLevelNum &&
-                    GameManager.GameManager.GetInstance().CurrentLevelNum <= info.maxLevelNum)
-                {
-                    items = info.items;
-                    break;
-                }
-
-                prevMaxLevelNum = info.maxLevelNum;
-            }
-
-            if (items == null)
-                items = foodItemsInfo[foodItemsInfo.Count - 1].items;
-
-            return items;
-        }
-
-        public List<ItemsForLevel.ItemProbability> GetWeaponItemsProbabilities()
-        {
-            List<ItemsForLevel.ItemProbability> items = null;
-            float prevMaxLevelNum = -1;
-            
-            foreach (var info in weaponItemsInfo)
-            {
-                if (GameManager.GameManager.GetInstance().CurrentLevelNum > prevMaxLevelNum &&
-                    GameManager.GameManager.GetInstance().CurrentLevelNum <= info.maxLevelNum)
-                {
-                    items = info.items;
-                    break;
-                }
-
-                prevMaxLevelNum = info.maxLevelNum;
-            }
-
-            if (items == null)
-                items = weaponItemsInfo[weaponItemsInfo.Count - 1].items;
-            return items;
-        }
-
+        
         public float GetValueMultiplier(ItemValueType type)
         {
             ValueMultipliersForLevel multiplierForLevel = null;

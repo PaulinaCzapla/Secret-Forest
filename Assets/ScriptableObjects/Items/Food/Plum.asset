@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88ba6985a0934ed9b31396284e62db60, type: 3}
-  m_Name: Mushroom
+  m_Name: Plum
   m_EditorClassIdentifier: 
   type: 0
-  name: Mushroom
-  sprite: {fileID: 1672501328, guid: 1f333a2853779a340a35935c2876112e, type: 3}
+  name: Plum
+  sprite: {fileID: -48416059, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
   values:
   - type: 1
-    value: 2
+    value: 3

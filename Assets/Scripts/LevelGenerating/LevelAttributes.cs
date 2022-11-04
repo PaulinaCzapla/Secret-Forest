@@ -9,10 +9,12 @@ namespace LevelGenerating
     [Serializable]
     public class LevelAttributes
     {
+        public int RoomsConnectionChance => roomsConnectionChance;
+        
         public List<GladeTypeWithProbability> availableGladeTypes;
         [Range(2, 100)] public int minRoomsNum ;
         [Range(2, 100)] public int maxRoomsNum;
-        [Range(0, 10)] public int roomsDifficultyLevel;
+        [Range(0, 100)] public int roomsConnectionChance;
 
         private Tuple<GladeType, float>[] _types ;
         public GladeType GetRandomGladeType()
