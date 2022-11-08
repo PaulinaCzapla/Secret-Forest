@@ -12,12 +12,7 @@ namespace LevelGenerating
         {
             levelGenerator.GenerateLevel(GameManager.GameManager.GetInstance().CurrentLevelNum);
         }
-
-        private void Update()
-        {
-            Debug.Log(GameManager.GameManager.GetInstance().CurrentLevelNum);
-        }
-
+        
         public void LevelFinished()
         {
             GameManager.GameManager.GetInstance().CurrentLevelNum++;

@@ -1,4 +1,5 @@
-﻿using InteractableItems.CollectableItems.Items;
+﻿using Glades.GladeTypes;
+using InteractableItems.CollectableItems.Items;
 using LevelGenerating;
 using PlayerInteractions;
 using UnityEngine;
@@ -8,8 +9,10 @@ namespace GameManager
 {
     public class GameManager
     {
+        public bool IsGameplayInputLocked { get; set; }
         public int CurrentLevelNum { get; set; } = 0;
         public string CurrentGladeID { get; set; }
+        public BaseGlade CurrentGlade { get; set; }
         public PlayerEquipment Equipment { get; private set; }
         public LevelsConfigSO LevelsConfig => _levelConfig;
         private PlayerStatsSO _playerStats;
@@ -40,11 +43,9 @@ namespace GameManager
 
         public (float,float) GetValueMultiplierAndMin(ItemType itemType, ItemValueType type)
         {
-          
             float multiplier = 1;
             float minValue = 0;
-
-
+            
             var item = Equipment.GetCurrentEquippedItem(itemType);
             if (item!= null)
             {

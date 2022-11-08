@@ -12,9 +12,10 @@ namespace PlayerInteractions
     public class PlayerInteractions : MonoBehaviour
     {
         [SerializeField] LayerMask layerMask;
-
-        // private variables
+        
         private RaycastHit2D[] _hits;
+        private bool _canInteract;
+        private bool _canMove;
 
         private Camera MainCamera
         {
@@ -41,9 +42,6 @@ namespace PlayerInteractions
 
         void OnSingleTap(Vector2 tapPosition, bool isUI)
         {
-            // if (isUI)
-            //  return;
-
             if (MainCamera == null)
                 return;
 
@@ -60,6 +58,7 @@ namespace PlayerInteractions
 
                 if (interactable != null)
                 {
+                    //If its something else than glade
                     if (!hit.transform.GetComponent<SpawnedGlade>())
                     {
                         if (hit.transform.root.TryGetComponent(out SpawnedGlade hitOnGlade))
@@ -72,6 +71,7 @@ namespace PlayerInteractions
                             }
                     }
 
+                    //if glade
                     if (hit.transform.root.TryGetComponent(out SpawnedGlade glade))
                         if (!glade.Id.Equals(GameManager.GameManager.GetInstance().CurrentGladeID))
                         {

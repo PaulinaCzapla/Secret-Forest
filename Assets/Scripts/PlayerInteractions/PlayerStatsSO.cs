@@ -8,21 +8,24 @@ namespace PlayerInteractions
     {
         [Header("Hunger")] 
         [Header("Init values")]
-        [SerializeField] private float initialMaxHunger = 10;
+        [SerializeField] private float initialMaxHunger;
         [Header("Current game values")]
         public float hungerLostPerMinute;
         public float hungerLostPerGlade;
         public float currentMaxHungerValue;
         public float currentHungerValue;
+        
 
+        
         [Header("Health")] 
         public readonly float HealthIncreasedPerMinute;
         public readonly float HealthIncreasedPerGlade;
         [Header("Init values")]
-        [SerializeField] private float initialMaxHealth = 10;
+        [SerializeField] private float initialMaxHealth;
         [Header("Current game values")]
         public float currentMaxHealthValue;
         public float currentHealthValue;
+        public float healthRestoredPerGlade;
 
         [Header("Combat stats")]
         // [Header("Init values")]

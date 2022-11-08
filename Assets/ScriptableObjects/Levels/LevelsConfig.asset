@@ -24,6 +24,8 @@ MonoBehaviour:
         probability: 0.1
       - type: 6
         probability: 0.2
+      - type: 4
+        probability: 1
       minRoomsNum: 7
       maxRoomsNum: 9
       roomsConnectionChance: 80
@@ -142,10 +144,6 @@ MonoBehaviour:
       item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
     - probability: 0.15
       item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
-  foodItemsInfo:
-  - maxLevelNum: 0
-    items: []
-  weaponItemsInfo: []
   valueMultipliers:
   - maxLevelNum: 5
     armorDefenseMultiplier: 1

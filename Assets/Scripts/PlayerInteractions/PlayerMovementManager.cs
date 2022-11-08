@@ -41,9 +41,6 @@ namespace PlayerInteractions
                 if ((xDiff == 1 && yDiff == 0)
                     || (yDiff == 1 && xDiff == 0))
                 {
-                    Debug.Log("Targeted glade is adjacent");
-                    Debug.Log(GetAdjacentSide(currentOccupiedGlade.GridCell.PositionInGrid.Position,
-                        destination.GridCell.PositionInGrid.Position));
                     if (currentOccupiedGlade
                         .AdjacentGlades[
                             GetAdjacentSide(currentOccupiedGlade.GridCell.PositionInGrid.Position,
@@ -54,15 +51,17 @@ namespace PlayerInteractions
                 }
             }
         }
-        
+
         private void MoveToGlade(SpawnedGlade destination)
         {
             currentOccupiedGlade = destination;
             MovePlayer(destination.SpawnPosition);
-            PlayerMovementStaticEvents.InvokePlayerMovedToGlade(destination);
             GameManager.GameManager.GetInstance().CurrentGladeID = destination.Id;
+            GameManager.GameManager.GetInstance().CurrentGlade = destination.Glade;
+            PlayerMovementStaticEvents.InvokePlayerMovedToGlade(destination);
+            destination.Glade.OnPlayerArrived?.Invoke();
         }
-        
+
         private AdjacentSide GetAdjacentSide(Vector2 gladePos, Vector2 adjacentGladePos)
         {
             if (adjacentGladePos.x - gladePos.x < 0)

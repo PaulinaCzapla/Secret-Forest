@@ -11,13 +11,6 @@ namespace Glades
     public class SpawnedGlade : MonoBehaviour, IInteractable
     {
         public Vector2 SpawnPosition => spawnPosition.position;
-        
-        [SerializeField] private Transform spawnPosition;
-        [Header("Gates")]
-        [SerializeField] private GameObject upGate;
-        [SerializeField] private GameObject downGate;
-        [SerializeField] private GameObject leftGate;
-        [SerializeField] private GameObject rightGate;
         public string Id { get; private set; }
         public GridCell GridCell { get; set; }
 
@@ -31,11 +24,17 @@ namespace Glades
             }
         }
 
-        private BaseGlade _glade;
-
         public Dictionary<AdjacentSide, AdjacentGlade> AdjacentGlades { get; set; } =
             new Dictionary<AdjacentSide, AdjacentGlade>();
 
+        [SerializeField] private Transform spawnPosition;
+        [Header("Gates")] [SerializeField] private GameObject upGate;
+        [SerializeField] private GameObject downGate;
+        [SerializeField] private GameObject leftGate;
+        [SerializeField] private GameObject rightGate;
+        
+        private BaseGlade _glade;
+        
         private void Awake()
         {
             Id = System.Guid.NewGuid().ToString();
@@ -45,7 +44,7 @@ namespace Glades
         public void Initialize()
         {
             Glade.Initialize();
-            
+
             if (AdjacentGlades.ContainsKey(AdjacentSide.Up) &&
                 AdjacentGlades[AdjacentSide.Up].type != AdjacentType.Blocked)
                 upGate.SetActive(true);
@@ -62,10 +61,9 @@ namespace Glades
                 AdjacentGlades[AdjacentSide.Right].type != AdjacentType.Blocked)
                 rightGate.SetActive(true);
         }
-        
+
         public void Interact()
         {
-            Debug.Log("Clicked!");
             PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(this);
         }
 
@@ -74,7 +72,7 @@ namespace Glades
             Debug.Log("cleared");
             AdjacentGlades.Clear();
             AdjacentGlades = new Dictionary<AdjacentSide, AdjacentGlade>();
-            
+
             GridCell = null;
             DisableGates();
         }
@@ -84,7 +82,7 @@ namespace Glades
             upGate.SetActive(false);
             downGate.SetActive(false);
             leftGate.SetActive(false);
-            rightGate.SetActive(false); 
+            rightGate.SetActive(false);
         }
     }
 }

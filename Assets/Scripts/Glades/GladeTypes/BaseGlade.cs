@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Glades.GladeTypes
 {
     public abstract class BaseGlade : MonoBehaviour
     {
+        public UnityEvent OnPlayerArrived { get; set; }= new UnityEvent();
         public GladeType Type => type;
         [SerializeField] private GladeType type;
 

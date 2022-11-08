@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using CombatSystem;
 using DG.Tweening;
 using LevelGenerating;
 using PlayerInteractions.Input;
@@ -33,6 +34,8 @@ namespace CameraManagement
     public class CameraController : MonoBehaviour
     {
         [SerializeField] private CinemachineVirtualCamera cam;
+        [SerializeField] private CinemachineVirtualCamera zoomCam;
+        
         [SerializeField] private GameObject player;
 
         [Header("Camera movement settings")] [SerializeField]
@@ -51,10 +54,11 @@ namespace CameraManagement
             InputManager.onDragEnd += OnDragEnd;
             InputManager.onMouseWheelAction += OnMouseWheel;
             InputManager.onPinchAction += OnPinch;
-
             InputManager.onPinchBegin += OnPinchBegin;
             InputManager.onPinchEnd += OnPinchEnd;
             LevelGenerator.OnLevelGenerated += OnLevelLoaded;
+            StaticCombatEvents.SubscribeToCombatStarted(EnableZoomCamera);
+            StaticCombatEvents.SubscribeToCombatEnded(DisableZoomCamera);
         }
 
         void OnPinch(Vector2 position, Vector2 delta, float magnitude)
@@ -72,10 +76,26 @@ namespace CameraManagement
             InputManager.onDragEnd -= OnDragEnd;
             InputManager.onMouseWheelAction -= OnMouseWheel;
             InputManager.onPinchAction -= OnPinch;
-
             InputManager.onPinchBegin -= OnPinchBegin;
             InputManager.onPinchEnd -= OnPinchEnd;
             LevelGenerator.OnLevelGenerated -= OnLevelLoaded;
+            StaticCombatEvents.UnsubscribeFromCombatStarted(EnableZoomCamera);
+            StaticCombatEvents.UnsubscribeFromCombatEnded(DisableZoomCamera);
+        }
+
+        private void DisableZoomCamera()
+        {
+            cam.m_Lens.OrthographicSize = initialCameraZoom;
+            cam.Follow = player.transform;
+            cam.gameObject.SetActive(true);
+            zoomCam.gameObject.SetActive(false);
+        }
+
+        private void EnableZoomCamera()
+        {
+            zoomCam.Follow = GameManager.GameManager.GetInstance().CurrentGlade.transform;
+            zoomCam.gameObject.SetActive(true);
+            cam.gameObject.SetActive(false);
         }
 
         private void OnPinchBegin()
@@ -130,12 +150,16 @@ namespace CameraManagement
             }
         }
         
-        
         private void OnLevelLoaded()
         {
             CameraLimits.CalculateLimits();
+            FocusPlayer();
+        }
+
+        public void FocusPlayer()
+        {
             cam.m_Lens.OrthographicSize = initialCameraZoom;
-            cam.Follow = player.transform;
+            cam.Follow = player.transform; 
         }
     }
 }
