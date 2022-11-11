@@ -7,7 +7,7 @@ using UnityEngine.PlayerLoop;
 
 namespace GameManager
 {
-    public class GameManager
+    public class GameController
     {
         public bool IsGameplayInputLocked { get; set; }
         public int CurrentLevelNum { get; set; } = 0;
@@ -16,7 +16,7 @@ namespace GameManager
         public PlayerEquipment Equipment { get; private set; }
         public LevelsConfigSO LevelsConfig => _levelConfig;
         private PlayerStatsSO _playerStats;
-        private static GameManager _instance;
+        private static GameController _instance;
         private LevelsConfigSO _levelConfig;
 
         public PlayerStatsSO PlayerStats
@@ -31,11 +31,11 @@ namespace GameManager
             private set { _playerStats = value; }
         }
         
-        public static GameManager GetInstance()
+        public static GameController GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new GameManager();
+                _instance = new GameController();
             }
 
             return _instance;

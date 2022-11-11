@@ -25,10 +25,10 @@ namespace InteractableItems.CollectableItems.Items
 
             float defenceValue = GetTypeValue(ItemValueType.Defence);
 
-            if (!(defenceValue == 0 && GameManager.GameManager.GetInstance().Equipment.GetArmorCurrentDefense(Type) == 0))
+            if (!(defenceValue == 0 && GameManager.GameController.GetInstance().Equipment.GetArmorCurrentDefense(Type) == 0))
             {
                 float value = defenceValue -
-                              GameManager.GameManager.GetInstance().Equipment.GetArmorCurrentDefense(Type);
+                              GameManager.GameController.GetInstance().Equipment.GetArmorCurrentDefense(Type);
                 text += (value >= 0
                     ? "<color=#62F167>+" + value + " defense</color>\n"
                     : "<color=#FF3A38>" + value + " defense</color>\n");
@@ -36,9 +36,9 @@ namespace InteractableItems.CollectableItems.Items
 
             float dodgeValue = GetTypeValue(ItemValueType.DodgeChance);
 
-            if (!(dodgeValue == 0 && GameManager.GameManager.GetInstance().Equipment.GetArmorDodgeChance(Type) == 0))
+            if (!(dodgeValue == 0 && GameManager.GameController.GetInstance().Equipment.GetArmorDodgeChance(Type) == 0))
             {
-                float value = dodgeValue - GameManager.GameManager.GetInstance().Equipment.GetArmorDodgeChance(Type);
+                float value = dodgeValue - GameManager.GameController.GetInstance().Equipment.GetArmorDodgeChance(Type);
                 text += (value >= 0
                     ? "<color=#62F167>+" + value + "% dodge chance</color>\n"
                     : "<color=#FF3A38>" + value + "% dodge chance</color>\n");

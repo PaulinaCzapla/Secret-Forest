@@ -21,13 +21,13 @@ MonoBehaviour:
       - type: 3
         probability: 0.4
       - type: 7
-        probability: 0.1
+        probability: 0.3
       - type: 6
         probability: 0.2
       - type: 4
         probability: 1
-      minRoomsNum: 7
-      maxRoomsNum: 9
+      minRoomsNum: 2
+      maxRoomsNum: 16
       roomsConnectionChance: 80
   - maxLevelNum: 6
     levelAttributes:

@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using CombatSystem;
+using PlayerInteractions;
 using PlayerInteractions.StaticEvents;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Glades.GladeTypes
 {
-    public sealed class GladeFight :BaseGlade
+    public class GladeFight :BaseGlade
     {
-        private SpawnedGlade _spawnedGlade;
-
-        private void Awake()
-        {
-            _spawnedGlade = gameObject.GetComponent<SpawnedGlade>();
-        }
-
+        [SerializeField] private DifficultyLevel difficulty;
+        [SerializeField] private List<Enemy> enemies;
+        [SerializeField] private Transform attackPoint;
+        [SerializeField] private Transform enemySpawnPoint;
+        [SerializeField] private PlayerStatsSO stats;
+        
+        private Enemy _enemy;
         private void OnEnable()
         {
             OnPlayerArrived.AddListener(PlayerArrived);
@@ -25,13 +29,18 @@ namespace Glades.GladeTypes
 
         private void PlayerArrived()
         {
-            GameManager.GameManager.GetInstance().IsGameplayInputLocked = true;
-            StaticCombatEvents.InvokeCombatStarted();
+            GameManager.GameController.GetInstance().IsGameplayInputLocked = true;
+            StaticCombatEvents.InvokeCombatStarted(_enemy);
         }
 
         public override void Initialize()
         {
             base.Initialize();
+            _enemy = enemies[Random.Range(0, enemies.Count)];
+            _enemy.gameObject.SetActive(true);
+            var stats = CombatManager.GetInstance().GetEnemyStats(difficulty);
+            
+            _enemy.Initialize(stats.Item1, stats.Item2, stats.Item3, stats.Item4);
         }
         
         

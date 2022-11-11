@@ -15,7 +15,7 @@ namespace GameManager
             playerStats.InitWithDefaults();
             UIStaticEvents.InvokeUpdateHungerUI();
             UIStaticEvents.InvokeUpdateHealthUI();
-            GameManager.GetInstance().Init(playerStats, levelsConfigSo);
+            GameController.GetInstance().Init(playerStats, levelsConfigSo);
         }
     }
 }

@@ -111,7 +111,7 @@ namespace UI.Eq
 
             foreach (var type in types)
             {
-                var currentEquipped = GameManager.GameManager.GetInstance().Equipment.GetCurrentEquippedItem(type);
+                var currentEquipped = GameManager.GameController.GetInstance().Equipment.GetCurrentEquippedItem(type);
 
                 if (currentEquipped != null)
                 {
@@ -169,7 +169,7 @@ namespace UI.Eq
 
         public void ItemEquipped(Item itemToBeEquip)
         {
-            var oldItem = GameManager.GameManager.GetInstance().Equipment.Equip(itemToBeEquip);
+            var oldItem = GameManager.GameController.GetInstance().Equipment.Equip(itemToBeEquip);
 
             OnResetSelectedItem(_currentSelected);
             if (oldItem != null)
@@ -199,7 +199,7 @@ namespace UI.Eq
 
         private void OnTakeOffItem(Item item)
         {
-            Item currentItem = GameManager.GameManager.GetInstance().Equipment.Unequip(item);
+            Item currentItem = GameManager.GameController.GetInstance().Equipment.Unequip(item);
             OnResetSelectedItem(_currentSelected);
             if (currentItem != null)
                 ItemCollected(currentItem);

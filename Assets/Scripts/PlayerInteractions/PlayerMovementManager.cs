@@ -56,8 +56,8 @@ namespace PlayerInteractions
         {
             currentOccupiedGlade = destination;
             MovePlayer(destination.SpawnPosition);
-            GameManager.GameManager.GetInstance().CurrentGladeID = destination.Id;
-            GameManager.GameManager.GetInstance().CurrentGlade = destination.Glade;
+            GameManager.GameController.GetInstance().CurrentGladeID = destination.Id;
+            GameManager.GameController.GetInstance().CurrentGlade = destination.Glade;
             PlayerMovementStaticEvents.InvokePlayerMovedToGlade(destination);
             destination.Glade.OnPlayerArrived?.Invoke();
         }

@@ -91,9 +91,9 @@ namespace CameraManagement
             zoomCam.gameObject.SetActive(false);
         }
 
-        private void EnableZoomCamera()
+        private void EnableZoomCamera(Enemy enemy)
         {
-            zoomCam.Follow = GameManager.GameManager.GetInstance().CurrentGlade.transform;
+            zoomCam.Follow = GameManager.GameController.GetInstance().CurrentGlade.transform;
             zoomCam.gameObject.SetActive(true);
             cam.gameObject.SetActive(false);
         }

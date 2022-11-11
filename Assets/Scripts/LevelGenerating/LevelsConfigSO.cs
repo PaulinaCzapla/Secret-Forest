@@ -39,8 +39,8 @@ namespace LevelGenerating
 
             foreach (var info in levelInfo)
             {
-                if (GameManager.GameManager.GetInstance().CurrentLevelNum > prevMaxLevelNum &&
-                    GameManager.GameManager.GetInstance().CurrentLevelNum <= info.maxLevelNum)
+                if (GameManager.GameController.GetInstance().CurrentLevelNum > prevMaxLevelNum &&
+                    GameManager.GameController.GetInstance().CurrentLevelNum <= info.maxLevelNum)
                 {
                     attributes = info.levelAttributes;
                     break;
@@ -62,8 +62,8 @@ namespace LevelGenerating
             
             foreach (var info in itemsInfo)
             {
-                if (GameManager.GameManager.GetInstance().CurrentLevelNum > prevMaxLevelNum &&
-                    GameManager.GameManager.GetInstance().CurrentLevelNum <= info.maxLevelNum)
+                if (GameManager.GameController.GetInstance().CurrentLevelNum > prevMaxLevelNum &&
+                    GameManager.GameController.GetInstance().CurrentLevelNum <= info.maxLevelNum)
                 {
                     items = info.items;
                     break;
@@ -85,8 +85,8 @@ namespace LevelGenerating
             
             foreach (var multiplier in valueMultipliers)
             {
-                if (GameManager.GameManager.GetInstance().CurrentLevelNum > prevMaxLevelNum &&
-                    GameManager.GameManager.GetInstance().CurrentLevelNum <= multiplier.maxLevelNum)
+                if (GameManager.GameController.GetInstance().CurrentLevelNum > prevMaxLevelNum &&
+                    GameManager.GameController.GetInstance().CurrentLevelNum <= multiplier.maxLevelNum)
                 {
                     multiplierForLevel = multiplier;
                     break;

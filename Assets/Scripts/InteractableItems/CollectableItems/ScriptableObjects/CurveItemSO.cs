@@ -25,7 +25,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
 
                     foreach (var value in values)
                     {
-                        (float multiplier, float min) = GameManager.GameManager.GetInstance()
+                        (float multiplier, float min) = GameManager.GameController.GetInstance()
                             .GetValueMultiplierAndMin(type, value.Type);
 
                         float randomValue = value.Values.Evaluate(Random.value) * multiplier;
@@ -50,7 +50,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
 
                     foreach (var value in values)
                     {
-                        (float multiplier, float min) = GameManager.GameManager.GetInstance()
+                        (float multiplier, float min) = GameManager.GameController.GetInstance()
                             .GetValueMultiplierAndMin(type, value.Type);
                         float randomValue = value.Values.Evaluate(Random.value) * multiplier;
                         float newValue = ValueRounder.RoundUp(

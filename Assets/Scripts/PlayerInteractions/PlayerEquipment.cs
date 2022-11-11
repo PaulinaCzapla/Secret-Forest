@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using InteractableItems.CollectableItems.Items;
 using UI.Eq;
+using UI.Events;
 using UnityEngine;
 
 namespace PlayerInteractions
@@ -55,6 +56,8 @@ namespace PlayerInteractions
                                           0) + (_equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.DodgeChance) ??
                                           0) + (_equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.DodgeChance) ?? 0);
             
+            _playerStats.currentMaxHealthValue = _playerStats.initialDefense + _playerStats.currentDefense;
+            UIStaticEvents.InvokeUpdateHealthUI();
             InventoryUIStaticEvents.InvokeRefreshInventoryStatsUI();
         }
 
