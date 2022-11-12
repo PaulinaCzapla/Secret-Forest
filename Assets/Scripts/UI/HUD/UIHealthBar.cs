@@ -20,7 +20,7 @@ namespace UI.HUD
 
         private void OnDisable()
         {
-            UIStaticEvents.UnsubscribeFromUpdateHealthUI(Refresh);
+            //UIStaticEvents.UnsubscribeFromUpdateHealthUI(Refresh);
         }
 
         protected override void Refresh()

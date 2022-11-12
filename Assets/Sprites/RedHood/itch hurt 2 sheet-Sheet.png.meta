@@ -119,12 +119,12 @@ TextureImporter:
       name: itch hurt 2 sheet-Sheet_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 21
-        width: 57
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 16
+        y: 20
+        width: 70
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,12 +140,12 @@ TextureImporter:
       name: itch hurt 2 sheet-Sheet_1
       rect:
         serializedVersion: 2
-        x: 83
-        y: 21
-        width: 57
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 94
+        y: 20
+        width: 70
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: itch hurt 2 sheet-Sheet_2
       rect:
         serializedVersion: 2
-        x: 163
-        y: 21
-        width: 57
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 172
+        y: 20
+        width: 70
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,12 +182,12 @@ TextureImporter:
       name: itch hurt 2 sheet-Sheet_3
       rect:
         serializedVersion: 2
-        x: 243
-        y: 21
-        width: 57
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 252
+        y: 20
+        width: 70
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,12 +203,12 @@ TextureImporter:
       name: itch hurt 2 sheet-Sheet_4
       rect:
         serializedVersion: 2
-        x: 322
-        y: 21
-        width: 57
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 332
+        y: 20
+        width: 70
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,12 +224,12 @@ TextureImporter:
       name: itch hurt 2 sheet-Sheet_5
       rect:
         serializedVersion: 2
-        x: 402
-        y: 21
-        width: 57
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 412
+        y: 20
+        width: 70
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -245,18 +245,18 @@ TextureImporter:
       name: itch hurt 2 sheet-Sheet_6
       rect:
         serializedVersion: 2
-        x: 482
+        x: 524
         y: 21
-        width: 57
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 16
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee114a0ddab5f9444a1c10e36de314a6
+      spriteID: 1eb3b133937421d47903aec9cffc940e
       internalID: -142648631
       vertices: []
       indices: 

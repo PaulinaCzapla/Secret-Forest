@@ -15,13 +15,12 @@ namespace PlayerInteractions
         public float currentMaxHungerValue;
         public float currentHungerValue;
         
-
         
         [Header("Health")] 
         public readonly float HealthIncreasedPerMinute;
         public readonly float HealthIncreasedPerGlade;
-        [Header("Init values")]
-        [SerializeField] private float initialMaxHealth;
+      //  [Header("Init values")]
+      //  [SerializeField] private float initialMaxHealth;
         [Header("Current game values")]
         public float currentMaxHealthValue;
         public float currentHealthValue;
@@ -37,9 +36,9 @@ namespace PlayerInteractions
         // [Range(0, 1)] [SerializeField] private float initialDodgeChance = 0.1f;
         //
         [Header("Initial combat values")]
-        [SerializeField] private float initialDamage = 0;
+        [SerializeField] private float initialDamage = 1;
         [Range(0, 1)] [SerializeField] private float initialCritical = 0f;
-        public readonly float initialDefense = 0;
+        [SerializeField] public float initialDefense = 0;
         [Range(0, 1)] [SerializeField] private float initialDodgeChance =0f;
         
         [Header("Current combat values")]
@@ -56,8 +55,8 @@ namespace PlayerInteractions
         [Range(0, 16)] public int currentEqSlotsCount=  4;
         public void InitWithDefaults()
         {
-            currentHealthValue = initialMaxHealth;
-            currentMaxHealthValue = initialMaxHealth;
+            currentHealthValue = initialDefense;
+            currentMaxHealthValue = initialDefense;
             currentHungerValue = initialMaxHunger;
             currentMaxHungerValue = initialMaxHunger;
             currentEqSlotsCount = initialEqSlotsCount;

@@ -32,6 +32,17 @@ namespace RandomGenerators
             return values[values.Length - 1].Item1;
         }
 
+        public static bool GetRandom(float trueChance, float falseChance)
+        {
+            float total = trueChance + falseChance;
+
+            float randomPoint = Random.value * total;
+
+            if (randomPoint < trueChance)
+                return true;
+            return false;
+        }
+        
         public static T GetRandom<T>(List<Tuple<T, float>> values)
         {
             float total = 0;

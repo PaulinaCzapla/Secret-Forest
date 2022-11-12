@@ -8,14 +8,6 @@ namespace PlayerInteractions
 {
     public class PlayerEquipment
     {
-        // private Armor _helmet;
-        // private Armor _breastPlate;
-        // private Armor _shinGuards;
-        // private Armor _boots;
-        //
-        // private Weapon _bow;
-        // private Weapon _sword;
-
         private Dictionary<ItemType, WearableItem> _equipment;
         private PlayerStatsSO _playerStats;
 

@@ -16,17 +16,18 @@ MonoBehaviour:
   hungerLostPerMinute: 1
   hungerLostPerGlade: 0.5
   currentMaxHungerValue: 25
-  currentHungerValue: 19.900013
-  initialMaxHealth: 25
-  currentMaxHealthValue: 25
-  currentHealthValue: 25
-  initialBowDamage: 1
-  initialKnifeDamage: 1
-  initialCriticalBowChance: 0.1
-  initialCriticalKnifeChance: 0.1
+  currentHungerValue: 22
+  currentMaxHealthValue: 10
+  currentHealthValue: 10
+  healthRestoredPerGlade: 0
+  initialDamage: 2
+  initialCritical: 0
+  initialDefense: 10
   initialDodgeChance: 0.1
-  currentBowDamage: 1
-  currentKnifeDamage: 1
-  currentCriticalBowChance: 0.1
-  currentCriticalKnifeChance: 0.1
-  currentDodgeChance: 0.1
+  currentBaseDamage: 1
+  currentDamage: 1
+  currentCritical: 0
+  currentDefense: 0
+  currentDodgeChance: 0
+  initialEqSlotsCount: 4
+  currentEqSlotsCount: 4
