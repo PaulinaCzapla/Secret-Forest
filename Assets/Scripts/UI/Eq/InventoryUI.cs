@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using InteractableItems.CollectableItems;
 using InteractableItems.CollectableItems.Interfaces;
 using InteractableItems.CollectableItems.Items;
+using PlayerInteractions.Input;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -57,6 +58,7 @@ namespace UI.Eq
             _equipmentElements.Add(ItemType.ShinGuards, shinGuardsSlot);
             _equipmentElements.Add(ItemType.Bow, bowSlot);
             _equipmentElements.Add(ItemType.WhiteWeapon, swordSlot);
+            ResetItemUI();
         }
 
         private void OnEnable()
@@ -143,11 +145,13 @@ namespace UI.Eq
 
         public void OpenStorage()
         {
+            //InputManager.TapEnable = false;
             storageObject.SetActive(true);
         }
 
         private void CloseStorage()
         {
+            //InputManager.TapEnable = true;
             storageObject.SetActive(false);
             ResetItemUI();
         }

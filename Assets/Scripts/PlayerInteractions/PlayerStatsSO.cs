@@ -37,9 +37,9 @@ namespace PlayerInteractions
         //
         [Header("Initial combat values")]
         [SerializeField] private float initialDamage = 1;
-        [Range(0, 1)] [SerializeField] private float initialCritical = 0f;
+        [field:SerializeField] public float initialCritical { get; private set; }= 0f;
         [SerializeField] public float initialDefense = 0;
-        [Range(0, 1)] [SerializeField] private float initialDodgeChance =0f;
+         [field:SerializeField] public float initialDodgeChance { get; private set; } =0f;
         
         [Header("Current combat values")]
         public float currentBaseDamage = 1;

@@ -28,7 +28,7 @@ namespace LevelGenerating
 
         [Header("Chest items spawn probabilities")] [SerializeField]
         private List<ItemsForLevel> itemsInfo;
-        
+
         [Header("Weapons and armor multipliers")] [SerializeField]
         private List<ValueMultipliersForLevel> valueMultipliers;
 
@@ -55,11 +55,11 @@ namespace LevelGenerating
             return attributes;
         }
 
-        public List<ItemsForLevel.ItemProbability> GetChestItemsProbabilities()
+        public List<ItemProbability> GetChestItemsProbabilities()
         {
-            List<ItemsForLevel.ItemProbability> items = null;
+            List<ItemProbability> items = null;
             float prevMaxLevelNum = -1;
-            
+
             foreach (var info in itemsInfo)
             {
                 if (GameManager.GameController.GetInstance().CurrentLevelNum > prevMaxLevelNum &&
@@ -77,12 +77,12 @@ namespace LevelGenerating
 
             return items;
         }
-        
+
         public float GetValueMultiplier(ItemValueType type)
         {
             ValueMultipliersForLevel multiplierForLevel = null;
             float prevMaxLevelNum = -1;
-            
+
             foreach (var multiplier in valueMultipliers)
             {
                 if (GameManager.GameController.GetInstance().CurrentLevelNum > prevMaxLevelNum &&
@@ -125,15 +125,15 @@ namespace LevelGenerating
     }
 
     [Serializable]
+    public struct ItemProbability
+    {
+        [Range(0, 1)] public float probability;
+        public ItemSO item;
+    }
+
+    [Serializable]
     public class ItemsForLevel
     {
-        [Serializable]
-        public struct ItemProbability
-        {
-            [Range(0, 1)] public float probability;
-            public ItemSO item;
-        }
-
         public int maxLevelNum;
         public List<ItemProbability> items;
     }

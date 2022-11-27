@@ -16,26 +16,17 @@ MonoBehaviour:
   name: 
   sprite: {fileID: 0}
   items:
-  - {fileID: 11400000, guid: d6157af35c8d23644ac4ab23cf2ebf02, type: 2}
-  - {fileID: 11400000, guid: 1d2b0093842f3764fb99bc508c7dcbad, type: 2}
-  - {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
-  - {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
-  - {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
-  - {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
-  - {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
-  - {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
-  - {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
-  - {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
-  - {fileID: 11400000, guid: 39a81359aa21c47478b1a44ad62e7ef7, type: 2}
-  - {fileID: 11400000, guid: 39a81359aa21c47478b1a44ad62e7ef7, type: 2}
-  - {fileID: 11400000, guid: 39a81359aa21c47478b1a44ad62e7ef7, type: 2}
-  - {fileID: 11400000, guid: 39a81359aa21c47478b1a44ad62e7ef7, type: 2}
-  - {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
-  - {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
-  - {fileID: 11400000, guid: 6396b3011eb0fd24d82d34a0b7f64a56, type: 2}
-  - {fileID: 11400000, guid: 6396b3011eb0fd24d82d34a0b7f64a56, type: 2}
-  - {fileID: 11400000, guid: 6004dd3fa3701a94da9c8e9e8e8007ea, type: 2}
-  - {fileID: 11400000, guid: 6396b3011eb0fd24d82d34a0b7f64a56, type: 2}
-  - {fileID: 11400000, guid: f1a8d4d8254f11246af6fbb26e22960b, type: 2}
-  - {fileID: 11400000, guid: f1a8d4d8254f11246af6fbb26e22960b, type: 2}
-  - {fileID: 11400000, guid: f1a8d4d8254f11246af6fbb26e22960b, type: 2}
+  - probability: 0.5
+    item: {fileID: 11400000, guid: b7802b38d71255a4f83f872497a222c7, type: 2}
+  - probability: 0.3
+    item: {fileID: 11400000, guid: 39a81359aa21c47478b1a44ad62e7ef7, type: 2}
+  - probability: 0.2
+    item: {fileID: 11400000, guid: 6396b3011eb0fd24d82d34a0b7f64a56, type: 2}
+  - probability: 0.1
+    item: {fileID: 11400000, guid: 1d2b0093842f3764fb99bc508c7dcbad, type: 2}
+  - probability: 0.1
+    item: {fileID: 11400000, guid: 6004dd3fa3701a94da9c8e9e8e8007ea, type: 2}
+  - probability: 0.2
+    item: {fileID: 11400000, guid: f1a8d4d8254f11246af6fbb26e22960b, type: 2}
+  - probability: 0.05
+    item: {fileID: 11400000, guid: d6157af35c8d23644ac4ab23cf2ebf02, type: 2}

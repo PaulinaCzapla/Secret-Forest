@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DebugTools;
 using InteractableItems.CollectableItems;
 using InteractableItems.CollectableItems.Items;
+using PlayerInteractions.Input;
 using PlayerInteractions.Interfaces;
 using UI.StorageUI;
 using UnityEngine;
@@ -52,6 +53,7 @@ namespace InteractableItems
 
         public void Interact()
         {
+            //InputManager.TapEnable = false;
             _animator.SetTrigger("open");
             ChestUIStaticEvents.InvokeOpenChest(_items, this);
          //   Invoke();
@@ -60,6 +62,7 @@ namespace InteractableItems
 
         public void Close()
         {
+          //  InputManager.TapEnable = true;
             _animator.SetTrigger("close");
         }
         

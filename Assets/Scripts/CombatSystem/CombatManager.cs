@@ -42,15 +42,15 @@ namespace CombatSystem
 
         private void PlayerBowAttack()
         {
-            playerAnimationController.AttackBow();
-            StartCoroutine(PlayerAttack());
+            bool isCritical = RandomWithProbabilityGenerator.GetRandom(_critical, 1 - _critical);
+            playerAnimationController.AttackBow(isCritical);
+            StartCoroutine(PlayerAttack(isCritical ? 2* _playerStats.currentDamage : _playerStats.currentDamage, 0.25f));
         }
 
-        private IEnumerator PlayerAttack()
+        private IEnumerator PlayerAttack(float dmg, float hittime)
         {
             StaticCombatEvents.InvokeToggleCombatButtonsUI(false);
-            yield return new WaitForSeconds(0.25f);
-            var dmg = _playerStats.currentDamage;
+            yield return new WaitForSeconds(hittime);
             _currentEnemy.Hit(dmg);
 
             StartCoroutine(EnemyTurn());
@@ -58,8 +58,9 @@ namespace CombatSystem
 
         private void PlayerSwordAttack()
         {
-            playerAnimationController.AttackSword();
-            StartCoroutine(PlayerAttack());
+            bool isCritical = RandomWithProbabilityGenerator.GetRandom(_critical, 1 - _critical);
+            playerAnimationController.AttackSword(isCritical);
+            StartCoroutine(PlayerAttack(isCritical ? 2* _playerStats.currentDamage : _playerStats.currentDamage, 0.35f));
         }
 
         private void CombatStarted(Enemy enemy)
@@ -124,17 +125,17 @@ namespace CombatSystem
             {
                 if (difficulty == DifficultyLevel.Easy)
                 {
-                    _dmg = Mathf.Max(1, _playerStats.currentDamage * 0.8f);
-                    _defense = ValueRounder.RoundUp(_playerStats.currentMaxHealthValue * 0.8f);
-                    _critical = _playerStats.currentCritical * 0.6f;
-                    _dodge = _playerStats.currentDodgeChance * 0.6f;
+                    _dmg = Mathf.Max(1, _playerStats.currentDamage * 0.6f);
+                    _defense = ValueRounder.RoundUp(_playerStats.currentMaxHealthValue * 0.6f);
+                    _critical = _playerStats.currentCritical * 0.5f;
+                    _dodge = _playerStats.currentDodgeChance * 0.5f;
                 }
                 else
                 {
-                    _dmg = Mathf.Max(1, _playerStats.currentDamage * 1.3f);
-                    _defense = ValueRounder.RoundUp(_playerStats.currentMaxHealthValue * 1.3f);
-                    _critical = _playerStats.currentCritical * 0.85f;
-                    _dodge = _playerStats.currentDodgeChance * 0.85f;
+                    _dmg = Mathf.Max(1, _playerStats.currentDamage * 0.8f);
+                    _defense = ValueRounder.RoundUp(_playerStats.currentMaxHealthValue * 0.9f);
+                    _critical = _playerStats.currentCritical * 0.8f;
+                    _dodge = _playerStats.currentDodgeChance * 0.8f;
                 }
             }
 

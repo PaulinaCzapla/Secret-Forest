@@ -13,6 +13,7 @@ namespace GameManager
         public int CurrentLevelNum { get; set; } = 0;
         public string CurrentGladeID { get; set; }
         public BaseGlade CurrentGlade { get; set; }
+        public Transform PlayerTransform { get; private set; }
         public PlayerEquipment Equipment { get; private set; }
         public LevelsConfigSO LevelsConfig => _levelConfig;
         private PlayerStatsSO _playerStats;
@@ -58,11 +59,11 @@ namespace GameManager
                         break;
 
                     case ItemValueType.DodgeChance:
-                        multiplier = Mathf.Clamp(item.GetTypeValue(type) + 0.5f, 0, 22.5f);
+                        multiplier = Mathf.Clamp(item.GetTypeValue(type) + 0.5f, 0, 10);
                         minValue = (item.GetTypeValue(type) - 10) < 0 ? 0 : item.GetTypeValue(type) - 10;
                         break;
                     case ItemValueType.CriticalDamageChance:
-                        multiplier = Mathf.Clamp(item.GetTypeValue(type) + 0.5f, 0, 50f);
+                        multiplier = Mathf.Clamp(item.GetTypeValue(type) + 0.5f, 0, 35f);
                         minValue = (item.GetTypeValue(type) - 10) < 0 ? 0 : item.GetTypeValue(type) - 10;
                         break;
                 }
@@ -70,11 +71,12 @@ namespace GameManager
 
             return (multiplier,minValue);
         }
-        public void Init(PlayerStatsSO playerStats, LevelsConfigSO levelsConfigSo)
+        public void Init(PlayerStatsSO playerStats, LevelsConfigSO levelsConfigSo, Transform player)
         {
             _playerStats = playerStats;
             _levelConfig = levelsConfigSo;
             Equipment = new PlayerEquipment();
+            PlayerTransform = player;
         }
     }
 }

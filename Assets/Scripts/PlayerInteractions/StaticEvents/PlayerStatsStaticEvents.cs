@@ -12,13 +12,13 @@ namespace PlayerInteractions.StaticEvents
             onHungerValueChanged.AddListener(subscriber);
         public static void UnsubscribeFromHungerValueChanged (UnityAction<float> subscriber) =>
             onHungerValueChanged.RemoveListener(subscriber);
-        public static void InvokeHungerValueChanged (float value) => onHungerValueChanged.Invoke(value);
+        public static void InvokeHungerValueChanged (float additionalValue) => onHungerValueChanged.Invoke(additionalValue);
         
         public static void SubscribeToHealthValueChanged (UnityAction<float> subscriber) =>
             onHealthValueChanged .AddListener(subscriber);
         public static void UnsubscribeFromHealthValueChanged(UnityAction<float> subscriber) =>
             onHealthValueChanged .RemoveListener(subscriber);
-        public static void InvokeHealthValueChanged (float value) =>onHealthValueChanged .Invoke(value);
+        public static void InvokeHealthValueChanged (float additionalValue) =>onHealthValueChanged .Invoke(additionalValue);
 
     }
 }

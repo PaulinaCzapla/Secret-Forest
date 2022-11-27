@@ -35,8 +35,10 @@ namespace PlayerInteractions
             _playerStats.currentDamage = (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.Damage) ??
                            0) + (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.Damage) ?? 0) + _playerStats.currentBaseDamage;
 
-            _playerStats.currentCritical = (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0) +
-                (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0);
+            _playerStats.currentCritical =
+                (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0) +
+                (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0)
+                + _playerStats.initialCritical;
 
             _playerStats.currentDefense = (_equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.Defence) ??
                                           0) + (_equipment[ItemType.Breastplate]?.GetTypeValue(ItemValueType.Defence) ??
@@ -46,7 +48,8 @@ namespace PlayerInteractions
             _playerStats.currentDodgeChance = (_equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.DodgeChance) ??
                                           0) + (_equipment[ItemType.Breastplate]?.GetTypeValue(ItemValueType.DodgeChance) ??
                                           0) + (_equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.DodgeChance) ??
-                                          0) + (_equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.DodgeChance) ?? 0);
+                                          0) + (_equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.DodgeChance) ?? 0)
+                + _playerStats.initialDodgeChance;
             
             _playerStats.currentMaxHealthValue = _playerStats.initialDefense + _playerStats.currentDefense;
             UIStaticEvents.InvokeUpdateHealthUI();

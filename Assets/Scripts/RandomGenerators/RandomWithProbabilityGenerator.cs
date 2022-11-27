@@ -35,12 +35,9 @@ namespace RandomGenerators
         public static bool GetRandom(float trueChance, float falseChance)
         {
             float total = trueChance + falseChance;
-
             float randomPoint = Random.value * total;
-
-            if (randomPoint < trueChance)
-                return true;
-            return false;
+            
+            return randomPoint < trueChance;
         }
         
         public static T GetRandom<T>(List<Tuple<T, float>> values)
@@ -73,6 +70,9 @@ namespace RandomGenerators
         {
             float total = 0;
             List<T> result = new List<T>(amount);
+
+            if (amount == 0)
+                return result;
 
             foreach (var elem in values)
             {

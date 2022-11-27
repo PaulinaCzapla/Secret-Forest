@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Glades.GladeTypes;
 using RandomGenerators;
+using TMPro;
 using UnityEngine;
 
 namespace CombatSystem
@@ -11,9 +12,11 @@ namespace CombatSystem
     public class Enemy : MonoBehaviour
     {
         public bool IsDead => _currentHealth <= 0;
-        private Animator _animator;
         public float Defense => _defense;
 
+        [SerializeField] private TextMeshPro text;
+        
+        private Animator _animator;
         private float _defense;
         private float _damage;
         private float _dodge;
@@ -23,21 +26,34 @@ namespace CombatSystem
         
         private void Awake()
         {
+            text.gameObject.SetActive(false);
             _animator = GetComponent<Animator>();
         }
 
         public float GetAttackValue()
         {
-            _sequence = DOTween.Sequence().Append(transform.DOMoveX(transform.position.x - 1f, 0.15f))
-                .AppendCallback(() => _animator.Play("Attack"))
-                .AppendInterval(0.7f)
-                .Append(transform.DOMoveX(transform.position.x, 0.15f));
             bool isCritical = RandomWithProbabilityGenerator.GetRandom(_critical, 1 - _critical);
-
+            if (isCritical)
+            {
+                _sequence = DOTween.Sequence().Append(transform.DOMoveX(transform.position.x - 1f, 0.15f))
+                    .AppendCallback(() => _animator.Play("Attack"))
+                    .AppendCallback(() => text.text = "<color=#FB1412>critical!</color>")
+                    .AppendCallback(() => text.gameObject.SetActive(true))
+                    .AppendInterval(0.7f)
+                    .AppendCallback(() => text.gameObject.SetActive(false))
+                    .Append(transform.DOMoveX(transform.position.x, 0.15f));
+            }
+            else
+            {
+                _sequence = DOTween.Sequence().Append(transform.DOMoveX(transform.position.x - 1f, 0.15f))
+                    .AppendCallback(() => _animator.Play("Attack"))
+                    .AppendInterval(0.7f)
+                    .Append(transform.DOMoveX(transform.position.x, 0.15f));
+            }
+            
             return isCritical ? 2 * _damage : _damage;
         }
         
-
         public void Hit(float dmg)
         {
             bool isDodged = RandomWithProbabilityGenerator.GetRandom(_dodge, 1 - _dodge);
@@ -47,13 +63,22 @@ namespace CombatSystem
                 _currentHealth -= dmg;
                 StaticCombatEvents.InvokeUpdateEnemyHealthUI(_currentHealth,_defense);
                 _animator.Play("Hit");
+                _sequence = DOTween.Sequence().AppendCallback(() => text.text = "<color=#FB1412>-" + dmg + "</color>")
+                    .AppendCallback(() => text.gameObject.SetActive(true))
+                    .AppendInterval(0.4f)
+                    .AppendCallback(() => text.gameObject.SetActive(false));
                 
                 if(_currentHealth <= 0)
                     Die();
             }
             else // dodged an attack
             {
-                
+                _sequence = DOTween.Sequence().AppendCallback(() => text.text = "dodged!")
+                    .AppendCallback(() => text.gameObject.SetActive(true))
+                    .Append(transform.DOMoveX(transform.position.x + 0.2f, 0.15f))
+                    .AppendInterval(0.1f)
+                    .Append(transform.DOMoveX(transform.position.x, 0.15f))
+                    .AppendCallback(() => text.gameObject.SetActive(false));
             }
         }
 

@@ -2,6 +2,7 @@
 using GameManager;
 using Glades;
 using PlayerInteractions.StaticEvents;
+using UI;
 using UnityEngine;
 
 namespace PlayerInteractions
@@ -13,6 +14,7 @@ namespace PlayerInteractions
         private void OnEnable()
         {
             PlayerMovementStaticEvents.SubscribeToTryMovePlayerToGlade(TryMovePlayer);
+            
         }
 
         private void OnDisable()
