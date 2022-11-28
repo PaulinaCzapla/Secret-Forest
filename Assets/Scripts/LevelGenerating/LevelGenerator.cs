@@ -210,14 +210,14 @@ namespace LevelGenerating
                 }
 
                 newGlade.GridCell = grid.levelsGrid[(int) newPosition.x, (int) newPosition.y];
-                var adjacent = new AdjacentGlade(AdjacentType.Basic);
+                var adjacent = new AdjacentGlade(AdjacentType.Basic, newGlade);
                 spawned.AdjacentGlades.Add(side, adjacent);
 
-                newGlade.AdjacentGlades.Add(GetOppositeSide(side), adjacent);
+                newGlade.AdjacentGlades.Add(GetOppositeSide(side), new AdjacentGlade(AdjacentType.Basic, spawned));
 
                 CheckOtherAdjacent(newGlade);
-                spawned.Initialize();
-                newGlade.Initialize();
+                spawned.Initialize(false);
+                newGlade.Initialize(false);
 
                 _spawnedGlades.Add(newGlade);
                 SetCameraLimits(newGlade.GridCell.Position);
@@ -267,10 +267,11 @@ namespace LevelGenerating
                         new Tuple<AdjacentType, float>(AdjacentType.Blocked, 1- _levelAttributes.roomsConnectionChance/100f)
                     };
 
-                    var adjacent = new AdjacentGlade(RandomWithProbabilityGenerator.GetRandom(adjacentTypes));
-                    newGlade.AdjacentGlades.Add(adjacentSide, adjacent);
-                    adjacentGlade.AdjacentGlades.Add(GetOppositeSide(adjacentSide), adjacent);
-                    adjacentGlade.Initialize();
+                    var type = RandomWithProbabilityGenerator.GetRandom(adjacentTypes);
+                  //  var adjacent = new AdjacentGlade(RandomWithProbabilityGenerator.GetRandom(adjacentTypes));
+                    newGlade.AdjacentGlades.Add(adjacentSide, new AdjacentGlade(type, adjacentGlade));
+                    adjacentGlade.AdjacentGlades.Add(GetOppositeSide(adjacentSide), new AdjacentGlade(type, newGlade));
+                    adjacentGlade.Initialize(false);
                 }
             }
         }

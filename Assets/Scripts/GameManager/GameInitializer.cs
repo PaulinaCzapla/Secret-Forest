@@ -10,13 +10,13 @@ namespace GameManager
     {
         [SerializeField] private PlayerStatsSO playerStats;
         [SerializeField] private LevelsConfigSO levelsConfigSo;
-        [SerializeField] private Transform playerTransform;
+        [SerializeField] private PlayerAnimationController player;
         private void Start()
         {
             playerStats.InitWithDefaults();
             UIStaticEvents.InvokeUpdateHungerUI();
             UIStaticEvents.InvokeUpdateHealthUI();
-            GameController.GetInstance().Init(playerStats, levelsConfigSo, playerTransform);
+            GameController.GetInstance().Init(playerStats, levelsConfigSo, player);
         }
     }
 }

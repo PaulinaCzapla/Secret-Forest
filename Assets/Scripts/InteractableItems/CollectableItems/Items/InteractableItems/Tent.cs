@@ -63,9 +63,8 @@ namespace InteractableItems.CollectableItems.Items.InteractableItems
 
         private IEnumerator Sleep()
         {
-            
             _tentUsed.Invoke();
-            SleepUI.OnSleep.Invoke(0.7f,0.7f,0.4f);
+            SleepUI.OnSleep.Invoke(0.7f,0.7f,0.4f, transform.position);
 
             yield return new WaitForSeconds(1.8f);
              PlayerStatsStaticEvents.InvokeHealthValueChanged(hpRestored * stats.currentMaxHealthValue);

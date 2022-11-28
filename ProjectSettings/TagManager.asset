@@ -14,7 +14,7 @@ TagManager:
   - Player
   - Glade
   - InteractableObject
-  - 
+  - Mask
   - 
   - 
   - 
@@ -73,4 +73,7 @@ TagManager:
     locked: 0
   - name: Frames
     uniqueID: 73001663
+    locked: 0
+  - name: Mask
+    uniqueID: 2090563551
     locked: 0

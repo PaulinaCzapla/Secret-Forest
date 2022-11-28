@@ -46,7 +46,7 @@ namespace PlayerInteractions
                     if (currentOccupiedGlade
                         .AdjacentGlades[
                             GetAdjacentSide(currentOccupiedGlade.GridCell.PositionInGrid.Position,
-                                destination.GridCell.PositionInGrid.Position)].type != AdjacentType.Blocked)
+                                destination.GridCell.PositionInGrid.Position)].Type != AdjacentType.Blocked)
                     {
                         MoveToGlade(destination);
                     }

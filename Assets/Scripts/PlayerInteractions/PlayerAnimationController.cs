@@ -2,6 +2,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 namespace PlayerInteractions
@@ -12,12 +13,26 @@ namespace PlayerInteractions
         [SerializeField] private Animator animator;
         [SerializeField] private SpriteRenderer renderer;
         private Sequence _sequence;
-
+        private Vector3 _initialPos;
+        
         private void Awake()
         {
             text.gameObject.SetActive(false);
         }
 
+        public void GoToSleep(Vector3 targetPos, float moveTime)
+        {
+            _initialPos = transform.position;
+            
+            _sequence = DOTween.Sequence().Append(transform.DOMove(targetPos,  moveTime))
+                .Join(renderer.DOFade(0,  moveTime-0.1f));
+        }
+
+        public void StopSleeping()
+        {
+            transform.position = _initialPos;
+            renderer.DOFade(1, 0.1f);
+        }
         public void Dodged()
         {
             Sequence s = DOTween.Sequence().AppendCallback(() => text.text = "dodged!")

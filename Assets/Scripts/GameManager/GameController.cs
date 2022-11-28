@@ -3,7 +3,6 @@ using InteractableItems.CollectableItems.Items;
 using LevelGenerating;
 using PlayerInteractions;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace GameManager
 {
@@ -13,7 +12,7 @@ namespace GameManager
         public int CurrentLevelNum { get; set; } = 0;
         public string CurrentGladeID { get; set; }
         public BaseGlade CurrentGlade { get; set; }
-        public Transform PlayerTransform { get; private set; }
+        public PlayerAnimationController PlayerAnimation { get; private set; }
         public PlayerEquipment Equipment { get; private set; }
         public LevelsConfigSO LevelsConfig => _levelConfig;
         private PlayerStatsSO _playerStats;
@@ -71,12 +70,12 @@ namespace GameManager
 
             return (multiplier,minValue);
         }
-        public void Init(PlayerStatsSO playerStats, LevelsConfigSO levelsConfigSo, Transform player)
+        public void Init(PlayerStatsSO playerStats, LevelsConfigSO levelsConfigSo, PlayerAnimationController player)
         {
             _playerStats = playerStats;
             _levelConfig = levelsConfigSo;
             Equipment = new PlayerEquipment();
-            PlayerTransform = player;
+            PlayerAnimation = player;
         }
     }
 }

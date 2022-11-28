@@ -3,16 +3,16 @@ namespace Glades
 {
     public class AdjacentGlade
     {
-        public string cellID;
-
-        public AdjacentType type;
+        public AdjacentType Type { get; private set; }
+        public SpawnedGlade SpawnedGlade { get; private set; }
         
         //public AdjacentGlade(SpawnedGladeGlade glade)
         //  public AdjacentSide side;
 
-        public AdjacentGlade(AdjacentType type)
+        public AdjacentGlade(AdjacentType type, SpawnedGlade glade)
         {
-            this.type = type;
+            this.Type = type;
+            SpawnedGlade = glade;
         }
     }
 }

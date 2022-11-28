@@ -12,6 +12,7 @@ namespace Glades
     {
         public Vector2 SpawnPosition => spawnPosition.position;
         public string Id { get; private set; }
+        public bool IsVisible { get; private set; }
         public GridCell GridCell { get; set; }
 
         public BaseGlade Glade
@@ -32,34 +33,73 @@ namespace Glades
         [SerializeField] private GameObject downGate;
         [SerializeField] private GameObject leftGate;
         [SerializeField] private GameObject rightGate;
-        
+
+        [SerializeField] private Mask mask;
+
         private BaseGlade _glade;
-        
+
         private void Awake()
         {
+            mask.SetMask();
             Id = System.Guid.NewGuid().ToString();
             DisableGates();
         }
 
-        public void Initialize()
+        private void OnEnable()
+        {
+            Glade.OnPlayerArrived.AddListener(PlayerArrived);
+        }
+
+        private void OnDisable()
+        {
+            Glade.OnPlayerArrived.RemoveListener(PlayerArrived);
+        }
+
+        private void PlayerArrived()
+        {
+            SetVisibility(true);
+        }
+
+        public void Initialize(bool isVisible)
         {
             Glade.Initialize();
 
+            if (Glade.Type != GladeType.Start)
+                SetVisibility(isVisible);
+            else
+                SetVisibility(true);
+
             if (AdjacentGlades.ContainsKey(AdjacentSide.Up) &&
-                AdjacentGlades[AdjacentSide.Up].type != AdjacentType.Blocked)
+                AdjacentGlades[AdjacentSide.Up].Type != AdjacentType.Blocked)
                 upGate.SetActive(true);
 
             if (AdjacentGlades.ContainsKey(AdjacentSide.Down) &&
-                AdjacentGlades[AdjacentSide.Down].type != AdjacentType.Blocked)
+                AdjacentGlades[AdjacentSide.Down].Type != AdjacentType.Blocked)
                 downGate.SetActive(true);
 
             if (AdjacentGlades.ContainsKey(AdjacentSide.Left) &&
-                AdjacentGlades[AdjacentSide.Left].type != AdjacentType.Blocked)
+                AdjacentGlades[AdjacentSide.Left].Type != AdjacentType.Blocked)
                 leftGate.SetActive(true);
 
             if (AdjacentGlades.ContainsKey(AdjacentSide.Right) &&
-                AdjacentGlades[AdjacentSide.Right].type != AdjacentType.Blocked)
+                AdjacentGlades[AdjacentSide.Right].Type != AdjacentType.Blocked)
                 rightGate.SetActive(true);
+        }
+
+        public void SetVisibility(bool isVisible)
+        {
+            IsVisible = isVisible;
+
+            if (!isVisible)
+                mask.SetMask();
+            else
+            {
+                mask.DeactivateMask();
+                foreach (var glade in AdjacentGlades)
+                {
+                    glade.Value.SpawnedGlade.mask.ShowFrame();
+                }
+            }
         }
 
         public void Interact()
