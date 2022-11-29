@@ -10,6 +10,9 @@
         Boots,
         Breastplate,
         ShinGuards,
-        Bow
+        Bow,
+        Compass,
+        CatEyeNear,
+        EnchantedCatEye
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace InteractableItems.CollectableItems.ScriptableObjects
 {
-    public  abstract class ItemSO : ScriptableObject
+    public abstract class ItemSO : ScriptableObject
     {
         // public string Name => name;
         // public Sprite Sprite => sprite;

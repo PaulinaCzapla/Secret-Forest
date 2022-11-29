@@ -1,6 +1,10 @@
-﻿using Cinemachine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Cinemachine;
 using CombatSystem;
 using DG.Tweening;
+using Glades;
+using InteractableItems.CollectableItems.Items;
 using LevelGenerating;
 using PlayerInteractions.Input;
 using UnityEngine;
@@ -24,10 +28,10 @@ namespace CameraManagement
             MinY -= offset * offsetMultiplier;
             MaxX += offset * offsetMultiplier;
             MaxY += offset * offsetMultiplier;
-            
+
             Debug.Log("camera limits");
-            Debug.Log(MinX+ "     " + MaxX);
-            Debug.Log(MinY+ "     " + MaxY);
+            Debug.Log(MinX + "     " + MaxX);
+            Debug.Log(MinY + "     " + MaxY);
         }
     }
 
@@ -35,7 +39,7 @@ namespace CameraManagement
     {
         [SerializeField] private CinemachineVirtualCamera cam;
         [SerializeField] private CinemachineVirtualCamera zoomCam;
-        
+
         [SerializeField] private GameObject player;
 
         [Header("Camera movement settings")] [SerializeField]
@@ -59,6 +63,25 @@ namespace CameraManagement
             LevelGenerator.OnLevelGenerated += OnLevelLoaded;
             StaticCombatEvents.SubscribeToCombatStarted(EnableZoomCamera);
             StaticCombatEvents.SubscribeToCombatEnded(DisableZoomCamera);
+            ItemsStaticEvents.SubscribeToUnlockGlades(UnlockGlades);
+        }
+
+        private void UnlockGlades(List<SpawnedGlade> glades)
+        {
+            StartCoroutine(ShowGlades(glades));
+        }
+
+        private IEnumerator ShowGlades(List<SpawnedGlade> glades)
+        {
+            zoomCam.gameObject.SetActive(true);
+            cam.gameObject.SetActive(false);
+            foreach (var glade in glades)
+            {
+                zoomCam.Follow = glade.transform;
+                yield return new WaitForSeconds(1f);
+            }
+
+            DisableZoomCamera();
         }
 
         void OnPinch(Vector2 position, Vector2 delta, float magnitude)
@@ -81,6 +104,7 @@ namespace CameraManagement
             LevelGenerator.OnLevelGenerated -= OnLevelLoaded;
             StaticCombatEvents.UnsubscribeFromCombatStarted(EnableZoomCamera);
             StaticCombatEvents.UnsubscribeFromCombatEnded(DisableZoomCamera);
+            ItemsStaticEvents.UnsubscribeFromUnlockGlades(UnlockGlades);
         }
 
         private void DisableZoomCamera()
@@ -116,12 +140,12 @@ namespace CameraManagement
             var prev = Camera.main.ScreenToWorldPoint(prevPosition);
             currentPosition = Camera.main.ScreenToWorldPoint(currentPosition);
             var dir = currentPosition - (Vector2) prev;
-            
-            
+
+
             var newPosition = cam.transform.position + new Vector3(-dir.x, -dir.y, 0);
             newPosition = new Vector3(Mathf.Clamp(newPosition.x, CameraLimits.MinX, CameraLimits.MaxX),
                 Mathf.Clamp(newPosition.y, CameraLimits.MinY, CameraLimits.MaxY), newPosition.z);
-                
+
             cam.transform.position = newPosition;
         }
 
@@ -143,13 +167,14 @@ namespace CameraManagement
 
         void Zoom(float magnitude)
         {
-            float potentialOrthoSize = Mathf.Clamp(cam.m_Lens.OrthographicSize + magnitude * 2, CameraLimits.MinZoom, CameraLimits.MaxZoom);
+            float potentialOrthoSize = Mathf.Clamp(cam.m_Lens.OrthographicSize + magnitude * 2, CameraLimits.MinZoom,
+                CameraLimits.MaxZoom);
             if (cam.m_Lens.OrthographicSize != potentialOrthoSize)
             {
                 cam.m_Lens.OrthographicSize = potentialOrthoSize;
             }
         }
-        
+
         private void OnLevelLoaded()
         {
             CameraLimits.CalculateLimits();
@@ -159,7 +184,7 @@ namespace CameraManagement
         public void FocusPlayer()
         {
             cam.m_Lens.OrthographicSize = initialCameraZoom;
-            cam.Follow = player.transform; 
+            cam.Follow = player.transform;
         }
     }
 }

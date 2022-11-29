@@ -17,22 +17,21 @@ namespace LevelGenerating
     public class LevelGenerator : MonoBehaviour
     {
         public static UnityAction OnLevelGenerated { get; set; }
+        public static List<SpawnedGlade> SpawnedGlades { get; private set; }
+        public static SpawnedGlade EndGlade { get; private set; }
+        
+        [Header("First room position in grid")] 
+        [SerializeField] private Vector2 firstRoom;
 
-        [Header("First room position in grid")] [SerializeField]
-        private Vector2 firstRoom;
-
-        [Header("Scriptable objects")] [SerializeField]
-        private LevelsConfigSO levelsConfigSo;
-
+        [Header("Scriptable objects")] 
+        [SerializeField] private LevelsConfigSO levelsConfigSo;
         [SerializeField] private GladesSO gladesSo;
 
 
-        [Header("Game grid")] [SerializeField] private Grid grid;
-
-        private List<SpawnedGlade> _spawnedGlades;
-        private Dictionary<GladeType, List<SpawnedGlade>> _gladesPools;
+        [Header("Game grid")] 
+        [SerializeField] private Grid grid;
         [SerializeField] private SpawnedGlade startGlade;
-        private SpawnedGlade _endGlade;
+        private Dictionary<GladeType, List<SpawnedGlade>> _gladesPools;
         private LevelAttributes _levelAttributes;
 
 #if UNITY_EDITOR
@@ -43,7 +42,7 @@ namespace LevelGenerating
         private void Awake()
         {
             //   DontDestroyOnLoad(this);
-            _spawnedGlades = new List<SpawnedGlade>();
+            SpawnedGlades = new List<SpawnedGlade>();
             _gladesPools = new Dictionary<GladeType, List<SpawnedGlade>>();
 
             foreach (GladeType type in Enum.GetValues(typeof(GladeType)))
@@ -60,12 +59,12 @@ namespace LevelGenerating
         {
             if (startGlade)
                 startGlade.Reset();
-            if (_endGlade)
-                _endGlade.Reset();
+            if (EndGlade)
+                EndGlade.Reset();
 
-            if (_spawnedGlades != null && _spawnedGlades.Count > 0)
+            if (SpawnedGlades != null && SpawnedGlades.Count > 0)
             {
-                foreach (var glade in _spawnedGlades)
+                foreach (var glade in SpawnedGlades)
                 {
                     glade.Reset();
                     glade.gameObject.SetActive(false);
@@ -75,13 +74,13 @@ namespace LevelGenerating
                     if (type == GladeType.Start)
                         startGlade = glade;
                     else if (type == GladeType.End)
-                        _endGlade = glade;
+                        EndGlade = glade;
                     else
                         _gladesPools[glade.Glade.Type].Add(glade);
                 }
 
-                _spawnedGlades.Clear();
-                _spawnedGlades = new List<SpawnedGlade>();
+                SpawnedGlades.Clear();
+                SpawnedGlades = new List<SpawnedGlade>();
             }
         }
 
@@ -115,7 +114,7 @@ namespace LevelGenerating
             }
 
             spawnedGlade.GridCell = grid.levelsGrid[(int) firstRoom.x, (int) firstRoom.y];
-            _spawnedGlades.Add(spawnedGlade);
+            SpawnedGlades.Add(spawnedGlade);
 
             CameraLimits.MaxX = spawnedGlade.GridCell.Position.x;
             CameraLimits.MinX = spawnedGlade.GridCell.Position.x;
@@ -123,11 +122,11 @@ namespace LevelGenerating
             CameraLimits.MinY = spawnedGlade.GridCell.Position.y;
 
             int roomsToSpawn = Random.Range(_levelAttributes.minRoomsNum, _levelAttributes.maxRoomsNum);
-            int currentGladeIndex = _spawnedGlades.Count - 1;
+            int currentGladeIndex = SpawnedGlades.Count - 1;
 
             do
             {
-                SpawnedGlade spawned = _spawnedGlades[currentGladeIndex];
+                SpawnedGlade spawned = SpawnedGlades[currentGladeIndex];
                 //get available room positions
                 List<AdjacentSide> positions = GetFreeSides(spawned);
                 //get random count and random pos
@@ -140,7 +139,7 @@ namespace LevelGenerating
                     //spawn rooms
                     SpawnNewRooms(newRoomsNum, roomsToSpawn, positions, spawned);
 
-                    currentGladeIndex = _spawnedGlades.Count - 1;
+                    currentGladeIndex = SpawnedGlades.Count - 1;
                 }
                 else
                 {
@@ -183,12 +182,12 @@ namespace LevelGenerating
 
                 SpawnedGlade newGlade;
 
-                if ((_endGlade != null && type == GladeType.End) ||
+                if ((EndGlade != null && type == GladeType.End) ||
                     (_gladesPools.ContainsKey(type) && _gladesPools[type].Count > 0))
                 {
                     if (type == GladeType.End)
                     {
-                        newGlade = _endGlade;
+                        newGlade = EndGlade;
                     }
                     else
                     {
@@ -219,7 +218,7 @@ namespace LevelGenerating
                 spawned.Initialize(false);
                 newGlade.Initialize(false);
 
-                _spawnedGlades.Add(newGlade);
+                SpawnedGlades.Add(newGlade);
                 SetCameraLimits(newGlade.GridCell.Position);
             }
         }
@@ -281,7 +280,7 @@ namespace LevelGenerating
         /// </summary>
         private SpawnedGlade GetGladeAtPosition(Vector2 pos)
         {
-            foreach (var glade in _spawnedGlades)
+            foreach (var glade in SpawnedGlades)
             {
                 if (glade.GridCell.PositionInGrid.Position == pos)
                     return glade;
