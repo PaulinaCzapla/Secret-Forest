@@ -7,6 +7,7 @@ using Glades;
 using InteractableItems.CollectableItems.Items;
 using LevelGenerating;
 using PlayerInteractions.Input;
+using UI.Eq;
 using UnityEngine;
 
 namespace CameraManagement
@@ -73,12 +74,13 @@ namespace CameraManagement
 
         private IEnumerator ShowGlades(List<SpawnedGlade> glades)
         {
+            InventoryUI.Instance.CloseStorage();
             zoomCam.gameObject.SetActive(true);
             cam.gameObject.SetActive(false);
             foreach (var glade in glades)
             {
                 zoomCam.Follow = glade.transform;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(1.5f);
             }
 
             DisableZoomCamera();

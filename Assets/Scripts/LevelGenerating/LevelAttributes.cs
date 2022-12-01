@@ -31,7 +31,7 @@ namespace LevelGenerating
                 }
             }
 
-            return RandomWithProbabilityGenerator.GetRandom(_types);
+            return RandomElementsGenerator.GetRandom(_types);
         }
     }
 

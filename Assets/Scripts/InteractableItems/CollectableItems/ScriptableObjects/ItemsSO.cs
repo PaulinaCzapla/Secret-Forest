@@ -12,14 +12,14 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
     public class ItemsSO : ItemSO
     {
         [SerializeField] private List<ItemProbability> items;
-        public override Item GetItem()
+        public override Item GetRandom()
         {
             List<Tuple<Item, float>> itemsWithProbabilities = new List<Tuple<Item, float>>(items.Count);
 
             foreach (var item in items)
-                    itemsWithProbabilities.Add(new Tuple<Item, float>(item.item.GetItem(), item.probability));
+                    itemsWithProbabilities.Add(new Tuple<Item, float>(item.item.GetRandom(), item.probability));
 
-            return RandomWithProbabilityGenerator.GetRandom(itemsWithProbabilities);
+            return RandomElementsGenerator.GetRandom(itemsWithProbabilities);
         }
     }
 }

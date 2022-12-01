@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GameManager;
 using Glades;
 using LevelGenerating;
 using UI.Eq;
@@ -6,9 +7,9 @@ using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
 {
-    public class CatEyeNear : Item, IUsable
+    public class AdjacentGladesUncoverer : Item, IUsable
     {
-        public CatEyeNear(Sprite sprite, string name) : base(sprite, name)
+        public AdjacentGladesUncoverer(Sprite sprite, string name) : base(sprite, name)
         {
         }
         public override bool Collect()
@@ -29,11 +30,18 @@ namespace InteractableItems.CollectableItems.Items
         public void Use()
         {
             List<SpawnedGlade> glades = new List<SpawnedGlade>();
-            glades.Add(LevelGenerator.EndGlade);
-           
-            LevelGenerator.EndGlade.SetVisibility(true);
-            LevelGenerator.EndGlade.SetVisibility(true); 
-            ItemsStaticEvents.InvokeUnlockGlades(glades);
+            foreach (var glade in GameController.GetInstance().CurrentGlade.AdjacentGlades)
+            {
+                if (!glade.Value.SpawnedGlade.IsVisible)
+                {
+                    glades.Add(glade.Value.SpawnedGlade);
+                    glade.Value.SpawnedGlade.SetVisibility(true);
+                    glade.Value.SpawnedGlade.SetVisibility(true);
+                }
+            }
+            
+            if(glades.Count > 0)
+                ItemsStaticEvents.InvokeUnlockGlades(glades);
         }
 
     }

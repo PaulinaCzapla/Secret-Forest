@@ -32,7 +32,7 @@ namespace CombatSystem
 
         public float GetAttackValue()
         {
-            bool isCritical = RandomWithProbabilityGenerator.GetRandom(_critical, 1 - _critical);
+            bool isCritical = RandomElementsGenerator.GetRandom(_critical, 1 - _critical);
             if (isCritical)
             {
                 _sequence = DOTween.Sequence().Append(transform.DOMoveX(transform.position.x - 1f, 0.15f))
@@ -56,7 +56,7 @@ namespace CombatSystem
         
         public void Hit(float dmg)
         {
-            bool isDodged = RandomWithProbabilityGenerator.GetRandom(_dodge, 1 - _dodge);
+            bool isDodged = RandomElementsGenerator.GetRandom(_dodge, 1 - _dodge);
 
             if (!isDodged) 
             {

@@ -266,7 +266,7 @@ namespace LevelGenerating
                         new Tuple<AdjacentType, float>(AdjacentType.Blocked, 1- _levelAttributes.roomsConnectionChance/100f)
                     };
 
-                    var type = RandomWithProbabilityGenerator.GetRandom(adjacentTypes);
+                    var type = RandomElementsGenerator.GetRandom(adjacentTypes);
                   //  var adjacent = new AdjacentGlade(RandomWithProbabilityGenerator.GetRandom(adjacentTypes));
                     newGlade.AdjacentGlades.Add(adjacentSide, new AdjacentGlade(type, adjacentGlade));
                     adjacentGlade.AdjacentGlades.Add(GetOppositeSide(adjacentSide), new AdjacentGlade(type, newGlade));

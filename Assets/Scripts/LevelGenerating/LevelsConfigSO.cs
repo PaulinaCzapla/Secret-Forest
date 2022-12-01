@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameManager;
-using Glades;
-using InteractableItems.CollectableItems;
 using InteractableItems.CollectableItems.Items;
 using InteractableItems.CollectableItems.ScriptableObjects;
-using RandomGenerators;
 using UnityEngine;
 
 namespace LevelGenerating

@@ -10,7 +10,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
         [Header("Values")] 
         [SerializeField] private List<ValueType> values;
 
-        public override Item GetItem()
+        public override Item GetRandom()
         {
             switch (type)
             {

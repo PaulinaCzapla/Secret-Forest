@@ -31,7 +31,7 @@ namespace PlayerInteractions.Input
         /// Gets or sets a value indicating whether tap enable.
         /// </summary>
         /// <value><c>true</c> if tap enable; otherwise, <c>false</c>.</value>
-        public static bool tapEnable { get; set; }
+        public static bool TapEnable { get; set; }
 
         [SerializeField] InputType inputTouch = InputType.Touch;
         [SerializeField] private InputSettings settings;
@@ -40,7 +40,7 @@ namespace PlayerInteractions.Input
 
         private void Awake()
         {
-            tapEnable = true;
+            TapEnable = true;
 
 
  #if UNITY_ANDROID && !UNITY_EDITOR
@@ -90,7 +90,7 @@ namespace PlayerInteractions.Input
 
         public void BeginPress(Vector2 tapPosition, int pointerId, bool isUI)
         {
-            if (!tapEnable)
+            if (!TapEnable)
                 return;
 
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(pointerId))
@@ -112,7 +112,7 @@ namespace PlayerInteractions.Input
             Debug.LogFormat("HoldTap : {0}", tapPosition);
 #endif
 
-            if (!tapEnable)
+            if (!TapEnable)
                 return;
 
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(pointerId))
@@ -137,7 +137,7 @@ namespace PlayerInteractions.Input
             Debug.LogFormat ("Tap : {0}", tapPosition);
 #endif
 
-            if (!tapEnable)
+            if (!TapEnable)
                 return;
 
             //EventSystem.current.isP

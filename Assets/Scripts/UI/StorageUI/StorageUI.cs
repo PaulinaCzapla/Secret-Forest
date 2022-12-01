@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using InteractableItems;
 using InteractableItems.CollectableItems.Items;
+using PlayerInteractions.Input;
 using TMPro;
 using UI.Eq;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace UI.StorageUI
         {
             closeButton.onClick.AddListener(Close);
             ChestUIStaticEvents.SubscribeToOpenChest(Open);
+            ChestUIStaticEvents.SubscribeToCloseChest(Close);
             InventoryUI.Instance.OnTriedAddItem.AddListener(OnItemAdded);
         }
 
@@ -48,10 +50,12 @@ namespace UI.StorageUI
         {
             closeButton.onClick.RemoveListener(Close);
             ChestUIStaticEvents.UnsubscribeFromOpenChest(Open);
+            ChestUIStaticEvents.UnsubscribeFromCloseChest(Close);
         }
 
         public void Open(List<Item> items, Chest chest)
         {
+            InputManager.TapEnable = false;
             ResetUI();
             int i = 0;
 
@@ -77,10 +81,14 @@ namespace UI.StorageUI
 
         private void Close()
         {
-            _currentChest.OnChestEmptied -= Close;
-            chestUIObject.SetActive(false);
-            ResetUI();
-            _currentChest.Close();
+            if (_currentChest)
+            {
+                InputManager.TapEnable = true;
+                _currentChest.OnChestEmptied -= Close;
+                chestUIObject.SetActive(false);
+                ResetUI();
+                _currentChest.Close();
+            }
         }
 
         private void ResetUI()

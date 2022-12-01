@@ -1,4 +1,5 @@
-﻿using Glades.GladeTypes;
+﻿using Glades;
+using Glades.GladeTypes;
 using InteractableItems.CollectableItems.Items;
 using LevelGenerating;
 using PlayerInteractions;
@@ -11,7 +12,7 @@ namespace GameManager
         public bool IsGameplayInputLocked { get; set; }
         public int CurrentLevelNum { get; set; } = 0;
         public string CurrentGladeID { get; set; }
-        public BaseGlade CurrentGlade { get; set; }
+        public SpawnedGlade CurrentGlade { get; set; }
         public PlayerAnimationController PlayerAnimation { get; private set; }
         public PlayerEquipment Equipment { get; private set; }
         public LevelsConfigSO LevelsConfig => _levelConfig;

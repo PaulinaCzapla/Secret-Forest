@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
 {
-    public class Compass : Item, IUsable
+    public class ExitUncoverer : Item, IUsable
     {
-        public Compass(Sprite sprite, string name) : base(sprite, name)
+        public ExitUncoverer(Sprite sprite, string name) : base(sprite, name)
         {
         }
 

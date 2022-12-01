@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Random = UnityEngine.Random;
 
 namespace RandomGenerators
 {
-    public static class RandomWithProbabilityGenerator
+    public static class RandomElementsGenerator
     {
+        public static List<T> GetRandom<T>(IEnumerable<T> list, int elementsCount)
+        {
+            return list.OrderBy(arg => Guid.NewGuid()).Take(elementsCount).ToList();
+        }
+        
         public static T GetRandom<T>(Tuple<T, float>[] values)
         {
             float total = 0;

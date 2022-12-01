@@ -5,6 +5,7 @@ using InteractableItems.CollectableItems.Interfaces;
 using InteractableItems.CollectableItems.Items;
 using PlayerInteractions.Input;
 using TMPro;
+using UI.StorageUI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -145,13 +146,16 @@ namespace UI.Eq
 
         public void OpenStorage()
         {
-            //InputManager.TapEnable = false;
+            ChestUIStaticEvents.InvokeCloseChest();
+            InputManager.TapEnable = false;
+            toggleEq.isOn = true;
             storageObject.SetActive(true);
         }
 
-        private void CloseStorage()
+        public void CloseStorage()
         {
-            //InputManager.TapEnable = true;
+            InputManager.TapEnable = true;
+            toggleEq.isOn = false;
             storageObject.SetActive(false);
             ResetItemUI();
         }

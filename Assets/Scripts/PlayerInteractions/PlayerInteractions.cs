@@ -11,6 +11,7 @@ namespace PlayerInteractions
 {
     public class PlayerInteractions : MonoBehaviour
     {
+     
         [SerializeField] LayerMask layerMask;
         
         private RaycastHit2D[] _hits;

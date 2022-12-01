@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9960f3ed87094252a4e2e84c8a32b25b, type: 3}
+  m_Name: ActionItems
+  m_EditorClassIdentifier: 
+  type: 9
+  name: ActionItems
+  sprite: {fileID: 0}
+  items:
+  - probability: 0.5
+    item: {fileID: 11400000, guid: f1641edb659afea47bf46adc1000d81a, type: 2}
+  - probability: 0.3
+    item: {fileID: 11400000, guid: 727bc8b878ec6d245ae3b0fd2cc900e8, type: 2}
+  - probability: 0.2
+    item: {fileID: 11400000, guid: e6c289cc70b03ed4a99ce56981932272, type: 2}

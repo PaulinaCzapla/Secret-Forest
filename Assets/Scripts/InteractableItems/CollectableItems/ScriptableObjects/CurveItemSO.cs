@@ -9,9 +9,10 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
     [CreateAssetMenu(fileName = "EquippableItem", menuName = "ScriptableObjects/EquippableItem", order = 0)]
     public class CurveItemSO : ItemSO
     {
-        [Header("Values")] [SerializeField] private List<ValuesPossibilitiesType> values;
+        [Header("Values")] 
+        [SerializeField] private List<ValuesPossibilitiesType> values;
 
-        public override Item GetItem()
+        public override Item GetRandom()
         {
             switch (type)
             {

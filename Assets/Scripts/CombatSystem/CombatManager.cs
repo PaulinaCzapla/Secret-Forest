@@ -17,7 +17,7 @@ namespace CombatSystem
         [SerializeField] private PlayerAnimationController playerAnimationController;
         private static PlayerStatsSO _playerStats;
 
-        private int _lastRecalculatedLevel;
+        private int _lastRecalculatedLevel = -10;
         private int _recalculationInterval = 5;
         float _dmg, _defense, _dodge, _critical;
         private bool _shouldHelpPlayer;
@@ -42,7 +42,7 @@ namespace CombatSystem
 
         private void PlayerBowAttack()
         {
-            bool isCritical = RandomWithProbabilityGenerator.GetRandom(_critical, 1 - _critical);
+            bool isCritical = RandomElementsGenerator.GetRandom(_critical, 1 - _critical);
             playerAnimationController.AttackBow(isCritical);
             StartCoroutine(PlayerAttack(isCritical ? 2* _playerStats.currentDamage : _playerStats.currentDamage, 0.25f));
         }
@@ -58,7 +58,7 @@ namespace CombatSystem
 
         private void PlayerSwordAttack()
         {
-            bool isCritical = RandomWithProbabilityGenerator.GetRandom(_critical, 1 - _critical);
+            bool isCritical = RandomElementsGenerator.GetRandom(_critical, 1 - _critical);
             playerAnimationController.AttackSword(isCritical);
             StartCoroutine(PlayerAttack(isCritical ? 2* _playerStats.currentDamage : _playerStats.currentDamage, 0.35f));
         }
@@ -94,7 +94,7 @@ namespace CombatSystem
                 yield return new WaitForSeconds(1.3f);
 
                 var dmg = _currentEnemy.GetAttackValue();
-                bool dodged = RandomWithProbabilityGenerator.GetRandom(_playerStats.currentDodgeChance,
+                bool dodged = RandomElementsGenerator.GetRandom(_playerStats.currentDodgeChance,
                     1 - _playerStats.currentDodgeChance);
 
                 yield return new WaitForSeconds(0.25f);
@@ -118,10 +118,10 @@ namespace CombatSystem
             }
         }
 
+        private int _lastRecalculated = -10;
         public (float, float, float, float) GetEnemyStats(DifficultyLevel difficulty)
         {
-            if (GameController.GetInstance().CurrentLevelNum == 0 ||
-                GameController.GetInstance().CurrentLevelNum - _recalculationInterval >= _lastRecalculatedLevel)
+            if (GameController.GetInstance().CurrentLevelNum - _lastRecalculatedLevel >= _recalculationInterval)
             {
                 if (difficulty == DifficultyLevel.Easy)
                 {
@@ -137,6 +137,8 @@ namespace CombatSystem
                     _critical = _playerStats.currentCritical * 0.8f;
                     _dodge = _playerStats.currentDodgeChance * 0.8f;
                 }
+
+                _lastRecalculatedLevel = GameController.GetInstance().CurrentLevelNum;
             }
 
             return (_defense, _dmg, _dodge, _critical);
