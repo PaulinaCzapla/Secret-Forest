@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 6
   name: Breastplate
   sprite: {fileID: 1011762816, guid: c8a6c5f944c15844c949845c549082fd, type: 3}
+  id2: 
+  id: 22dec60c66d989242a3bdc13bd29c0b1
+  wasIdSet: 1
   values:
   - type: 2
     values:

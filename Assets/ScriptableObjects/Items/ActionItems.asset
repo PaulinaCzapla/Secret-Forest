@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 9
   name: ActionItems
   sprite: {fileID: 0}
+  id2: 
+  id: 03fcf9b30d530e44a80e0b41ad76a3e1
+  wasIdSet: 1
   items:
   - probability: 0.5
     item: {fileID: 11400000, guid: f1641edb659afea47bf46adc1000d81a, type: 2}

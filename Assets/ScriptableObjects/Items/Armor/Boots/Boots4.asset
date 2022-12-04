@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 5
   name: Boots
   sprite: {fileID: 1201005179, guid: c8a6c5f944c15844c949845c549082fd, type: 3}
+  id2: 
+  id: 0765e0301f1a91f42a6d57aa97553144
+  wasIdSet: 1
   values:
   - type: 5
     values:

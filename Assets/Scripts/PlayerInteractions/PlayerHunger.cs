@@ -54,8 +54,8 @@ namespace PlayerInteractions
             
             UIStaticEvents.InvokeUpdateHungerUI();
 
-            if (playerStats.currentHungerValue == 0)
-                DebugMessageSender.SendDebugMessage("Player died from hunger");
+            // if (playerStats.currentHungerValue == 0)
+            //    PlayerStatsStaticEvents.InvokePlayerDied();
         }
     }
 }

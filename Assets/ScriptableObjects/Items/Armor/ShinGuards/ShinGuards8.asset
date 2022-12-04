@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 7
   name: Shin guards
   sprite: {fileID: 1800716868, guid: c8a6c5f944c15844c949845c549082fd, type: 3}
+  id2: 
+  id: 81bba31e8f2acba4eae6c9b64b17f3f7
+  wasIdSet: 1
   values:
   - type: 2
     values:

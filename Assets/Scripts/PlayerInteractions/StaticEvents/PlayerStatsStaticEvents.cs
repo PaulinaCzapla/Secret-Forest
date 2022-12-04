@@ -7,6 +7,7 @@ namespace PlayerInteractions.StaticEvents
     {
         private static UnityEvent<float> onHungerValueChanged = new UnityEvent<float>();
         private static UnityEvent<float> onHealthValueChanged = new UnityEvent<float>();
+        private static UnityEvent onPlayerDied = new UnityEvent();
         
         public static void SubscribeToHungerValueChanged (UnityAction<float> subscriber) =>
             onHungerValueChanged.AddListener(subscriber);
@@ -20,5 +21,10 @@ namespace PlayerInteractions.StaticEvents
             onHealthValueChanged .RemoveListener(subscriber);
         public static void InvokeHealthValueChanged (float additionalValue) =>onHealthValueChanged .Invoke(additionalValue);
 
+        public static void SubscribeToPlayerDied (UnityAction subscriber) =>
+            onPlayerDied.AddListener(subscriber);
+        public static void UnsubscribeFromPlayerDied(UnityAction subscriber) =>
+            onPlayerDied .RemoveListener(subscriber);
+        public static void InvokePlayerDied () =>onPlayerDied .Invoke();
     }
 }

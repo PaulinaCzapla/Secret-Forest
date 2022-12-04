@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Onion
   sprite: {fileID: 1800838168, guid: ac2da8f4a88141440a4df99b2b728cb4, type: 3}
+  id2: 
+  id: 38b70d581f3abd3419849f477c4bd6ac
+  wasIdSet: 1
   values:
   - type: 1
     value: 3

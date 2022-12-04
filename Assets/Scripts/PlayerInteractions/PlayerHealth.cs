@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace PlayerInteractions
 {
-    public class PlayerHealth: MonoBehaviour
+    public class PlayerHealth : MonoBehaviour
     {
         [SerializeField] private PlayerStatsSO playerStats;
-        
+
         private void OnEnable()
         {
             PlayerStatsStaticEvents.SubscribeToHealthValueChanged(HealthChanged);
@@ -24,18 +24,21 @@ namespace PlayerInteractions
 
         private void OnPlayerMoved(SpawnedGlade glade)
         {
-            HealthChanged(playerStats.healthRestoredPerGlade);
+            if (playerStats.currentHungerValue != 0)
+                HealthChanged(playerStats.healthRestoredPerGlade);
+            else
+                HealthChanged(-7);
         }
 
         private void HealthChanged(float value)
         {
             playerStats.currentHealthValue = Mathf.Clamp(playerStats.currentHealthValue + value, 0,
                 playerStats.currentMaxHealthValue);
-            
+
             UIStaticEvents.InvokeUpdateHealthUI();
 
-            if (playerStats.currentHealthValue == 0)
-                DebugMessageSender.SendDebugMessage("Player died");
+            if (Mathf.Approximately(playerStats.currentHealthValue,0))
+                PlayerStatsStaticEvents.InvokePlayerDied();
         }
     }
 }

@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Nuts
   sprite: {fileID: 1722213518, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
+  id2: 
+  id: 1465d94a35422a34d8f5858a065fd160
+  wasIdSet: 1
   values:
   - type: 1
     value: 5

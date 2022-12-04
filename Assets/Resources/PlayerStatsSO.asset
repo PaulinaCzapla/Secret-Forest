@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdc4e93ede24cb78a058553026d69cd, type: 3}
   m_Name: PlayerStatsSO
   m_EditorClassIdentifier: 
-  initialMaxHunger: 25
+  initialMaxHunger: 20
   hungerLostPerMinute: 1
   hungerLostPerGlade: 0.5
-  currentMaxHungerValue: 25
-  currentHungerValue: 24
+  currentMaxHungerValue: 20
+  currentHungerValue: 0
   currentMaxHealthValue: 10
-  currentHealthValue: 9
+  currentHealthValue: 0
   healthRestoredPerGlade: 0
   initialDamage: 2
   <initialCritical>k__BackingField: 0.2
   initialDefense: 10
   <initialDodgeChance>k__BackingField: 0.2
   currentBaseDamage: 1
-  currentDamage: 1
+  currentDamage: 2
   currentCritical: 0.2
-  currentDefense: 0
-  currentDodgeChance: 0.895
+  currentDefense: 10
+  currentDodgeChance: 0.2
   initialEqSlotsCount: 4
   currentEqSlotsCount: 4

@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 3
   name: Huge health potion
   sprite: {fileID: 104434412, guid: 7b58824133ff97f43b43a16c6d9e5db4, type: 3}
+  id2: 
+  id: 03f6cdbbcc6363d4f9ac1e8c9e7a4a50
+  wasIdSet: 1
   values:
   - type: 3
     value: 20

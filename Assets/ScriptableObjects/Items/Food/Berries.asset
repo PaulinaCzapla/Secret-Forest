@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Berries
   sprite: {fileID: 115312619, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
+  id2: 
+  id: 8a864f9ba615b624e91f258dcb29f5e5
+  wasIdSet: 1
   values:
   - type: 1
     value: 2

@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Suspicious mushroom
   sprite: {fileID: -866629221, guid: 1f333a2853779a340a35935c2876112e, type: 3}
+  id2: 
+  id: a342056dad8a90545be75d559a0a7b78
+  wasIdSet: 1
   values:
   - type: 1
     value: 10

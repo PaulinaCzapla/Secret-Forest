@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Mushroom
   sprite: {fileID: 1672501328, guid: 1f333a2853779a340a35935c2876112e, type: 3}
+  id2: 
+  id: b7f774c45e6bc0f40bd97954fd66acd1
+  wasIdSet: 1
   values:
   - type: 1
     value: 2

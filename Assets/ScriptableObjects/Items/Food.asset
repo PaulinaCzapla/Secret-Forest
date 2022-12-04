@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: 
   sprite: {fileID: 0}
+  id2: 
+  id: 0b6ade822869ada489304041fd9f1d76
+  wasIdSet: 1
   items:
   - probability: 0.3
     item: {fileID: 11400000, guid: c89028e8af217864c8cbcc81561f0c93, type: 2}

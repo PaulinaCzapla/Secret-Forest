@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using CameraManagement;
 using DebugTools.Gizmos;
+using GameManager;
+using GameManager.SavesManagement;
 using Glades;
 using LevelGenerating.LevelGrid;
 using PlayerInteractions.StaticEvents;
@@ -55,7 +57,7 @@ namespace LevelGenerating
             //GenerateLevel();
         }
 
-        private void UnloadLevel()
+        public void UnloadLevel()
         {
             if (startGlade)
                 startGlade.Reset();
@@ -85,15 +87,13 @@ namespace LevelGenerating
         }
 
 
-        /// <summary>
-        /// Generates level, starting with first (entry) glade.
-        /// </summary>
-        public void GenerateLevel(int levelNum = 1)
+        public void RetrieveLevelData(GameSaveData data)
         {
+            GameController.GetInstance().CurrentLevelNum = data.levelNum;
             UnloadLevel();
-
+            
             _levelAttributes = levelsConfigSo.GetLevelAttributes();
-
+            
             //Generate first glade
             SpawnedGlade spawnedGlade;
             if (startGlade == null)
@@ -101,7 +101,7 @@ namespace LevelGenerating
                 var firstGlade = Instantiate(gladesSo.Glades[GladeType.Start],
                     grid.levelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position,
                     Quaternion.Euler(Vector3.zero));
-
+            
                 spawnedGlade = firstGlade.GetComponent<SpawnedGlade>();
             }
             else
@@ -112,18 +112,107 @@ namespace LevelGenerating
                 spawnedGlade.gameObject.SetActive(true);
                 spawnedGlade.Reset();
             }
-
+            
             spawnedGlade.GridCell = grid.levelsGrid[(int) firstRoom.x, (int) firstRoom.y];
             SpawnedGlades.Add(spawnedGlade);
-
+            
             CameraLimits.MaxX = spawnedGlade.GridCell.Position.x;
             CameraLimits.MinX = spawnedGlade.GridCell.Position.x;
             CameraLimits.MaxY = spawnedGlade.GridCell.Position.y;
             CameraLimits.MinY = spawnedGlade.GridCell.Position.y;
+            
+            //Set glades on positions
+            foreach (var glade in data.glades)
+            {
+                GladeType type = glade.type;
+                if(type == GladeType.Start)
+                    continue;
 
+                SpawnedGlade newGlade;
+                
+                if ((EndGlade != null && type == GladeType.End) ||
+                    (_gladesPools.ContainsKey(type) && _gladesPools[type].Count > 0))
+                {
+                    if (type == GladeType.End)
+                    {
+                        newGlade = EndGlade;
+                    }
+                    else
+                    {
+                        newGlade = _gladesPools[type][0];
+                        _gladesPools[type].RemoveAt(0);
+                    }
+
+                    newGlade.gameObject.SetActive(true);
+                    newGlade.gameObject.transform.position =
+                        grid.levelsGrid[(int) glade.pos.X, (int) glade.pos.Y].Position;
+                    newGlade.Reset();
+                }
+                else
+                {
+                    var spGlade = Instantiate(gladesSo.Glades[type],
+                        grid.levelsGrid[(int) glade.pos.X, (int) glade.pos.Y].Position,
+                        Quaternion.Euler(Vector3.zero));
+                    newGlade = spGlade.GetComponent<SpawnedGlade>();
+                }
+
+                newGlade.GridCell = grid.levelsGrid[(int) glade.pos.X, (int) glade.pos.Y];
+                
+                SpawnedGlades.Add(newGlade);
+                SetCameraLimits(newGlade.GridCell.Position);
+            }
+
+            int i = 0;
+            foreach (var spawned in SpawnedGlades)
+            {
+                CheckOtherAdjacentRetrieve(spawned);
+                spawned.Initialize(data.glades[i].isVisible);
+                i++;
+            }
+            
+            PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(startGlade, true);
+            OnLevelGenerated?.Invoke();
+        }
+        /// <summary>
+        /// Generates level, starting with first (entry) glade.
+        /// </summary>
+        public void GenerateLevel(int levelNum = 1)
+        {
+            
+            UnloadLevel();
+            
+            _levelAttributes = levelsConfigSo.GetLevelAttributes();
+            
+            //Generate first glade
+            SpawnedGlade spawnedGlade;
+            if (startGlade == null)
+            {
+                var firstGlade = Instantiate(gladesSo.Glades[GladeType.Start],
+                    grid.levelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position,
+                    Quaternion.Euler(Vector3.zero));
+            
+                spawnedGlade = firstGlade.GetComponent<SpawnedGlade>();
+            }
+            else
+            {
+                spawnedGlade = startGlade;
+                spawnedGlade.gameObject.transform.position =
+                    grid.levelsGrid[(int) firstRoom.x, (int) firstRoom.y].Position;
+                spawnedGlade.gameObject.SetActive(true);
+                spawnedGlade.Reset();
+            }
+            
+            spawnedGlade.GridCell = grid.levelsGrid[(int) firstRoom.x, (int) firstRoom.y];
+            SpawnedGlades.Add(spawnedGlade);
+            
+            CameraLimits.MaxX = spawnedGlade.GridCell.Position.x;
+            CameraLimits.MinX = spawnedGlade.GridCell.Position.x;
+            CameraLimits.MaxY = spawnedGlade.GridCell.Position.y;
+            CameraLimits.MinY = spawnedGlade.GridCell.Position.y;
+            
             int roomsToSpawn = Random.Range(_levelAttributes.minRoomsNum, _levelAttributes.maxRoomsNum);
             int currentGladeIndex = SpawnedGlades.Count - 1;
-
+            
             do
             {
                 SpawnedGlade spawned = SpawnedGlades[currentGladeIndex];
@@ -135,10 +224,10 @@ namespace LevelGenerating
                     var newRoomsNum = Random.Range(1, positions.Count);
                     newRoomsNum = Mathf.Clamp(newRoomsNum, 0, roomsToSpawn);
                     roomsToSpawn -= newRoomsNum;
-
+            
                     //spawn rooms
                     SpawnNewRooms(newRoomsNum, roomsToSpawn, positions, spawned);
-
+            
                     currentGladeIndex = SpawnedGlades.Count - 1;
                 }
                 else
@@ -148,9 +237,12 @@ namespace LevelGenerating
                         return;
                 }
             } while (roomsToSpawn > 0);
-
+            
             PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(startGlade, true);
             OnLevelGenerated?.Invoke();
+            
+            SaveManager.PrepareSaveData();
+            SaveManager.SaveCurrentGame();
         }
 
         /// <summary>
@@ -271,6 +363,44 @@ namespace LevelGenerating
                     newGlade.AdjacentGlades.Add(adjacentSide, new AdjacentGlade(type, adjacentGlade));
                     adjacentGlade.AdjacentGlades.Add(GetOppositeSide(adjacentSide), new AdjacentGlade(type, newGlade));
                     adjacentGlade.Initialize(false);
+                }
+            }
+        }
+        
+        /// <summary>
+        ///  Checks if there are other existing adjacent glades
+        /// </summary>
+        private void CheckOtherAdjacentRetrieve(SpawnedGlade newGlade)
+        {
+            foreach (AdjacentSide adjacentSide in GetFreeSides(newGlade))
+            {
+                Vector2 positionToCheck = newGlade.GridCell.PositionInGrid.Position;
+
+                if (adjacentSide == AdjacentSide.Up)
+                    positionToCheck += new Vector2(0, 1);
+                else if (adjacentSide == AdjacentSide.Down)
+                    positionToCheck += new Vector2(0, -1);
+                else if (adjacentSide == AdjacentSide.Left)
+                    positionToCheck += new Vector2(-1, 0);
+                else if (adjacentSide == AdjacentSide.Right)
+                    positionToCheck += new Vector2(1, 0);
+
+                SpawnedGlade adjacentGlade = GetGladeAtPosition(positionToCheck);
+
+                if (adjacentGlade != null)
+                {
+                    newGlade.AdjacentGlades.Add(adjacentSide, new AdjacentGlade(AdjacentType.Basic, adjacentGlade));
+                    adjacentGlade.AdjacentGlades.Add(GetOppositeSide(adjacentSide), new AdjacentGlade(AdjacentType.Basic, newGlade));
+                    bool isVisible = false;
+                    foreach (var glade in SaveManager.Stats.glades)
+                    {
+                        if (glade.pos.Position == adjacentGlade.GridCell.Position)
+                        {
+                            isVisible = glade.isVisible;
+                            break;
+                        }
+                    }
+                    adjacentGlade.Initialize(isVisible);
                 }
             }
         }

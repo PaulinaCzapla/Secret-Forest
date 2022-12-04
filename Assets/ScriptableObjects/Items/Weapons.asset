@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 1
   name: Weapons
   sprite: {fileID: 0}
+  id2: 
+  id: a69e4d91cb55737409f4ff0e0df74425
+  wasIdSet: 1
   items:
   - probability: 0.1
     item: {fileID: 11400000, guid: 78dd428d3e9346341b88e8c0c3dac054, type: 2}

@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Steak
   sprite: {fileID: 983136946, guid: ac2da8f4a88141440a4df99b2b728cb4, type: 3}
+  id2: 
+  id: 4752dd9af4ec9c44285a6dc0e4f60f6b
+  wasIdSet: 1
   values:
   - type: 1
     value: 12

@@ -99,7 +99,6 @@ namespace Glades
                 {
                     glade.Value.SpawnedGlade.mask.ShowFrame();
                 }
-                
             }
         }
 

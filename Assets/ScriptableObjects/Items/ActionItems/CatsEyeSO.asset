@@ -15,3 +15,6 @@ MonoBehaviour:
   type: 10
   name: Cat's Eye
   sprite: {fileID: 111136176, guid: 604bd12ac8b8c664388ccb5f1c4aaeff, type: 3}
+  id2: 
+  id: 1b2443a59f8dc5a43b8283c21dbe397e
+  wasIdSet: 1

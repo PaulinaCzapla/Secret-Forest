@@ -15,3 +15,6 @@ MonoBehaviour:
   type: 9
   name: Compass
   sprite: {fileID: 21300000, guid: 328f1886453c2d04190e1f95b58896a0, type: 3}
+  id2: 
+  id: 050edbc0f7b1d794ca6f841a70f9cec3
+  wasIdSet: 1

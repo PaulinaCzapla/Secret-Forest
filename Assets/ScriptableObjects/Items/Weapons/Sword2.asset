@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 1
   name: Sword
   sprite: {fileID: -1225254080, guid: c8a6c5f944c15844c949845c549082fd, type: 3}
+  id2: 
+  id: 0691f9155fb191f4caf6fe0e037b03fe
+  wasIdSet: 1
   values:
   - type: 0
     values:

@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Currant
   sprite: {fileID: 627562932, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
+  id2: 
+  id: 13ac027ffee68be4d8f1430f027769e7
+  wasIdSet: 1
   values:
   - type: 1
     value: 2

@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 4
   name: Helmet
   sprite: {fileID: 338378067, guid: c8a6c5f944c15844c949845c549082fd, type: 3}
+  id2: 
+  id: bd3202ace1b29da4bad2bfc768d0671e
+  wasIdSet: 1
   values:
   - type: 2
     values:

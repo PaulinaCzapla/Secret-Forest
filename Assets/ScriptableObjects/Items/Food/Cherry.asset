@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Cherry
   sprite: {fileID: -770196248, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
+  id2: 
+  id: 3cbf8c868171d4a409bd5b75d70cdc48
+  wasIdSet: 1
   values:
   - type: 1
     value: 2

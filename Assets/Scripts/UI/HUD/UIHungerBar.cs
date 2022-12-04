@@ -29,7 +29,7 @@ namespace UI.HUD
 
         protected override void Refresh()
         {
-            if (Mathf.Abs(_prevValue - stats.currentHungerValue) >= 1 || _fistInit)
+            if (Mathf.Abs(_prevValue - Mathf.Abs(stats.currentHungerValue)) >= 1 || _fistInit || Mathf.Approximately(stats.currentHungerValue,0))
             {
                 slider.value = stats.currentHungerValue / stats.currentMaxHungerValue;
                 valueText.text = ValueRounder.RoundUp(stats.currentHungerValue).ToString("F0");

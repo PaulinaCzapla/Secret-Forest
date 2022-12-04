@@ -25,7 +25,7 @@ namespace UI.HUD
 
         protected override void Refresh()
         {
-            if (Mathf.Abs(_prevValue - stats.currentHealthValue) >= 1 || _fistInit)
+            if (Mathf.Abs(_prevValue - Mathf.Abs(stats.currentHealthValue)) >= 1 || _fistInit || Mathf.Approximately(stats.currentHealthValue,0))
             {
                 slider.value = stats.currentHealthValue / stats.currentMaxHealthValue;
                 valueText.text = ValueRounder.RoundUp(stats.currentHealthValue).ToString("F0");

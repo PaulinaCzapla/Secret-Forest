@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Blackberry
   sprite: {fileID: 70844117, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
+  id2: 
+  id: d7d970629a99b62469bdc552faf24ef0
+  wasIdSet: 1
   values:
   - type: 1
     value: 2

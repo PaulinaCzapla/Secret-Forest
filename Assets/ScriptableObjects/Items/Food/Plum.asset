@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Plum
   sprite: {fileID: -48416059, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
+  id2: 
+  id: 615ef7bb5ea39de408c5c7b9fb0c6a11
+  wasIdSet: 1
   values:
   - type: 1
     value: 3

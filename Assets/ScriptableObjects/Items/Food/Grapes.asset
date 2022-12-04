@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Grapes
   sprite: {fileID: 376858051, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
+  id2: 
+  id: bf2de6d74e21ec0439ca5d8580a3e23d
+  wasIdSet: 1
   values:
   - type: 1
     value: 4

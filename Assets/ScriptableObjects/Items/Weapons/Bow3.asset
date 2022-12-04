@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 8
   name: Bow
   sprite: {fileID: 376024042, guid: cad96701bc4de0246a1fa2622d040e51, type: 3}
+  id2: 
+  id: d8339b42f7960e14780ae4b81a8441eb
+  wasIdSet: 1
   values:
   - type: 0
     values:

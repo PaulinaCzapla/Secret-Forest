@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Pear
   sprite: {fileID: -1177665020, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
+  id2: 
+  id: f7544150af353ad40bb6bcaded6d7c65
+  wasIdSet: 1
   values:
   - type: 1
     value: 4

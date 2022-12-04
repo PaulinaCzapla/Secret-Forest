@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 4
   name: Hood
   sprite: {fileID: -367862282, guid: 387bbe420c77a9647a5caa08876e287f, type: 3}
+  id2: 
+  id: 56ca9815e2dc28a49b29ff098ecc35dc
+  wasIdSet: 1
   values:
   - type: 2
     values:

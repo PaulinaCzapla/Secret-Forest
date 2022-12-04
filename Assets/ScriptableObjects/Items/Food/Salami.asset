@@ -15,6 +15,9 @@ MonoBehaviour:
   type: 0
   name: Salami
   sprite: {fileID: 1904826226, guid: ac2da8f4a88141440a4df99b2b728cb4, type: 3}
+  id2: 
+  id: 00b8223eb0be92141a93088a97148019
+  wasIdSet: 1
   values:
   - type: 1
     value: 6

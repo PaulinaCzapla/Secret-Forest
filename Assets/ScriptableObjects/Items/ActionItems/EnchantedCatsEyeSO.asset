@@ -15,3 +15,6 @@ MonoBehaviour:
   type: 11
   name: Enchanted Cat's Eye
   sprite: {fileID: 1128683016, guid: 604bd12ac8b8c664388ccb5f1c4aaeff, type: 3}
+  id2: 
+  id: cd15f3624cbcb3b468a6b15fd89824c5
+  wasIdSet: 1
