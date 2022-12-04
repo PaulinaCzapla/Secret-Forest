@@ -16,7 +16,8 @@ namespace UI.Eq
     {
         public UnityEvent<bool> OnTriedAddItem { get; set; } = new UnityEvent<bool>();
         public static InventoryUI Instance { get; private set; }
-
+        public List<Item> StoredItems => _storedItems;
+        
         [SerializeField] private GameObject storageObject;
         [SerializeField] private Toggle toggleEq;
         [Header("Slots")] [SerializeField] private List<InventorySlot> slots;
@@ -27,7 +28,6 @@ namespace UI.Eq
         [SerializeField] private InventorySlot bootsSlot;
         [SerializeField] private InventorySlot shinGuardsSlot;
 
-
         [Header("Item menu")] [SerializeField] private Button actionButton;
         [SerializeField] private TextMeshProUGUI actionButtonText;
         [SerializeField] private TextMeshProUGUI itemStats;
@@ -36,7 +36,6 @@ namespace UI.Eq
 
         private List<Item> _storedItems = new List<Item>();
         private InventorySlot _currentSelected;
-
         private Dictionary<ItemType, InventorySlot> _equipmentElements;
 
         private void Awake()
@@ -49,8 +48,6 @@ namespace UI.Eq
             {
                 Instance = this;
             }
-
-            InitializeStorage(4);
 
             _equipmentElements = new Dictionary<ItemType, InventorySlot>();
             _equipmentElements.Add(ItemType.Boots, bootsSlot);
@@ -100,8 +97,13 @@ namespace UI.Eq
             if (items != null)
             {
                 _storedItems = items;
-                RefreshInventory();
+               
             }
+            else
+            {
+                _storedItems = new List<Item>();
+            }
+            RefreshInventory();
         }
 
         private void RefreshEquipment()
@@ -183,6 +185,7 @@ namespace UI.Eq
             if (oldItem != null)
                 ItemCollected(oldItem);
 
+            _storedItems.Remove(itemToBeEquip);
             RefreshEquipment();
         }
 

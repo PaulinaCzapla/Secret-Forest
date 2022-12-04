@@ -8,16 +8,20 @@ namespace InteractableItems.CollectableItems.Items
     public abstract class Item : ICollectable
     {
         public UnityEvent onCollected { get; set; } = new UnityEvent();
+        public ItemType Type { get; private set; }
         public Sprite Sprite => _sprite;
+        public string ID { get; private set; }
         public string Name => _name;
 
         private string _name;
         private Sprite _sprite;
 
-        protected Item(Sprite sprite, string name)
+        protected Item(Sprite sprite, string name, string id, ItemType type)
         {
             _name = name;
             _sprite = sprite;
+            ID = id;
+            Type = type;
         }
 
         public abstract bool Collect();

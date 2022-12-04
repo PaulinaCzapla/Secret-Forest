@@ -122,8 +122,10 @@ MonoBehaviour:
       item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
     - probability: 0.2
       item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
-    - probability: 1
+    - probability: 0.749
       item: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
+    - probability: 1
+      item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
   - maxLevelNum: 6
     items:
     - probability: 0.4

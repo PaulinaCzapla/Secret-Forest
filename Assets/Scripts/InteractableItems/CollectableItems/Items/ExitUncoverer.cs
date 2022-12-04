@@ -9,7 +9,8 @@ namespace InteractableItems.CollectableItems.Items
 {
     public class ExitUncoverer : Item, IUsable
     {
-        public ExitUncoverer(Sprite sprite, string name) : base(sprite, name)
+        public ExitUncoverer(Sprite sprite, string name, string id, ItemType type) 
+            : base(sprite, name, id, type)
         {
         }
 

@@ -9,7 +9,8 @@ namespace InteractableItems.CollectableItems.Items
     {
         private List<ValueType> _values;
 
-        public Potion(List<ValueType> values, Sprite sprite, string name) : base(sprite, name)
+        public Potion(List<ValueType> values, Sprite sprite, string name, string id, ItemType type) 
+            : base(sprite, name, id, type)
         {
             _values = values;
         }

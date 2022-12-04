@@ -12,7 +12,8 @@ namespace InteractableItems.CollectableItems.Items
     public class RandomGladesUncoverer : Item, IUsable
     {
         private int _gladesToUncover = 3;
-        public RandomGladesUncoverer(Sprite sprite, string name) : base(sprite, name)
+        public RandomGladesUncoverer(Sprite sprite, string name, string id, ItemType type) 
+            : base(sprite, name, id, type)
         {
         }
 

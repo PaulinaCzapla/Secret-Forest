@@ -3,6 +3,7 @@ using InteractableItems.CollectableItems.Items;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using ValueRepresentation;
+using ValueType = InteractableItems.CollectableItems.Items.ValueType;
 
 namespace InteractableItems.CollectableItems.ScriptableObjects
 {
@@ -40,7 +41,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                             dodgeValue = newValue;
                     }
 
-                    return new Armor(defenceValue, dodgeValue, sprite, name, type);
+                    return new Armor(defenceValue, dodgeValue, sprite, name, ID, type);
                     break;
                 }
                 case ItemType.Bow:
@@ -65,7 +66,56 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                             damageValue = newValue;
                     }
 
-                    return new Weapon(damageValue, criticalValue, sprite, name,
+                    return new Weapon(damageValue, criticalValue, sprite, name, ID,
+                        type);
+
+                    break;
+                }
+                default:
+                    return null;
+            }
+        }
+
+        public override Item GetItem(ItemType initType, List<ValueType> initValues)
+        {
+             switch (initType)
+            {
+                case ItemType.Boots:
+                case ItemType.Breastplate:
+                case ItemType.Helmet:
+                case ItemType.ShinGuards:
+                {
+                    float defenceValue = 0;
+                    float dodgeValue = 0;
+
+                    foreach (var value in initValues)
+                    {
+                        if (value.Type == ItemValueType.Defence)
+                            defenceValue = value.Value;
+                        
+                        if (value.Type == ItemValueType.DodgeChance)
+                            dodgeValue = value.Value;
+                    }
+
+                    return new Armor(defenceValue, dodgeValue, sprite, name, ID, type);
+                    break;
+                }
+                case ItemType.Bow:
+                case ItemType.WhiteWeapon:
+                {
+                    float damageValue = 0;
+                    float criticalValue = 0;
+
+                    foreach (var value in initValues)
+                    {
+                        if (value.Type == ItemValueType.CriticalDamageChance)
+                            criticalValue = value.Value;
+
+                        if (value.Type == ItemValueType.Damage)
+                            damageValue = value.Value;
+                    }
+
+                    return new Weapon(damageValue, criticalValue, sprite, name, ID,
                         type);
 
                     break;

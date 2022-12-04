@@ -9,14 +9,12 @@ namespace InteractableItems.CollectableItems.Items
 {
     public class Weapon : WearableItem
     {
-        private float _criticalHitChance;
-        private float _damage;
-
-        public Weapon(float damage, float criticalHitChance, Sprite sprite, string name, ItemType type) : base(type,
-            sprite, name)
+        public Weapon(float damage, float criticalHitChance, Sprite sprite, string name, string id,
+            ItemType type) : base(type,
+            sprite, name, id)
         {
-            _damage = damage;
-            _criticalHitChance = criticalHitChance;
+            Values.Add(new ValueType(ItemValueType.Damage, damage));
+            Values.Add(new ValueType(ItemValueType.CriticalDamageChance, criticalHitChance));
         }
 
 
@@ -25,7 +23,8 @@ namespace InteractableItems.CollectableItems.Items
             string text = "";
             float damageValue = GetTypeValue(ItemValueType.Damage);
 
-            if (!(damageValue == 0 && GameManager.GameController.GetInstance().Equipment.GetWeaponCurrentDamage(Type) == 0))
+            if (!(damageValue == 0 &&
+                  GameManager.GameController.GetInstance().Equipment.GetWeaponCurrentDamage(Type) == 0))
             {
                 float value = damageValue -
                               GameManager.GameController.GetInstance().Equipment.GetWeaponCurrentDamage(Type);
@@ -37,7 +36,7 @@ namespace InteractableItems.CollectableItems.Items
             float critialValue = GetTypeValue(ItemValueType.CriticalDamageChance);
 
             if (!(critialValue == 0 && GameManager.GameController.GetInstance().Equipment
-                .GetWeaponCurrentCriticalChance(Type) ==0))
+                .GetWeaponCurrentCriticalChance(Type) == 0))
             {
                 float value = critialValue - GameManager.GameController.GetInstance().Equipment
                     .GetWeaponCurrentCriticalChance(Type);
@@ -67,17 +66,18 @@ namespace InteractableItems.CollectableItems.Items
                 text += (critialValue >= 0
                     ? "+" + critialValue + "% critical damage chance\n"
                     : critialValue + "% critical damage chance\n");
-            
+
             text.Trim('\n');
             return text;
         }
 
         public override float GetTypeValue(ItemValueType type)
         {
-            if (type == ItemValueType.Damage)
-                return _damage;
-            if (type == ItemValueType.CriticalDamageChance)
-                return _criticalHitChance;
+            foreach (var value in Values)
+            {
+                if (value.Type == type)
+                    return value.Value;
+            }
 
             return 0;
         }

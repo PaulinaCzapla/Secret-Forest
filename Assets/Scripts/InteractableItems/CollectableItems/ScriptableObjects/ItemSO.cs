@@ -5,6 +5,7 @@ using InteractableItems.CollectableItems.Items;
 using UnityEditor;
 using UnityEngine;
 using Attributes;
+using ValueType = InteractableItems.CollectableItems.Items.ValueType;
 
 namespace InteractableItems.CollectableItems.ScriptableObjects
 {
@@ -19,12 +20,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
        [Attributes.ReadOnly] [SerializeField] protected string id;
 
        [HideInInspector] [SerializeField] private bool wasIdSet = false;
-        private void Reset()
-        {
-            
-        }
-
-        private void OnValidate()
+       private void OnValidate()
         {
             if (!wasIdSet)
             {
@@ -35,5 +31,6 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
         }
 
         public abstract Item GetRandom();
+        public abstract Item GetItem(ItemType initType, List<ValueType> initValues);
     }
 }

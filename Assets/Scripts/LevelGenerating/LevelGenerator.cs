@@ -154,6 +154,8 @@ namespace LevelGenerating
                         grid.levelsGrid[(int) glade.pos.X, (int) glade.pos.Y].Position,
                         Quaternion.Euler(Vector3.zero));
                     newGlade = spGlade.GetComponent<SpawnedGlade>();
+                    if (type == GladeType.End)
+                        EndGlade = newGlade;
                 }
 
                 newGlade.GridCell = grid.levelsGrid[(int) glade.pos.X, (int) glade.pos.Y];
@@ -298,6 +300,8 @@ namespace LevelGenerating
                         grid.levelsGrid[(int) newPosition.x, (int) newPosition.y].Position,
                         Quaternion.Euler(Vector3.zero));
                     newGlade = glade.GetComponent<SpawnedGlade>();
+                    if (type == GladeType.End)
+                        EndGlade = newGlade;
                 }
 
                 newGlade.GridCell = grid.levelsGrid[(int) newPosition.x, (int) newPosition.y];

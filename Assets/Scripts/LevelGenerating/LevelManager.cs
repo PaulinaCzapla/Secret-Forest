@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using GameManager;
 using GameManager.SavesManagement;
+using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.ScriptableObjects;
 using PlayerInteractions;
 using PlayerInteractions.StaticEvents;
+using UI.Eq;
 using UI.Events;
 using UnityEngine;
 
@@ -13,14 +17,15 @@ namespace LevelGenerating
         [SerializeField] private LevelGenerator levelGenerator;
         [SerializeField] private PlayerStatsSO playerStats;
         [SerializeField] private LevelsConfigSO levelsConfigSo;
+        [SerializeField] private ItemsSO itemsSo;
         [SerializeField] private PlayerAnimationController player;
-        
+
         private void Start()
         {
             UIStaticEvents.InvokeUpdateHungerUI();
             UIStaticEvents.InvokeUpdateHealthUI();
-            GameController.GetInstance().Init(playerStats, levelsConfigSo, player);
         }
+
         private void OnEnable()
         {
             PlayerStatsStaticEvents.SubscribeToPlayerDied(OnPlayerDied);
@@ -34,6 +39,26 @@ namespace LevelGenerating
         public void LoadGame()
         {
             SaveManager.ReadData();
+            List<Item> items = new();
+            List<Item> equippedItems = new();
+
+            foreach (var item in SaveManager.Stats.items)
+            {
+                var it = itemsSo.Items[item.id];
+
+                if (item.equipped)
+                {
+                    equippedItems.Add(it.GetItem(item.type, item.values));
+                }
+                else
+                {
+                    items.Add(it.GetItem(item.type, item.values));
+                }
+            }
+
+            GameController.GetInstance().Init(playerStats, levelsConfigSo, player, new PlayerEquipment(equippedItems));
+            InventoryUI.Instance.InitializeStorage(4, items);
+            
             levelGenerator.RetrieveLevelData(SaveManager.Stats);
             UIStaticEvents.InvokeUpdateHungerUI();
             UIStaticEvents.InvokeUpdateHealthUI();
@@ -42,10 +67,15 @@ namespace LevelGenerating
         public void StartNewGame()
         {
             playerStats.InitWithDefaults();
+            GameController.GetInstance().Init(playerStats, levelsConfigSo, player, new PlayerEquipment(null));
+            InventoryUI.Instance.InitializeStorage(4, null);
+
+
             UIStaticEvents.InvokeUpdateHungerUI();
             UIStaticEvents.InvokeUpdateHealthUI();
             levelGenerator.GenerateLevel(GameManager.GameController.GetInstance().CurrentLevelNum);
         }
+
         public void LevelFinished()
         {
             GameManager.GameController.GetInstance().CurrentLevelNum++;

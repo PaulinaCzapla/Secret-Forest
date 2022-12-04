@@ -11,7 +11,8 @@ namespace InteractableItems.CollectableItems.Items
     {
         private List<ValueType> _values;
 
-        public Food(List<ValueType> values, Sprite sprite, string name) : base(sprite, name)
+        public Food(List<ValueType> values, Sprite sprite, string name, string id, ItemType type) 
+            : base(sprite, name, id, type)
         {
             _values = values;
         }

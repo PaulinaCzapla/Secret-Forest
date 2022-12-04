@@ -8,14 +8,12 @@ namespace InteractableItems.CollectableItems.Items
 {
     public class Armor : WearableItem
     {
-        private float _defence;
-        private float _dodgeChance;
 
-        public Armor(float defence, float dodgeChance, Sprite sprite, string name, ItemType type) : base(type, sprite,
-            name)
+        public Armor(float defence, float dodgeChance, Sprite sprite, string name, string id, ItemType type) : base(type, sprite,
+            name, id)
         {
-            _defence = defence;
-            _dodgeChance = dodgeChance;
+            Values.Add(new ValueType(ItemValueType.Defence, defence));
+            Values.Add(new ValueType(ItemValueType.DodgeChance, dodgeChance));
         }
 
 
@@ -68,10 +66,11 @@ namespace InteractableItems.CollectableItems.Items
 
         public override float GetTypeValue(ItemValueType type)
         {
-            if (type == ItemValueType.Defence)
-                return _defence;
-            if (type == ItemValueType.DodgeChance)
-                return _dodgeChance;
+            foreach (var value in Values)
+            {
+                if (value.Type == type)
+                    return value.Value;
+            }
 
             return 0;
         }

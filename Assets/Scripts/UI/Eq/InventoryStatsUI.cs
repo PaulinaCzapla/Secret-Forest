@@ -8,10 +8,13 @@ namespace UI.Eq
     public class InventoryStatsUI : MonoBehaviour
     {
         [SerializeField] private PlayerStatsSO playerStats;
-        [SerializeField] private TextMeshProUGUI damage;
-        [SerializeField] private TextMeshProUGUI critical;
+        [SerializeField] private TextMeshProUGUI damageBow;
+        [SerializeField] private TextMeshProUGUI damageSword;
+        [SerializeField] private TextMeshProUGUI criticalBow;
+        [SerializeField] private TextMeshProUGUI criticalSword;
         [SerializeField] private TextMeshProUGUI defense;
         [SerializeField] private TextMeshProUGUI dodge;
+
         private void OnEnable()
         {
             InventoryUIStaticEvents.SubscribeToRefreshInventoryStatsUI(RefreshEqStats);
@@ -24,10 +27,14 @@ namespace UI.Eq
 
         private void RefreshEqStats()
         {
-            damage.text = playerStats.currentDamage.ToString();
-            critical.text = playerStats.currentCritical.ToString()+ "%";
-            defense.text = playerStats.currentDefense.ToString();
-            dodge.text = playerStats.currentDodgeChance.ToString()+ "%";
+            damageBow.text = playerStats.CurrentBowDamage.ToString();
+            damageSword.text = playerStats.CurrentSwordDamage.ToString();
+
+            criticalBow.text = playerStats.CurrentCriticalBow.ToString() + "%";
+            criticalSword.text = playerStats.CurrentCriticalSword.ToString() + "%";
+
+            defense.text = playerStats.CurrentDefense.ToString();
+            dodge.text = playerStats.CurrentDodgeChance.ToString() + "%";
         }
     }
 }

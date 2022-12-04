@@ -16,18 +16,14 @@ MonoBehaviour:
   hungerLostPerMinute: 1
   hungerLostPerGlade: 0.5
   currentMaxHungerValue: 20
-  currentHungerValue: 0
+  currentHungerValue: 17
   currentMaxHealthValue: 10
-  currentHealthValue: 0
-  healthRestoredPerGlade: 0
-  initialDamage: 2
-  <initialCritical>k__BackingField: 0.2
+  currentHealthValue: 10
+  healthRestoredPerGlade: 0.2
+  initialBaseDamage: 1
+  <initialBaseCritical>k__BackingField: 1
   initialDefense: 10
-  <initialDodgeChance>k__BackingField: 0.2
+  <initialBaseDodgeChance>k__BackingField: 1
   currentBaseDamage: 1
-  currentDamage: 2
-  currentCritical: 0.2
-  currentDefense: 10
-  currentDodgeChance: 0.2
   initialEqSlotsCount: 4
   currentEqSlotsCount: 4

@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Drawing;
+using DG.Tweening;
 using PlayerInteractions;
 using UI.Events;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace UI.HUD
     public class UIHealthBar : UIBar
     {
         [SerializeField] private PlayerStatsSO stats;
-        private float _prevValue;
+        private float _prevValue, _prevMaxValue;
         private bool _fistInit = true;
         
         private void OnEnable()
@@ -25,12 +26,14 @@ namespace UI.HUD
 
         protected override void Refresh()
         {
-            if (Mathf.Abs(_prevValue - Mathf.Abs(stats.currentHealthValue)) >= 1 || _fistInit || Mathf.Approximately(stats.currentHealthValue,0))
+            if (Mathf.Abs(_prevValue - Mathf.Abs(stats.currentHealthValue)) >= 1 || _fistInit || Mathf.Approximately(stats.currentHealthValue,0) 
+                || !Mathf.Approximately(_prevMaxValue ,stats.currentMaxHealthValue))
             {
                 slider.value = stats.currentHealthValue / stats.currentMaxHealthValue;
-                valueText.text = ValueRounder.RoundUp(stats.currentHealthValue).ToString("F0");
+                valueText.text = ValueRounder.RoundUp(stats.currentHealthValue).ToString("F0") + "<size=70%>/" + stats.currentMaxHealthValue  ;
                 _prevValue = stats.currentHealthValue;
                 _fistInit = false;
+                _prevMaxValue = stats.currentMaxHealthValue;
                 AnimateText();
             }
         }

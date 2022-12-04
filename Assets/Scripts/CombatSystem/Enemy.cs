@@ -30,9 +30,14 @@ namespace CombatSystem
             _animator = GetComponent<Animator>();
         }
 
-        public float GetAttackValue()
+        public float GetAttackValue(bool shouldHelp)
         {
-            bool isCritical = RandomElementsGenerator.GetRandom(_critical, 1 - _critical);
+            var chance = _critical;
+
+            if (shouldHelp)
+                chance = chance * 0.2f;
+            
+            bool isCritical = RandomElementsGenerator.GetRandom(chance, 1 - chance);
             if (isCritical)
             {
                 _sequence = DOTween.Sequence().Append(transform.DOMoveX(transform.position.x - 1f, 0.15f))
@@ -54,9 +59,14 @@ namespace CombatSystem
             return isCritical ? 2 * _damage : _damage;
         }
         
-        public void Hit(float dmg)
+        public void Hit(float dmg, bool shouldHelp)
         {
-            bool isDodged = RandomElementsGenerator.GetRandom(_dodge, 1 - _dodge);
+            var chance = _dodge;
+
+            if (shouldHelp)
+                chance = chance * 0.2f;
+            
+            bool isDodged = RandomElementsGenerator.GetRandom(chance, 1 - chance);
 
             if (!isDodged) 
             {

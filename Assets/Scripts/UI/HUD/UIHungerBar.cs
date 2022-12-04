@@ -32,7 +32,7 @@ namespace UI.HUD
             if (Mathf.Abs(_prevValue - Mathf.Abs(stats.currentHungerValue)) >= 1 || _fistInit || Mathf.Approximately(stats.currentHungerValue,0))
             {
                 slider.value = stats.currentHungerValue / stats.currentMaxHungerValue;
-                valueText.text = ValueRounder.RoundUp(stats.currentHungerValue).ToString("F0");
+                valueText.text = ValueRounder.RoundUp(stats.currentHungerValue).ToString("F0") + "<size=70%>/" + stats.currentMaxHungerValue;
                 _prevValue = stats.currentHungerValue;
                 _fistInit = false;
                 AnimateText();

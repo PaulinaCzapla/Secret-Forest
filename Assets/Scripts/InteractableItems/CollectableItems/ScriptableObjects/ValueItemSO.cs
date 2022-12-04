@@ -16,12 +16,31 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
             {
                 case ItemType.Food:
                 {
-                    return new Food(values,sprite, name );
+                    return new Food(values,sprite, name, ID , type);
                     break;
                 }
                 case ItemType.Potion:
                 {
-                    return new Potion(values,sprite, name );
+                    return new Potion(values,sprite, name , ID, type);
+                    break;
+                }
+                default:
+                    return null;
+            }
+        }
+
+        public override Item GetItem(ItemType initType, List<ValueType> initValues)
+        {
+            switch (initType)
+            {
+                case ItemType.Food:
+                {
+                    return new Food(values,sprite, name , ID, type);
+                    break;
+                }
+                case ItemType.Potion:
+                {
+                    return new Potion(values,sprite, name , ID, type);
                     break;
                 }
                 default:

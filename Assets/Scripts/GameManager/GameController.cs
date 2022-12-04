@@ -71,11 +71,11 @@ namespace GameManager
 
             return (multiplier,minValue);
         }
-        public void Init(PlayerStatsSO playerStats, LevelsConfigSO levelsConfigSo, PlayerAnimationController player)
+        public void Init(PlayerStatsSO playerStats, LevelsConfigSO levelsConfigSo, PlayerAnimationController player, PlayerEquipment eq)
         {
             _playerStats = playerStats;
             _levelConfig = levelsConfigSo;
-            Equipment = new PlayerEquipment();
+            Equipment = eq;
             PlayerAnimation = player;
         }
     }

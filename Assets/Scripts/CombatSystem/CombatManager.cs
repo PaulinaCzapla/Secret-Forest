@@ -16,6 +16,7 @@ namespace CombatSystem
     {
         [SerializeField] private PlayerAnimationController playerAnimationController;
         private static PlayerStatsSO _playerStats;
+        private int _lastRecalculated = -10;
 
         private int _lastRecalculatedLevel = -10;
         private int _recalculationInterval = 5;
@@ -42,25 +43,38 @@ namespace CombatSystem
 
         private void PlayerBowAttack()
         {
-            bool isCritical = RandomElementsGenerator.GetRandom(_critical, 1 - _critical);
+            var chance = _playerStats.CurrentCriticalBow;
+
+            if (_shouldHelpPlayer)
+                chance = Mathf.Max(chance,(Mathf.Clamp(chance + 0.2f, 0, 0.8f)));
+
+
+            bool isCritical = RandomElementsGenerator.GetRandom(chance, 1 - chance);
             playerAnimationController.AttackBow(isCritical);
-            StartCoroutine(PlayerAttack(isCritical ? 2* _playerStats.currentDamage : _playerStats.currentDamage, 0.25f));
+            StartCoroutine(PlayerAttack(isCritical ? 2 * _playerStats.CurrentBowDamage : _playerStats.CurrentBowDamage,
+                0.25f));
         }
 
         private IEnumerator PlayerAttack(float dmg, float hittime)
         {
             StaticCombatEvents.InvokeToggleCombatButtonsUI(false);
             yield return new WaitForSeconds(hittime);
-            _currentEnemy.Hit(dmg);
+            _currentEnemy.Hit(dmg, _shouldHelpPlayer);
 
             StartCoroutine(EnemyTurn());
         }
 
         private void PlayerSwordAttack()
         {
-            bool isCritical = RandomElementsGenerator.GetRandom(_critical, 1 - _critical);
+            var chance = _playerStats.CurrentCriticalSword;
+            if (_shouldHelpPlayer)
+                chance = Mathf.Max(chance,(Mathf.Clamp(chance + 0.2f, 0, 0.8f)));
+
+            bool isCritical = RandomElementsGenerator.GetRandom(chance, 1 - chance);
             playerAnimationController.AttackSword(isCritical);
-            StartCoroutine(PlayerAttack(isCritical ? 2* _playerStats.currentDamage : _playerStats.currentDamage, 0.35f));
+            StartCoroutine(
+                PlayerAttack(isCritical ? 2 * _playerStats.CurrentSwordDamage : _playerStats.CurrentSwordDamage,
+                    0.35f));
         }
 
         private void CombatStarted(Enemy enemy)
@@ -70,7 +84,7 @@ namespace CombatSystem
             StaticCombatEvents.InvokeUpdateEnemyHealthUI(enemy.Defense, enemy.Defense);
             if (_playerStats.currentHealthValue / _playerStats.currentMaxHealthValue < .2)
             {
-                _critical = 0f;
+                _critical = .1f;
                 _shouldHelpPlayer = true;
             }
             else
@@ -93,9 +107,15 @@ namespace CombatSystem
             {
                 yield return new WaitForSeconds(1.3f);
 
-                var dmg = _currentEnemy.GetAttackValue();
-                bool dodged = RandomElementsGenerator.GetRandom(_playerStats.currentDodgeChance,
-                    1 - _playerStats.currentDodgeChance);
+                var dmg = _currentEnemy.GetAttackValue(_shouldHelpPlayer);
+                var chance = _playerStats.CurrentDodgeChance;
+
+                if (_shouldHelpPlayer)
+                    chance = Mathf.Max(chance,(Mathf.Clamp(chance + 0.2f, 0, 0.8f)));
+                
+
+                bool dodged = RandomElementsGenerator.GetRandom(chance,
+                    1 - chance);
 
                 yield return new WaitForSeconds(0.25f);
 
@@ -118,24 +138,25 @@ namespace CombatSystem
             }
         }
 
-        private int _lastRecalculated = -10;
         public (float, float, float, float) GetEnemyStats(DifficultyLevel difficulty)
         {
             if (GameController.GetInstance().CurrentLevelNum - _lastRecalculatedLevel >= _recalculationInterval)
             {
                 if (difficulty == DifficultyLevel.Easy)
                 {
-                    _dmg = Mathf.Max(1, _playerStats.currentDamage * 0.6f);
+                    _dmg = Mathf.Max(1,
+                        Mathf.Max(_playerStats.CurrentBowDamage, _playerStats.CurrentSwordDamage) * 0.6f);
                     _defense = ValueRounder.RoundUp(_playerStats.currentMaxHealthValue * 0.6f);
-                    _critical = _playerStats.currentCritical * 0.5f;
-                    _dodge = _playerStats.currentDodgeChance * 0.5f;
+                    _critical = Mathf.Max(_playerStats.CurrentCriticalSword, _playerStats.CurrentCriticalBow) * 0.5f;
+                    _dodge = _playerStats.CurrentDodgeChance * 0.5f;
                 }
                 else
                 {
-                    _dmg = Mathf.Max(1, _playerStats.currentDamage * 0.8f);
-                    _defense = ValueRounder.RoundUp(_playerStats.currentMaxHealthValue * 0.9f);
-                    _critical = _playerStats.currentCritical * 0.8f;
-                    _dodge = _playerStats.currentDodgeChance * 0.8f;
+                    _dmg = Mathf.Max(1,
+                        Mathf.Max(_playerStats.CurrentBowDamage, _playerStats.CurrentSwordDamage) * 0.8f);
+                    _defense = ValueRounder.RoundUp(_playerStats.currentMaxHealthValue * 0.8f);
+                    _critical = Mathf.Max(_playerStats.CurrentCriticalSword, _playerStats.CurrentCriticalBow) * 0.8f;
+                    _dodge = _playerStats.CurrentDodgeChance * 0.8f;
                 }
 
                 _lastRecalculatedLevel = GameController.GetInstance().CurrentLevelNum;

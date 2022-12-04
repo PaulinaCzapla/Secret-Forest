@@ -11,20 +11,58 @@ namespace PlayerInteractions
         private Dictionary<ItemType, WearableItem> _equipment;
         private PlayerStatsSO _playerStats;
 
-        public PlayerEquipment()
-        {
-            _equipment = new Dictionary<ItemType, WearableItem>();
-            _equipment.Add(ItemType.Boots, null);
-            _equipment.Add(ItemType.Breastplate, null);
-            _equipment.Add(ItemType.Helmet, null);
-            _equipment.Add(ItemType.ShinGuards, null);
-            _equipment.Add(ItemType.Bow, null);
-            _equipment.Add(ItemType.WhiteWeapon, null);
+        // public PlayerEquipment()
+        // {
+        //     _equipment = new Dictionary<ItemType, WearableItem>();
+        //     
+        //
+        //     _playerStats = Resources.Load<PlayerStatsSO>("PlayerStatsSO");
+        //     RecalculateValues();
+        // }
+        //
+        // public PlayerEquipment(WearableItem boots, WearableItem breastplate, WearableItem helmet, WearableItem shinGuards,
+        //     WearableItem bow, WearableItem whiteWeapon)
+        // {
+        //     _equipment = new Dictionary<ItemType, WearableItem>();
+        //     _equipment.Add(ItemType.Boots, boots);
+        //     _equipment.Add(ItemType.Breastplate, breastplate);
+        //     _equipment.Add(ItemType.Helmet, helmet);
+        //     _equipment.Add(ItemType.ShinGuards, shinGuards);
+        //     _equipment.Add(ItemType.Bow, bow);
+        //     _equipment.Add(ItemType.WhiteWeapon, whiteWeapon);
+        //
+        //     _playerStats = Resources.Load<PlayerStatsSO>("PlayerStatsSO");
+        //     RecalculateValues();
+        // }
 
+        public PlayerEquipment(List<Item> items)
+        {
+            ItemType[] types =
+            {
+                ItemType.Boots, ItemType.Breastplate, ItemType.Helmet, ItemType.ShinGuards, ItemType.Bow,
+                ItemType.WhiteWeapon
+            };
+            
+            _equipment = new Dictionary<ItemType, WearableItem>();
+
+            if(items!=null)
+            foreach (var item in items)
+            {
+                if (!_equipment.ContainsKey(item.Type))
+                {
+                    _equipment.Add(item.Type, (WearableItem)item);
+                }
+            }
+
+            foreach (var type in types)
+            {
+                if(!_equipment.ContainsKey(type))
+                    _equipment.Add(type, null);
+            }
+            
             _playerStats = Resources.Load<PlayerStatsSO>("PlayerStatsSO");
             RecalculateValues();
         }
-
         public WearableItem GetCurrentEquippedItem(ItemType type)
         {
             return _equipment[type];
@@ -32,26 +70,26 @@ namespace PlayerInteractions
 
         private void RecalculateValues()
         {
-            _playerStats.currentDamage = (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.Damage) ??
-                           0) + (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.Damage) ?? 0) + _playerStats.currentBaseDamage;
+            _playerStats.CurrentBowDamage = (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.Damage) ?? 0);
+            _playerStats.CurrentSwordDamage = (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.Damage) ?? 0);
 
-            _playerStats.currentCritical =
-                (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0) +
-                (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0)
-                + _playerStats.initialCritical;
+            _playerStats.CurrentCriticalBow = (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0);
+            _playerStats.CurrentCriticalSword = (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0);
 
-            _playerStats.currentDefense = (_equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.Defence) ??
-                                          0) + (_equipment[ItemType.Breastplate]?.GetTypeValue(ItemValueType.Defence) ??
-                                          0) + (_equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.Defence) ??
-                                          0) + (_equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.Defence) ?? 0);
+            _playerStats.CurrentDefense = (_equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.Defence) ??
+                                           0) + (_equipment[ItemType.Breastplate]
+                                                     ?.GetTypeValue(ItemValueType.Defence) ??
+                                                 0) + (_equipment[ItemType.Helmet]
+                                                           ?.GetTypeValue(ItemValueType.Defence) ??
+                                                       0) + (_equipment[ItemType.ShinGuards]
+                ?.GetTypeValue(ItemValueType.Defence) ?? 0);
+
+            _playerStats.CurrentDodgeChance = (_equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.DodgeChance) ??
+                                               0) + (_equipment[ItemType.Breastplate]?.GetTypeValue(ItemValueType.DodgeChance) ??
+                                                     0) + (_equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.DodgeChance) ??
+                                                           0) + (_equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.DodgeChance) ?? 0);
             
-            _playerStats.currentDodgeChance = (_equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.DodgeChance) ??
-                                          0) + (_equipment[ItemType.Breastplate]?.GetTypeValue(ItemValueType.DodgeChance) ??
-                                          0) + (_equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.DodgeChance) ??
-                                          0) + (_equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.DodgeChance) ?? 0)
-                + _playerStats.initialDodgeChance;
-            
-            _playerStats.currentMaxHealthValue = _playerStats.initialDefense + _playerStats.currentDefense;
+            _playerStats.currentMaxHealthValue = _playerStats.CurrentDefense;
             UIStaticEvents.InvokeUpdateHealthUI();
             InventoryUIStaticEvents.InvokeRefreshInventoryStatsUI();
         }

@@ -9,7 +9,8 @@ namespace InteractableItems.CollectableItems.Items
 {
     public class AdjacentGladesUncoverer : Item, IUsable
     {
-        public AdjacentGladesUncoverer(Sprite sprite, string name) : base(sprite, name)
+        public AdjacentGladesUncoverer(Sprite sprite, string name, string id, ItemType type) 
+            : base(sprite, name, id, type)
         {
         }
         public override bool Collect()
