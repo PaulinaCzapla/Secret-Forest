@@ -1,8 +1,10 @@
-﻿using Glades;
+﻿using System.Collections.Generic;
+using Glades;
 using Glades.GladeTypes;
 using InteractableItems.CollectableItems.Items;
 using LevelGenerating;
 using PlayerInteractions;
+using UI.Eq;
 using UnityEngine;
 
 namespace GameManager
@@ -77,6 +79,14 @@ namespace GameManager
             _levelConfig = levelsConfigSo;
             Equipment = eq;
             PlayerAnimation = player;
+        }
+
+        public void UnlockSlot()
+        {
+            List<Item> items = new List<Item>(InventoryUI.Instance.StoredItems);
+
+            _playerStats.CurrentEqSlotsCount = Mathf.Clamp(_playerStats.CurrentEqSlotsCount+1, 0, 16);
+            InventoryUI.Instance.InitializeStorage(_playerStats.CurrentEqSlotsCount, items);
         }
     }
 }

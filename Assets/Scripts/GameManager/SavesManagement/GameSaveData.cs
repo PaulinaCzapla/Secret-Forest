@@ -7,10 +7,10 @@ namespace GameManager.SavesManagement
 {
     public class OwnedItem
     {
-        public bool equipped;
-        public string id;
-        public ItemType type;
-        public List<ValueType> values;
+        [JsonProperty] public bool equipped;
+        [JsonProperty] public string id;
+        [JsonProperty] public ItemType type;
+        [JsonProperty] public List<ValueType> values;
 
         public OwnedItem(bool equipped, string id, ItemType type, List<ValueType> values)
         {
@@ -22,9 +22,12 @@ namespace GameManager.SavesManagement
     }
     public class GameSaveData
     {
-        [JsonProperty] public int levelNum;
+       [JsonProperty] public int levelNum;
        [JsonProperty] public List<GeneratedGlade> glades;
        [JsonProperty] public List<OwnedItem> items;
+       [JsonProperty] public float currentHungerValue;
+       [JsonProperty] public float currentHealthValue;
+       [JsonProperty] public int currentEqSlotsCount;
 
     }
 }

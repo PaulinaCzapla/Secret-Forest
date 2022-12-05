@@ -13,6 +13,7 @@
         Bow,
         Compass,
         CatEyeNear,
-        EnchantedCatEye
+        EnchantedCatEye,
+        AddSlot
     }
 }

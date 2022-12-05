@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GameManager;
 using GameManager.SavesManagement;
+using Glades;
 using InteractableItems.CollectableItems.Items;
 using InteractableItems.CollectableItems.ScriptableObjects;
 using PlayerInteractions;
@@ -29,11 +30,15 @@ namespace LevelGenerating
         private void OnEnable()
         {
             PlayerStatsStaticEvents.SubscribeToPlayerDied(OnPlayerDied);
+            PlayerMovementStaticEvents.SubscribeToPlayerMovedToGlade(OnPlayerMoved);
         }
+
+
 
         private void OnDisable()
         {
             PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(OnPlayerDied);
+            PlayerMovementStaticEvents.UnsubscribeFromPlayerMovedToGlade(OnPlayerMoved);
         }
 
         public void LoadGame()
@@ -41,7 +46,8 @@ namespace LevelGenerating
             SaveManager.ReadData();
             List<Item> items = new();
             List<Item> equippedItems = new();
-
+            GameController.GetInstance().CurrentLevelNum = SaveManager.Stats.levelNum;
+            
             foreach (var item in SaveManager.Stats.items)
             {
                 var it = itemsSo.Items[item.id];
@@ -56,8 +62,9 @@ namespace LevelGenerating
                 }
             }
 
+            playerStats.Init(SaveManager.Stats.currentHealthValue, SaveManager.Stats.currentHungerValue, SaveManager.Stats.currentEqSlotsCount);
             GameController.GetInstance().Init(playerStats, levelsConfigSo, player, new PlayerEquipment(equippedItems));
-            InventoryUI.Instance.InitializeStorage(4, items);
+            InventoryUI.Instance.InitializeStorage(playerStats.CurrentEqSlotsCount, items);
             
             levelGenerator.RetrieveLevelData(SaveManager.Stats);
             UIStaticEvents.InvokeUpdateHungerUI();
@@ -66,6 +73,7 @@ namespace LevelGenerating
 
         public void StartNewGame()
         {
+            GameController.GetInstance().CurrentLevelNum = 0;
             playerStats.InitWithDefaults();
             GameController.GetInstance().Init(playerStats, levelsConfigSo, player, new PlayerEquipment(null));
             InventoryUI.Instance.InitializeStorage(4, null);
@@ -80,8 +88,14 @@ namespace LevelGenerating
         {
             GameManager.GameController.GetInstance().CurrentLevelNum++;
             levelGenerator.GenerateLevel(GameManager.GameController.GetInstance().CurrentLevelNum);
+            SaveManager.PrepareSaveData();
+            SaveManager.SaveCurrentGame();
         }
-
+        private void OnPlayerMoved(SpawnedGlade arg0)
+        {
+            SaveManager.PrepareSaveData();
+            SaveManager.SaveCurrentGame();
+        }
         public void OnPlayerDied()
         {
             //TODO: prepare level history

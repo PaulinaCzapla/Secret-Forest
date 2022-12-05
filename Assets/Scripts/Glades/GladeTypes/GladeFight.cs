@@ -15,14 +15,18 @@ namespace Glades.GladeTypes
         [SerializeField] private Transform attackPoint;
         [SerializeField] private Transform enemySpawnPoint;
         [SerializeField] private PlayerStatsSO stats;
-        
+
         private Enemy _enemy;
         private bool _initialized;
+        private int _gladeCounter;
 
         private void OnEnable()
         {
             OnPlayerArrived.AddListener(PlayerArrived);
+            PlayerMovementStaticEvents.SubscribeToPlayerMovedToGlade(OnPlayerMoved);
+            _gladeCounter = 0;
         }
+
 
         private void OnDisable()
         {
@@ -32,11 +36,27 @@ namespace Glades.GladeTypes
             {
                 enemy.gameObject.SetActive(false);
             }
+            
+            PlayerMovementStaticEvents.UnsubscribeFromPlayerMovedToGlade(OnPlayerMoved);
         }
+
+        private void OnPlayerMoved(SpawnedGlade glade)
+        {
+            if (_enemy.IsDead)
+                _gladeCounter++;
+
+            if (_gladeCounter >= 5)
+            {
+                _enemy.Revive();
+                _gladeCounter = 0;
+            }
+        }
+        
 
         private void PlayerArrived()
         {
-            if(_enemy.IsDead)
+            _gladeCounter = 0;
+            if (_enemy.IsDead)
                 return;
             GameManager.GameController.GetInstance().IsGameplayInputLocked = true;
             StaticCombatEvents.InvokeCombatStarted(_enemy);
@@ -51,7 +71,7 @@ namespace Glades.GladeTypes
 
             base.Initialize();
             _enemy = enemies[Random.Range(0, enemies.Count)];
-          //  _enemy.transform.position = enemySpawnPoint.position;
+            //  _enemy.transform.position = enemySpawnPoint.position;
             _enemy.gameObject.SetActive(true);
             var stats = CombatManager.Instance.GetEnemyStats(difficulty);
 

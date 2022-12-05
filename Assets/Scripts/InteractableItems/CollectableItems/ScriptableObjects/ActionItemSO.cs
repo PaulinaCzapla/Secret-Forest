@@ -37,6 +37,10 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
 
                     break;
                 }
+                case ItemType.AddSlot:
+                {
+                    return new AddSlot(sprite, name, ID, initType);
+                }
                 default:
                     return null;
             }

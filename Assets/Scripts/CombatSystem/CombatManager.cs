@@ -28,7 +28,7 @@ namespace CombatSystem
         private void OnEnable()
         {
             _playerStats = Resources.Load<PlayerStatsSO>("PlayerStatsSO");
-            _lastRecalculatedLevel = PlayerPrefs.GetInt("LastRecalculatedLevel", 0);
+            _lastRecalculatedLevel = PlayerPrefs.GetInt("LastRecalculatedLevel", -10);
             StaticCombatEvents.SubscribeToCombatStarted(CombatStarted);
             StaticCombatEvents.SubscribeToPlayerBowAttack(PlayerBowAttack);
             StaticCombatEvents.SubscribeToPlayerSwordAttack(PlayerSwordAttack);
@@ -36,6 +36,7 @@ namespace CombatSystem
 
         private void OnDisable()
         {
+            PlayerPrefs.GetInt("LastRecalculatedLevel", _lastRecalculatedLevel);
             StaticCombatEvents.UnsubscribeFromCombatStarted(CombatStarted);
             StaticCombatEvents.UnsubscribeFromPlayerBowAttack(PlayerBowAttack);
             StaticCombatEvents.UnsubscribeFromPlayerSwordAttack(PlayerSwordAttack);
@@ -43,7 +44,7 @@ namespace CombatSystem
 
         private void PlayerBowAttack()
         {
-            var chance = _playerStats.CurrentCriticalBow;
+            var chance = _playerStats.CurrentCriticalBow/10;
 
             if (_shouldHelpPlayer)
                 chance = Mathf.Max(chance,(Mathf.Clamp(chance + 0.2f, 0, 0.8f)));
@@ -66,7 +67,7 @@ namespace CombatSystem
 
         private void PlayerSwordAttack()
         {
-            var chance = _playerStats.CurrentCriticalSword;
+            var chance = _playerStats.CurrentCriticalSword/10;
             if (_shouldHelpPlayer)
                 chance = Mathf.Max(chance,(Mathf.Clamp(chance + 0.2f, 0, 0.8f)));
 
@@ -108,7 +109,7 @@ namespace CombatSystem
                 yield return new WaitForSeconds(1.3f);
 
                 var dmg = _currentEnemy.GetAttackValue(_shouldHelpPlayer);
-                var chance = _playerStats.CurrentDodgeChance;
+                var chance = _playerStats.CurrentDodgeChance/10;
 
                 if (_shouldHelpPlayer)
                     chance = Mathf.Max(chance,(Mathf.Clamp(chance + 0.2f, 0, 0.8f)));
@@ -146,7 +147,7 @@ namespace CombatSystem
                 {
                     _dmg = Mathf.Max(1,
                         Mathf.Max(_playerStats.CurrentBowDamage, _playerStats.CurrentSwordDamage) * 0.6f);
-                    _defense = ValueRounder.RoundUp(_playerStats.currentMaxHealthValue * 0.6f);
+                    _defense = ValueRounder.RoundUp(_playerStats.CurrentDefense * 0.6f);
                     _critical = Mathf.Max(_playerStats.CurrentCriticalSword, _playerStats.CurrentCriticalBow) * 0.5f;
                     _dodge = _playerStats.CurrentDodgeChance * 0.5f;
                 }
@@ -154,7 +155,7 @@ namespace CombatSystem
                 {
                     _dmg = Mathf.Max(1,
                         Mathf.Max(_playerStats.CurrentBowDamage, _playerStats.CurrentSwordDamage) * 0.8f);
-                    _defense = ValueRounder.RoundUp(_playerStats.currentMaxHealthValue * 0.8f);
+                    _defense = ValueRounder.RoundUp(_playerStats.CurrentDefense  * 0.8f);
                     _critical = Mathf.Max(_playerStats.CurrentCriticalSword, _playerStats.CurrentCriticalBow) * 0.8f;
                     _dodge = _playerStats.CurrentDodgeChance * 0.8f;
                 }

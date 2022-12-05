@@ -81,11 +81,16 @@ namespace UI.Eq
 
         public void InitializeStorage(int slotsCount, List<Item> items = null)
         {
+            ResetSlots();
+            
             int i = 0;
             foreach (var slot in slots)
             {
                 if (i < slotsCount)
+                {
                     slot.gameObject.SetActive(true);
+                    slot.OnSlotEmptied.AddListener(OnSlotEmptied);
+                }
                 else
                 {
                     slot.gameObject.SetActive(false);
@@ -104,6 +109,11 @@ namespace UI.Eq
                 _storedItems = new List<Item>();
             }
             RefreshInventory();
+        }
+
+        private void OnSlotEmptied(Item item)
+        {
+            _storedItems.Remove(item);
         }
 
         private void RefreshEquipment()
@@ -141,6 +151,7 @@ namespace UI.Eq
                 if (slot.IsActiveAndFree)
                 {
                     slot.Init(_storedItems[i]);
+                    slot.OnSlotClicked.AddListener(OnItemClicked);
                     i++;
                 }
             }
@@ -156,10 +167,10 @@ namespace UI.Eq
 
         public void CloseStorage()
         {
-            InputManager.TapEnable = true;
             toggleEq.isOn = false;
             storageObject.SetActive(false);
             ResetItemUI();
+            InputManager.TapEnable = true;
         }
 
         public bool ItemCollected(Item item)
@@ -263,6 +274,14 @@ namespace UI.Eq
             itemName.text = "";
         }
 
+        private void ResetSlots()
+        {
+            foreach (var slot in slots)
+            {
+               slot.OnEmptySlot();
+            }
+
+        }
         private InventorySlot GetFreeSlot()
         {
             foreach (var slot in slots)

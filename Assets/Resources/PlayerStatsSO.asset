@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: PlayerStatsSO
   m_EditorClassIdentifier: 
   initialMaxHunger: 20
-  hungerLostPerMinute: 1
-  hungerLostPerGlade: 0.5
+  <HungerLostPerMinute>k__BackingField: 0
+  <HungerLostPerGlade>k__BackingField: 0.5
   currentMaxHungerValue: 20
   currentHungerValue: 17
-  currentMaxHealthValue: 10
-  currentHealthValue: 10
-  healthRestoredPerGlade: 0.2
+  currentMaxHealthValue: 11
+  currentHealthValue: 8.599999
+  <HealthRestoredPerGlade>k__BackingField: 0.2
+  <HealthLostPerGladeWhenHungry>k__BackingField: 7
   initialBaseDamage: 1
   <initialBaseCritical>k__BackingField: 1
   initialDefense: 10
   <initialBaseDodgeChance>k__BackingField: 1
   currentBaseDamage: 1
   initialEqSlotsCount: 4
-  currentEqSlotsCount: 4

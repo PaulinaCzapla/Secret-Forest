@@ -3,7 +3,9 @@ using Glades;
 using Glades.GladeTypes;
 using InteractableItems.CollectableItems.Items;
 using LevelGenerating;
+using PlayerInteractions;
 using UI.Eq;
+using UnityEngine;
 
 namespace GameManager.SavesManagement
 {
@@ -14,11 +16,18 @@ namespace GameManager.SavesManagement
 
         public static GameSaveData Stats { get; private set; }
         public static List<GameStats> GameHistory{ get; private set; }
-
+        private static PlayerStatsSO _playerStats;
         public static void PrepareSaveData()
         {
+            if (_playerStats == null)
+                _playerStats = Resources.Load<PlayerStatsSO>("PlayerStatsSO");
+
+            
             Stats = new GameSaveData();
             Stats.levelNum = GameController.GetInstance().CurrentLevelNum;
+            Stats.currentHealthValue = _playerStats.currentHealthValue;
+            Stats.currentHungerValue = _playerStats.currentHungerValue;
+            Stats.currentEqSlotsCount = _playerStats.CurrentEqSlotsCount;
             
             if (LevelGenerator.SpawnedGlades != null && LevelGenerator.SpawnedGlades.Count != 0)
             {
@@ -65,7 +74,7 @@ namespace GameManager.SavesManagement
             Stats.items = items;
         }
         
-        public static void SaveAllData()
+        public static void SaveHistory()
         {
             
         }

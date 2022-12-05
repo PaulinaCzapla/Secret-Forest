@@ -30,7 +30,7 @@ namespace UI.HUD
                 || !Mathf.Approximately(_prevMaxValue ,stats.currentMaxHealthValue))
             {
                 slider.value = stats.currentHealthValue / stats.currentMaxHealthValue;
-                valueText.text = ValueRounder.RoundUp(stats.currentHealthValue).ToString("F0") + "<size=70%>/" + stats.currentMaxHealthValue  ;
+                valueText.text = ValueRounder.RoundUp(stats.currentHealthValue).ToString("F0") + "<size=70%>/" + stats.currentMaxHealthValue.ToString("F0")  ;
                 _prevValue = stats.currentHealthValue;
                 _fistInit = false;
                 _prevMaxValue = stats.currentMaxHealthValue;

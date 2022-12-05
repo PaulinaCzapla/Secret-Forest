@@ -37,14 +37,14 @@ namespace PlayerInteractions
         {
             if (_cooldown.CooldownEnded)
             {
-                HungerChanged(-playerStats.hungerLostPerMinute);
+                HungerChanged(-playerStats.HungerLostPerMinute);
                 _cooldown.StartCooldown();
             }
         }
 
         private void OnPlayerMoved(SpawnedGlade glade)
         {
-            HungerChanged(-playerStats.hungerLostPerGlade);
+            HungerChanged(-playerStats.HungerLostPerGlade);
         }
 
         private void HungerChanged(float value)

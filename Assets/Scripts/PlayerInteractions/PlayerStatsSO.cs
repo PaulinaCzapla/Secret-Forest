@@ -9,25 +9,25 @@ namespace PlayerInteractions
         [Header("Hunger")] 
         [Header("Init values")]
         [SerializeField] private float initialMaxHunger;
-        [Header("Current hunger game values")]
-        public float hungerLostPerMinute;
-        public float hungerLostPerGlade;
+        [field:Header("Current hunger game values")]
+        [field:SerializeField] public float HungerLostPerMinute{ get; private set; }
+        [field:SerializeField]  public float HungerLostPerGlade{ get; private set; }
         public float currentMaxHungerValue;
         public float currentHungerValue;
    
         [Header("Current health game values")]
         public float currentMaxHealthValue;
         public float currentHealthValue;
-        public float healthRestoredPerGlade;
-        public readonly float healthLostPerGladeWhenHungry;
+        [field:SerializeField]  public float HealthRestoredPerGlade{ get; private set; }
+        [field:SerializeField] public float HealthLostPerGladeWhenHungry{ get; private set; }
         
         [Header("Combat stats")]
         
         [Header("Initial combat values")]
         [SerializeField] private float initialBaseDamage = 1;
-        [field:Range(0, 1)] [field:SerializeField] public float initialBaseCritical { get; private set; }= 0f;
+        [field:Range(0, 100)] [field:SerializeField] public float initialBaseCritical { get; private set; }= 0f;
         [SerializeField] private float initialDefense = 0;
-        [field:Range(0, 1)] [field:SerializeField] public float initialBaseDodgeChance { get; private set; } =0f;
+        [field:Range(0, 100)] [field:SerializeField] public float initialBaseDodgeChance { get; private set; } =0f;
         
         [Header("Current combat values")]
         [SerializeField] private float currentBaseDamage = 1;
@@ -78,14 +78,14 @@ namespace PlayerInteractions
         
         [Header("Inventory")]
         [Range(0, 16)] [SerializeField] private int initialEqSlotsCount=  4;
-        [Range(0, 16)] public int currentEqSlotsCount=  4;
+        public int CurrentEqSlotsCount { get;set; }
         public void InitWithDefaults()
         {
             currentHealthValue = initialDefense;
             currentMaxHealthValue = initialDefense;
             currentHungerValue = initialMaxHunger;
             currentMaxHungerValue = initialMaxHunger;
-            currentEqSlotsCount = initialEqSlotsCount;
+            CurrentEqSlotsCount = initialEqSlotsCount;
             CurrentDefense = initialDefense;
             CurrentDodgeChance = initialBaseDodgeChance;
             CurrentBowDamage = 0;
@@ -94,9 +94,13 @@ namespace PlayerInteractions
             CurrentCriticalSword = 0;
         }
 
-        public void Init()
+        public void Init(float currentHealth, float currentHunger, int currentEq)
         {
-            
+            currentHealthValue = currentHealth;
+            currentHungerValue = currentHunger;
+            currentMaxHungerValue = initialMaxHunger;
+            CurrentEqSlotsCount = currentEq;
+            CurrentDefense = initialDefense;
         }
         
     }

@@ -16,7 +16,8 @@ namespace UI.Eq
 
         public string ItemInfoUninfluenced => (_currentItem != null
             ? (_currentItem is WearableItem item ? item.GetUninfluencedString() : _currentItem.GetString()) : "");
-        
+
+        public UnityEvent<Item> OnSlotEmptied { get; set; } = new UnityEvent<Item>();
         public Item CurrentItem => _currentItem;
 
         [SerializeField] private Button button;
@@ -39,6 +40,7 @@ namespace UI.Eq
 
         public void OnEmptySlot()
         {
+            OnSlotEmptied?.Invoke(_currentItem);
             _currentItem = null;
             image.gameObject.SetActive(false);
             button.onClick.RemoveAllListeners();

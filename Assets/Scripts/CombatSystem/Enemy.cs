@@ -6,6 +6,7 @@ using Glades.GladeTypes;
 using RandomGenerators;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CombatSystem
 {
@@ -23,6 +24,7 @@ namespace CombatSystem
         private float _critical;
         private float _currentHealth;
         private Sequence _sequence;
+     
         
         private void Awake()
         {
@@ -30,9 +32,15 @@ namespace CombatSystem
             _animator = GetComponent<Animator>();
         }
 
+        public void Revive()
+        {
+            _currentHealth = _defense;
+            _animator.Play("Idle");
+        }
+
         public float GetAttackValue(bool shouldHelp)
         {
-            var chance = _critical;
+            var chance = _critical/10;
 
             if (shouldHelp)
                 chance = chance * 0.2f;
@@ -61,7 +69,7 @@ namespace CombatSystem
         
         public void Hit(float dmg, bool shouldHelp)
         {
-            var chance = _dodge;
+            var chance = _dodge/10;
 
             if (shouldHelp)
                 chance = chance * 0.2f;
@@ -105,7 +113,7 @@ namespace CombatSystem
             _damage = damage;
             _dodge = dodgeChance;
             _critical = criticalChance;
-            _currentHealth = _defense;
+            _currentHealth = defense;
         }
     }
 }

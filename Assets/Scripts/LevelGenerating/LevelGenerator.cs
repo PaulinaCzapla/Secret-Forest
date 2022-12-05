@@ -8,6 +8,7 @@ using Glades;
 using LevelGenerating.LevelGrid;
 using PlayerInteractions.StaticEvents;
 using RandomGenerators;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -28,11 +29,12 @@ namespace LevelGenerating
         [Header("Scriptable objects")] 
         [SerializeField] private LevelsConfigSO levelsConfigSo;
         [SerializeField] private GladesSO gladesSo;
-
-
+        
         [Header("Game grid")] 
         [SerializeField] private Grid grid;
         [SerializeField] private SpawnedGlade startGlade;
+        [SerializeField] private TextMeshProUGUI levelInfo;
+        
         private Dictionary<GladeType, List<SpawnedGlade>> _gladesPools;
         private LevelAttributes _levelAttributes;
 
@@ -89,7 +91,6 @@ namespace LevelGenerating
 
         public void RetrieveLevelData(GameSaveData data)
         {
-            GameController.GetInstance().CurrentLevelNum = data.levelNum;
             UnloadLevel();
             
             _levelAttributes = levelsConfigSo.GetLevelAttributes();
@@ -174,6 +175,7 @@ namespace LevelGenerating
             
             PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(startGlade, true);
             OnLevelGenerated?.Invoke();
+            levelInfo.text = "LEVEL " + (GameController.GetInstance().CurrentLevelNum+1);
         }
         /// <summary>
         /// Generates level, starting with first (entry) glade.
@@ -243,8 +245,7 @@ namespace LevelGenerating
             PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(startGlade, true);
             OnLevelGenerated?.Invoke();
             
-            SaveManager.PrepareSaveData();
-            SaveManager.SaveCurrentGame();
+            levelInfo.text = "LEVEL " + (GameController.GetInstance().CurrentLevelNum+1);
         }
 
         /// <summary>

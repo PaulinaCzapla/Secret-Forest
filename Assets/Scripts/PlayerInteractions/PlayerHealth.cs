@@ -25,7 +25,7 @@ namespace PlayerInteractions
         private void OnPlayerMoved(SpawnedGlade glade)
         {
             if (playerStats.currentHungerValue != 0)
-                HealthChanged(playerStats.healthRestoredPerGlade);
+                HealthChanged(playerStats.HealthRestoredPerGlade);
             else
                 HealthChanged(-7);
         }
@@ -37,7 +37,7 @@ namespace PlayerInteractions
 
             UIStaticEvents.InvokeUpdateHealthUI();
 
-            if (Mathf.Approximately(playerStats.currentHealthValue,0))
+            if (playerStats.currentHealthValue <= 0)
                 PlayerStatsStaticEvents.InvokePlayerDied();
         }
     }
