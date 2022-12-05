@@ -24,8 +24,8 @@ MonoBehaviour:
         probability: 1
       - type: 6
         probability: 0.2
-      minRoomsNum: 2
-      maxRoomsNum: 16
+      minRoomsNum: 4
+      maxRoomsNum: 6
       roomsConnectionChance: 80
   - maxLevelNum: 6
     levelAttributes:
@@ -40,9 +40,9 @@ MonoBehaviour:
         probability: 0.2
       - type: 4
         probability: 0.1
-      minRoomsNum: 9
-      maxRoomsNum: 12
-      roomsConnectionChance: 50
+      minRoomsNum: 7
+      maxRoomsNum: 10
+      roomsConnectionChance: 70
   - maxLevelNum: 10
     levelAttributes:
       availableGladeTypes:
@@ -50,82 +50,80 @@ MonoBehaviour:
         probability: 0.1
       - type: 3
         probability: 0.2
-      - type: 2
-        probability: 0.2
       - type: 7
         probability: 0.2
       - type: 6
-        probability: 0.1
-      - type: 4
         probability: 0.2
-      minRoomsNum: 12
-      maxRoomsNum: 17
-      roomsConnectionChance: 40
-  - maxLevelNum: 12
-    levelAttributes:
-      availableGladeTypes:
-      - type: 1
-        probability: 0.1
-      - type: 3
-        probability: 0.2
-      - type: 2
-        probability: 0.1
-      - type: 7
-        probability: 0.1
       - type: 4
-        probability: 0.45
+        probability: 0.25
       - type: 5
         probability: 0.05
-      minRoomsNum: 15
-      maxRoomsNum: 22
-      roomsConnectionChance: 30
+      minRoomsNum: 8
+      maxRoomsNum: 15
+      roomsConnectionChance: 50
   - maxLevelNum: 15
     levelAttributes:
       availableGladeTypes:
       - type: 1
         probability: 0.2
-      - type: 2
+      - type: 3
         probability: 0.2
-      - type: 7
-        probability: 0.2
-      - type: 4
-        probability: 0.3
-      - type: 5
+      - type: 6
         probability: 0.1
-      minRoomsNum: 20
-      maxRoomsNum: 25
-      roomsConnectionChance: 0
-  - maxLevelNum: 18
+      - type: 7
+        probability: 0.1
+      - type: 4
+        probability: 0.2
+      - type: 5
+        probability: 0.2
+      minRoomsNum: 14
+      maxRoomsNum: 18
+      roomsConnectionChance: 50
+  - maxLevelNum: 20
     levelAttributes:
       availableGladeTypes:
       - type: 1
-        probability: 0.1
-      - type: 2
+        probability: 0.2
+      - type: 3
         probability: 0.1
       - type: 7
         probability: 0.2
       - type: 4
-        probability: 0.2
+        probability: 0.15
       - type: 5
-        probability: 0.1
+        probability: 0.25
       - type: 6
         probability: 0.1
+      minRoomsNum: 17
+      maxRoomsNum: 21
+      roomsConnectionChance: 40
+  - maxLevelNum: 100000
+    levelAttributes:
+      availableGladeTypes:
+      - type: 1
+        probability: 0.15
+      - type: 7
+        probability: 0.2
+      - type: 6
+        probability: 0.15
+      - type: 4
+        probability: 0.15
+      - type: 5
+        probability: 0.15
       - type: 3
         probability: 0.2
-      minRoomsNum: 20
+      minRoomsNum: 18
       maxRoomsNum: 30
       roomsConnectionChance: 25
   itemsInfo:
   - maxLevelNum: 3
     items:
-    - probability: 0.8
+    - probability: 0.75
       item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
     - probability: 0.2
       item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
-    - probability: 0.749
+    - probability: 0.05
       item: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
-    - probability: 1
-      item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
   - maxLevelNum: 6
     items:
     - probability: 0.4
@@ -134,15 +132,27 @@ MonoBehaviour:
       item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
     - probability: 0.1
       item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
-    - probability: 0.2
+    - probability: 0.1
       item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
-    - probability: 0.2
+    - probability: 0.1
       item: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
   - maxLevelNum: 10
     items:
-    - probability: 0.35
+    - probability: 0.3
       item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
-    - probability: 0.35
+    - probability: 0.3
+      item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
+    - probability: 0.15
+      item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
+    - probability: 0.15
+      item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
+    - probability: 0.1
+      item: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
+  - maxLevelNum: 20
+    items:
+    - probability: 0.3
+      item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
+    - probability: 0.25
       item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
     - probability: 0.15
       item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}

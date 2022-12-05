@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 670236426}
   - component: {fileID: 670236425}
+  - component: {fileID: 6764057104293412117}
   m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
@@ -52,7 +53,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000b740208b4113ad4a977f172bd3e832df370e86822f8a290737197564
+  m_ApplyToSortingLayers: 00000000b740208b4113ad4a977f172bd3e832df370e86822f8a29073719756419f442e6
   m_LightCookieSprite: {fileID: 21300000, guid: 68b9ec20672a8b64b830481fadd39367, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -111,6 +112,28 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &6764057104293412117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670236424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18c7bfb496e48ee86607b9d4433bc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensityOffset: 0.05
+  minIntensityDuration: 0.08
+  maxIntensityDuration: 0.2
+  intensitySteps: 5
+  intensityEase: 1
+  radiusOffset: 0.05
+  minRadiusDuration: 0.08
+  maxRadiusDuration: 0.2
+  radiusSteps: 75
+  radiusEase: 1
 --- !u!1 &4474779653949565304
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +208,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -457194919
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 68b9ec20672a8b64b830481fadd39367, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -205,7 +228,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4474779653949565304}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2eab254712854f1dbf65a9e574f44b4d, type: 3}
   m_Name: 

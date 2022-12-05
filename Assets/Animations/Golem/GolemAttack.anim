@@ -21,41 +21,41 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: -1492053088, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.05882353
+    - time: 0.04
       value: {fileID: -496555720, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.11764706
+    - time: 0.08
       value: {fileID: -1555068772, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.1764706
+    - time: 0.12
       value: {fileID: 769130813, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.23529412
+    - time: 0.16
       value: {fileID: 237398018, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.29411766
+    - time: 0.2
       value: {fileID: -1173652293, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.3529412
+    - time: 0.24
       value: {fileID: 337392101, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.4117647
+    - time: 0.28
       value: {fileID: -29752468, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.47058824
+    - time: 0.32
       value: {fileID: 665271998, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.5294118
+    - time: 0.36
       value: {fileID: 2081495901, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.5882353
+    - time: 0.4
       value: {fileID: 205143798, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.64705884
+    - time: 0.44
       value: {fileID: 1905639808, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.7058824
+    - time: 0.48
       value: {fileID: 91497588, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.7647059
+    - time: 0.52
       value: {fileID: -1981126800, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.8235294
+    - time: 0.56
       value: {fileID: 1806538415, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
-    - time: 0.88235295
+    - time: 0.6
       value: {fileID: 1009315799, guid: 7571a7687e006e04ab0d3196925d4152, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 17
+  m_SampleRate: 25
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -91,7 +91,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.9411765
+    m_StopTime: 0.64000005
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

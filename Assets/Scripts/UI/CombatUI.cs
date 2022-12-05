@@ -1,5 +1,6 @@
 ﻿using System;
 using CombatSystem;
+using LevelGenerating;
 using UI.Events;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ namespace UI
             StaticCombatEvents.SubscribeToToggleCombatButtonsUI(ToggleButtons);
             swordButton.onClick.AddListener(SwordAttack);
             bowButton.onClick.AddListener(BowAttack);
+            LevelGenerator.OnLevelGenerated += () => ToggleUI(false);
         }
 
         private void OnDisable()
@@ -27,6 +29,7 @@ namespace UI
             StaticCombatEvents.UnsubscribeFromToggleCombatButtonsUI(ToggleButtons);
             swordButton.onClick.RemoveListener(SwordAttack);
             bowButton.onClick.RemoveListener(BowAttack);
+            LevelGenerator.OnLevelGenerated -= () => ToggleUI(false);
         }
 
         private void ToggleButtons(bool shouldBeActive)

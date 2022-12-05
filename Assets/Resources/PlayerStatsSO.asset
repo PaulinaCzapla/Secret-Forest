@@ -16,9 +16,9 @@ MonoBehaviour:
   <HungerLostPerMinute>k__BackingField: 0
   <HungerLostPerGlade>k__BackingField: 0.5
   currentMaxHungerValue: 20
-  currentHungerValue: 17
-  currentMaxHealthValue: 11
-  currentHealthValue: 8.599999
+  currentHungerValue: 18.5
+  currentMaxHealthValue: 10
+  currentHealthValue: 10
   <HealthRestoredPerGlade>k__BackingField: 0.2
   <HealthLostPerGladeWhenHungry>k__BackingField: 7
   initialBaseDamage: 1
