@@ -7,6 +7,7 @@ using Glades;
 using InteractableItems.CollectableItems.Items;
 using LevelGenerating;
 using PlayerInteractions.Input;
+using PlayerInteractions.StaticEvents;
 using UI.Eq;
 using UnityEngine;
 
@@ -65,6 +66,7 @@ namespace CameraManagement
             StaticCombatEvents.SubscribeToCombatStarted(EnableZoomCamera);
             StaticCombatEvents.SubscribeToCombatEnded(DisableZoomCamera);
             ItemsStaticEvents.SubscribeToUnlockGlades(UnlockGlades);
+            PlayerStatsStaticEvents.SubscribeToPlayerDied(DisableZoomCamera);
         }
 
         private void UnlockGlades(List<SpawnedGlade> glades)
@@ -107,6 +109,7 @@ namespace CameraManagement
             StaticCombatEvents.UnsubscribeFromCombatStarted(EnableZoomCamera);
             StaticCombatEvents.UnsubscribeFromCombatEnded(DisableZoomCamera);
             ItemsStaticEvents.UnsubscribeFromUnlockGlades(UnlockGlades);
+            PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(DisableZoomCamera);
         }
 
         private void DisableZoomCamera()

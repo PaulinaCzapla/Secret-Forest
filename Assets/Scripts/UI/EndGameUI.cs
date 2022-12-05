@@ -21,7 +21,7 @@ namespace UI
         
         private void OnDisable()
         {
-            PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(PlayerDied);
+           // PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(PlayerDied);
             mainMenu.onClick.RemoveListener(OpenMainMenu);
         }
 
@@ -38,7 +38,7 @@ namespace UI
             DOTween.Sequence()
                 .AppendInterval(0.1f)
                 .Append(canvasGroup.DOFade(0, 0.2f))
-                .AppendCallback(() => gameObject.SetActive(false));
+                .AppendCallback(() => canvasGroup.gameObject.SetActive(false));
         }
     }
 }

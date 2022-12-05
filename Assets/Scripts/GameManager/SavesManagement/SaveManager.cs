@@ -1,41 +1,56 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Glades;
 using Glades.GladeTypes;
 using InteractableItems.CollectableItems.Items;
 using LevelGenerating;
+using Newtonsoft.Json;
 using PlayerInteractions;
 using UI.Eq;
 using UnityEngine;
+using ValueType = InteractableItems.CollectableItems.Items.ValueType;
 
 namespace GameManager.SavesManagement
 {
     public static class SaveManager
     {
+        [JsonObject]
+        [Serializable]
+        public class GameHistory
+        {
+            [JsonProperty] public List<GameStats> gameHistory;
+
+            public GameHistory()
+            {
+                gameHistory = new List<GameStats>();
+            }
+        }
+
         private const string CurrentGameSaveDataFilename = "currentGame.json";
         private const string GamesHistoryFilename = "gameHistory.json";
 
         public static GameSaveData Stats { get; private set; }
-        public static List<GameStats> GameHistory{ get; private set; }
+        public static GameHistory History { get; private set; }
         private static PlayerStatsSO _playerStats;
+
         public static void PrepareSaveData()
         {
             if (_playerStats == null)
                 _playerStats = Resources.Load<PlayerStatsSO>("PlayerStatsSO");
 
-            
+
             Stats = new GameSaveData();
             Stats.levelNum = GameController.GetInstance().CurrentLevelNum;
             Stats.currentHealthValue = _playerStats.currentHealthValue;
             Stats.currentHungerValue = _playerStats.currentHungerValue;
             Stats.currentEqSlotsCount = _playerStats.CurrentEqSlotsCount;
-            
+
             if (LevelGenerator.SpawnedGlades != null && LevelGenerator.SpawnedGlades.Count != 0)
             {
                 Stats.glades = new List<GeneratedGlade>();
                 foreach (var glade in LevelGenerator.SpawnedGlades)
                 {
-                    
-                    Stats.glades.Add(new GeneratedGlade(glade.Glade.Type,glade.GridCell.PositionInGrid,
+                    Stats.glades.Add(new GeneratedGlade(glade.Glade.Type, glade.GridCell.PositionInGrid,
                         glade.AdjacentGlades.ContainsKey(AdjacentSide.Left),
                         glade.AdjacentGlades.ContainsKey(AdjacentSide.Right),
                         glade.AdjacentGlades.ContainsKey(AdjacentSide.Up),
@@ -43,7 +58,7 @@ namespace GameManager.SavesManagement
                         glade.IsVisible));
                 }
             }
-            
+
             ItemType[] types =
             {
                 ItemType.Boots, ItemType.Breastplate, ItemType.Helmet, ItemType.ShinGuards, ItemType.Bow,
@@ -67,25 +82,36 @@ namespace GameManager.SavesManagement
                 List<ValueType> values = null;
                 if (item is WearableItem)
                     values = ((WearableItem) item).Values;
-                
+
                 items.Add(new OwnedItem(false, item.ID, item.Type, values));
             }
 
             Stats.items = items;
         }
-        
+
         public static void SaveHistory()
         {
-            
+            if (History == null)
+                History = new GameHistory();
+
+            History.gameHistory.Add(new GameStats(DateTime.Today.ToShortDateString(), Stats.levelNum));
+            SaveSystem.SaveFile(GamesHistoryFilename, History);
+        }
+
+        public static void ReadHistory()
+        {
+            History = SaveSystem.ReadFile<GameHistory>(GamesHistoryFilename);
         }
 
         public static bool HasSavedCurrentGame()
         {
-           return SaveSystem.HasFile(CurrentGameSaveDataFilename);
+            return SaveSystem.HasFile(CurrentGameSaveDataFilename);
         }
+
         public static void SaveCurrentGame()
         {
-            SaveSystem.SaveFile(CurrentGameSaveDataFilename, Stats);
+            if (_playerStats.currentHealthValue > 0)
+                SaveSystem.SaveFile(CurrentGameSaveDataFilename, Stats);
         }
 
         public static void ReadData()

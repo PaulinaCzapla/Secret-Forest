@@ -11,6 +11,7 @@ namespace GameManager.SavesManagement
         [JsonProperty] public string id;
         [JsonProperty] public ItemType type;
         [JsonProperty] public List<ValueType> values;
+        
 
         public OwnedItem(bool equipped, string id, ItemType type, List<ValueType> values)
         {

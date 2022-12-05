@@ -42,9 +42,9 @@ namespace GameManager.SavesManagement
         {
             filePath = SavePath.Path + filePath;
             
-            if (System.IO.File.Exists(filePath))
+            if (File.Exists(filePath))
             {
-                System.IO.File.Delete(filePath);
+                File.Delete(filePath);
                 return true;
             }
 

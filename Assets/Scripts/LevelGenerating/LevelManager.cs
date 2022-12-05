@@ -98,7 +98,7 @@ namespace LevelGenerating
         }
         public void OnPlayerDied()
         {
-            //TODO: prepare level history
+            SaveManager.SaveHistory();
             SaveManager.DeleteCurrentGameSaveData();
         }
     }
