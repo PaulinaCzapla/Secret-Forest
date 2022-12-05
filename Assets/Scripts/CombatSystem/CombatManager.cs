@@ -21,6 +21,7 @@ namespace CombatSystem
         private int _lastRecalculatedLevel = -10;
         private int _recalculationInterval = 5;
         float _dmg, _defense, _dodge, _critical;
+        float _dmgHard, _defenseHard, _dodgeHard, _criticalHard;
         private bool _shouldHelpPlayer;
         private Enemy _currentEnemy;
 
@@ -36,7 +37,6 @@ namespace CombatSystem
 
         private void OnDisable()
         {
-            PlayerPrefs.GetInt("LastRecalculatedLevel", _lastRecalculatedLevel);
             StaticCombatEvents.UnsubscribeFromCombatStarted(CombatStarted);
             StaticCombatEvents.UnsubscribeFromPlayerBowAttack(PlayerBowAttack);
             StaticCombatEvents.UnsubscribeFromPlayerSwordAttack(PlayerSwordAttack);
@@ -85,7 +85,6 @@ namespace CombatSystem
             StaticCombatEvents.InvokeUpdateEnemyHealthUI(enemy.Defense, enemy.Defense);
             if (_playerStats.currentHealthValue / _playerStats.currentMaxHealthValue < .2)
             {
-                _critical = .1f;
                 _shouldHelpPlayer = true;
             }
             else
@@ -153,17 +152,18 @@ namespace CombatSystem
                 }
                 else
                 {
-                    _dmg = Mathf.Max(1,
-                        Mathf.Max(_playerStats.CurrentBowDamage, _playerStats.CurrentSwordDamage) * 0.8f);
-                    _defense = ValueRounder.RoundUp(_playerStats.CurrentDefense  * 0.8f);
-                    _critical = Mathf.Max(_playerStats.CurrentCriticalSword, _playerStats.CurrentCriticalBow) * 0.8f;
-                    _dodge = _playerStats.CurrentDodgeChance * 0.8f;
+                    _dmgHard = Mathf.Max(1,
+                        Mathf.Max(_playerStats.CurrentBowDamage, _playerStats.CurrentSwordDamage));
+                    _defenseHard = ValueRounder.RoundUp(_playerStats.CurrentDefense  * 0.7f);
+                    _criticalHard = Mathf.Max(_playerStats.CurrentCriticalSword, _playerStats.CurrentCriticalBow)* 0.6f;
+                    _dodgeHard = _playerStats.CurrentDodgeChance;
                 }
 
                 _lastRecalculatedLevel = GameController.GetInstance().CurrentLevelNum;
             }
 
-            return (_defense, _dmg, _dodge, _critical);
+            return(difficulty == DifficultyLevel.Easy ? (_defense, _dmg, _dodge, _critical)
+                : (_defenseHard, _dmgHard, _dodgeHard, _criticalHard));
         }
     }
 }

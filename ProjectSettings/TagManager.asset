@@ -15,7 +15,7 @@ TagManager:
   - Glade
   - InteractableObject
   - Mask
-  - 
+  - Tent
   - 
   - 
   - 
@@ -55,6 +55,9 @@ TagManager:
     locked: 0
   - name: Decorations
     uniqueID: 1252856641
+    locked: 0
+  - name: Tent
+    uniqueID: 3863147545
     locked: 0
   - name: Items
     uniqueID: 2189823543

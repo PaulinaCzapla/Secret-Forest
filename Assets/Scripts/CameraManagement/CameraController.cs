@@ -67,6 +67,24 @@ namespace CameraManagement
             StaticCombatEvents.SubscribeToCombatEnded(DisableZoomCamera);
             ItemsStaticEvents.SubscribeToUnlockGlades(UnlockGlades);
             PlayerStatsStaticEvents.SubscribeToPlayerDied(DisableZoomCamera);
+            LevelGenerator.OnLevelGenerated += DisableZoomCamera;
+        }
+
+        private void OnDisable()
+        {
+            InputManager.onDragAction -= OnDragAction;
+            InputManager.onDragBegin -= OnDragBegin;
+            InputManager.onDragEnd -= OnDragEnd;
+            InputManager.onMouseWheelAction -= OnMouseWheel;
+            InputManager.onPinchAction -= OnPinch;
+            InputManager.onPinchBegin -= OnPinchBegin;
+            InputManager.onPinchEnd -= OnPinchEnd;
+            LevelGenerator.OnLevelGenerated -= OnLevelLoaded;
+            StaticCombatEvents.UnsubscribeFromCombatStarted(EnableZoomCamera);
+            StaticCombatEvents.UnsubscribeFromCombatEnded(DisableZoomCamera);
+            ItemsStaticEvents.UnsubscribeFromUnlockGlades(UnlockGlades);
+            PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(DisableZoomCamera);
+            LevelGenerator.OnLevelGenerated -= DisableZoomCamera;
         }
 
         private void UnlockGlades(List<SpawnedGlade> glades)
@@ -96,21 +114,6 @@ namespace CameraManagement
             Zoom(magnitude * pinchFactor);
         }
 
-        private void OnDisable()
-        {
-            InputManager.onDragAction -= OnDragAction;
-            InputManager.onDragBegin -= OnDragBegin;
-            InputManager.onDragEnd -= OnDragEnd;
-            InputManager.onMouseWheelAction -= OnMouseWheel;
-            InputManager.onPinchAction -= OnPinch;
-            InputManager.onPinchBegin -= OnPinchBegin;
-            InputManager.onPinchEnd -= OnPinchEnd;
-            LevelGenerator.OnLevelGenerated -= OnLevelLoaded;
-            StaticCombatEvents.UnsubscribeFromCombatStarted(EnableZoomCamera);
-            StaticCombatEvents.UnsubscribeFromCombatEnded(DisableZoomCamera);
-            ItemsStaticEvents.UnsubscribeFromUnlockGlades(UnlockGlades);
-            PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(DisableZoomCamera);
-        }
 
         private void DisableZoomCamera()
         {
