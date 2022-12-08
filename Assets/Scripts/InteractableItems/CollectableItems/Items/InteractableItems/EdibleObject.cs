@@ -1,9 +1,8 @@
-﻿using System;
-using PlayerInteractions.Interfaces;
+﻿using PlayerInteractions.Interfaces;
 using PlayerInteractions.StaticEvents;
 using UnityEngine;
 
-namespace InteractableItems
+namespace InteractableItems.CollectableItems.Items.InteractableItems
 {
     public class EdibleObject : MonoBehaviour, IInteractable
     {

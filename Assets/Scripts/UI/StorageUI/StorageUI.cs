@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using InteractableItems;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.InteractableItems;
 using PlayerInteractions.Input;
 using TMPro;
 using UI.Eq;

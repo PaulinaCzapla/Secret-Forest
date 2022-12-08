@@ -5064,8 +5064,8 @@ MonoBehaviour:
     tapDistanceThreshold: 0.1
     swipeMaxDuration: 0.3
     swipeDistanseThreshold: 0.15
-    dragDurationThreshold: 0.01
-    dragDistanceThreashold: 0.2
+    dragDurationThreshold: 0.1
+    dragDistanceThreashold: 0.4
 --- !u!4 &508228040
 Transform:
   m_ObjectHideFlags: 0
@@ -10061,6 +10061,7 @@ GameObject:
   - component: {fileID: 1076353135}
   - component: {fileID: 1076353137}
   - component: {fileID: 1076353136}
+  - component: {fileID: 1076353138}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -10185,6 +10186,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076353134}
   m_CullTransparentMesh: 1
+--- !u!114 &1076353138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076353134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 150
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &1077448560
 GameObject:
   m_ObjectHideFlags: 0
@@ -11365,7 +11386,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -11954,10 +11975,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 84
+    m_Top: 70
     m_Bottom: 100
-  m_ChildAlignment: 1
-  m_Spacing: 0
+  m_ChildAlignment: 4
+  m_Spacing: 150
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -13705,6 +13726,7 @@ GameObject:
   - component: {fileID: 1577288823}
   - component: {fileID: 1577288826}
   - component: {fileID: 1577288825}
+  - component: {fileID: 1577288827}
   m_Layer: 0
   m_Name: UIElements
   m_TagString: Untagged
@@ -13758,7 +13780,7 @@ MonoBehaviour:
     m_Left: 150
     m_Right: 150
     m_Top: 0
-    m_Bottom: 50
+    m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -13768,6 +13790,26 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1577288827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577288822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 600
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &1598808642
 GameObject:
   m_ObjectHideFlags: 0

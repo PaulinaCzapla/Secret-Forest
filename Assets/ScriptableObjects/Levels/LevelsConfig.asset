@@ -19,11 +19,11 @@ MonoBehaviour:
       - type: 1
         probability: 0.1
       - type: 3
-        probability: 0.4
+        probability: 0.45
       - type: 7
-        probability: 1
-      - type: 6
         probability: 0.2
+      - type: 6
+        probability: 0.25
       minRoomsNum: 4
       maxRoomsNum: 6
       roomsConnectionChance: 80
@@ -160,29 +160,3 @@ MonoBehaviour:
       item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
     - probability: 0.15
       item: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
-  valueMultipliers:
-  - maxLevelNum: 5
-    armorDefenseMultiplier: 1
-    armorDodgeMultiplier: 1
-    weaponDamageMultiplier: 1
-    weaponCriticalMultiplier: 1
-  - maxLevelNum: 10
-    armorDefenseMultiplier: 2
-    armorDodgeMultiplier: 2
-    weaponDamageMultiplier: 2
-    weaponCriticalMultiplier: 2
-  - maxLevelNum: 15
-    armorDefenseMultiplier: 3
-    armorDodgeMultiplier: 2
-    weaponDamageMultiplier: 3
-    weaponCriticalMultiplier: 3
-  - maxLevelNum: 25
-    armorDefenseMultiplier: 5
-    armorDodgeMultiplier: 3
-    weaponDamageMultiplier: 5
-    weaponCriticalMultiplier: 5
-  - maxLevelNum: 35
-    armorDefenseMultiplier: 10
-    armorDodgeMultiplier: 8
-    weaponDamageMultiplier: 10
-    weaponCriticalMultiplier: 15

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using InteractableItems;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.InteractableItems;
 using UnityEngine.Events;
 
 namespace UI.StorageUI

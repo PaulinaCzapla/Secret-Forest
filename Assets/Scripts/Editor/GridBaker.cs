@@ -40,10 +40,10 @@ namespace Editor
 
             EditorGUILayout.Separator();
             EditorGUILayout.LabelField("Columns");
-            _columns = EditorGUILayout.IntSlider(_columns, 2, 30);
+            _columns = EditorGUILayout.IntSlider(_columns, 2, 100);
             EditorGUILayout.Separator();
             EditorGUILayout.LabelField("Rows");
-            _rows = EditorGUILayout.IntSlider(_rows, 2, 30);
+            _rows = EditorGUILayout.IntSlider(_rows, 2, 100);
 
             if (GUILayout.Button("Bake grid"))
             {

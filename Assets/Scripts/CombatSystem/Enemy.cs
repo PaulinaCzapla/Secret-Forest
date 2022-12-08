@@ -34,7 +34,7 @@ namespace CombatSystem
 
         public void Revive()
         {
-            _currentHealth = _defense;
+            _currentHealth = 0.7f * _defense;
             _animator.Play("Idle");
         }
 

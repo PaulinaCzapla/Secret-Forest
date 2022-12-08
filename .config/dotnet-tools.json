@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "plantumlclassdiagramgenerator": {
+      "version": "1.2.4",
+      "commands": [
+        "puml-gen"
+      ]
+    }
+  }
+}

@@ -17,9 +17,12 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
         [SerializeField] protected string name;
         [SerializeField] protected Sprite sprite;
 
-       [Attributes.ReadOnly] [SerializeField] protected string id;
+      [HideInInspector] [SerializeField] protected string id;
 
        [HideInInspector] [SerializeField] private bool wasIdSet = false;
+
+#if UNITY_EDITOR
+
        private void OnValidate()
         {
             if (!wasIdSet)
@@ -29,7 +32,8 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                 EditorUtility.SetDirty(this);
             }
         }
-
+        
+#endif
         public abstract Item GetRandom();
         public abstract Item GetItem(ItemType initType, List<ValueType> initValues);
     }

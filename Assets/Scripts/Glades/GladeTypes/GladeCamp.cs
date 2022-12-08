@@ -1,6 +1,6 @@
 ﻿namespace Glades.GladeTypes
 {
-    public class GladeFood : BaseGlade
+    public class GladeCamp : BaseGlade
     {
         public override void Initialize()
         {

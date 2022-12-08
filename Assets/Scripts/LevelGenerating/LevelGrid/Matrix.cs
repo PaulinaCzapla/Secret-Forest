@@ -6,15 +6,15 @@ namespace LevelGenerating.LevelGrid
     [Serializable]
     public class Matrix
     {
-        public List<Array> arrays;
+        public List<CellsList> arrays;
 
         public Matrix(int x, int y)
         {
-            arrays = new List<Array>(new Array[x]);
+            arrays = new List<CellsList>(new CellsList[x]);
 
             for (int i = 0; i < x; i++)
             {
-                arrays[i] = new Array(y);
+                arrays[i] = new CellsList(y);
             }
         }
         
@@ -26,11 +26,11 @@ namespace LevelGenerating.LevelGrid
     }
     
     [Serializable]
-    public class Array
+    public class CellsList
     {
         public List<GridCell> cells;
 
-        public Array(int x)
+        public CellsList(int x)
         {
             cells = new List<GridCell>(new GridCell[x]);
         }

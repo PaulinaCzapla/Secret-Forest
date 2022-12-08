@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DebugTools;
-using InteractableItems.CollectableItems;
-using InteractableItems.CollectableItems.Items;
-using PlayerInteractions.Input;
 using PlayerInteractions.Interfaces;
 using UI.StorageUI;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace InteractableItems
+namespace InteractableItems.CollectableItems.Items.InteractableItems
 {
     public class Chest : MonoBehaviour, IInteractable
     {

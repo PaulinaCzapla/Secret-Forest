@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using InteractableItems;
 using InteractableItems.CollectableItems;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.InteractableItems;
 using InteractableItems.CollectableItems.ScriptableObjects;
 using LevelGenerating;
 using RandomGenerators;
