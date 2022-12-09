@@ -7,43 +7,38 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
     [CreateAssetMenu(fileName = "ActionItem", menuName = "ScriptableObjects/ActionItem", order = 0)]
     public class ActionItemSO : ItemSO
     {
-        public override Item GetRandom()
+        public override Item GetItem()
         {
-            return GetItemOfType(type);
-        }
-
-        public override Item GetItem(ItemType initType, List<ValueType> initValues)
-        {
-            return GetItemOfType(initType);
-        }
-
-        private Item GetItemOfType(ItemType initType)
-        {
-            switch (initType)
+            switch (type)
             {
                 case ItemType.CatEyeNear:
                 {
-                    return new AdjacentGladesUncoverer(sprite, name, ID, initType);
+                    return new AdjacentGladesUncoverer(sprite, name, ID, type);
                     break;
                 }
                 case ItemType.EnchantedCatEye:
                 {
-                    return new RandomGladesUncoverer(sprite, name, ID, initType);
+                    return new RandomGladesUncoverer(sprite, name, ID, type);
                     break;
                 }
                 case ItemType.Compass:
                 {
-                    return new ExitUncoverer(sprite, name, ID, initType);
-
+                    return new ExitUncoverer(sprite, name, ID, type);
                     break;
                 }
                 case ItemType.AddSlot:
                 {
-                    return new AddSlot(sprite, name, ID, initType);
+                    return new AddSlot(sprite, name, ID, type);
                 }
                 default:
                     return null;
             }
         }
+
+        public override Item GetItem(List<ValueType> initValues)
+        {
+            return GetItem();
+        }
+        
     }
 }

@@ -17,17 +17,6 @@ namespace InteractableItems.CollectableItems.Items
             _values = values;
         }
 
-        public override bool Collect()
-        {
-            if (InventoryUI.Instance.ItemCollected(this))
-            {
-                onCollected?.Invoke();
-                return true;
-            }
-
-            return false;
-        }
-
         public void Use()
         {
             PlayerStatsStaticEvents.InvokeHungerValueChanged(GetTypeValue(ItemValueType.Food));

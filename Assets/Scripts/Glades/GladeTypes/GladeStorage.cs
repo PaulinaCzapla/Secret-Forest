@@ -48,7 +48,7 @@ namespace Glades.GladeTypes
                 itemsWithProbabilities.Clear();
 
                 foreach (var item in itemsProbs)
-                    itemsWithProbabilities.Add(new Tuple<Item, float>(item.item.GetRandom(), item.probability));
+                    itemsWithProbabilities.Add(new Tuple<Item, float>(item.item.GetItem(), item.probability));
                 
                 chest.Init(RandomElementsGenerator.
                     GetRandom(itemsWithProbabilities, 

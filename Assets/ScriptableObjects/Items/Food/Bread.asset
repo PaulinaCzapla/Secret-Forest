@@ -15,9 +15,8 @@ MonoBehaviour:
   type: 0
   name: Bread
   sprite: {fileID: -661888589, guid: ac2da8f4a88141440a4df99b2b728cb4, type: 3}
-  id2: 
   id: 1a75a35f775076b40811735b7fde81cb
   wasIdSet: 1
   values:
   - type: 1
-    value: 7
+    value: 6

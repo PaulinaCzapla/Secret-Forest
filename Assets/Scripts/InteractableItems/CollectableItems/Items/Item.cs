@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Glades.GladeTypes;
+using UI.Eq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,7 +25,16 @@ namespace InteractableItems.CollectableItems.Items
             Type = type;
         }
 
-        public abstract bool Collect();
+        public virtual bool Collect()
+        {
+            if (InventoryUI.Instance.ItemCollected(this))
+            {
+                onCollected?.Invoke();
+                return true;
+            }
+
+            return false;
+        }
 
         public override string ToString()
         {

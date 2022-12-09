@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2105143753
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 1362803385, guid: 81665f1016d9f844d8cf028cc98a1907, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776ac374a0d74fcc8321c06bacb271b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 3
+  value: 1
   foodObject: {fileID: 7648590892115831425}
 --- !u!58 &3939505267202056939
 CircleCollider2D:
@@ -188,10 +188,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2105143753
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: -1146704962, guid: 81665f1016d9f844d8cf028cc98a1907, type: 3}
-  m_Color: {r: 0.22544648, g: 0.15961196, b: 0.5754717, a: 1}
+  m_Color: {r: 0.8018868, g: 0.20728011, b: 0.5011681, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

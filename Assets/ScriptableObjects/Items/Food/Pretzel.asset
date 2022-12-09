@@ -15,9 +15,8 @@ MonoBehaviour:
   type: 0
   name: Pretzel
   sprite: {fileID: 1599964070, guid: ac2da8f4a88141440a4df99b2b728cb4, type: 3}
-  id2: 
   id: 6649727348baa8145a7d5cc1af5828cb
   wasIdSet: 1
   values:
   - type: 1
-    value: 4
+    value: 5

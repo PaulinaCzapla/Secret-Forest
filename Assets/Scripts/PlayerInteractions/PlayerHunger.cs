@@ -53,9 +53,6 @@ namespace PlayerInteractions
                 playerStats.currentMaxHungerValue);
             
             UIStaticEvents.InvokeUpdateHungerUI();
-
-            // if (playerStats.currentHungerValue == 0)
-            //    PlayerStatsStaticEvents.InvokePlayerDied();
         }
     }
 }

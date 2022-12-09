@@ -15,11 +15,10 @@ MonoBehaviour:
   type: 0
   name: Raw meat
   sprite: {fileID: -1962477257, guid: 990fc6bb3e758da46a6e88b21d59e968, type: 3}
-  id2: 
   id: a9bfaa1a740b4b940a25a781dfaa8c3e
   wasIdSet: 1
   values:
   - type: 1
     value: 5
   - type: 3
-    value: -3
+    value: -2

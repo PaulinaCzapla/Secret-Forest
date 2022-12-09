@@ -15,9 +15,8 @@ MonoBehaviour:
   type: 0
   name: Sausages
   sprite: {fileID: 1752413848, guid: ac2da8f4a88141440a4df99b2b728cb4, type: 3}
-  id2: 
   id: c846d677c452acc4a923693f32e2ee38
   wasIdSet: 1
   values:
   - type: 1
-    value: 10
+    value: 8

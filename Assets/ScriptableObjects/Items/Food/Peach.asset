@@ -15,9 +15,8 @@ MonoBehaviour:
   type: 0
   name: Peach
   sprite: {fileID: 558875327, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
-  id2: 
   id: e7e86c2b9ea176b4cb08087f10efaa99
   wasIdSet: 1
   values:
   - type: 1
-    value: 4
+    value: 3

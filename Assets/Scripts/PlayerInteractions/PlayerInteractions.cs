@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GameManager;
 using Glades;
 using Glades.GladeTypes;
@@ -6,14 +7,14 @@ using PlayerInteractions.Input;
 using PlayerInteractions.Interfaces;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace PlayerInteractions
 {
     public class PlayerInteractions : MonoBehaviour
     {
-     
         [SerializeField] LayerMask layerMask;
-        
+
         private RaycastHit2D[] _hits;
         private bool _canInteract;
         private bool _canMove;
@@ -49,10 +50,23 @@ namespace PlayerInteractions
             CheckRaycastedObject(tapPosition, MainCamera);
         }
 
+        private bool IsTapOnUI(Vector2 screenPoint)
+        {
+            PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+            eventDataCurrentPosition.position = new Vector2(screenPoint.x, screenPoint.y);
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+            return results.Count > 0;
+        }
+
         void CheckRaycastedObject(Vector2 screenPoint, Camera raycastCamera)
         {
             _hits = Physics2D.RaycastAll(raycastCamera.ScreenToWorldPoint(screenPoint), Vector3.forward, 1000f,
                 layerMask);
+
+            if (IsTapOnUI(screenPoint))
+                return;
+            
             foreach (var hit in _hits)
             {
                 IInteractable interactable = hit.transform.GetComponent<IInteractable>();

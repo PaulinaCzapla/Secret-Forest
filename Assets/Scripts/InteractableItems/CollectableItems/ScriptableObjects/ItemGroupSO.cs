@@ -13,17 +13,17 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
     public class ItemGroupSO : ItemSO
     {
         [SerializeField] private List<ItemProbability> items;
-        public override Item GetRandom()
+        public override Item GetItem()
         {
             List<Tuple<Item, float>> itemsWithProbabilities = new List<Tuple<Item, float>>(items.Count);
 
             foreach (var item in items)
-                    itemsWithProbabilities.Add(new Tuple<Item, float>(item.item.GetRandom(), item.probability));
+                    itemsWithProbabilities.Add(new Tuple<Item, float>(item.item.GetItem(), item.probability));
 
             return RandomElementsGenerator.GetRandom(itemsWithProbabilities);
         }
 
-        public override Item GetItem(ItemType initType, List<ValueType> initValues)
+        public override Item GetItem(List<ValueType> initValues)
         {
             throw new NotImplementedException();
         }

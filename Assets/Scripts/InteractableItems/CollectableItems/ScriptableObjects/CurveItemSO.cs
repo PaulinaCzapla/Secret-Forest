@@ -13,7 +13,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
         [Header("Values")] 
         [SerializeField] private List<ValuesPossibilitiesType> values;
 
-        public override Item GetRandom()
+        public override Item GetItem()
         {
             switch (type)
             {
@@ -76,9 +76,9 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
             }
         }
 
-        public override Item GetItem(ItemType initType, List<ValueType> initValues)
+        public override Item GetItem(List<ValueType> initValues)
         {
-             switch (initType)
+             switch (type)
             {
                 case ItemType.Boots:
                 case ItemType.Breastplate:
@@ -97,7 +97,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                             dodgeValue = value.Value;
                     }
 
-                    return new Armor(defenceValue, dodgeValue, sprite, name, ID, type);
+                    return new Armor(defenceValue, dodgeValue, sprite, name, ID, base.type);
                     break;
                 }
                 case ItemType.Bow:
@@ -116,7 +116,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
                     }
 
                     return new Weapon(damageValue, criticalValue, sprite, name, ID,
-                        type);
+                        base.type);
 
                     break;
                 }

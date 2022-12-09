@@ -27,7 +27,7 @@ namespace PlayerInteractions
             if (playerStats.currentHungerValue != 0)
                 HealthChanged(playerStats.HealthRestoredPerGlade);
             else
-                HealthChanged(-7);
+                HealthChanged(playerStats.HealthLostPerGladeWhenHungry);
         }
 
         private void HealthChanged(float value)

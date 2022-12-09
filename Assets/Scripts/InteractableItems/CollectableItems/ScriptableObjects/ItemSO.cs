@@ -34,7 +34,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
         }
         
 #endif
-        public abstract Item GetRandom();
-        public abstract Item GetItem(ItemType initType, List<ValueType> initValues);
+        public abstract Item GetItem();
+        public abstract Item GetItem(List<ValueType> initValues);
     }
 }

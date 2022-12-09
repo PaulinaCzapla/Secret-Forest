@@ -45,7 +45,7 @@ namespace Glades.GladeTypes
             if (_enemy.IsDead)
                 _gladeCounter++;
 
-            if (_gladeCounter >= 5)
+            if (_gladeCounter >= 10)
             {
                 _enemy.Revive();
                 _gladeCounter = 0;

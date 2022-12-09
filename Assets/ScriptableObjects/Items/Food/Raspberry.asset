@@ -15,7 +15,6 @@ MonoBehaviour:
   type: 0
   name: Raspberry
   sprite: {fileID: 1077194829, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
-  id2: 
   id: 4a7e4050e50347244aebd842eef7c8b7
   wasIdSet: 1
   values:

@@ -10,7 +10,7 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
         [Header("Values")] 
         [SerializeField] private List<ValueType> values;
 
-        public override Item GetRandom()
+        public override Item GetItem()
         {
             switch (type)
             {
@@ -29,18 +29,18 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
             }
         }
 
-        public override Item GetItem(ItemType initType, List<ValueType> initValues)
+        public override Item GetItem( List<ValueType> initValues)
         {
-            switch (initType)
+            switch (type)
             {
                 case ItemType.Food:
                 {
-                    return new Food(values,sprite, name , ID, type);
+                    return new Food(values,sprite, name , ID, base.type);
                     break;
                 }
                 case ItemType.Potion:
                 {
-                    return new Potion(values,sprite, name , ID, type);
+                    return new Potion(values,sprite, name , ID, base.type);
                     break;
                 }
                 default:

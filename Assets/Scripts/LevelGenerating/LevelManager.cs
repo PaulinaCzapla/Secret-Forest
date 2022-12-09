@@ -54,11 +54,11 @@ namespace LevelGenerating
 
                 if (item.equipped)
                 {
-                    equippedItems.Add(it.GetItem(item.type, item.values));
+                    equippedItems.Add(it.GetItem(item.values));
                 }
                 else
                 {
-                    items.Add(it.GetItem(item.type, item.values));
+                    items.Add(it.GetItem(item.values));
                 }
             }
 
@@ -77,8 +77,7 @@ namespace LevelGenerating
             playerStats.InitWithDefaults();
             GameController.GetInstance().Init(playerStats, levelsConfigSo, player, new PlayerEquipment(null));
             InventoryUI.Instance.InitializeStorage(4, null);
-
-
+            
             UIStaticEvents.InvokeUpdateHungerUI();
             UIStaticEvents.InvokeUpdateHealthUI();
             levelGenerator.GenerateLevel(GameManager.GameController.GetInstance().CurrentLevelNum);
@@ -88,18 +87,22 @@ namespace LevelGenerating
         {
             GameManager.GameController.GetInstance().CurrentLevelNum++;
             levelGenerator.GenerateLevel(GameManager.GameController.GetInstance().CurrentLevelNum);
-            SaveManager.PrepareSaveData();
-            SaveManager.SaveCurrentGame();
+            SaveCurrentGame();
         }
         private void OnPlayerMoved(SpawnedGlade arg0)
         {
-            SaveManager.PrepareSaveData();
-            SaveManager.SaveCurrentGame();
+            SaveCurrentGame();
         }
         public void OnPlayerDied()
         {
             SaveManager.SaveHistory();
             SaveManager.DeleteCurrentGameSaveData();
+        }
+
+        public void SaveCurrentGame()
+        {
+            SaveManager.PrepareSaveData();
+            SaveManager.SaveCurrentGame();
         }
     }
 }

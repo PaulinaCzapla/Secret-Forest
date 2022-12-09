@@ -13,16 +13,6 @@ namespace InteractableItems.CollectableItems.Items
         {
         }
 
-        public override bool Collect()
-        {
-            if (InventoryUI.Instance.ItemCollected(this))
-            {
-                onCollected?.Invoke();
-                return true;
-            }
-            return false;
-        }
-
         public override string GetString()
         {
             return "Unlocks an additional slot in the inventory";

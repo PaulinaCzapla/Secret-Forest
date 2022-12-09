@@ -15,7 +15,6 @@ MonoBehaviour:
   type: 0
   name: Apple
   sprite: {fileID: 1316147443, guid: 151d4c4054525824ba33d6cc39bb6e3c, type: 3}
-  id2: 
   id: e92a30d71b8fbf04981699da52fa023d
   wasIdSet: 1
   values:
