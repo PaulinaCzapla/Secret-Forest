@@ -119,44 +119,44 @@ MonoBehaviour:
   - maxLevelNum: 3
     items:
     - probability: 0.75
-      item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
+      items: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
     - probability: 0.2
-      item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
+      items: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
     - probability: 0.05
-      item: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
+      items: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
   - maxLevelNum: 6
     items:
     - probability: 0.4
-      item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
+      items: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
     - probability: 0.3
-      item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
+      items: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
     - probability: 0.1
-      item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
+      items: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
     - probability: 0.1
-      item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
+      items: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
     - probability: 0.1
-      item: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
+      items: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
   - maxLevelNum: 10
     items:
     - probability: 0.3
-      item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
-    - probability: 0.3
-      item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
+      items: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
+    - probability: 0.2
+      items: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
+    - probability: 0.2
+      items: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
     - probability: 0.15
-      item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
+      items: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
     - probability: 0.15
-      item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
-    - probability: 0.1
-      item: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
-  - maxLevelNum: 20
+      items: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
+  - maxLevelNum: 100000000
     items:
     - probability: 0.3
-      item: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
+      items: {fileID: 11400000, guid: d423322a8503e154da58e0f9151d3268, type: 2}
     - probability: 0.25
-      item: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
+      items: {fileID: 11400000, guid: 96a54a9d876221043b8cc353c4a31851, type: 2}
+    - probability: 0.2
+      items: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
     - probability: 0.15
-      item: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
+      items: {fileID: 11400000, guid: 5e26822ccd753ea468af24fd363a9536, type: 2}
     - probability: 0.15
-      item: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}
-    - probability: 0.15
-      item: {fileID: 11400000, guid: dddf92fc6a79d02489972c3bc06528d9, type: 2}
+      items: {fileID: 11400000, guid: 8aa14797db8adff4d82d805039bdd2fc, type: 2}

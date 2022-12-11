@@ -83,10 +83,10 @@ namespace GameManager
 
         public void UnlockSlot()
         {
-            List<Item> items = new List<Item>(InventoryUI.Instance.StoredItems);
+            List<Item> items = new List<Item>(Inventory.Instance.StoredItems);
 
             _playerStats.CurrentEqSlotsCount = Mathf.Clamp(_playerStats.CurrentEqSlotsCount+1, 0, 16);
-            InventoryUI.Instance.InitializeStorage(_playerStats.CurrentEqSlotsCount, items);
+            Inventory.Instance.InitializeStorage(_playerStats.CurrentEqSlotsCount, items);
         }
     }
 }

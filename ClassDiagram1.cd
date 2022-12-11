@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Glades.GladeTypes.BaseGlade">
+    <Position X="3.75" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAABAAQQAAAAAAAAAAAAABAAAABQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Glades\GladeTypes\BaseGlade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Glades.GladeTypes.GladeEmpty">
+    <Position X="0.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Glades\GladeTypes\GladeEmpty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Glades.GladeTypes.GladeFight">
+    <Position X="2.75" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAARADAAAQAAIAAAAQAAIAABAQQJAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\Glades\GladeTypes\GladeFight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Glades.GladeTypes.GladeFood">
+    <Position X="5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Glades\GladeTypes\GladeFood.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Glades.GladeTypes.GladeStorage">
+    <Position X="7.25" Y="8" Width="1.75" />
+    <NestedTypes>
+      <Struct Name="Glades.GladeTypes.GladeStorage.StorageConfiguration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Glades\GladeTypes\GladeStorage.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACAEAAABAAAQAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Glades\GladeTypes\GladeStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

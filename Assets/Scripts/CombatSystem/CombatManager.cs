@@ -20,7 +20,7 @@ namespace CombatSystem
         private int _lastRecalculated = -10;
 
         private int _lastRecalculatedLevel = -10;
-        private int _recalculationInterval = 2;
+        private int _recalculationInterval = 3;
         float _dmg, _defense, _dodge, _critical;
         float _dmgHard, _defenseHard, _dodgeHard, _criticalHard;
         private bool _shouldHelpPlayer;

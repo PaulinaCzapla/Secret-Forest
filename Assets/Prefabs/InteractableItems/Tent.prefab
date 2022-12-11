@@ -131,9 +131,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1088542984685315772}
   stats: {fileID: 11400000, guid: b1cffe5946eba54499f5a86359112a02, type: 2}
-  hpRestored: 0.4
-  foodLost: 0.1
-  minGladesCount: 5
+  hpRestored: 0.6
+  foodLost: 0.2
+  minGladesCount: 8
 --- !u!1 &6823201075370078318
 GameObject:
   m_ObjectHideFlags: 0

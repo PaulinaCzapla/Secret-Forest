@@ -3695,6 +3695,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.6037736
       objectReference: {fileID: 0}
+    - target: {fileID: 6757110128040399789, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6847213251673465104, guid: cd83fc5e2a0e6064e8aae120dbad3824, type: 3}
       propertyPath: m_Intensity
       value: 2
@@ -6260,6 +6264,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6238008999924931435, guid: 5ab1308e3ec8a3d4da0f8c7821edad83, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6238009000988772175, guid: 5ab1308e3ec8a3d4da0f8c7821edad83, type: 3}
       propertyPath: m_Name
       value: BushWithFruitsSmall
@@ -6267,6 +6275,10 @@ PrefabInstance:
     - target: {fileID: 6238009000988772175, guid: 5ab1308e3ec8a3d4da0f8c7821edad83, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238009000988772208, guid: 5ab1308e3ec8a3d4da0f8c7821edad83, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6238009000988772209, guid: 5ab1308e3ec8a3d4da0f8c7821edad83, type: 3}
       propertyPath: m_RootOrder
@@ -6784,6 +6796,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7174407410793897907}
     m_Modifications:
+    - target: {fileID: 545256555247418168, guid: 106e033ca8903c84590b2adf704d846d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 545256555247418170, guid: 106e033ca8903c84590b2adf704d846d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 545256556295268124, guid: 106e033ca8903c84590b2adf704d846d, type: 3}
       propertyPath: m_Name
       value: BushWithFruitsMedium
@@ -6842,6 +6862,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 545256556295268130, guid: 106e033ca8903c84590b2adf704d846d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 545256556295268131, guid: 106e033ca8903c84590b2adf704d846d, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

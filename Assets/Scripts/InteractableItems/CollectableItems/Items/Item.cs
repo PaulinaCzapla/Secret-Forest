@@ -27,7 +27,7 @@ namespace InteractableItems.CollectableItems.Items
 
         public virtual bool Collect()
         {
-            if (InventoryUI.Instance.ItemCollected(this))
+            if (Inventory.Instance.ItemCollected(this))
             {
                 onCollected?.Invoke();
                 return true;

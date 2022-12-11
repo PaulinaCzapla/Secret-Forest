@@ -70,7 +70,5 @@ namespace InteractableItems.CollectableItems.Items.InteractableItems
              PlayerStatsStaticEvents.InvokeHealthValueChanged(hpRestored * stats.currentMaxHealthValue);
              PlayerStatsStaticEvents.InvokeHungerValueChanged(-(foodLost * stats.currentMaxHungerValue));
         }
-        
-        
     }
 }

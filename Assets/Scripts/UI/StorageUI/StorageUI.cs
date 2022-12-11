@@ -30,7 +30,7 @@ namespace UI.StorageUI
             closeButton.onClick.AddListener(Close);
             ChestUIStaticEvents.SubscribeToOpenChest(Open);
             ChestUIStaticEvents.SubscribeToCloseChest(Close);
-            InventoryUI.Instance.OnTriedAddItem.AddListener(OnItemAdded);
+            Inventory.Instance.OnTriedAddItem.AddListener(OnItemAdded);
         }
 
         private void OnItemAdded(bool succeded)

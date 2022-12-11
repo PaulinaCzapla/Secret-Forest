@@ -94,7 +94,7 @@ namespace CameraManagement
 
         private IEnumerator ShowGlades(List<SpawnedGlade> glades)
         {
-            InventoryUI.Instance.CloseStorage();
+            Inventory.Instance.CloseStorage();
             zoomCam.gameObject.SetActive(true);
             cam.gameObject.SetActive(false);
             foreach (var glade in glades)

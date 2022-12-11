@@ -39,9 +39,9 @@ namespace LevelGenerating
             return attributes;
         }
 
-        public List<ItemProbability> GetChestItemsProbabilities()
+        public List<ItemsProbability> GetChestItemsProbabilities()
         {
-            List<ItemProbability> items = null;
+            List<ItemsProbability> items = null;
             float prevMaxLevelNum = -1;
 
             foreach (var info in itemsInfo)
@@ -72,9 +72,16 @@ namespace LevelGenerating
     }
 
     [Serializable]
+    public struct ItemsProbability
+    {
+        [Range(0, 1)] public float probability;
+        public ItemGroupSO items;
+    }
+    
+    [Serializable]
     public class ItemsForLevel
     {
         public int maxLevelNum;
-        public List<ItemProbability> items;
+        public List<ItemsProbability> items;
     }
 }

@@ -20,7 +20,7 @@ namespace InteractableItems.CollectableItems.Items
         public abstract float GetTypeValue(ItemValueType type);
         public void Equip()
         {
-            InventoryUI.Instance.ItemEquipped(this);
+            Inventory.Instance.ItemEquipped(this);
 
         }
     }

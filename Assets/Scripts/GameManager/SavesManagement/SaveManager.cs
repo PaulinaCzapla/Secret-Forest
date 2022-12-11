@@ -77,7 +77,7 @@ namespace GameManager.SavesManagement
                 }
             }
 
-            foreach (var item in InventoryUI.Instance.StoredItems)
+            foreach (var item in Inventory.Instance.StoredItems)
             {
                 List<ValueType> values = null;
                 if (item is WearableItem)

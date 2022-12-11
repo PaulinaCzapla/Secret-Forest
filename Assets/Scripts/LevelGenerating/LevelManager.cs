@@ -64,7 +64,7 @@ namespace LevelGenerating
 
             playerStats.Init(SaveManager.Stats.currentHealthValue, SaveManager.Stats.currentHungerValue, SaveManager.Stats.currentEqSlotsCount);
             GameController.GetInstance().Init(playerStats, levelsConfigSo, player, new PlayerEquipment(equippedItems));
-            InventoryUI.Instance.InitializeStorage(playerStats.CurrentEqSlotsCount, items);
+            Inventory.Instance.InitializeStorage(playerStats.CurrentEqSlotsCount, items);
             
             levelGenerator.RetrieveLevelData(SaveManager.Stats);
             UIStaticEvents.InvokeUpdateHungerUI();
@@ -76,7 +76,7 @@ namespace LevelGenerating
             GameController.GetInstance().CurrentLevelNum = 0;
             playerStats.InitWithDefaults();
             GameController.GetInstance().Init(playerStats, levelsConfigSo, player, new PlayerEquipment(null));
-            InventoryUI.Instance.InitializeStorage(4, null);
+            Inventory.Instance.InitializeStorage(4, null);
             
             UIStaticEvents.InvokeUpdateHungerUI();
             UIStaticEvents.InvokeUpdateHealthUI();

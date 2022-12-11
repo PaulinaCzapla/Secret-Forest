@@ -25,7 +25,7 @@ namespace UI.HUD
         private void UpdateBar(float current, float max)
         {
             slider.value = current/ max;
-                valueText.text = ValueRounder.RoundUp(current).ToString("F0");
+                valueText.text = ValueRounder.RoundUp(current, 0.5f).ToString();
                 _prevValue = current;
                 _fistInit = false;
                 AnimateText();

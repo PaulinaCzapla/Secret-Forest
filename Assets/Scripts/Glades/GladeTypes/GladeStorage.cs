@@ -20,21 +20,17 @@ namespace Glades.GladeTypes
             public List<Chest> chests;
             public GameObject parentGameObject;
         }
-        
+
         [SerializeField] private LevelsConfigSO config;
         [SerializeField] private new List<StorageConfiguration> configurations;
 
         private int _currentConfiguration;
+
         public override void Initialize()
         {
             ResetGlade();
-            _currentConfiguration = Random.Range(0, configurations.Count);
-            configurations[_currentConfiguration].parentGameObject.SetActive(true);
-            
-            var itemsProbs = config.GetChestItemsProbabilities();
-            List<Tuple<Item, float>> itemsWithProbabilities = new List<Tuple<Item, float>>(itemsProbs.Count);
 
-            Tuple<int, float>[] itemsCount = new[]
+            Tuple<int, float>[] itemsCountProbabilities = new[]
             {
                 new Tuple<int, float>(0, 0.2f),
                 new Tuple<int, float>(1, 0.37f),
@@ -43,16 +39,21 @@ namespace Glades.GladeTypes
                 new Tuple<int, float>(4, 0.03f)
             };
             
+            _currentConfiguration = Random.Range(0, configurations.Count);
+            configurations[_currentConfiguration].parentGameObject.SetActive(true);
+
+            var itemsProbs = config.GetChestItemsProbabilities();
+            List<Tuple<Item, float>> itemsWithProbabilities = new List<Tuple<Item, float>>(itemsProbs.Count);
+
             foreach (var chest in configurations[_currentConfiguration].chests)
             {
                 itemsWithProbabilities.Clear();
 
                 foreach (var item in itemsProbs)
-                    itemsWithProbabilities.Add(new Tuple<Item, float>(item.item.GetItem(), item.probability));
-                
-                chest.Init(RandomElementsGenerator.
-                    GetRandom(itemsWithProbabilities, 
-                        RandomElementsGenerator.GetRandom(itemsCount)));
+                    itemsWithProbabilities.Add(new Tuple<Item, float>(item.items.GetItems(), item.probability));
+
+                chest.Init(RandomElementsGenerator.GetRandom(itemsWithProbabilities,
+                    RandomElementsGenerator.GetRandom(itemsCountProbabilities)));
             }
         }
 

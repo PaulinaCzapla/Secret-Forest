@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameManager;
 using InteractableItems.CollectableItems;
 using InteractableItems.CollectableItems.Interfaces;
 using InteractableItems.CollectableItems.Items;
@@ -12,10 +13,10 @@ using UnityEngine.UI;
 
 namespace UI.Eq
 {
-    public class InventoryUI : MonoBehaviour
+    public class Inventory : Singleton<Inventory>
     {
         public UnityEvent<bool> OnTriedAddItem { get; set; } = new UnityEvent<bool>();
-        public static InventoryUI Instance { get; private set; }
+       // public static Inventory Instance { get; private set; }
         public List<Item> StoredItems => _storedItems;
         
         [SerializeField] private GameObject storageObject;
@@ -38,17 +39,9 @@ namespace UI.Eq
         private InventorySlot _currentSelected;
         private Dictionary<ItemType, InventorySlot> _equipmentElements;
 
-        private void Awake()
+        protected override void Awake()
         {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                Instance = this;
-            }
-
+            base.Awake();
             _equipmentElements = new Dictionary<ItemType, InventorySlot>();
             _equipmentElements.Add(ItemType.Boots, bootsSlot);
             _equipmentElements.Add(ItemType.Breastplate, breastplateSlot);
@@ -281,6 +274,17 @@ namespace UI.Eq
                slot.OnEmptySlot();
             }
 
+            ItemType[] types =
+            {
+                ItemType.Boots, ItemType.Breastplate, ItemType.Helmet, ItemType.ShinGuards, ItemType.Bow,
+                ItemType.WhiteWeapon
+            };
+
+            foreach (var type in types)
+            {
+                _equipmentElements[type].OnEmptySlot();
+            }
+            
         }
         private InventorySlot GetFreeSlot()
         {
