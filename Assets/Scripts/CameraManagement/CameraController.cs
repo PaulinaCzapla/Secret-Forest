@@ -65,7 +65,7 @@ namespace CameraManagement
             LevelGenerator.OnLevelGenerated += OnLevelLoaded;
             StaticCombatEvents.SubscribeToCombatStarted(EnableZoomCamera);
             StaticCombatEvents.SubscribeToCombatEnded(DisableZoomCamera);
-            ItemsStaticEvents.SubscribeToUnlockGlades(UnlockGlades);
+            GladesStaticEvents.SubscribeToUnlockGlades(UnlockGlades);
             PlayerStatsStaticEvents.SubscribeToPlayerDied(DisableZoomCamera);
             LevelGenerator.OnLevelGenerated += DisableZoomCamera;
         }
@@ -82,7 +82,7 @@ namespace CameraManagement
             LevelGenerator.OnLevelGenerated -= OnLevelLoaded;
             StaticCombatEvents.UnsubscribeFromCombatStarted(EnableZoomCamera);
             StaticCombatEvents.UnsubscribeFromCombatEnded(DisableZoomCamera);
-            ItemsStaticEvents.UnsubscribeFromUnlockGlades(UnlockGlades);
+            GladesStaticEvents.UnsubscribeFromUnlockGlades(UnlockGlades);
             PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(DisableZoomCamera);
             LevelGenerator.OnLevelGenerated -= DisableZoomCamera;
         }
@@ -108,9 +108,6 @@ namespace CameraManagement
 
         void OnPinch(Vector2 position, Vector2 delta, float magnitude)
         {
-            // if (m_StateUpdate != PanningZoomingUpdte)
-            //     return;
-
             Zoom(magnitude * pinchFactor);
         }
 
@@ -142,7 +139,7 @@ namespace CameraManagement
 
         private Vector2 prevPos;
 
-        private void OnDragAction(Vector2 currentPosition, Vector2 deltaPosition, bool isUI)
+        private void OnDragAction(Vector2 currentPosition, Vector2 deltaPosition)
         {
             var prevPosition = currentPosition - deltaPosition;
             var prev = Camera.main.ScreenToWorldPoint(prevPosition);

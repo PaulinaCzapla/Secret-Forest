@@ -52,7 +52,7 @@ namespace InteractableItems.CollectableItems.Items
                     glade.SetVisibility(true);
                 }
 
-                ItemsStaticEvents.InvokeUnlockGlades(glades);
+                GladesStaticEvents.InvokeUnlockGlades(glades);
             }
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace InteractableItems.CollectableItems.Items
 {
-    public static class ItemsStaticEvents
+    public static class GladesStaticEvents
     {
         private static UnityEvent<List<SpawnedGlade>> onUnlockGlades = new UnityEvent<List<SpawnedGlade>>();
         public static void SubscribeToUnlockGlades  (UnityAction<List<SpawnedGlade>> subscriber) =>

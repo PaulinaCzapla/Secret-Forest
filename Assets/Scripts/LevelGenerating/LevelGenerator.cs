@@ -272,6 +272,7 @@ namespace LevelGenerating
                 //get new room type
                 var type = _levelAttributes.GetRandomGladeType();
 
+                
                 if (roomsToSpawn == 0 && i == newRoomsNum - 1)
                     type = GladeType.End;
 

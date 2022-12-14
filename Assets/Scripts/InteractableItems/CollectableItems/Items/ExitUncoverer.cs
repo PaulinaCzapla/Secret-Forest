@@ -36,7 +36,7 @@ namespace InteractableItems.CollectableItems.Items
            
             LevelGenerator.EndGlade.SetVisibility(true);
             LevelGenerator.EndGlade.SetVisibility(true); 
-            ItemsStaticEvents.InvokeUnlockGlades(glades);
+            GladesStaticEvents.InvokeUnlockGlades(glades);
         }
     }
 }

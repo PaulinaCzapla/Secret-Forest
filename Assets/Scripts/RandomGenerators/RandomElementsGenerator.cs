@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using InteractableItems.CollectableItems.Items;
 using Random = UnityEngine.Random;
 
 namespace RandomGenerators
@@ -49,11 +50,8 @@ namespace RandomGenerators
         public static T GetRandom<T>(List<Tuple<T, float>> values)
         {
             float total = 0;
-
             foreach (var elem in values)
-            {
                 total += elem.Item2;
-            }
 
             float randomPoint = Random.value * total;
 
@@ -63,12 +61,9 @@ namespace RandomGenerators
                 {
                     return values[i].Item1;
                 }
-                else
-                {
-                    randomPoint -= values[i].Item2;
-                }
+                randomPoint -= values[i].Item2;
             }
-
+            
             return values[values.Count - 1].Item1;
         }
 

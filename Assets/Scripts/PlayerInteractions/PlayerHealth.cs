@@ -24,10 +24,10 @@ namespace PlayerInteractions
 
         private void OnPlayerMoved(SpawnedGlade glade)
         {
-            if (playerStats.currentHungerValue != 0)
+            if (playerStats.currentHungerValue > 0)
                 HealthChanged(playerStats.HealthRestoredPerGlade);
             else
-                HealthChanged(playerStats.HealthLostPerGladeWhenHungry);
+                HealthChanged(- playerStats.HealthLostPerGladeWhenHungry);
         }
 
         private void HealthChanged(float value)

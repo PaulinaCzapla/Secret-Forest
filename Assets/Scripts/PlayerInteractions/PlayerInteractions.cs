@@ -42,7 +42,7 @@ namespace PlayerInteractions
             InputManager.onTapAction -= OnSingleTap;
         }
 
-        void OnSingleTap(Vector2 tapPosition, bool isUI)
+        void OnSingleTap(Vector2 tapPosition)
         {
             if (MainCamera == null)
                 return;

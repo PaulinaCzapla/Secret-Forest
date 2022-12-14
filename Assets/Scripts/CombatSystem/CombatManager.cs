@@ -34,6 +34,7 @@ namespace CombatSystem
             StaticCombatEvents.SubscribeToCombatStarted(CombatStarted);
             StaticCombatEvents.SubscribeToPlayerBowAttack(PlayerBowAttack);
             StaticCombatEvents.SubscribeToPlayerSwordAttack(PlayerSwordAttack);
+            PlayerStatsStaticEvents.SubscribeToPlayerDied(PlayerDied);
         }
 
         private void OnDisable()
@@ -41,6 +42,12 @@ namespace CombatSystem
             StaticCombatEvents.UnsubscribeFromCombatStarted(CombatStarted);
             StaticCombatEvents.UnsubscribeFromPlayerBowAttack(PlayerBowAttack);
             StaticCombatEvents.UnsubscribeFromPlayerSwordAttack(PlayerSwordAttack);
+            PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(PlayerDied);
+        }
+
+        private void PlayerDied()
+        {
+            _lastRecalculated = -10;
         }
 
         private void PlayerBowAttack()
@@ -127,10 +134,10 @@ namespace CombatSystem
                     playerAnimationController.GetHit(dmg);
                     PlayerStatsStaticEvents.InvokeHealthValueChanged(-dmg);
 
-                    if (_playerStats.currentHealthValue <= 0)
-                    {
-                        playerAnimationController.Die();
-                    }
+                    // if (_playerStats.currentHealthValue <= 0)
+                    // {
+                    //     playerAnimationController.Die();
+                    // }
                 }
 
                 yield return new WaitForSeconds(0.6f);
@@ -144,7 +151,7 @@ namespace CombatSystem
             {
                 _dmg = Mathf.Max(1,
                     Mathf.Max(_playerStats.CurrentBowDamage, _playerStats.CurrentSwordDamage) * 0.6f);
-                _defense = ValueRounder.RoundUp(_playerStats.CurrentDefense * 0.6f);
+                _defense = (int)(_playerStats.CurrentDefense * 0.6f);
                 _critical = Mathf.Max(_playerStats.CurrentCriticalSword, _playerStats.CurrentCriticalBow) * 0.5f;
                 _dodge = _playerStats.CurrentDodgeChance * 0.5f;
 

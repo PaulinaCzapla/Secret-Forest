@@ -9,7 +9,7 @@ using ValueType = InteractableItems.CollectableItems.Items.ValueType;
 
 namespace InteractableItems.CollectableItems.ScriptableObjects
 {
-    public abstract class ItemSO : ScriptableObject, IRandomizable<Item>
+    public abstract class ItemSO : ScriptableObject
     {
         public string ID => id;
         

@@ -9,7 +9,6 @@ namespace PlayerInteractions.Input
         private IInputManager _inputManager;
         private InputSettings _settings;
         private Vector2 _tapPosition;
-        private bool _tapPositionHasUI;
         private Vector2 _beginTapPosition;
         private Vector2 _prevTapPosition;
 
@@ -17,7 +16,6 @@ namespace PlayerInteractions.Input
 
         // State machine
         private delegate void StateDelegate();
-
         private delegate void StateOnEnterDelegate(Touch touch);
 
         private StateDelegate _currentState;
@@ -36,26 +34,25 @@ namespace PlayerInteractions.Input
             _inputManager.MouseWheel(UnityEngine.Input.mouseScrollDelta.y);
         }
 
-        void IdleState()
+        private void IdleState()
         {
             if (UnityEngine.Input.GetMouseButtonDown(0))
                 _currentState = TapDragRecognitionOnEnter;
         }
 
-        void TapDragRecognitionOnEnter()
+        private void TapDragRecognitionOnEnter()
         {
             _beginTapPosition = UnityEngine.Input.mousePosition;
-            _tapPositionHasUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(-1);
             _timer = 0f;
             _currentState = TapDragRecognition;
         }
 
-        void TapDragRecognition()
+        private void TapDragRecognition()
         {
             // This is a tap/click
             if (UnityEngine.Input.GetMouseButtonUp(0))
             {
-                _inputManager.Tap(UnityEngine.Input.mousePosition, -1, _tapPositionHasUI);
+                _inputManager.Tap(UnityEngine.Input.mousePosition, -1);
                 _currentState = IdleState;
             }
             else if (_timer >= _settings.dragDurationThreshold &&
@@ -66,19 +63,19 @@ namespace PlayerInteractions.Input
             }
         }
 
-        void DraggingStateOnEnter()
+        private void DraggingStateOnEnter()
         {
             _prevTapPosition = UnityEngine.Input.mousePosition;
-            _inputManager.DragBegin(UnityEngine.Input.mousePosition, _tapPositionHasUI);
+            _inputManager.DragBegin(UnityEngine.Input.mousePosition);
             _currentState = DraggingState;
         }
 
-        void DraggingState()
+        private void DraggingState()
         {
             if (UnityEngine.Input.GetMouseButton(0))
             {
                 _inputManager.Drag(UnityEngine.Input.mousePosition,
-                    (Vector2) UnityEngine.Input.mousePosition - _prevTapPosition, _tapPositionHasUI);
+                    (Vector2) UnityEngine.Input.mousePosition - _prevTapPosition);
                 _prevTapPosition = UnityEngine.Input.mousePosition;
             }
             else

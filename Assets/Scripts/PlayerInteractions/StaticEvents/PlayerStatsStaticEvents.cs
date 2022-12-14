@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace PlayerInteractions.StaticEvents
 {
-    public class PlayerStatsStaticEvents
+    public static class PlayerStatsStaticEvents
     {
         private static UnityEvent<float> onHungerValueChanged = new UnityEvent<float>();
         private static UnityEvent<float> onHealthValueChanged = new UnityEvent<float>();

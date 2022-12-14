@@ -32,7 +32,7 @@ namespace InteractableItems.CollectableItems.Items
             }
             
             if(glades.Count > 0)
-                ItemsStaticEvents.InvokeUnlockGlades(glades);
+                GladesStaticEvents.InvokeUnlockGlades(glades);
         }
 
     }

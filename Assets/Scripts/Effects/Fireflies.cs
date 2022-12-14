@@ -116,7 +116,8 @@ namespace Effects
                             newFirefly.transform.position.x + movementOffset),
                         Mathf.Clamp(Random.Range(area.bounds.min.y, area.bounds.max.y),
                             newFirefly.transform.position.y - movementOffset,
-                            newFirefly.transform.position.y + movementOffset), 0)).AppendCallback(() =>
+                            newFirefly.transform.position.y + movementOffset), 0))
+                .AppendCallback(() =>
                     distance = Vector2.Distance(newFirefly.transform.position, newPos))
                 .OnComplete(() => MoveFirefly(newFirefly));
         }

@@ -13,13 +13,13 @@ namespace PlayerInteractions.Input
 
     public class InputManager : MonoBehaviour, IInputManager
     {
-        public static Action<Vector2, bool> onTouchBegin; //<position, isUI>
-        public static Action<Vector2, bool> onTapAction; //<position, isUI>
-        public static Action<Vector2, bool> onPressBegin; //<position, isUI>
-        public static Action<Vector2, bool> onPressAction; //<position, isUI>
+        public static Action<Vector2> onTouchBegin; //<position, isUI>
+        public static Action<Vector2> onTapAction; //<position, isUI>
+        public static Action<Vector2> onPressBegin; //<position, isUI>
+        public static Action<Vector2> onPressAction; //<position, isUI>
         public static Action<Vector2, Vector2, float> onPinchAction; //<positon, deltaPosition, magnitude>
         public static Action<float> onMouseWheelAction;
-        public static Action<Vector2, Vector2, bool> onDragAction; //<position, deltaPosition, isUI>
+        public static Action<Vector2, Vector2> onDragAction; //<position, deltaPosition, isUI>
         public static Action<Vector2> onDragBegin;
         public static Action<Vector2> onDragEnd;
         public static Action onPinchBegin;
@@ -63,20 +63,18 @@ namespace PlayerInteractions.Input
 #if UNITY_EDITOR
         public void TapDebugAction(Vector2 tapPosition, int pointerId)
         {
-            Tap(tapPosition, pointerId, false);
+            Tap(tapPosition, pointerId);
         }
 #endif
 
-        public void BeginTouch(Vector2 position, bool isUI)
+        public void BeginTouch(Vector2 position)
         {
             if (onTouchBegin != null)
-                onTouchBegin(position, isUI);
+                onTouchBegin(position);
         }
 
-        public void Swipe(Vector2 begitPosition, bool isUI)
+        public void Swipe(Vector2 begitPosition)
         {
-            if (isUI)
-                return;
 
             if (onSwipe != null)
                 onSwipe(begitPosition);
@@ -88,7 +86,7 @@ namespace PlayerInteractions.Input
                 onMouseWheelAction(value);
         }
 
-        public void BeginPress(Vector2 tapPosition, int pointerId, bool isUI)
+        public void BeginPress(Vector2 tapPosition, int pointerId)
         {
             if (!TapEnable)
                 return;
@@ -97,79 +95,57 @@ namespace PlayerInteractions.Input
             {
                 if (onPressBegin != null)
                 {
-                    onPressBegin(tapPosition, true);
+                    onPressBegin(tapPosition);
                     return;
                 }
             }
 
             if (onPressBegin != null)
-                onPressBegin(tapPosition, isUI);
+                onPressBegin(tapPosition);
         }
 
-        public void Press(Vector2 tapPosition, int pointerId, bool isUI)
+        public void Press(Vector2 tapPosition, int pointerId)
         {
-#if INPUT_DEBUG_MANAGER
-            Debug.LogFormat("HoldTap : {0}", tapPosition);
-#endif
-
             if (!TapEnable)
                 return;
 
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(pointerId))
             {
-#if INPUT_DEBUG_MANAGER
-                Debug.LogFormat("HoldTap the UI with pointerId : {0}", pointerId);
-#endif
                 if (onPressAction != null)
                 {
-                    onPressAction(tapPosition, true);
+                    onPressAction(tapPosition);
                     return;
                 }
             }
 
             if (onPressAction != null)
-                onPressAction(tapPosition, isUI);
+                onPressAction(tapPosition);
         }
+        
 
-        public void Tap(Vector2 tapPosition, int pointerId, bool isUI)
+        public void Tap(Vector2 tapPosition, int pointerId)
         {
-#if INPUT_DEBUG_MANAGER
-            Debug.LogFormat ("Tap : {0}", tapPosition);
-#endif
-
             if (!TapEnable)
                 return;
-
-            //EventSystem.current.isP
+            
             Debug.Log(EventSystem.current.IsPointerOverGameObject(pointerId));
             if (EventSystem.current != null )
             {
-#if INPUT_DEBUG_MANAGER
-                Debug.LogFormat("Tapped the UI with pointerId : {0}", pointerId);
-#endif
                 if (onTapAction != null)
                 {
-                    onTapAction?.Invoke(tapPosition, true);
+                    onTapAction?.Invoke(tapPosition);
                     return;
                 }
             }
 
             if (onTapAction != null)
-                onTapAction?.Invoke(tapPosition, isUI);
+                onTapAction?.Invoke(tapPosition);
         }
 
         bool m_dragBeinOnUI = false;
 
-        public void DragBegin(Vector2 position, bool isUI)
+        public void DragBegin(Vector2 position)
         {
-            m_dragBeinOnUI = isUI;
-
-            if (m_dragBeinOnUI)
-                return;
-
-#if INPUT_DEBUG_MANAGER
-            Debug.Log ("Drag Begin");
-#endif
             if (onDragBegin != null) onDragBegin(position);
         }
 
@@ -177,37 +153,28 @@ namespace PlayerInteractions.Input
         {
             if (m_dragBeinOnUI)
                 return;
-
-#if INPUT_DEBUG_MANAGER
-            Debug.Log ("Drag End");
-#endif
+            
             if (onDragEnd != null) onDragEnd(position);
         }
 
-        public void Drag(Vector2 currentPosition, Vector2 deltaPosition, bool isUI)
+        public void Drag(Vector2 currentPosition, Vector2 deltaPosition)
         {
             if (m_dragBeinOnUI)
                 return;
 
             if (onDragAction != null)
             {
-                onDragAction(currentPosition, deltaPosition, isUI);
+                onDragAction(currentPosition, deltaPosition);
             }
         }
 
         public void PinchBegin()
         {
-#if INPUT_DEBUG_MANAGER
-            Debug.Log ("Pinch Begin");
-#endif
             if (onPinchBegin != null) onPinchBegin();
         }
 
         public void PinchEnd()
         {
-#if INPUT_DEBUG_MANAGER
-            Debug.Log ("Pinch End");
-#endif
             if (onPinchEnd != null) onPinchEnd();
         }
 
@@ -218,8 +185,7 @@ namespace PlayerInteractions.Input
                 onPinchAction(position, deltaPosition, deltaMagnitudeDiff);
             }
         }
-        
-        
+
         void Update()
         {
             _InputController.Update();
