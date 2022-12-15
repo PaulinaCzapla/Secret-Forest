@@ -1,20 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Firefly : MonoBehaviour
+namespace Effects
 {
-    private Animator _animator;
-    private void Awake()
+    public class Firefly : MonoBehaviour
     {
-        _animator = GetComponent<Animator>();
-        Invoke("PlayAnimation", Random.Range(0,15f));
-    }
+        private Animator _animator;
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+            Invoke("PlayAnimation", Random.Range(0,15f));
+        }
 
-    private void PlayAnimation()
-    {
-        _animator.Play("Firefly");
+        private void PlayAnimation()
+        {
+            _animator.Play("Firefly");
+        }
     }
 }

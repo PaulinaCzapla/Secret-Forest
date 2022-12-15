@@ -22,7 +22,6 @@ namespace Effects
         private List<Sequence> _sequences = new List<Sequence>();
         private List<GameObject> _fireflies = new List<GameObject>();
 
-
         private void Awake()
         {
             for (int i = 0; i < amount; i++)
@@ -36,14 +35,11 @@ namespace Effects
                 newPos = new Vector3(
                     Random.Range(area.bounds.min.x, area.bounds.max.x),
                     Random.Range(area.bounds.min.y, area.bounds.max.y), 0);
-
-                // MoveFirefly(newFirefly);
             }
         }
 
         private void OnEnable()
         {
-            
             EnableFireflies();
             LevelGenerator.OnLevelGenerated += ResetFireflies;
         }

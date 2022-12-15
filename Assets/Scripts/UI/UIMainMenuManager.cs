@@ -17,9 +17,7 @@ namespace UI
 
         private void Awake()
         {
-            
             Open();
-            //TODO: fill list
         }
 
         private void OnEnable()

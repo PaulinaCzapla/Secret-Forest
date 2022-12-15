@@ -32,9 +32,7 @@ namespace LevelGenerating
             PlayerStatsStaticEvents.SubscribeToPlayerDied(OnPlayerDied);
             PlayerMovementStaticEvents.SubscribeToPlayerMovedToGlade(OnPlayerMoved);
         }
-
-
-
+        
         private void OnDisable()
         {
             PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(OnPlayerDied);

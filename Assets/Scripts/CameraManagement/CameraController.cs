@@ -41,15 +41,10 @@ namespace CameraManagement
     {
         [SerializeField] private CinemachineVirtualCamera cam;
         [SerializeField] private CinemachineVirtualCamera zoomCam;
-
         [SerializeField] private GameObject player;
-
-        [Header("Camera movement settings")] [SerializeField]
-        private float zoomSpeed = 1;
-
         [SerializeField] private float initialCameraZoom;
+        
         private readonly float pinchFactor = 0.01f;
-
         private bool _isDragging;
         private bool _isPinching;
 
@@ -106,12 +101,11 @@ namespace CameraManagement
             DisableZoomCamera();
         }
 
-        void OnPinch(Vector2 position, Vector2 delta, float magnitude)
+        private void OnPinch(Vector2 position, Vector2 delta, float magnitude)
         {
             Zoom(magnitude * pinchFactor);
         }
-
-
+        
         private void DisableZoomCamera()
         {
             cam.m_Lens.OrthographicSize = initialCameraZoom;

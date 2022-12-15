@@ -41,11 +41,9 @@ namespace LevelGenerating
 #if UNITY_EDITOR
         private static GridGizmoDrawer _gridGizmoDrawer;
 #endif
-
-
+        
         private void Awake()
         {
-            //   DontDestroyOnLoad(this);
             SpawnedGlades = new List<SpawnedGlade>();
             _gladesPools = new Dictionary<GladeType, List<SpawnedGlade>>();
 
@@ -54,9 +52,6 @@ namespace LevelGenerating
                 if (type != GladeType.End && type != GladeType.Start)
                     _gladesPools.Add(type, new List<SpawnedGlade>());
             }
-
-            // gridGenerator.GenerateGrid();
-            //GenerateLevel();
         }
 
         public void UnloadLevel()

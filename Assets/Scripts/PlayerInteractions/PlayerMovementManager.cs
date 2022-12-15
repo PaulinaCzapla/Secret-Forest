@@ -14,7 +14,6 @@ namespace PlayerInteractions
         private void OnEnable()
         {
             PlayerMovementStaticEvents.SubscribeToTryMovePlayerToGlade(TryMovePlayer);
-            
         }
 
         private void OnDisable()

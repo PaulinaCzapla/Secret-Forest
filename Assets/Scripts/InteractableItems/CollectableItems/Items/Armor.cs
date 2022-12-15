@@ -8,15 +8,13 @@ namespace InteractableItems.CollectableItems.Items
 {
     public class Armor : WearableItem
     {
-
         public Armor(float defence, float dodgeChance, Sprite sprite, string name, string id, ItemType type) : base(type, sprite,
             name, id)
         {
             Values.Add(new ValueType(ItemValueType.Defence, defence));
             Values.Add(new ValueType(ItemValueType.DodgeChance, dodgeChance));
         }
-
-
+        
         public override string GetString()
         {
             string text = "";

@@ -5,5 +5,4 @@
             Easy,
             Hard
         }
-    
 }

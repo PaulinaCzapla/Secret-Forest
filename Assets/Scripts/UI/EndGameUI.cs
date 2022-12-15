@@ -21,7 +21,6 @@ namespace UI
         
         private void OnDisable()
         {
-           // PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(PlayerDied);
             mainMenu.onClick.RemoveListener(OpenMainMenu);
         }
 

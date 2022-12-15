@@ -24,7 +24,6 @@ namespace CombatSystem
         private float _critical;
         private float _currentHealth;
         private Sequence _sequence;
-     
         
         private void Awake()
         {

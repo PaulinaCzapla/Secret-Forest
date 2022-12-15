@@ -20,43 +20,43 @@ namespace Effects
         [SerializeField] private int radiusSteps;
         [SerializeField] private Ease radiusEase;
 
-        private Light2D light2D;
-        private Sequence intenstitySequence, innerRadiusSequence, outerRadiusSequence;
+        private Light2D _light2D;
+        private Sequence _intenstitySequence, _innerRadiusSequence, _outerRadiusSequence;
 
         private void Awake() 
         {
-            light2D = GetComponent<Light2D>();    
+            _light2D = GetComponent<Light2D>();    
         }
 
         private void Start() 
         {
-            var beginIntensity = light2D.intensity;
-            var beginInnerRadius = light2D.pointLightInnerRadius;
-            var beginOuterRadius = light2D.pointLightOuterRadius;
+            var beginIntensity = _light2D.intensity;
+            var beginInnerRadius = _light2D.pointLightInnerRadius;
+            var beginOuterRadius = _light2D.pointLightOuterRadius;
 
-            intenstitySequence = DOTween.Sequence()
+            _intenstitySequence = DOTween.Sequence()
                 .SetAutoKill(false)
                 .SetLoops(-1, LoopType.Restart);
             var intensityPoints = RandomizePoints(-intensityOffset, 0, intensitySteps);
             for(int i = 0; i < intensityPoints.Count; ++i)
             {
-                intenstitySequence.Append(light2D.DOIntensity(beginIntensity + intensityPoints[i], Random.Range(minIntensityDuration, maxIntensityDuration))
+                _intenstitySequence.Append(_light2D.DOIntensity(beginIntensity + intensityPoints[i], Random.Range(minIntensityDuration, maxIntensityDuration))
                     .SetEase(intensityEase));
             }
      
-            innerRadiusSequence = DOTween.Sequence()
+            _innerRadiusSequence = DOTween.Sequence()
                 .SetAutoKill(false)
                 .SetLoops(-1, LoopType.Restart);
-            outerRadiusSequence = DOTween.Sequence()
+            _outerRadiusSequence = DOTween.Sequence()
                 .SetAutoKill(false)
                 .SetLoops(-1, LoopType.Restart);
             var radiusPoints = RandomizePoints(-radiusOffset, radiusOffset, radiusSteps);
             for(int i = 0; i < radiusPoints.Count; ++i)
             {
                 var duration = Random.Range(minRadiusDuration, maxRadiusDuration); 
-                innerRadiusSequence.Append(light2D.DOInnerRadius(beginInnerRadius + radiusPoints[i], duration)
+                _innerRadiusSequence.Append(_light2D.DOInnerRadius(beginInnerRadius + radiusPoints[i], duration)
                     .SetEase(radiusEase));
-                outerRadiusSequence.Append(light2D.DOOuterRadius(beginOuterRadius + radiusPoints[i], duration)
+                _outerRadiusSequence.Append(_light2D.DOOuterRadius(beginOuterRadius + radiusPoints[i], duration)
                     .SetEase(radiusEase));
             }
         }
@@ -74,9 +74,9 @@ namespace Effects
 
         private void Destroy() 
         {
-            intenstitySequence.Kill();
-            outerRadiusSequence.Kill();
-            innerRadiusSequence.Kill();
+            _intenstitySequence.Kill();
+            _outerRadiusSequence.Kill();
+            _innerRadiusSequence.Kill();
         }
     }
 }

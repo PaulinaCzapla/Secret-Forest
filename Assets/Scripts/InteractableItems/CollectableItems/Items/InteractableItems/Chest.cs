@@ -49,16 +49,12 @@ namespace InteractableItems.CollectableItems.Items.InteractableItems
 
         public void Interact()
         {
-            //InputManager.TapEnable = false;
             _animator.SetTrigger("open");
             ChestUIStaticEvents.InvokeOpenChest(_items, this);
-         //   Invoke();
-         
         }
 
         public void Close()
         {
-          //  InputManager.TapEnable = true;
             _animator.SetTrigger("close");
         }
         

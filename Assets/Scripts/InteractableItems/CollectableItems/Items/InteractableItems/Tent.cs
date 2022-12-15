@@ -14,7 +14,8 @@ namespace InteractableItems.CollectableItems.Items.InteractableItems
 {
     public class Tent : MonoBehaviour, IInteractable
     {
-        private static UnityEvent _tentUsed = new UnityEvent();
+        public UnityEvent TentUsed { get; set; }= new UnityEvent();
+        public bool CanSleep { get; set; } = true;
         
         [SerializeField] private TextMeshPro text;
         [SerializeField] private PlayerStatsSO stats;
@@ -22,38 +23,18 @@ namespace InteractableItems.CollectableItems.Items.InteractableItems
         [SerializeField] private float hpRestored;
         [Range(0,1)]
         [SerializeField] private float foodLost;
-        [SerializeField] private int minGladesCount;
 
-        private int _gladeCounter;
         private Sequence _sequence;
 
         private void Awake()
         {
-            _gladeCounter = minGladesCount;
             text.DOFade(0, 0);
             text.text = "You are rested.";
         }
-
-        private void OnEnable()
-        {
-            PlayerMovementStaticEvents.SubscribeToPlayerMovedToGlade(MovedToGlade);
-            _tentUsed.AddListener(() => _gladeCounter = 0);
-        }
-
-        private void OnDisable()
-        {
-            PlayerMovementStaticEvents.UnsubscribeFromPlayerMovedToGlade(MovedToGlade);
-            _tentUsed.RemoveAllListeners();
-        }
-
-        private void MovedToGlade(SpawnedGlade spawnedGlade)
-        {
-            _gladeCounter++;
-        }
-
+        
         public void Interact()
         {
-            if (_gladeCounter >= minGladesCount)
+            if (CanSleep)
                 StartCoroutine(Sleep());
             else
                 _sequence = DOTween.Sequence().Append(text.DOFade(1, 0.05f))
@@ -63,7 +44,7 @@ namespace InteractableItems.CollectableItems.Items.InteractableItems
 
         private IEnumerator Sleep()
         {
-            _tentUsed.Invoke();
+            TentUsed.Invoke();
             SleepUI.OnSleep.Invoke(0.7f,0.7f,0.4f, transform.position);
 
             yield return new WaitForSeconds(1.8f);

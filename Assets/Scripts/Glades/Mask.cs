@@ -13,10 +13,11 @@ namespace Glades
 
         private Color _initialFrameColor;
         private bool _initialized;
+
         private void Awake()
         {
-            if(!_initialized)
-            _initialFrameColor = frameRenderer.color;
+            if (!_initialized)
+                _initialFrameColor = frameRenderer.color;
             _initialized = true;
         }
 
@@ -24,9 +25,9 @@ namespace Glades
         {
             if (mask.color.a == 0)
                 return;
-            
+
             maskSurface.DOFade(0, 0.25f);
-            
+
             Sequence s = DOTween.Sequence()
                 .AppendCallback(() => frameRenderer.color = _initialFrameColor)
                 .AppendCallback(() => fireflies.SetActive(false))
@@ -37,7 +38,7 @@ namespace Glades
         {
             if (maskSurface.color.a == 0)
                 return;
-            
+
             maskSurface.DOFade(0, 0.25f);
             fireflies.SetActive(true);
         }
@@ -49,7 +50,7 @@ namespace Glades
                 _initialFrameColor = frameRenderer.color;
                 _initialized = true;
             }
-            
+
             frameRenderer.color = new Color(0.1886792f, 0.1886792f, 0.1886792f);
             maskSurface.color = Color.white;
             mask.color = Color.white;

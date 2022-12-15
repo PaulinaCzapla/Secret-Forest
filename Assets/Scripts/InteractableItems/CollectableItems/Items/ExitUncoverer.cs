@@ -33,7 +33,6 @@ namespace InteractableItems.CollectableItems.Items
         {
             List<SpawnedGlade> glades = new List<SpawnedGlade>();
             glades.Add(LevelGenerator.EndGlade);
-           
             LevelGenerator.EndGlade.SetVisibility(true);
             LevelGenerator.EndGlade.SetVisibility(true); 
             GladesStaticEvents.InvokeUnlockGlades(glades);

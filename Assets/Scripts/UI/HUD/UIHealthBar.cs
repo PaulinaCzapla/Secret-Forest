@@ -19,11 +19,6 @@ namespace UI.HUD
             UIStaticEvents.SubscribeToUpdateHealthUI(Refresh);
         }
 
-        private void OnDisable()
-        {
-            //UIStaticEvents.UnsubscribeFromUpdateHealthUI(Refresh);
-        }
-
         protected override void Refresh()
         {
             if (Mathf.Abs(_prevValue - Mathf.Abs(stats.currentHealthValue)) >= 0.5 || _fistInit || Mathf.Approximately(stats.currentHealthValue,0) 

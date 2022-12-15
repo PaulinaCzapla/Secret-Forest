@@ -14,18 +14,6 @@ namespace GameManager.SavesManagement
 {
     public static class SaveManager
     {
-        [JsonObject]
-        [Serializable]
-        public class GameHistory
-        {
-            [JsonProperty] public List<GameStats> gameHistory;
-
-            public GameHistory()
-            {
-                gameHistory = new List<GameStats>();
-            }
-        }
-
         private const string CurrentGameSaveDataFilename = "currentGame.json";
         private const string GamesHistoryFilename = "gameHistory.json";
 

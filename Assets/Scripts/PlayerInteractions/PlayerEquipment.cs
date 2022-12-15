@@ -11,30 +11,6 @@ namespace PlayerInteractions
         private Dictionary<ItemType, WearableItem> _equipment;
         private PlayerStatsSO _playerStats;
 
-        // public PlayerEquipment()
-        // {
-        //     _equipment = new Dictionary<ItemType, WearableItem>();
-        //     
-        //
-        //     _playerStats = Resources.Load<PlayerStatsSO>("PlayerStatsSO");
-        //     RecalculateValues();
-        // }
-        //
-        // public PlayerEquipment(WearableItem boots, WearableItem breastplate, WearableItem helmet, WearableItem shinGuards,
-        //     WearableItem bow, WearableItem whiteWeapon)
-        // {
-        //     _equipment = new Dictionary<ItemType, WearableItem>();
-        //     _equipment.Add(ItemType.Boots, boots);
-        //     _equipment.Add(ItemType.Breastplate, breastplate);
-        //     _equipment.Add(ItemType.Helmet, helmet);
-        //     _equipment.Add(ItemType.ShinGuards, shinGuards);
-        //     _equipment.Add(ItemType.Bow, bow);
-        //     _equipment.Add(ItemType.WhiteWeapon, whiteWeapon);
-        //
-        //     _playerStats = Resources.Load<PlayerStatsSO>("PlayerStatsSO");
-        //     RecalculateValues();
-        // }
-
         public PlayerEquipment(List<Item> items)
         {
             ItemType[] types =
@@ -42,27 +18,28 @@ namespace PlayerInteractions
                 ItemType.Boots, ItemType.Breastplate, ItemType.Helmet, ItemType.ShinGuards, ItemType.Bow,
                 ItemType.WhiteWeapon
             };
-            
+
             _equipment = new Dictionary<ItemType, WearableItem>();
 
-            if(items!=null)
-            foreach (var item in items)
-            {
-                if (!_equipment.ContainsKey(item.Type))
+            if (items != null)
+                foreach (var item in items)
                 {
-                    _equipment.Add(item.Type, (WearableItem)item);
+                    if (!_equipment.ContainsKey(item.Type))
+                    {
+                        _equipment.Add(item.Type, (WearableItem) item);
+                    }
                 }
-            }
 
             foreach (var type in types)
             {
-                if(!_equipment.ContainsKey(type))
+                if (!_equipment.ContainsKey(type))
                     _equipment.Add(type, null);
             }
-            
+
             _playerStats = Resources.Load<PlayerStatsSO>("PlayerStatsSO");
             RecalculateValues();
         }
+
         public WearableItem GetCurrentEquippedItem(ItemType type)
         {
             return _equipment[type];
@@ -71,10 +48,13 @@ namespace PlayerInteractions
         private void RecalculateValues()
         {
             _playerStats.CurrentBowDamage = (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.Damage) ?? 0);
-            _playerStats.CurrentSwordDamage = (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.Damage) ?? 0);
+            _playerStats.CurrentSwordDamage =
+                (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.Damage) ?? 0);
 
-            _playerStats.CurrentCriticalBow = (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0);
-            _playerStats.CurrentCriticalSword = (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0);
+            _playerStats.CurrentCriticalBow =
+                (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0);
+            _playerStats.CurrentCriticalSword =
+                (_equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0);
 
             _playerStats.CurrentDefense = (_equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.Defence) ??
                                            0) + (_equipment[ItemType.Breastplate]
@@ -85,10 +65,13 @@ namespace PlayerInteractions
                 ?.GetTypeValue(ItemValueType.Defence) ?? 0);
 
             _playerStats.CurrentDodgeChance = (_equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.DodgeChance) ??
-                                               0) + (_equipment[ItemType.Breastplate]?.GetTypeValue(ItemValueType.DodgeChance) ??
-                                                     0) + (_equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.DodgeChance) ??
-                                                           0) + (_equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.DodgeChance) ?? 0);
-            
+                                               0) + (_equipment[ItemType.Breastplate]
+                                                         ?.GetTypeValue(ItemValueType.DodgeChance) ??
+                                                     0) + (_equipment[ItemType.Helmet]
+                                                               ?.GetTypeValue(ItemValueType.DodgeChance) ??
+                                                           0) + (_equipment[ItemType.ShinGuards]
+                ?.GetTypeValue(ItemValueType.DodgeChance) ?? 0);
+
             _playerStats.currentMaxHealthValue = _playerStats.CurrentDefense;
             UIStaticEvents.InvokeUpdateHealthUI();
             InventoryUIStaticEvents.InvokeRefreshInventoryStatsUI();
@@ -191,7 +174,7 @@ namespace PlayerInteractions
         public float GetWeaponCurrentDamage(ItemType type)
         {
             if (type == ItemType.Bow)
-                return  _equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.Damage) ?? 0;
+                return _equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.Damage) ?? 0;
             if (type == ItemType.WhiteWeapon)
                 return _equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.Damage) ?? 0;
             return 0;
@@ -200,7 +183,7 @@ namespace PlayerInteractions
         public float GetWeaponCurrentCriticalChance(ItemType type)
         {
             if (type == ItemType.Bow)
-                return  _equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0;
+                return _equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.CriticalDamageChance) ?? 0;
             if (type == ItemType.WhiteWeapon)
                 return _equipment[ItemType.WhiteWeapon]?.GetTypeValue(ItemValueType.CriticalDamageChance) ??
                        0;
@@ -212,13 +195,13 @@ namespace PlayerInteractions
             switch (type)
             {
                 case ItemType.Boots:
-                    return  _equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.Defence) ?? 0;
+                    return _equipment[ItemType.Boots]?.GetTypeValue(ItemValueType.Defence) ?? 0;
                     break;
                 case ItemType.Breastplate:
                     return _equipment[ItemType.Breastplate]?.GetTypeValue(ItemValueType.Defence) ?? 0;
                     break;
                 case ItemType.Helmet:
-                    return  _equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.Defence) ?? 0;
+                    return _equipment[ItemType.Helmet]?.GetTypeValue(ItemValueType.Defence) ?? 0;
                     break;
                 case ItemType.ShinGuards:
                     return _equipment[ItemType.ShinGuards]?.GetTypeValue(ItemValueType.Defence) ?? 0;
