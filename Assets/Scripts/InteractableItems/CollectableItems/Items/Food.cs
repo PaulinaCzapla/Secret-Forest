@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using InteractableItems.CollectableItems.Interfaces;
+using InteractableItems.CollectableItems.Items.Types;
 using PlayerInteractions.StaticEvents;
 using UI.Eq;
 using UnityEngine;
@@ -7,6 +9,9 @@ using Random = UnityEngine.Random;
 
 namespace InteractableItems.CollectableItems.Items
 {
+    /// <summary>
+    /// A class that represents an food item that restores hunger. It implements IUsable interface, so player can use this item.
+    /// </summary>
     public class Food : Item, IUsable
     {
         private List<ValueType> _values;

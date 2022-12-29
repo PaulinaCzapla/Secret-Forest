@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// A class that implements Main Menu.
+    /// </summary>
     public class UIMainMenuManager : MonoBehaviour
     {
         [SerializeField] private CanvasGroup canvasGroup;
@@ -31,26 +34,35 @@ namespace UI
             continueGame.onClick.RemoveListener(ContinueGame);
             newGame.onClick.RemoveListener(NewGame);
         }
-
+        /// <summary>
+        /// Starts new game and closes menu.
+        /// </summary>
         private void NewGame()
         {
             levelManager.StartNewGame();
             Close();
         }
-
+        /// <summary>
+        /// Loads game from save and closes menu.
+        /// </summary>
         private void ContinueGame()
         {
             levelManager.LoadGame();
             Close();
         }
 
+        /// <summary>
+        /// Closes Main Menu.
+        /// </summary>
         public void Close()
         {
             DOTween.Sequence().Append(canvasGroup.DOFade(0, 0.2f))
                 .AppendCallback(() => gameObject.SetActive(false))
                 .AppendCallback(() => InputManager.TapEnable = true);
         }
-
+        /// <summary>
+        /// Opens Main Menu.
+        /// </summary>
         public void Open()
         {
             continueGame.gameObject.SetActive(SaveManager.HasSavedCurrentGame());

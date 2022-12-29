@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// A class that implements end game UI.
+    /// </summary>
     public class EndGameUI : MonoBehaviour
     {
         [SerializeField] private UIMainMenuManager mainMenuManager;
@@ -23,7 +26,9 @@ namespace UI
         {
             mainMenu.onClick.RemoveListener(OpenMainMenu);
         }
-
+        /// <summary>
+        /// Called when player is dead. Activates the end game UI.
+        /// </summary>
         private void PlayerDied()
         {
             InputManager.TapEnable = false;
@@ -31,6 +36,9 @@ namespace UI
             canvasGroup.DOFade(1, 0.5f);
         }
 
+        /// <summary>
+        /// Called when player clicks "Main Menu" button. Displays main menu UI.
+        /// </summary>
         private void OpenMainMenu()
         {
             mainMenuManager.Open();

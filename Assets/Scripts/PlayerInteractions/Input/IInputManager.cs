@@ -2,6 +2,9 @@
 
 namespace PlayerInteractions.Input
 {
+    /// <summary>
+    /// An interface that represents behaviours of input managers.
+    /// </summary>
     public interface IInputManager
     {
         void BeginTouch(Vector2 position);

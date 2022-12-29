@@ -7,12 +7,15 @@ using RandomGenerators;
 using UI.Events;
 using Unity.VisualScripting;
 using UnityEngine;
-using ValueRepresentation;
+using Utilities.ValueRepresentation;
 using Random = UnityEngine.Random;
 
 
 namespace CombatSystem
 {
+    /// <summary>
+    /// Class that manages combat system.
+    /// </summary>
     public class CombatManager : GameManager.Singleton<CombatManager>
     {
         [SerializeField] private PlayerAnimationController playerAnimationController;
@@ -44,11 +47,17 @@ namespace CombatSystem
             PlayerStatsStaticEvents.UnsubscribeFromPlayerDied(PlayerDied);
         }
 
+        /// <summary>
+        ///  Resets the last recalculation level.
+        /// </summary>
         private void PlayerDied()
         {
             _lastRecalculated = -10;
         }
 
+        /// <summary>
+        /// Performs player's bow attack.
+        /// </summary>
         private void PlayerBowAttack()
         {
             var chance = _playerStats.CurrentCriticalBow / 10;
@@ -62,6 +71,11 @@ namespace CombatSystem
                 0.25f));
         }
 
+        /// <summary>
+        /// A coroutine that performs player' attack and starts enemy's turn.
+        /// </summary>
+        /// <param name="dmg"> Damage value that should be dealt. </param>
+        /// <param name="hittime"> Time of the hit animation. </param>
         private IEnumerator PlayerAttack(float dmg, float hittime)
         {
             StaticCombatEvents.InvokeToggleCombatButtonsUI(false);
@@ -69,6 +83,10 @@ namespace CombatSystem
             _currentEnemy.Hit(dmg, _shouldHelpPlayer);
             StartCoroutine(EnemyTurn());
         }
+
+        /// <summary>
+        /// Performs player's sword attack.
+        /// </summary>
 
         private void PlayerSwordAttack()
         {
@@ -83,6 +101,10 @@ namespace CombatSystem
                     0.35f));
         }
 
+        /// <summary>
+        /// Stars the combat by setting the UI and _shouldHelpPlayer flag. Draws who stars the fight.
+        /// </summary>
+        /// <param name="enemy"> Current fighting enemy. </param>
         private void CombatStarted(Enemy enemy)
         {
             _currentEnemy = enemy;
@@ -97,6 +119,10 @@ namespace CombatSystem
             if (!playerStarts)
                 StartCoroutine(EnemyTurn());
         }
+
+        /// <summary>
+        /// A coroutine that performs enemy's turn and starts player's turn.
+        /// </summary>
 
         private IEnumerator EnemyTurn()
         {
@@ -128,6 +154,11 @@ namespace CombatSystem
             }
         }
 
+        /// <summary>
+        /// Generate enemy stats. Stats are recalculated in given interval.
+        /// </summary>
+        /// <param name="difficulty"> Difficulty level (hard or easy). </param>
+        /// <returns> It a tuple with generated enemy's stats. </returns>
         public (float, float, float, float) GetEnemyStats(DifficultyLevel difficulty)
         {
             if (GameController.GetInstance().CurrentLevelNum - _lastRecalculatedLevel >= _recalculationInterval)

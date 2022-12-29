@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace Glades
 {
+    /// <summary>
+    /// Representation of the spawned glade. Contains it's word and grid positions,adjacent glades, id and information about visibility.
+    /// </summary>
     public class SpawnedGlade : MonoBehaviour, IInteractable
     {
         public Vector2 SpawnPosition => spawnPosition.position;
@@ -55,11 +58,18 @@ namespace Glades
             Glade.OnPlayerArrived.RemoveListener(PlayerArrived);
         }
 
+        /// <summary>
+        /// Sets visibility when player arrived to glade.
+        /// </summary>
         private void PlayerArrived()
         {
             SetVisibility(true);
         }
 
+        /// <summary>
+        /// Initializes glade by setting a mask and activation path objects to adjacent glades.
+        /// </summary>
+        /// <param name="isVisible"> Information if mask should be activated. </param>
         public void Initialize(bool isVisible)
         {
             Glade.Initialize();
@@ -85,7 +95,9 @@ namespace Glades
                 AdjacentGlades[AdjacentSide.Right].Type != AdjacentType.Blocked)
                 rightGate.SetActive(true);
         }
-
+        /// <summary>
+        /// Sets mask.
+        /// </summary>
         public void SetVisibility(bool isVisible)
         {
             IsVisible = isVisible;
@@ -102,11 +114,17 @@ namespace Glades
             }
         }
 
+        /// <summary>
+        /// Action performed when player interacts with glade.
+        /// </summary>
         public void Interact()
         {
             PlayerMovementStaticEvents.InvokeTryMovePlayerToPosition(this);
         }
 
+        /// <summary>
+        /// Reset glade by removing all adjacent glades, grid cell and disabling gates.
+        /// </summary>
         public void Reset()
         {
             Debug.Log("cleared");
@@ -117,6 +135,9 @@ namespace Glades
             DisableGates();
         }
 
+        /// <summary>
+        /// Disables all gates.
+        /// </summary>
         private void DisableGates()
         {
             upGate.SetActive(false);

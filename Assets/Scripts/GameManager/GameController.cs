@@ -2,6 +2,7 @@
 using Glades;
 using Glades.GladeTypes;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.Types;
 using LevelGenerating;
 using PlayerInteractions;
 using UI.Eq;
@@ -9,6 +10,9 @@ using UnityEngine;
 
 namespace GameManager
 {
+    /// <summary>
+    /// A class that manages several elements of the game.
+    /// </summary>
     public class GameController
     {
         public bool IsGameplayInputLocked { get; set; }
@@ -22,6 +26,9 @@ namespace GameManager
         private static GameController _instance;
         private LevelsConfigSO _levelConfig;
 
+        /// <summary>
+        /// Property that load PlayerStats from resources when they were not loaded yet.
+        /// </summary>
         public PlayerStatsSO PlayerStats
         {
             get
@@ -44,6 +51,12 @@ namespace GameManager
             return _instance;
         }
 
+        /// <summary>
+        /// Calculates minimum value and multiplier for items generation. 
+        /// </summary>
+        /// <param name="itemType"> Type of an item. </param>
+        /// <param name="type"> Type of an value. </param>
+        /// <returns> Multiplayer and minimum value. </returns>
         public (float,float) GetValueMultiplierAndMin(ItemType itemType, ItemValueType type)
         {
             float multiplier = 1;
@@ -81,6 +94,9 @@ namespace GameManager
             PlayerAnimation = player;
         }
 
+        /// <summary>
+        /// Unlocks additional slot in the inventory.
+        /// </summary>
         public void UnlockSlot()
         {
             List<Item> items = new List<Item>(Inventory.Instance.StoredItems);

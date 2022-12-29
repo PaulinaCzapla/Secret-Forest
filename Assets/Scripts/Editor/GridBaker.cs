@@ -5,6 +5,9 @@ using Grid = LevelGenerating.LevelGrid.Grid;
 
 namespace Editor
 {
+    /// <summary>
+    /// An editor window that is used for baking/generating the grid according to the given parameters.
+    /// </summary>
     public class GridBakerWindowEditor : EditorWindow
     {
         private static EditorWindow _editor;
@@ -15,6 +18,9 @@ namespace Editor
         private bool _baked;
         private bool _wasSizeSet;
 
+        /// <summary>
+        /// Show the editor window.
+        /// </summary>
         [MenuItem("SecretForest/Grid Baker", false, 1)]
         static void ShowWindow()
         {
@@ -22,6 +28,9 @@ namespace Editor
             _editor.Show();
         }
 
+        /// <summary>
+        /// Shows fields and buttons that can be used to generate grid.
+        /// </summary>
         void OnGUI()
         {
             _grid = (Grid) EditorGUILayout.ObjectField(_grid, typeof(Grid), false);
@@ -71,6 +80,10 @@ namespace Editor
             }
         }
 
+        /// <summary>
+        /// Bakes the grid.
+        /// </summary>
+        ///  <returns>Information if baking succeeded.</returns>
         bool Bake()
         {
             return GridGenerator.GenerateGrid();

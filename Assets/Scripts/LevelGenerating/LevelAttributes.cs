@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace LevelGenerating
 {
+    /// <summary>
+    /// A class that contains informations required to generate a level.
+    /// </summary>
     [Serializable]
     public class LevelAttributes
     {
@@ -16,6 +19,11 @@ namespace LevelGenerating
         [Range(0, 100)] public int roomsConnectionChance;
 
         private Tuple<GladeType, float>[] _types ;
+        
+        /// <summary>
+        /// Returns random glade type considering it's probabilities. The output is also dependent on player's current health.
+        /// </summary>
+        /// <returns> Glade type. </returns>
         public GladeType GetRandomGladeType()
         {
             if (_types == null || _types.Length == 0)
@@ -49,6 +57,9 @@ namespace LevelGenerating
         }
     }
 
+    /// <summary>
+    /// A struct that represents glade type with it's probability chance.
+    /// </summary>
     [Serializable]
     public struct GladeTypeWithProbability
     {
@@ -56,6 +67,10 @@ namespace LevelGenerating
         [Range(0,1)]
         public float probability;
     }
+    
+    /// <summary>
+    /// A struct that represents information about level.
+    /// </summary>
     [Serializable] 
     public struct LevelInfo
     {

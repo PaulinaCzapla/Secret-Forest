@@ -6,6 +6,9 @@ using Newtonsoft.Json;
 
 namespace LevelGenerating
 {
+    /// <summary>
+    /// A class that represents generated glade information. It is used for saving data to file.
+    /// </summary>
     [Serializable]
     [JsonObject]
     public class GeneratedGlade

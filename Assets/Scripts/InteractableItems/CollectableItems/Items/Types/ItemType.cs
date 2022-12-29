@@ -1,5 +1,8 @@
-﻿namespace InteractableItems.CollectableItems.Items
+﻿namespace InteractableItems.CollectableItems.Items.Types
 {
+    /// <summary>
+    /// Describes item type.
+    /// </summary>
     public enum ItemType
     {
         Food,

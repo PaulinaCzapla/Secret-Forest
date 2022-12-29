@@ -5,12 +5,17 @@ using UnityEngine.EventSystems;
 
 namespace PlayerInteractions.Input
 {
+    /// <summary>
+    /// Describes input type.
+    /// </summary>
     public enum InputType
     {
         Touch,
         Mouse
     };
-
+    /// <summary>
+    /// A class that is responsible for input management.
+    /// </summary>
     public class InputManager : MonoBehaviour, IInputManager
     {
         public static Action<Vector2> onTouchBegin; //<position, isUI>
@@ -30,7 +35,7 @@ namespace PlayerInteractions.Input
         /// <summary>
         /// Gets or sets a value indicating whether tap enable.
         /// </summary>
-        /// <value><c>true</c> if tap enable; otherwise, <c>false</c>.</value>
+        /// <value>true if tap enable; otherwise, false.</value>
         public static bool TapEnable { get; set; }
 
         [SerializeField] InputType inputTouch = InputType.Touch;
@@ -41,8 +46,7 @@ namespace PlayerInteractions.Input
         private void Awake()
         {
             TapEnable = true;
-
-
+            
  #if UNITY_ANDROID && !UNITY_EDITOR
              inputTouch = InputType.Touch;
  #else
@@ -60,13 +64,6 @@ namespace PlayerInteractions.Input
             }
         }
 
-#if UNITY_EDITOR
-        public void TapDebugAction(Vector2 tapPosition, int pointerId)
-        {
-            Tap(tapPosition, pointerId);
-        }
-#endif
-
         public void BeginTouch(Vector2 position)
         {
             if (onTouchBegin != null)
@@ -75,7 +72,6 @@ namespace PlayerInteractions.Input
 
         public void Swipe(Vector2 begitPosition)
         {
-
             if (onSwipe != null)
                 onSwipe(begitPosition);
         }

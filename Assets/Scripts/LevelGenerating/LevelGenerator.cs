@@ -17,6 +17,9 @@ using Random = UnityEngine.Random;
 
 namespace LevelGenerating
 {
+    /// <summary>
+    /// A class that generates a level.
+    /// </summary>
     public class LevelGenerator : MonoBehaviour
     {
         public static UnityAction OnLevelGenerated { get; set; }
@@ -35,6 +38,9 @@ namespace LevelGenerating
         [SerializeField] private SpawnedGlade startGlade;
         [SerializeField] private TextMeshProUGUI levelInfo;
         
+        /// <summary>
+        /// Dictionary that contains lists of glades that were spawned previously and are not used (are disabled). 
+        /// </summary>
         private Dictionary<GladeType, List<SpawnedGlade>> _gladesPools;
         private LevelAttributes _levelAttributes;
 
@@ -54,6 +60,9 @@ namespace LevelGenerating
             }
         }
 
+        /// <summary>
+        /// Unload level by disabling objects, resetting them and clearing SpawnedGlades list.
+        /// </summary>
         public void UnloadLevel()
         {
             if (startGlade)
@@ -83,7 +92,10 @@ namespace LevelGenerating
             }
         }
 
-
+        /// <summary>
+        /// Generates a level based on the given save data.
+        /// </summary>
+        /// <param name="data"> Save data. </param>
         public void RetrieveLevelData(GameSaveData data)
         {
             UnloadLevel();
@@ -177,9 +189,7 @@ namespace LevelGenerating
         /// </summary>
         public void GenerateLevel(int levelNum = 1)
         {
-            
             UnloadLevel();
-            
             _levelAttributes = levelsConfigSo.GetLevelAttributes();
             
             //Generate first glade
@@ -316,6 +326,10 @@ namespace LevelGenerating
             }
         }
 
+        /// <summary>
+        /// Sets camera limits that are based on the gives position.
+        /// </summary>
+        /// <param name="position"> Position of the last spawned glade. </param>
         private void SetCameraLimits(Vector2 position)
         {
             if (CameraLimits.MaxX < position.x)
@@ -332,8 +346,9 @@ namespace LevelGenerating
         }
 
         /// <summary>
-        ///  Checks if there are other existing adjacent glades
+        ///  Checks if there are other existing adjacent glades.
         /// </summary>
+        /// <param name="newGlade"> A glade that will be checked for adjacent glades. </param>
         private void CheckOtherAdjacent(SpawnedGlade newGlade)
         {
             foreach (AdjacentSide adjacentSide in GetFreeSides(newGlade))
@@ -369,8 +384,9 @@ namespace LevelGenerating
         }
         
         /// <summary>
-        ///  Checks if there are other existing adjacent glades
+        ///  Checks if there are other existing adjacent glades. Called whet retrieving saved level.
         /// </summary>
+        /// <param name="newGlade"> A glade which will be checked for adjacent glades. </param>
         private void CheckOtherAdjacentRetrieve(SpawnedGlade newGlade)
         {
             foreach (AdjacentSide adjacentSide in GetFreeSides(newGlade))
@@ -407,8 +423,10 @@ namespace LevelGenerating
         }
 
         /// <summary>
-        /// Returns glade at given position in grid
+        /// Returns a glade at the given position in grid.
         /// </summary>
+        /// <param name="pos"> Position in grid. </param>
+        /// <returns> Glade at given position. </returns>
         private SpawnedGlade GetGladeAtPosition(Vector2 pos)
         {
             foreach (var glade in SpawnedGlades)
@@ -435,8 +453,10 @@ namespace LevelGenerating
         }
 
         /// <summary>
-        /// Returns not occupied sides of the given glade
+        /// Returns not occupied sides of the given glade.
         /// </summary>
+        /// <param name="glade"> A glade whose sides will be checked. </param>
+        /// <returns> List of free sides. </returns>
         private List<AdjacentSide> GetFreeSides(SpawnedGlade glade)
         {
             List<AdjacentSide> positions = new List<AdjacentSide>()

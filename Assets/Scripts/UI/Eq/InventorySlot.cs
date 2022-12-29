@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 namespace UI.Eq
 {
+    /// <summary>
+    /// A class that represents single inventory slot.
+    /// </summary>
     public class InventorySlot : MonoBehaviour
     {
         public UnityEvent<InventorySlot> OnSlotClicked { get; set; } = new UnityEvent<InventorySlot>();
@@ -38,6 +41,9 @@ namespace UI.Eq
                 defaultImage.gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Removes item from a slot.
+        /// </summary>
         public void OnEmptySlot()
         {
             OnSlotEmptied?.Invoke(_currentItem);
@@ -50,16 +56,24 @@ namespace UI.Eq
                 defaultImage.gameObject.SetActive(true);
         }
 
+        /// <summary>
+        /// Marks this slot as selected.
+        /// </summary>
         public void Select()
         {
             selected.SetActive(true);
         }
-
+        /// <summary>
+        /// Unselects slot.
+        /// </summary>
         public void Unselect()
         {
             selected.SetActive(false);
         }
 
+        /// <summary>
+        /// Empties slot and uses item.
+        /// </summary>
         public void OnUseItem()
         {
             if (_currentItem is IUsable usable)

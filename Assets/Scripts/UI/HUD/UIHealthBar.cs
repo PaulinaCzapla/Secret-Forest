@@ -3,10 +3,13 @@ using DG.Tweening;
 using PlayerInteractions;
 using UI.Events;
 using UnityEngine;
-using ValueRepresentation;
+using Utilities.ValueRepresentation;
 
 namespace UI.HUD
 {
+    /// <summary>
+    /// A class that represents player's health bar.
+    /// </summary>
     public class UIHealthBar : UIBar
     {
         [SerializeField] private PlayerStatsSO stats;
@@ -18,7 +21,9 @@ namespace UI.HUD
            
             UIStaticEvents.SubscribeToUpdateHealthUI(Refresh);
         }
-
+        /// <summary>
+        /// Refreshes bar values.
+        /// </summary>
         protected override void Refresh()
         {
             if (Mathf.Abs(_prevValue - Mathf.Abs(stats.currentHealthValue)) >= 0.5 || _fistInit || Mathf.Approximately(stats.currentHealthValue,0) 

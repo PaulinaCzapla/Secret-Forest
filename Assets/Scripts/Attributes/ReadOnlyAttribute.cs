@@ -8,6 +8,9 @@ namespace Attributes
     {
     }
 
+    /// <summary>
+    ///  A class that is an attribute that allows to create read-only fields in a editor window
+    /// </summary>
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
     {

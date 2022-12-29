@@ -1,6 +1,9 @@
 ﻿
 namespace Glades
 {
+    /// <summary>
+    /// Represents glade that is adjacent to other glade.
+    /// </summary>
     public class AdjacentGlade
     {
         public AdjacentType Type { get; private set; }

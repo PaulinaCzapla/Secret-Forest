@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace PlayerInteractions
 {
+    /// <summary>
+    /// A class that implements player's movement behaviour.
+    /// </summary>
     public class PlayerMovementManager : MonoBehaviour
     {
         private SpawnedGlade currentOccupiedGlade;
@@ -21,11 +24,20 @@ namespace PlayerInteractions
             PlayerMovementStaticEvents.UnsubscribeFromTryMovePlayerToGlade(TryMovePlayer);
         }
 
+        /// <summary>
+        /// Sets player's position.
+        /// </summary>
+        /// <param name="destination"> New position. </param>
         private void MovePlayer(Vector2 destination)
         {
             this.gameObject.transform.position = destination;
         }
 
+        /// <summary>
+        /// Tries move player to given glade.
+        /// </summary>
+        /// <param name="destination"> Target glade. </param>
+        /// <param name="forced"> Information if move is forced and shouldn't consider available paths.. </param>
         private void TryMovePlayer(SpawnedGlade destination, bool forced)
         {
             if (currentOccupiedGlade == null || forced)
@@ -53,6 +65,10 @@ namespace PlayerInteractions
             }
         }
 
+        /// <summary>
+        /// Moves player to glade.
+        /// </summary>
+        /// <param name="destination"> Target glade. </param>
         private void MoveToGlade(SpawnedGlade destination)
         {
             currentOccupiedGlade = destination;
@@ -63,6 +79,12 @@ namespace PlayerInteractions
             destination.Glade.OnPlayerArrived?.Invoke();
         }
 
+        /// <summary>
+        /// Checks adjacent side. 
+        /// </summary>
+        /// <param name="gladePos"> Current glade position. </param>
+        /// <param name="adjacentGladePos"> Adjacent glade position. </param>
+        /// <returns> Adjacent side type. </returns>
         private AdjacentSide GetAdjacentSide(Vector2 gladePos, Vector2 adjacentGladePos)
         {
             if (adjacentGladePos.x - gladePos.x < 0)

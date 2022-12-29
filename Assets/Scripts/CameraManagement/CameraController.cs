@@ -13,6 +13,9 @@ using UnityEngine;
 
 namespace CameraManagement
 {
+    /// <summary>
+    ///  A static class that contains and calculates camera limits.
+    /// </summary>
     public static class CameraLimits
     {
         public static float MinZoom { get; } = 1;
@@ -37,6 +40,9 @@ namespace CameraManagement
         }
     }
 
+    /// <summary>
+    ///  A class that is responsible for all camera movement.
+    /// </summary>
     public class CameraController : MonoBehaviour
     {
         [SerializeField] private CinemachineVirtualCamera cam;
@@ -87,6 +93,10 @@ namespace CameraManagement
             StartCoroutine(ShowGlades(glades));
         }
 
+        /// <summary>
+        ///  Moves the camera to the glades positions given as a parameter.
+        /// </summary>
+        /// <param name="glades"> A list of glades to show on camera. </param>
         private IEnumerator ShowGlades(List<SpawnedGlade> glades)
         {
             Inventory.Instance.CloseStorage();
@@ -106,6 +116,9 @@ namespace CameraManagement
             Zoom(magnitude * pinchFactor);
         }
         
+        /// <summary>
+        ///  Disables the camera that can be zoomed by user.
+        /// </summary>
         private void DisableZoomCamera()
         {
             cam.m_Lens.OrthographicSize = initialCameraZoom;
@@ -114,6 +127,9 @@ namespace CameraManagement
             zoomCam.gameObject.SetActive(false);
         }
 
+        /// <summary>
+        ///  Enables the camera that can be zoomed by user.
+        /// </summary>
         private void EnableZoomCamera(Enemy enemy)
         {
             zoomCam.Follow = GameManager.GameController.GetInstance().CurrentGlade.transform;
@@ -133,6 +149,11 @@ namespace CameraManagement
 
         private Vector2 prevPos;
 
+        /// <summary>
+        ///  Moves the camera according to the finger movement.
+        /// </summary>
+        /// <param name="currentPosition"> Current finger position on screen. </param>
+        /// <param name="deltaPosition"> Delta position of finger movement. </param>
         private void OnDragAction(Vector2 currentPosition, Vector2 deltaPosition)
         {
             var prevPosition = currentPosition - deltaPosition;
@@ -164,6 +185,11 @@ namespace CameraManagement
             Zoom(magnitude * pinchFactor);
         }
 
+        /// <summary>
+        ///  Zooms the camera.
+        /// </summary>
+        /// <param name="magnitude"> Zoom's magnitude. </param>
+
         void Zoom(float magnitude)
         {
             float potentialOrthoSize = Mathf.Clamp(cam.m_Lens.OrthographicSize + magnitude * 2, CameraLimits.MinZoom,
@@ -180,6 +206,9 @@ namespace CameraManagement
             FocusPlayer();
         }
 
+        /// <summary>
+        ///  Makes the camera focus te player and sets initial zoom value.
+        /// </summary>
         public void FocusPlayer()
         {
             cam.m_Lens.OrthographicSize = initialCameraZoom;

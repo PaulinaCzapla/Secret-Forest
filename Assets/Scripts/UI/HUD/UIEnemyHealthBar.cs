@@ -2,10 +2,13 @@
 using CombatSystem;
 using UI.Events;
 using UnityEngine;
-using ValueRepresentation;
+using Utilities.ValueRepresentation;
 
 namespace UI.HUD
 {
+    /// <summary>
+    /// A class that represents enemy health bar.
+    /// </summary>
     public class UIEnemyHealthBar : UIBar
     {
         private float _prevValue;
@@ -22,6 +25,9 @@ namespace UI.HUD
             StaticCombatEvents.UnsubscribeFromUpdateEnemyHealthUI(UpdateBar);
         }
 
+        /// <summary>
+        /// Updates bar values.
+        /// </summary>
         private void UpdateBar(float current, float max)
         {
             slider.value = current/ max;

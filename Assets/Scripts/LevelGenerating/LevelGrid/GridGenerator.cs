@@ -4,6 +4,9 @@ namespace LevelGenerating.LevelGrid
 {
 #if UNITY_EDITOR
 
+    /// <summary>
+    /// A class that is responsible for generating a grid.
+    /// </summary>
     public static class GridGenerator
     {
         private static LevelGrid.Grid _grid;
@@ -18,6 +21,10 @@ namespace LevelGenerating.LevelGrid
             }
         }
 
+        /// <summary>
+        /// Generates a grid as a Matrix.
+        /// </summary>
+        /// <returns> Returns true if succeeded or false if not.</returns>
         public static bool GenerateGrid()
         {
             if (_isInitialized)

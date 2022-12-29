@@ -6,6 +6,9 @@ using Utilities;
 
 namespace Effects
 {
+    /// <summary>
+    /// A class that is representation of fireplace light visual effect.
+    /// </summary>
     [RequireComponent(typeof(Light2D))]
     public class FireplaceLight : MonoBehaviour
     {
@@ -28,6 +31,9 @@ namespace Effects
             _light2D = GetComponent<Light2D>();    
         }
 
+        /// <summary>
+        /// Sets the sequences with given parameters to create a fire light animation in infinite loop.
+        /// </summary>
         private void Start() 
         {
             var beginIntensity = _light2D.intensity;
@@ -61,6 +67,13 @@ namespace Effects
             }
         }
 
+        /// <summary>
+        /// Generates given number of random points between a and b values.
+        /// </summary>
+        /// <param name="a"> Min value. </param>
+        /// <param name="b"> Max value. </param>
+        /// <param name="n"> Number of values to generate. </param>
+        /// <returns> List with random points. </returns>
         private List<float> RandomizePoints(float a, float b, float n)
         {
             List<float> ret = new List<float>();

@@ -1,14 +1,22 @@
 ﻿using System.Collections.Generic;
-using InteractableItems;
 using InteractableItems.CollectableItems.Items;
 using InteractableItems.CollectableItems.Items.InteractableItems;
 using UnityEngine.Events;
 
-namespace UI.StorageUI
+namespace UI.Events
 {
+    /// <summary>
+    /// A static class that implements events that are used to manage chests.
+    /// </summary>
     public static class ChestUIStaticEvents
     {
+        /// <summary>
+        /// Event that is invoked when player tries to open the chest.
+        /// </summary>
         private static UnityEvent<List<Item>,Chest > onOpenChest = new UnityEvent<List<Item>,Chest  > ();
+        /// <summary>
+        /// Event that is invoked when chest is closed.
+        /// </summary>
         private static UnityEvent onCloseChest = new UnityEvent ();
 
         

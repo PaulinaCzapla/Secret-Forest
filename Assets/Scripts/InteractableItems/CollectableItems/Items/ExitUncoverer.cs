@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Glades;
+using InteractableItems.CollectableItems.Interfaces;
+using InteractableItems.CollectableItems.Items.Types;
 using LevelGenerating;
 using UI.Eq;
 using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
 {
+    /// <summary>
+    /// A class that represents an item, that uncovers the exit glade. It implements IUsable interface, so player can use this item.
+    /// </summary>
     public class ExitUncoverer : Item, IUsable
     {
         public ExitUncoverer(Sprite sprite, string name, string id, ItemType type) 

@@ -1,10 +1,15 @@
 ﻿using System.Collections.Generic;
+using InteractableItems.CollectableItems.Interfaces;
+using InteractableItems.CollectableItems.Items.Types;
 using PlayerInteractions.StaticEvents;
 using UI.Eq;
 using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
 {
+    /// <summary>
+    /// A class that represents an potion item, that can have influence on player's health and hunger stats. It implements IUsable interface, so player can use this item.
+    /// </summary>
     public class Potion : Item, IUsable
     {
         private List<ValueType> _values;

@@ -12,6 +12,9 @@ using UnityEngine.Events;
 
 namespace InteractableItems.CollectableItems.Items.InteractableItems
 {
+    /// <summary>
+    /// A class that represents a tent in which player can sleep in.
+    /// </summary>
     public class Tent : MonoBehaviour, IInteractable
     {
         public UnityEvent TentUsed { get; set; }= new UnityEvent();
@@ -32,6 +35,9 @@ namespace InteractableItems.CollectableItems.Items.InteractableItems
             text.text = "You are rested.";
         }
         
+        /// <summary>
+        /// Starts sleeping animation if player can sleep. If not, displays text message. 
+        /// </summary>
         public void Interact()
         {
             if (CanSleep)
@@ -42,6 +48,9 @@ namespace InteractableItems.CollectableItems.Items.InteractableItems
                     .Append(text.DOFade(0, 0.6f));
         }
 
+        /// <summary>
+        /// A coroutine that performs sleep animation and restores player's health. It also decreases hunger value.
+        /// </summary>
         private IEnumerator Sleep()
         {
             TentUsed.Invoke();

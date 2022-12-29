@@ -1,12 +1,19 @@
 ﻿using System.Collections.Generic;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.Types;
 using UnityEngine;
 
 namespace InteractableItems.CollectableItems.ScriptableObjects
 {
+    /// <summary>
+    /// A scriptable object that represents action item that doesn't have any value.
+    /// </summary>
     [CreateAssetMenu(fileName = "ActionItem", menuName = "ScriptableObjects/ActionItem", order = 0)]
     public class ActionItemSO : ItemSO
     {
+        /// <summary>
+        /// Returns proper Item object.
+        /// </summary>
         public override Item GetItem()
         {
             switch (type)

@@ -4,33 +4,42 @@ using Newtonsoft.Json.Linq;
 
 namespace GameManager.SavesManagement
 {
+    /// <summary>
+    /// A generic static class that is responsible for managing files. 
+    /// </summary>
     public static class SaveSystem
     {
-        public static void SaveFile<T>(string filePath, T saveData) where T : class
+        /// <summary>
+        /// Saves an object to the file with given name.
+        /// </summary>
+        public static void SaveFile<T>(string fileName, T saveData) where T : class
         {
-            
-            if (filePath != null)
+            if (fileName != null)
             {
-                filePath = SavePath.Path + filePath;
-                File.WriteAllText(filePath, JsonConvert.SerializeObject(saveData));
+                fileName = SavePath.Path + fileName;
+                File.WriteAllText(fileName, JsonConvert.SerializeObject(saveData));
             }
         }
-
-        public static bool HasFile(string filePath)
+        /// <summary>
+        /// Checks if file with given name exists.
+        /// </summary>
+        public static bool HasFile(string fileName)
         {
-            return File.Exists(SavePath.Path + filePath);
+            return File.Exists(SavePath.Path + fileName);
         }
-        
-        public static T ReadFile<T>(string filePath) where T : class
+        /// <summary>
+        /// Reads data from file with a given name.
+        /// </summary>
+        public static T ReadFile<T>(string fileName) where T : class
         {
             T saveData = null;
 
-            if (filePath != null)
+            if (fileName != null)
             {
-                filePath = SavePath.Path + filePath;
-                if (File.Exists(filePath))
+                fileName = SavePath.Path + fileName;
+                if (File.Exists(fileName))
                 {
-                    JObject o = JObject.Parse(File.ReadAllText(filePath));
+                    JObject o = JObject.Parse(File.ReadAllText(fileName));
                     JsonSerializer serializer = new JsonSerializer();
                     saveData = (T) serializer.Deserialize(new JTokenReader(o), typeof(T));
                 }
@@ -38,13 +47,16 @@ namespace GameManager.SavesManagement
             return saveData;
         }
 
-        public static bool DeleteFile(string filePath)
+        /// <summary>
+        /// Removes file with a given name.
+        /// </summary>
+        public static bool DeleteFile(string fileName)
         {
-            filePath = SavePath.Path + filePath;
+            fileName = SavePath.Path + fileName;
             
-            if (File.Exists(filePath))
+            if (File.Exists(fileName))
             {
-                File.Delete(filePath);
+                File.Delete(fileName);
                 return true;
             }
 

@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace PlayerInteractions
 {
+    /// <summary>
+    /// A class that represents player hunger.
+    /// </summary>
     public class PlayerHunger : MonoBehaviour
     {
         [SerializeField] private PlayerStatsSO playerStats;
@@ -42,11 +45,18 @@ namespace PlayerInteractions
             }
         }
 
+        /// <summary>
+        /// Every time player moves, hunger value is decreased by a certain value.
+        /// </summary>
         private void OnPlayerMoved(SpawnedGlade glade)
         {
             HungerChanged(-playerStats.HungerLostPerGlade);
         }
 
+        /// <summary>
+        /// Changes hunger value.
+        /// </summary>
+        /// <param name="value"> Additional value. </param>
         private void HungerChanged(float value)
         {
             playerStats.currentHungerValue = Mathf.Clamp(playerStats.currentHungerValue + value, 0,

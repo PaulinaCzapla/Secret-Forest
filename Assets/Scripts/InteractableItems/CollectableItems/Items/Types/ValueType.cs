@@ -1,10 +1,12 @@
 ﻿using System;
-using InteractableItems.CollectableItems.ScriptableObjects;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace InteractableItems.CollectableItems.Items
+namespace InteractableItems.CollectableItems.Items.Types
 {
+    /// <summary>
+    /// A struct that contains value and information of it's type.
+    /// </summary>
     [Serializable]
     public struct ValueType
     {
@@ -21,6 +23,9 @@ namespace InteractableItems.CollectableItems.Items
         }
     }
 
+    /// <summary>
+    /// A struct that contains animation curve and it's item value type.
+    /// </summary>
     [Serializable]
     public struct ValuesPossibilitiesType
     {

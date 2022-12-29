@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Utilities
 {
+    /// <summary>
+    /// A DOTween utility class that implements methods that enable animations for Light2D.
+    /// </summary>
     public static class DoTweenUtility
     {
         public static Tweener DOIntensity(this UnityEngine.Rendering.Universal.Light2D target, float endValue, float duration)

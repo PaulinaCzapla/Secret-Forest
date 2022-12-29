@@ -9,6 +9,9 @@ using Random = UnityEngine.Random;
 
 namespace Effects
 {
+    /// <summary>
+    /// A class that represents fireflies, that are a visual effect.
+    /// </summary>
     public class Fireflies : MonoBehaviour
     {
         [SerializeField] private Collider2D area;
@@ -50,9 +53,11 @@ namespace Effects
             EnableFireflies();
         }
 
+        /// <summary>
+        /// Disables all of the active fireflies and kills sequences that were responsible for their animation.
+        /// </summary>
         private void DisableFireflies()
         {
-            Debug.Log("Disable");
             if (_sequences != null)
                 foreach (var sequence in _sequences)
                 {
@@ -65,7 +70,9 @@ namespace Effects
             }
         }
 
-
+        /// <summary>
+        /// Enables all fireflies from list and sets random position from them.
+        /// </summary>
         private void EnableFireflies()
         {
             foreach (var vfirefly in _fireflies)
@@ -95,10 +102,14 @@ namespace Effects
         private void OnDisable()
         {
             LevelGenerator.OnLevelGenerated -= ResetFireflies;
-
             DisableFireflies();
         }
 
+        /// <summary>
+        /// Recursion method that is responsible for movement animation of every single firefly.
+        /// Fireflies are animated by using a DOTween Sequence that moves them to random positions. After reaching the point, the same method is invoked.
+        /// </summary>
+        /// <param name="newFirefly"> Firefly object to be animated. </param>
         private void MoveFirefly(GameObject newFirefly)
         {
             Sequence sequence = DOTween.Sequence();

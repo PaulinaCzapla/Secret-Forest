@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using InteractableItems.CollectableItems.Interfaces;
+using InteractableItems.CollectableItems.Items.Types;
 using UI.Eq;
 using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
 {
+    /// <summary>
+    /// A class that represents an item, that can be wore by the player. It implements IEquippable interface.
+    /// </summary>
     public abstract class WearableItem : Item, IEquippable
     {
         public List<ValueType> Values { get; protected set; } = new List<ValueType>();

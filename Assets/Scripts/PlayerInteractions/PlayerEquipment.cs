@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.Types;
 using UI.Eq;
 using UI.Events;
 using UnityEngine;
 
 namespace PlayerInteractions
 {
+    /// <summary>
+    /// A class that represents player's equipment.
+    /// </summary>
     public class PlayerEquipment
     {
         private Dictionary<ItemType, WearableItem> _equipment;
@@ -40,11 +44,19 @@ namespace PlayerInteractions
             RecalculateValues();
         }
 
+        /// <summary>
+        /// Returns currently equipped item of a given type. 
+        /// </summary>
+        /// <param name="type"> Item type </param>
+        /// <returns> WearableItem object. If player doesn't have equipped item the method returns null. </returns>
         public WearableItem GetCurrentEquippedItem(ItemType type)
         {
             return _equipment[type];
         }
 
+        /// <summary>
+        /// Recalculates current player stats considering current equipment.
+        /// </summary>
         private void RecalculateValues()
         {
             _playerStats.CurrentBowDamage = (_equipment[ItemType.Bow]?.GetTypeValue(ItemValueType.Damage) ?? 0);
@@ -77,6 +89,11 @@ namespace PlayerInteractions
             InventoryUIStaticEvents.InvokeRefreshInventoryStatsUI();
         }
 
+        /// <summary>
+        /// Equips given Item and returns the previous one.
+        /// </summary>
+        /// <param name="item"> An item to equip.</param>
+        /// <returns> Previously equipped item. If there wasn't any it returns null. </returns>
         public Item Equip(Item item)
         {
             Item prevItem = null;
@@ -124,6 +141,11 @@ namespace PlayerInteractions
             return prevItem;
         }
 
+        /// <summary>
+        /// Unequips given item.
+        /// </summary>
+        /// <param name="item"> An item to unequip. </param>
+        /// <returns> Previously equipped item. </returns>
         public Item Unequip(Item item)
         {
             Item prevItem = null;
@@ -171,6 +193,11 @@ namespace PlayerInteractions
             return prevItem;
         }
 
+        /// <summary>
+        /// Gets currently equipped weapon's damage.
+        /// </summary>
+        /// <param name="type"> Item type. </param>
+        /// <returns> Damage value. </returns>
         public float GetWeaponCurrentDamage(ItemType type)
         {
             if (type == ItemType.Bow)
@@ -180,6 +207,11 @@ namespace PlayerInteractions
             return 0;
         }
 
+        /// <summary>
+        /// Gets currently equipped weapon's critical damage chance.
+        /// </summary>
+        /// <param name="type"> Item type. </param>
+        /// <returns> Critical damage chance value. </returns>
         public float GetWeaponCurrentCriticalChance(ItemType type)
         {
             if (type == ItemType.Bow)
@@ -189,7 +221,11 @@ namespace PlayerInteractions
                        0;
             return 0;
         }
-
+        /// <summary>
+        /// Gets currently equipped weapon's defense value.
+        /// </summary>
+        /// <param name="type"> Item type. </param>
+        /// <returns> Defense value. </returns>
         public float GetArmorCurrentDefense(ItemType type)
         {
             switch (type)
@@ -210,7 +246,11 @@ namespace PlayerInteractions
                     return 0;
             }
         }
-
+        /// <summary>
+        /// Gets currently equipped armour's dodge chance.
+        /// </summary>
+        /// <param name="type"> Item type. </param>
+        /// <returns> Dodge chance value. </returns>
         public float GetArmorDodgeChance(ItemType type)
         {
             switch (type)

@@ -3,10 +3,22 @@ using UnityEngine.Events;
 
 namespace PlayerInteractions.StaticEvents
 {
+    /// <summary>
+    /// A static class that is used for health and hunger functionalities.
+    /// </summary>
     public static class PlayerStatsStaticEvents
     {
+        /// <summary>
+        /// Invoked when player's hunger values was changed.
+        /// </summary>
         private static UnityEvent<float> onHungerValueChanged = new UnityEvent<float>();
+        /// <summary>
+        /// Invoked when player's health value was changed.
+        /// </summary>
         private static UnityEvent<float> onHealthValueChanged = new UnityEvent<float>();
+        /// <summary>
+        /// Invoked when player dies.
+        /// </summary>
         private static UnityEvent onPlayerDied = new UnityEvent();
         
         public static void SubscribeToHungerValueChanged (UnityAction<float> subscriber) =>

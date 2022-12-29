@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Settings
 {
+    /// <summary>
+    /// A serializable class that contains input settings.
+    /// </summary>
     [Serializable]
     public class InputSettings
     {

@@ -1,10 +1,14 @@
 ﻿using System;
 using PlayerInteractions;
 using TMPro;
+using UI.Events;
 using UnityEngine;
 
 namespace UI.Eq
 {
+    /// <summary>
+    /// A class that represents stats section in the inventory. It displays current player's stats.
+    /// </summary>
     public class InventoryStatsUI : MonoBehaviour
     {
         [SerializeField] private PlayerStatsSO playerStats;
@@ -25,6 +29,9 @@ namespace UI.Eq
             InventoryUIStaticEvents.UnsubscribeFromRefreshInventoryStatsUI(RefreshEqStats);
         }
 
+        /// <summary>
+        /// Sets current player's stats in UI.
+        /// </summary>
         private void RefreshEqStats()
         {
             damageBow.text = playerStats.CurrentBowDamage.ToString();

@@ -4,6 +4,9 @@ namespace DebugTools.Gizmos
 {
 #if UNITY_EDITOR
 
+    /// <summary>
+    /// A class that exists for debugging reasons. It draws grid gizmos that are visible only in the editor.
+    /// </summary>
     public class GridGizmoDrawer : IGizmoDrawer
     {
         private LevelGenerating.LevelGrid.Grid _grid;

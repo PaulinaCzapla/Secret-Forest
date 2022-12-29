@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace LevelGenerating.LevelGrid
 {
+    /// <summary>
+    /// A class that represents single grid cell. It contains it's world and grid positions.
+    /// </summary>
     [Serializable]
     public class GridCell
     {

@@ -2,14 +2,38 @@
 
 namespace CombatSystem
 {
+    /// <summary>
+    /// A static class that contains events used in the combat system.
+    /// </summary>
     public static class StaticCombatEvents
     {
+        /// <summary>
+        /// An event that is invoked when the combat starts.
+        /// </summary>
         private static UnityEvent<Enemy> onCombatStarted = new UnityEvent<Enemy>();
+        /// <summary>
+        /// An event that is invoked when the combat ends.
+        /// </summary>
         private static UnityEvent onCombatEnded = new UnityEvent();
+        /// <summary>
+        /// An event that enables/disables combat UI.
+        /// </summary>
         private static UnityEvent<bool> onToggleCombatUI = new UnityEvent<bool>();
+        /// <summary>
+        /// An event that enables/disablet combat buttons UI.
+        /// </summary>
         private static UnityEvent<bool> onToggleCombatButtonsUI = new UnityEvent<bool>();
+        /// <summary>
+        /// An event that is invoked to update enemy's current and maximum health value.
+        /// </summary>
         private static UnityEvent<float,float> onUpdateEnemyHealthUI = new UnityEvent<float,float>();
+        /// <summary>
+        /// An event that is invoked when the player attacks with a sword.
+        /// </summary>
         private static UnityEvent onPlayerSwordAttack = new UnityEvent();
+        /// <summary>
+        /// An event that is invoked when the player attacks with a bow.
+        /// </summary>
         private static UnityEvent onPlayerBowAttack = new UnityEvent();
 
         public static void SubscribeToCombatStarted (UnityAction<Enemy> subscriber) =>

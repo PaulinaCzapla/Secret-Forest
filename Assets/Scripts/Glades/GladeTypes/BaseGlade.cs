@@ -4,6 +4,9 @@ using UnityEngine.Events;
 
 namespace Glades.GladeTypes
 {
+    /// <summary>
+    /// Abstract base class that represents glade.
+    /// </summary>
     public abstract class BaseGlade : MonoBehaviour
     {
         public UnityEvent OnPlayerArrived { get; set; }= new UnityEvent();
@@ -14,6 +17,9 @@ namespace Glades.GladeTypes
 
         private int _currentConfiguration;
 
+        /// <summary>
+        /// Initializes a glade by drawing a configuration from the list.
+        /// </summary>
         public virtual void Initialize()
         {
             ResetGlade();
@@ -28,6 +34,9 @@ namespace Glades.GladeTypes
             }
         }
 
+        /// <summary>
+        /// Resets current configuration.
+        /// </summary>
         protected virtual void ResetGlade()
         {
             foreach (var conf in configurations)

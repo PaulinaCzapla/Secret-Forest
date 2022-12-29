@@ -1,5 +1,8 @@
-﻿namespace InteractableItems.CollectableItems.Items
+﻿namespace InteractableItems.CollectableItems.Items.Types
 {
+    /// <summary>
+    /// Describes value type.
+    /// </summary>
     public enum ItemValueType
     {
         Damage,

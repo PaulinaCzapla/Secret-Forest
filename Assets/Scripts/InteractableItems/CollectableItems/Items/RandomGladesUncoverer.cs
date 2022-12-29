@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using GameManager;
 using Glades;
+using InteractableItems.CollectableItems.Interfaces;
+using InteractableItems.CollectableItems.Items.Types;
 using LevelGenerating;
 using RandomGenerators;
 using UI.Eq;
@@ -9,6 +11,9 @@ using Random = Unity.Mathematics.Random;
 
 namespace InteractableItems.CollectableItems.Items
 {
+    /// <summary>
+    /// A class that represents an item, that uncovers three random glades. It implements IUsable interface, so player can use this item.
+    /// </summary>
     public class RandomGladesUncoverer : Item, IUsable
     {
         private int _gladesToUncover = 3;

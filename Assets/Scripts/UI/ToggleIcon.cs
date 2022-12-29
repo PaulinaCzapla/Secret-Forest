@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// Implement an icon that can be toggled with icon change.
+    /// </summary>
     public class ToggleIcon : MonoBehaviour
     {
         [SerializeField] private Toggle toggle;

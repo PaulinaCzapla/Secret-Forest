@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace LevelGenerating
 {
+    /// <summary>
+    /// A scriptable object that is used as a configuration file. It contains data required to generate levels and items.
+    /// </summary>
     [CreateAssetMenu(fileName = "LevelsConfig", menuName = "ScriptableObjects/LevelsConfig")]
     public class LevelsConfigSO : ScriptableObject
     {
@@ -16,6 +19,10 @@ namespace LevelGenerating
         [Header("Chest items spawn probabilities")] [SerializeField]
         private List<ItemsForLevel> itemsInfo;
 
+        /// <summary>
+        /// Returns and prepares LevelAttributes object that is dependent on current game level.
+        /// </summary>
+        /// <returns> LevelAttributes object. </returns>
         public LevelAttributes GetLevelAttributes()
         {
             LevelAttributes attributes = null;
@@ -39,6 +46,10 @@ namespace LevelGenerating
             return attributes;
         }
 
+        /// <summary>
+        /// Prepares a list with items and it's probabilities that can be drawn in chests. It's dependent on the current game level.
+        /// </summary>
+        /// <returns> List with items and it's probabilities. </returns>
         public List<ItemsProbability> GetChestItemsProbabilities()
         {
             List<ItemsProbability> items = null;
@@ -63,6 +74,9 @@ namespace LevelGenerating
         }
     }
 
+    /// <summary>
+    /// A struct that contains an item and it's probability.
+    /// </summary>
     [Serializable]
     public struct ItemProbability
     {
@@ -70,6 +84,9 @@ namespace LevelGenerating
         public ItemSO item;
     }
 
+    /// <summary>
+    /// A struct that contains an ItemGroupSO and it's probability.
+    /// </summary>
     [Serializable]
     public struct ItemsProbability
     {
@@ -77,6 +94,9 @@ namespace LevelGenerating
         public ItemGroupSO items;
     }
     
+    /// <summary>
+    /// A struct that represents items that can exist to the given maximum level.
+    /// </summary>
     [Serializable]
     public class ItemsForLevel
     {

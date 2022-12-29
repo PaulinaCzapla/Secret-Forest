@@ -5,9 +5,15 @@ using UnityEngine;
 
 namespace LevelGenerating
 {
+    /// <summary>
+    /// Scriptable object that contains glades.
+    /// </summary>
     [CreateAssetMenu(fileName = "Glades", menuName = "ScriptableObjects/Glades")]
     public class GladesSO : ScriptableObject
     {
+        /// <summary>
+        /// Dictionary that contains glades. The keys are types of glades.
+        /// </summary>
         public Dictionary<GladeType, GameObject> Glades
         {
             get
@@ -32,6 +38,9 @@ namespace LevelGenerating
         private Dictionary<GladeType, GameObject> _glades = null;
     }
 
+    /// <summary>
+    /// Struct that represents a glade with it's type.
+    /// </summary>
     [Serializable]
     public struct GladeObject
     {

@@ -1,9 +1,14 @@
 ﻿using System.Collections.Generic;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.Types;
 using Newtonsoft.Json;
 
 namespace GameManager.SavesManagement
 {
+    /// <summary>
+    /// A class that is used as a container to store information about single item owned by the player.
+    /// This class is saved to .json file.
+    /// </summary>
     public class OwnedItem
     {
         [JsonProperty] public bool equipped;

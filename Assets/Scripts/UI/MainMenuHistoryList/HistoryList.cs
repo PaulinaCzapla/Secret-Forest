@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace UI.MainMenuHistoryList
 {
+    /// <summary>
+    /// A class that represents history list UI element in Main Menu.
+    /// </summary>
     public class HistoryList : MonoBehaviour
     {
         [SerializeField] private RectTransform parent;
@@ -19,7 +22,6 @@ namespace UI.MainMenuHistoryList
 
         private void OnEnable()
         {
-            
             if (SaveManager.History == null)
             {
                 gameObject.SetActive(false);

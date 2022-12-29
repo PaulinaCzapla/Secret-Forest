@@ -11,6 +11,9 @@ using UnityEngine.EventSystems;
 
 namespace PlayerInteractions
 {
+    /// <summary>
+    /// A class that implements player's interaction with the world.
+    /// </summary>
     public class PlayerInteractions : MonoBehaviour
     {
         [SerializeField] LayerMask layerMask;
@@ -41,8 +44,12 @@ namespace PlayerInteractions
         {
             InputManager.onTapAction -= OnSingleTap;
         }
-
-        void OnSingleTap(Vector2 tapPosition)
+        
+        /// <summary>
+        /// Called when player did a single tap.
+        /// </summary>
+        /// <param name="tapPosition"> A position of the tap. </param>
+        private void OnSingleTap(Vector2 tapPosition)
         {
             if (MainCamera == null)
                 return;
@@ -50,6 +57,11 @@ namespace PlayerInteractions
             CheckRaycastedObject(tapPosition, MainCamera);
         }
 
+        /// <summary>
+        /// Checks if player tapped on UI.
+        /// </summary>
+        /// <param name="screenPoint"> Position on the screen. </param>
+        /// <returns> Returns true if tap was on UI, otherwise returns false. </returns>
         private bool IsTapOnUI(Vector2 screenPoint)
         {
             PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
@@ -59,7 +71,12 @@ namespace PlayerInteractions
             return results.Count > 0;
         }
 
-        void CheckRaycastedObject(Vector2 screenPoint, Camera raycastCamera)
+        /// <summary>
+        /// Checks if the player tapped on interactable object and performs proper action.
+        /// </summary>
+        /// <param name="screenPoint"> A point on the screen. </param>
+        /// <param name="raycastCamera"> Current camera. </param>
+        private void CheckRaycastedObject(Vector2 screenPoint, Camera raycastCamera)
         {
             _hits = Physics2D.RaycastAll(raycastCamera.ScreenToWorldPoint(screenPoint), Vector3.forward, 1000f,
                 layerMask);

@@ -6,13 +6,26 @@ using Random = UnityEngine.Random;
 
 namespace RandomGenerators
 {
+    /// <summary>
+    /// A generic static class that provides randomization methods. 
+    /// </summary>
     public static class RandomElementsGenerator
     {
+        /// <summary>
+        /// An overload that draws multiple elements from list with the same probability.
+        /// </summary>
+        /// <param name="list"> List with elements to draw. </param>
+        /// <param name="elementsCount"> Number of elements to draw. </param>
+        /// <returns> Result list with drawn objects. </returns>
         public static List<T> GetRandom<T>(IEnumerable<T> list, int elementsCount)
         {
             return list.OrderBy(arg => Guid.NewGuid()).Take(elementsCount).ToList();
         }
-        
+        /// <summary>
+        /// An overload that draws element from table with different probabilities.
+        /// </summary>
+        /// <param name="values"> Table of Tuples with elements to draw and it's probabilities. </param>
+        /// <returns> Drawn object. </returns>
         public static T GetRandom<T>(Tuple<T, float>[] values)
         {
             float total = 0;
@@ -38,7 +51,12 @@ namespace RandomGenerators
 
             return values[values.Length - 1].Item1;
         }
-
+        /// <summary>
+        /// An overload that draws bool value with different probabilities.
+        /// </summary>
+        /// <param name="trueChance"> Probability to get true value. </param>
+        /// <param name="falseChance"> Probability to get false value. </param>
+        /// <returns> Drawn value. </returns>
         public static bool GetRandom(float trueChance, float falseChance)
         {
             float total = trueChance + falseChance;
@@ -46,7 +64,11 @@ namespace RandomGenerators
             
             return randomPoint < trueChance;
         }
-        
+        /// <summary>
+        /// An overload that draws element from list with different probabilities.
+        /// </summary>
+        /// <param name="values"> Table of Tuples with elements to draw and it's probabilities. </param>
+        /// <returns> Drawn object. </returns>
         public static T GetRandom<T>(List<Tuple<T, float>> values)
         {
             float total = 0;
@@ -66,7 +88,12 @@ namespace RandomGenerators
             
             return values[values.Count - 1].Item1;
         }
-
+        /// <summary>
+        /// An overload that draws multiple elements from list with different probabilities.
+        /// </summary>
+        /// <param name="values"> A list of Tuples with objects and it's probabilities. </param>
+        /// <param name="amount"> Number of elements to draw. </param>
+        /// <returns> Result list with drawn objects. </returns>
         public static List<T> GetRandom<T>(List<Tuple<T, float>> values, int amount)
         {
             float total = 0;

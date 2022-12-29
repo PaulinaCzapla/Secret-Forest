@@ -13,6 +13,9 @@ using UnityEngine;
 
 namespace LevelGenerating
 {
+    /// <summary>
+    /// A class that manages level loading.
+    /// </summary>
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private LevelGenerator levelGenerator;
@@ -39,6 +42,9 @@ namespace LevelGenerating
             PlayerMovementStaticEvents.UnsubscribeFromPlayerMovedToGlade(OnPlayerMoved);
         }
 
+        /// <summary>
+        /// Loads game based on current save data.
+        /// </summary>
         public void LoadGame()
         {
             SaveManager.ReadData();
@@ -69,6 +75,9 @@ namespace LevelGenerating
             UIStaticEvents.InvokeUpdateHealthUI();
         }
 
+        /// <summary>
+        /// Starts new game and resets data.
+        /// </summary>
         public void StartNewGame()
         {
             GameController.GetInstance().CurrentLevelNum = 0;
@@ -81,22 +90,35 @@ namespace LevelGenerating
             levelGenerator.GenerateLevel(GameManager.GameController.GetInstance().CurrentLevelNum);
         }
 
+        /// <summary>
+        /// Generates new level.
+        /// </summary>
         public void LevelFinished()
         {
             GameManager.GameController.GetInstance().CurrentLevelNum++;
             levelGenerator.GenerateLevel(GameManager.GameController.GetInstance().CurrentLevelNum);
             SaveCurrentGame();
         }
+        
+        /// <summary>
+        /// Saves game progress every time player moves.
+        /// </summary>
         private void OnPlayerMoved(SpawnedGlade arg0)
         {
             SaveCurrentGame();
         }
+        /// <summary>
+        /// Saves game history when player dies. Removes previous current game save.
+        /// </summary>
         public void OnPlayerDied()
         {
             SaveManager.SaveHistory();
             SaveManager.DeleteCurrentGameSaveData();
         }
 
+        /// <summary>
+        /// Saves game progress.
+        /// </summary>
         public void SaveCurrentGame()
         {
             SaveManager.PrepareSaveData();

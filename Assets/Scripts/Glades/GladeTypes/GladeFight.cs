@@ -8,6 +8,9 @@ using Random = UnityEngine.Random;
 
 namespace Glades.GladeTypes
 {
+    /// <summary>
+    /// Representation of a fight glade (easy or hard).
+    /// </summary>
     public class GladeFight : BaseGlade
     {
         [SerializeField] private DifficultyLevel difficulty;
@@ -40,6 +43,9 @@ namespace Glades.GladeTypes
             PlayerMovementStaticEvents.UnsubscribeFromPlayerMovedToGlade(OnPlayerMoved);
         }
 
+        /// <summary>
+        /// Increments counter when player moves between glades. When counter has proper value, revives and enemy.
+        /// </summary>
         private void OnPlayerMoved(SpawnedGlade glade)
         {
             if (_enemy.IsDead)
@@ -52,7 +58,9 @@ namespace Glades.GladeTypes
             }
         }
         
-
+        /// <summary>
+        /// Resets the counter and initiates the fight.
+        /// </summary>
         private void PlayerArrived()
         {
             _gladeCounter = 0;
@@ -62,6 +70,9 @@ namespace Glades.GladeTypes
             StaticCombatEvents.InvokeCombatStarted(_enemy);
         }
 
+        /// <summary>
+        /// Draws enemy from the list and initializes it.
+        /// </summary>
         public override void Initialize()
         {
             if (_initialized)
@@ -77,7 +88,7 @@ namespace Glades.GladeTypes
 
             _enemy.Initialize(stats.Item1, stats.Item2, stats.Item3, stats.Item4);
         }
-
+        
         protected override void ResetGlade()
         {
             _initialized = false;

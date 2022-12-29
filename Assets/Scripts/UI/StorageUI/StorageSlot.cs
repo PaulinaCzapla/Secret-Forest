@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace UI.StorageUI
 {
+    /// <summary>
+    /// A class that represents a single slot in chest/storage.
+    /// </summary>
     public class StorageSlot : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI itemName;
@@ -15,6 +18,10 @@ namespace UI.StorageUI
 
         private Item _item;
 
+        /// <summary>
+        /// Initializes slot with item's values.
+        /// </summary>
+        /// <param name="item"> Item object. </param>
         public void InitSlot(Item item)
         {
             _item = item;
@@ -24,7 +31,9 @@ namespace UI.StorageUI
 
             button.onClick.AddListener(OnItemCollected);
         }
-
+        /// <summary>
+        /// Is called when player collected an item stored in slot.
+        /// </summary>
         private void OnItemCollected()
         {
             if (_item.Collect())

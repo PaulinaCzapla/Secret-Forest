@@ -3,9 +3,18 @@ using UnityEngine.Events;
 
 namespace UI.Events
 {
+    /// <summary>
+    /// A static class that implements events that are used to manage UI.
+    /// </summary>
     public static class UIStaticEvents
     {
+        /// <summary>
+        /// Event that is invoked when hunger UI need refresh.
+        /// </summary>
         private static UnityEvent onUpdateHungerUI = new UnityEvent();
+        /// <summary>
+        /// Event that is invoked when health UI needs refresh.
+        /// </summary>
         private static UnityEvent onUpdateHealthUI = new UnityEvent();
 
         public static void SubscribeToUpdateHungerUI(UnityAction subscriber) =>

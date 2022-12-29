@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Glades
 {
+    /// <summary>
+    /// Represents a mask that covers a glade. 
+    /// </summary>
     public class Mask : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer maskSurface;
@@ -21,6 +24,9 @@ namespace Glades
             _initialized = true;
         }
 
+        /// <summary>
+        /// Animated mask deactivation.
+        /// </summary>
         public void DeactivateMask()
         {
             if (mask.color.a == 0)
@@ -34,6 +40,9 @@ namespace Glades
                 .Append(mask.DOFade(0, 0.4f));
         }
 
+        /// <summary>
+        /// Shows gray glade frame.
+        /// </summary>
         public void ShowFrame()
         {
             if (maskSurface.color.a == 0)
@@ -42,7 +51,9 @@ namespace Glades
             maskSurface.DOFade(0, 0.25f);
             fireflies.SetActive(true);
         }
-
+        /// <summary>
+        /// Sets a mask that covers glade and a frame. 
+        /// </summary>
         public void SetMask()
         {
             if (!_initialized)

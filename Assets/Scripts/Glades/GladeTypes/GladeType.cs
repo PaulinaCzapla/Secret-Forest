@@ -1,5 +1,8 @@
 ﻿namespace Glades
 {
+    /// <summary>
+    /// Describes a type of the glade.
+    /// </summary>
     public enum GladeType
     {
         Start,

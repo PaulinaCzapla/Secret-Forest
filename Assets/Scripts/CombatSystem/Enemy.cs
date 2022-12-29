@@ -10,6 +10,9 @@ using UnityEngine.Events;
 
 namespace CombatSystem
 {
+    /// <summary>
+    /// A class that represents an enemy.
+    /// </summary>
     public class Enemy : MonoBehaviour
     {
         public bool IsDead => _currentHealth <= 0;
@@ -31,12 +34,20 @@ namespace CombatSystem
             _animator = GetComponent<Animator>();
         }
 
+        /// <summary>
+        /// Brings the enemy back to life with reduced defense value.
+        /// </summary>
         public void Revive()
         {
             _currentHealth = 0.7f * _defense;
             _animator.Play("Idle");
         }
 
+        /// <summary>
+        /// Returns attack damage value that depends on circumstances and randomness. 
+        /// </summary>
+        /// <param name="shouldHelp"> Information if player should be helped. </param>
+        /// <returns>Damage value.</returns>
         public float GetAttackValue(bool shouldHelp)
         {
             var chance = _critical/10;
@@ -66,6 +77,11 @@ namespace CombatSystem
             return isCritical ? 2 * _damage : _damage;
         }
         
+        /// <summary>
+        /// Invoked when enemy is hit by the player. Value of taken damage depends on circumstances and randomness.
+        /// </summary>
+        /// <param name="dmg"> Damage value that should be dealt. </param>
+        /// <param name="shouldHelp"> Information if player should be helped. </param>
         public void Hit(float dmg, bool shouldHelp)
         {
             var chance = _dodge/10;
@@ -99,12 +115,16 @@ namespace CombatSystem
             }
         }
 
+        /// <summary>
+        /// Performs enemy's death.
+        /// </summary>
         private void Die()
         {
             _animator.Play("Death");
             StaticCombatEvents.InvokeCombatEnded();
             StaticCombatEvents.InvokeToggleCombatUI(false);
         }
+        
         
         public void Initialize(float defense, float damage, float dodgeChance, float criticalChance)
         {

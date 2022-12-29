@@ -12,6 +12,9 @@ using Random = UnityEngine.Random;
 
 namespace Glades.GladeTypes
 {
+    /// <summary>
+    /// Represents a glade with chests.
+    /// </summary>
     public sealed class GladeStorage : BaseGlade
     {
         [Serializable]
@@ -26,6 +29,9 @@ namespace Glades.GladeTypes
 
         private int _currentConfiguration;
 
+        /// <summary>
+        /// Initializes glade by drawing a configuration and initializing chests.
+        /// </summary>
         public override void Initialize()
         {
             ResetGlade();

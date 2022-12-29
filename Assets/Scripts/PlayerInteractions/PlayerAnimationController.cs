@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 
 namespace PlayerInteractions
 {
+    /// <summary>
+    /// A class that controls all of the player's animations.
+    /// </summary>
     public class PlayerAnimationController : MonoBehaviour
     {
         [SerializeField] private TextMeshPro text;

@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.Types;
 using UnityEngine;
 
 namespace InteractableItems.CollectableItems.ScriptableObjects
 {
+    /// <summary>
+    /// A scriptable object that represents an item that is described by a single or multiple numeric values.
+    /// </summary>
     [CreateAssetMenu(fileName = "ValueItem", menuName = "ScriptableObjects/ValueItem", order = 0)]
     public class ValueItemSO : ItemSO
     {

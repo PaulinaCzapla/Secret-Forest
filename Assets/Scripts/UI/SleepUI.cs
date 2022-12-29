@@ -7,6 +7,9 @@ using UnityEngine.Events;
 
 namespace UI
 {
+    /// <summary>
+    /// Implements sleep UI animation.
+    /// </summary>
     public class SleepUI : MonoBehaviour
     {
         public static UnityEvent<float, float, float, Vector3> OnSleep = new UnityEvent<float, float, float, Vector3>();

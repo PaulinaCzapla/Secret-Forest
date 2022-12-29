@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using Glades;
 using Glades.GladeTypes;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.Types;
 using LevelGenerating;
 using Newtonsoft.Json;
 using PlayerInteractions;
 using UI.Eq;
 using UnityEngine;
-using ValueType = InteractableItems.CollectableItems.Items.ValueType;
+using ValueType = InteractableItems.CollectableItems.Items.Types.ValueType;
 
 namespace GameManager.SavesManagement
 {
+    /// <summary>
+    /// A static class that is responsible for preparing, saving and reading save data.
+    /// </summary>
     public static class SaveManager
     {
         private const string CurrentGameSaveDataFilename = "currentGame.json";
@@ -21,6 +25,9 @@ namespace GameManager.SavesManagement
         public static GameHistory History { get; private set; }
         private static PlayerStatsSO _playerStats;
 
+        /// <summary>
+        /// Prepares current save data to be saved to file.
+        /// </summary>
         public static void PrepareSaveData()
         {
             if (_playerStats == null)
@@ -77,6 +84,9 @@ namespace GameManager.SavesManagement
             Stats.items = items;
         }
 
+        /// <summary>
+        /// Prepares game history data and saves it to file.
+        /// </summary>
         public static void SaveHistory()
         {
             if (History == null)
@@ -86,27 +96,42 @@ namespace GameManager.SavesManagement
             SaveSystem.SaveFile(GamesHistoryFilename, History);
         }
 
+        /// <summary>
+        /// Read history data from file.
+        /// </summary>
         public static void ReadHistory()
         {
             History = SaveSystem.ReadFile<GameHistory>(GamesHistoryFilename);
         }
 
+        /// <summary>
+        /// Checks if there is any current, not finished game saved to file.
+        /// </summary>
+        /// <returns> True if there is saved current game, false if there is no such file. </returns>
         public static bool HasSavedCurrentGame()
         {
             return SaveSystem.HasFile(CurrentGameSaveDataFilename);
         }
 
+        /// <summary>
+        /// Saves current game data to file.
+        /// </summary>
         public static void SaveCurrentGame()
         {
             if (_playerStats.currentHealthValue > 0)
                 SaveSystem.SaveFile(CurrentGameSaveDataFilename, Stats);
         }
-
+        /// <summary>
+        /// Reads current game data from file.
+        /// </summary>
         public static void ReadData()
         {
             Stats = SaveSystem.ReadFile<GameSaveData>(CurrentGameSaveDataFilename);
         }
 
+        /// <summary>
+        /// Deletes current save data.
+        /// </summary>
         public static void DeleteCurrentGameSaveData()
         {
             SaveSystem.DeleteFile(CurrentGameSaveDataFilename);

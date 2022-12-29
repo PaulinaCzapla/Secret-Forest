@@ -5,10 +5,13 @@ using TMPro;
 using UI.Events;
 using UnityEngine;
 using UnityEngine.UI;
-using ValueRepresentation;
+using Utilities.ValueRepresentation;
 
 namespace UI.HUD
 {
+    /// <summary>
+    /// A class that represents player's hunger bar.
+    /// </summary>
     public class UIHungerBar : UIBar
     {
         [SerializeField] private PlayerStatsSO stats;
@@ -27,6 +30,9 @@ namespace UI.HUD
             UIStaticEvents.UnsubscribeFromUpdateHungerUI(Refresh);
         }
 
+        /// <summary>
+        /// Refreshes the bar values.
+        /// </summary>
         protected override void Refresh()
         {
             if (Mathf.Abs(_prevValue - Mathf.Abs(stats.currentHungerValue)) >= 1 || _fistInit || Mathf.Approximately(stats.currentHungerValue,0))

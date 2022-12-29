@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace GameManager.SavesManagement
 {
+    /// <summary>
+    /// A class that is used as a container to store current game stats and values. This class is saved to .json file.
+    /// </summary>
     public class GameSaveData
     {
        [JsonProperty] public int levelNum;

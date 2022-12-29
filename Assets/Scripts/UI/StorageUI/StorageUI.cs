@@ -6,6 +6,7 @@ using InteractableItems.CollectableItems.Items.InteractableItems;
 using PlayerInteractions.Input;
 using TMPro;
 using UI.Eq;
+using UI.Events;
 using UnityEngine;
 using UnityEngine.UI;
 

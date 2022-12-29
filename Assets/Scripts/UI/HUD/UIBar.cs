@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace UI.HUD
 {
+    /// <summary>
+    /// An abstract class that represents a bar.
+    /// </summary>
     public abstract class UIBar : MonoBehaviour
     {
         [SerializeField] protected Slider slider;
@@ -18,6 +21,9 @@ namespace UI.HUD
 
         protected abstract void Refresh();
 
+        /// <summary>
+        /// Performs text animation.
+        /// </summary>
         protected void AnimateText()
         {
             var sequence = DOTween.Sequence();

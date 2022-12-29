@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace LevelGenerating.LevelGrid
 {
+    /// <summary>
+    /// A scriptable object that contains grid data. Parameters like cell width, height and space between can be set in the editor.
+    /// </summary>
     [CreateAssetMenu(fileName = "Grid", menuName = "ScriptableObjects/Grid", order = 0)]
     public class Grid : ScriptableObject
     {

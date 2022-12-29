@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
 using GameManager;
 using InteractableItems.CollectableItems.Interfaces;
+using InteractableItems.CollectableItems.Items.Types;
 using PlayerInteractions.StaticEvents;
 using UI.Eq;
 using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
 {
+    /// <summary>
+    /// A class that represents an weapon item, that can be equipped.
+    /// </summary>
     public class Weapon : WearableItem
     {
         public Weapon(float damage, float criticalHitChance, Sprite sprite, string name, string id,

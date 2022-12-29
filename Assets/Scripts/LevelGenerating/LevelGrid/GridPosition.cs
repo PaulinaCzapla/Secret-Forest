@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace LevelGenerating.LevelGrid
 {
+    /// <summary>
+    /// A struct that represents position in grid.
+    /// </summary>
     [Serializable]
     public struct GridPosition
     {

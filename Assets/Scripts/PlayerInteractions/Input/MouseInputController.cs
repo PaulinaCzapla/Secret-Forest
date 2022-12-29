@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 
 namespace PlayerInteractions.Input
 {
+    /// <summary>
+    /// A class that represents an input controller for a mouse.
+    /// </summary>
     public class MouseInputController : IInputController
     {
         private IInputManager _inputManager;

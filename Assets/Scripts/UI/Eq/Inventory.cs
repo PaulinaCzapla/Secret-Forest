@@ -4,8 +4,10 @@ using GameManager;
 using InteractableItems.CollectableItems;
 using InteractableItems.CollectableItems.Interfaces;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.Types;
 using PlayerInteractions.Input;
 using TMPro;
+using UI.Events;
 using UI.StorageUI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,10 +15,12 @@ using UnityEngine.UI;
 
 namespace UI.Eq
 {
+    /// <summary>
+    /// A class that represents player's inventory.
+    /// </summary>
     public class Inventory : Singleton<Inventory>
     {
         public UnityEvent<bool> OnTriedAddItem { get; set; } = new UnityEvent<bool>();
-       // public static Inventory Instance { get; private set; }
         public List<Item> StoredItems => _storedItems;
         
         [SerializeField] private GameObject storageObject;
@@ -62,6 +66,10 @@ namespace UI.Eq
             toggleEq.onValueChanged.RemoveListener(ToggleEq);
         }
 
+        /// <summary>
+        /// Open/closes and inventory UI.
+        /// </summary>
+        /// <param name="list"> Information if should be opened or closed. </param>
         private void ToggleEq(bool toggle)
         {
             if (toggle)
@@ -72,6 +80,11 @@ namespace UI.Eq
             }
         }
 
+        /// <summary>
+        /// Initializes inventory slots.
+        /// </summary>
+        /// <param name="slotsCount"> Maximum slots count. </param>
+        /// <param name="elementsCount"> Items in inventory. </param>
         public void InitializeStorage(int slotsCount, List<Item> items = null)
         {
             ResetSlots();
@@ -104,11 +117,18 @@ namespace UI.Eq
             RefreshInventory();
         }
 
+        /// <summary>
+        /// Removes item from list.
+        /// </summary>
+        /// <param name="item"> Item to remove. </param>
         private void OnSlotEmptied(Item item)
         {
             _storedItems.Remove(item);
         }
 
+        /// <summary>
+        /// Refreshes equipment slots.
+        /// </summary>
         private void RefreshEquipment()
         {
             ItemType[] types =
@@ -129,7 +149,9 @@ namespace UI.Eq
                 }
             }
         }
-
+        /// <summary>
+        /// Refreshes inventory slots.
+        /// </summary>
         private void RefreshInventory()
         {
             RefreshEquipment();
@@ -150,6 +172,9 @@ namespace UI.Eq
             }
         }
 
+        /// <summary>
+        /// Opens storage UI.
+        /// </summary>
         public void OpenStorage()
         {
             ChestUIStaticEvents.InvokeCloseChest();
@@ -157,7 +182,9 @@ namespace UI.Eq
             toggleEq.isOn = true;
             storageObject.SetActive(true);
         }
-
+        /// <summary>
+        /// Closes storage UI.
+        /// </summary>
         public void CloseStorage()
         {
             toggleEq.isOn = false;
@@ -166,6 +193,11 @@ namespace UI.Eq
             InputManager.TapEnable = true;
         }
 
+        /// <summary>
+        /// Places collected item in free inventory slot.
+        /// </summary>
+        /// <param name="item"> Collected item </param>
+        /// <returns> Returns true when item was added successfully. When there was no free slots it returns false. </returns>
         public bool ItemCollected(Item item)
         {
             var freeSlot = GetFreeSlot();
@@ -181,6 +213,10 @@ namespace UI.Eq
             return freeSlot;
         }
 
+        /// <summary>
+        /// Equips new item and adds the old one to the inventory if there was any.
+        /// </summary>
+        /// <param name="itemToBeEquip"> Item to equip. </param>
         public void ItemEquipped(Item itemToBeEquip)
         {
             var oldItem = GameManager.GameController.GetInstance().Equipment.Equip(itemToBeEquip);
@@ -193,6 +229,10 @@ namespace UI.Eq
             RefreshEquipment();
         }
 
+        /// <summary>
+        /// Changes UI when player clicks on the equipment slot..
+        /// </summary>
+        /// <param name="slot"> Clicked slot. </param>
         private void OnEquipmentSlotClicked(InventorySlot slot)
         {
             ResetItemUI();
@@ -212,6 +252,10 @@ namespace UI.Eq
             slot.Select();
         }
 
+        /// <summary>
+        /// Removes item from equipment and adds it to the inventory.
+        /// </summary>
+        /// <param name="item"> Item to be taken off. </param>
         private void OnTakeOffItem(Item item)
         {
             Item currentItem = GameManager.GameController.GetInstance().Equipment.Unequip(item);
@@ -219,7 +263,10 @@ namespace UI.Eq
             if (currentItem != null)
                 ItemCollected(currentItem);
         }
-
+        /// <summary>
+        /// Changes the UI when player clicks on the inventory slot.
+        /// </summary>
+        /// <param name="slot"> Clicked slot.</param>
         private void OnItemClicked(InventorySlot slot)
         {
             ResetItemUI();
@@ -246,12 +293,19 @@ namespace UI.Eq
             slot.Select();
         }
 
+        /// <summary>
+        /// Empties the given slot.
+        /// </summary>
+        /// <param name="slot"> Slot to empty. </param>
         private void OnResetSelectedItem(InventorySlot slot)
         {
             ResetItemUI();
             _storedItems.Remove(slot.CurrentItem);
         }
 
+        /// <summary>
+        /// Sets default UI appearance.
+        /// </summary>
         private void ResetItemUI()
         {
             if (_currentSelected)
@@ -267,6 +321,9 @@ namespace UI.Eq
             itemName.text = "";
         }
 
+        /// <summary>
+        /// Empties all slots.
+        /// </summary>
         private void ResetSlots()
         {
             foreach (var slot in slots)
@@ -286,6 +343,11 @@ namespace UI.Eq
             }
             
         }
+        
+        /// <summary>
+        /// Finds free slot in the available slots list.
+        /// </summary>
+        /// <returns> Free slot or null, when there is no free slots.</returns>
         private InventorySlot GetFreeSlot()
         {
             foreach (var slot in slots)

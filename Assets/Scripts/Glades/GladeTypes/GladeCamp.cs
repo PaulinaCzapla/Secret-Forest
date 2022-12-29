@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 namespace Glades.GladeTypes
 {
+    /// <summary>
+    /// Representation of the glade with camp.
+    /// </summary>
     public class GladeCamp : BaseGlade
     {
         [SerializeField] private Tent tent;
@@ -29,6 +32,9 @@ namespace Glades.GladeTypes
             _tentUsed.RemoveAllListeners();
         }
 
+        /// <summary>
+        /// Increments counter when player moved to new glade.
+        /// </summary>
         private void OnPlayerMoved(SpawnedGlade glade)
         {
             _gladeCounter++;

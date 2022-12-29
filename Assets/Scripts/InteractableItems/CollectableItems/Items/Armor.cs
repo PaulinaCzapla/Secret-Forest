@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
 using GameManager;
 using InteractableItems.CollectableItems.Interfaces;
+using InteractableItems.CollectableItems.Items.Types;
 using UI.Eq;
 using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
 {
+    /// <summary>
+    /// A class that represents an armour item, that can be equipped.
+    /// </summary>
     public class Armor : WearableItem
     {
         public Armor(float defence, float dodgeChance, Sprite sprite, string name, string id, ItemType type) : base(type, sprite,

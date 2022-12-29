@@ -1,18 +1,25 @@
 ﻿using System.Collections.Generic;
 using InteractableItems.CollectableItems.Items;
+using InteractableItems.CollectableItems.Items.Types;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
-using ValueRepresentation;
-using ValueType = InteractableItems.CollectableItems.Items.ValueType;
+using Utilities.ValueRepresentation;
+using ValueType = InteractableItems.CollectableItems.Items.Types.ValueType;
 
 namespace InteractableItems.CollectableItems.ScriptableObjects
 {
+    /// <summary>
+    /// A scriptable object that represents an item whose value is determined by a curve.
+    /// </summary>
     [CreateAssetMenu(fileName = "EquippableItem", menuName = "ScriptableObjects/EquippableItem", order = 0)]
     public class CurveItemSO : ItemSO
     {
         [Header("Values")] 
         [SerializeField] private List<ValuesPossibilitiesType> values;
 
+        /// <summary>
+        /// Returns proper Item object.
+        /// </summary>
         public override Item GetItem()
         {
             switch (type)
@@ -76,6 +83,10 @@ namespace InteractableItems.CollectableItems.ScriptableObjects
             }
         }
 
+        /// <summary>
+        /// Returns proper Item object with initialization values.
+        /// </summary>
+        /// <param name="initValues"> Initialization values. </param>
         public override Item GetItem(List<ValueType> initValues)
         {
              switch (type)

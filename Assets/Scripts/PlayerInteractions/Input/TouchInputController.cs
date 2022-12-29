@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 
 namespace PlayerInteractions.Input
 {
+    /// <summary>
+    /// A class that represents an input controller for a touch.
+    /// </summary>
     public class TouchInputController : IInputController
     {
         private readonly IInputManager _inputManager;

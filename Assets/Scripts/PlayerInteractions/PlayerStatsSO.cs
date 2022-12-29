@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace PlayerInteractions
 {
+    /// <summary>
+    /// A scriptable object that contains player current and initial stats.
+    /// </summary>
     [CreateAssetMenu(fileName = "PlayerStatsSO", menuName = "ScriptableObjects/PlayerStatsSO", order = 0)]
     public class PlayerStatsSO : ScriptableObject
     {

@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
 using GameManager;
 using Glades;
+using InteractableItems.CollectableItems.Interfaces;
+using InteractableItems.CollectableItems.Items.Types;
 using LevelGenerating;
 using UI.Eq;
 using UnityEngine;
 
 namespace InteractableItems.CollectableItems.Items
 {
+    /// <summary>
+    /// A class that represents an item, that uncovers adjacent glades. It implements IUsable interface, so player can use this item.
+    /// </summary>
     public class AdjacentGladesUncoverer : Item, IUsable
     {
         public AdjacentGladesUncoverer(Sprite sprite, string name, string id, ItemType type) 
@@ -17,7 +22,9 @@ namespace InteractableItems.CollectableItems.Items
         {
             return "Witch cat's eye. Reveals the nearest glades.";
         }
-
+        /// <summary>
+        /// Changes visibility of all glades adjacent to the one player is on.
+        /// </summary>
         public void Use()
         {
             List<SpawnedGlade> glades = new List<SpawnedGlade>();
