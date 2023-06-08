@@ -41,7 +41,7 @@ namespace CameraManagement
     }
 
     /// <summary>
-    ///  A class that is responsible for all camera movement.
+    ///  A class that is responsible for camera movement.
     /// </summary>
     public class CameraController : MonoBehaviour
     {
@@ -53,6 +53,7 @@ namespace CameraManagement
         private readonly float pinchFactor = 0.01f;
         private bool _isDragging;
         private bool _isPinching;
+        private Vector2 _prevPos;
 
         private void OnEnable()
         {
@@ -147,8 +148,6 @@ namespace CameraManagement
             _isPinching = false;
         }
 
-        private Vector2 prevPos;
-
         /// <summary>
         ///  Moves the camera according to the finger movement.
         /// </summary>
@@ -200,6 +199,9 @@ namespace CameraManagement
             }
         }
 
+        /// <summary>
+        ///  Called when a new level is loaded. Calculates new camera limits and focuses camera on a Player.
+        /// </summary>
         private void OnLevelLoaded()
         {
             CameraLimits.CalculateLimits();
