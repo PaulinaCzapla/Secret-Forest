@@ -19,7 +19,7 @@ namespace UI.StorageUI
         private Item _item;
 
         /// <summary>
-        /// Initializes slot with item's values.
+        /// Initializes a slot with item's values.
         /// </summary>
         /// <param name="item"> Item object. </param>
         public void InitSlot(Item item)

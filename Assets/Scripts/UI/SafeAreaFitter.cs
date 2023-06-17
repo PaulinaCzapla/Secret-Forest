@@ -3,7 +3,7 @@ using Screen = UnityEngine.Device.Screen;
 
 namespace UI
 {
-    // <summary>
+    /// <summary>
     /// It adjusts a size of RectTransform, so it fits various kinds of displays, including those with notches.
     /// </summary>
     public class SafeAreaFitter : MonoBehaviour
@@ -36,7 +36,9 @@ namespace UI
         {
             return Screen.safeArea;
         }
-
+        /// <summary>
+        /// Applies safe area size to the RectTransform component.
+        /// </summary>
         private void ApplySafeArea(Rect r)
         {
             _lastSafeArea = r;

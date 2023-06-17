@@ -12,6 +12,9 @@ using UnityEngine.UI;
 
 namespace UI.StorageUI
 {
+    /// <summary>
+    /// A class that represents storage/chest UI.
+    /// </summary>
     public class StorageUI : MonoBehaviour
     {
         [SerializeField] private GameObject chestUIObject;
@@ -33,7 +36,10 @@ namespace UI.StorageUI
             ChestUIStaticEvents.SubscribeToCloseChest(Close);
             Inventory.Instance.OnTriedAddItem.AddListener(OnItemAdded);
         }
-
+        /// <summary>
+        /// Called when an item is added to the inventory. It displays relevant information. 
+        /// </summary>
+        /// <param name="succeded"> Information if item was successfully added to the invemtory. </param>
         private void OnItemAdded(bool succeded)
         {
             if (succeded)
@@ -55,6 +61,11 @@ namespace UI.StorageUI
             ChestUIStaticEvents.UnsubscribeFromCloseChest(Close);
         }
 
+        /// <summary>
+        /// Fills chest's slots with items and opens chest's UI.
+        /// </summary>
+        /// <param name="items"> Items that are in the chest. </param>
+        /// <param name="chest"> Reference to the Chest object that was opened. </param>
         public void Open(List<Item> items, Chest chest)
         {
             InputManager.TapEnable = false;
@@ -81,6 +92,9 @@ namespace UI.StorageUI
             }
         }
 
+        /// <summary>
+        /// Closes the storage UI.
+        /// </summary>
         private void Close()
         {
             if (_currentChest)

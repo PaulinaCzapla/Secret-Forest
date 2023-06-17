@@ -7,7 +7,7 @@ using Utilities.ValueRepresentation;
 namespace UI.HUD
 {
     /// <summary>
-    /// A class that represents enemy health bar.
+    /// A class that represents enemy's health bar.
     /// </summary>
     public class UIEnemyHealthBar : UIBar
     {

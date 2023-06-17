@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace UI
 {
     /// <summary>
-    /// Implement an icon that can be toggled with icon change.
+    /// Implements an icon that can be toggled with sprite change.
     /// </summary>
     public class ToggleIcon : MonoBehaviour
     {
