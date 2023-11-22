@@ -1,9 +1,11 @@
 
 https://www.youtube.com/watch?v=cKHbhg5Po9Y
 
-![image](https://github.com/PaulinaCzapla/Secret-Forest/assets/56382779/38eef979-10b2-4845-bfb0-4085f74e1557)
+![image](https://github.com/PaulinaCzapla/Secret-Forest/assets/56382779/0868e845-8ecd-4a0e-af30-7cac74072cea)
 
 ![image](https://github.com/PaulinaCzapla/Secret-Forest/assets/56382779/fd2181bb-f873-4988-9b15-e91e63366c63)
+
+![image](https://github.com/PaulinaCzapla/Secret-Forest/assets/56382779/38eef979-10b2-4845-bfb0-4085f74e1557)
 
 ![image](https://github.com/PaulinaCzapla/Secret-Forest/assets/56382779/b4b3bc92-cdad-456d-bd0a-c2a91585f436)
 
