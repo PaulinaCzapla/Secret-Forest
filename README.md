@@ -1,4 +1,3 @@
-# Secret Forest
 ## Description
 Secret Forest is a mobile game designed for the android platform. It is a rogue-like game featured with procedurally generated levels.
 
