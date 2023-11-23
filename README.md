@@ -1,5 +1,32 @@
+# Secret Forest
+## Description
+Secret Forest is a mobile game designed for the android platform. It is a rogue-like game featured with procedurally generated levels.
 
+## Game features
+- procedural generation of levels
+- levels consisting of a certain number of rooms of different types:
+  - a glade with a camp - a place where the player can rest and regenerate his health
+  - a glade with food - a place where the player can satisfy his hunger by collecting fruits
+  - a glade with an enemy - a place where the player will have to fight various types of opponents
+  - a glade with treasure - a place where new items can be found
+  - a glade with a portal - allows the player to travel to the next level
+- dynamic adjustment of the difficulty level, depending on the player's progress 
+- an inventory that can store various weapons, armor, food, potions and other magical items for use
+- turn-based combat system, based on equipment statistics and randomness
+- opponents of varying levels of difficulty
+- death of the player equivalent to the end of the game
+- saved history of previous games, accessible from the menu level
+  
+## Usage of libraries, plugins, etc.:
+- Dotween
+- Cinemachine
+- Newtonsoft JSON
+- Device Simulator
+  
+# Gameplay video
 https://www.youtube.com/watch?v=cKHbhg5Po9Y
+
+# Screenshots
 
 ![image](https://github.com/PaulinaCzapla/Secret-Forest/assets/56382779/0868e845-8ecd-4a0e-af30-7cac74072cea)
 
